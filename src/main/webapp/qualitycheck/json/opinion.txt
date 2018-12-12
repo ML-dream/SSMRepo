@@ -1,0 +1,7 @@
+﻿[
+    { "id": "toDiscard", "text": "报废" },
+    { "id": "toFix", "text": "返修" },
+     {"id": "toFix", "text":"返工"},
+	{ "id": "toSale", "text": "超差使用" },
+	{"id": "none", "text":"无"}
+]

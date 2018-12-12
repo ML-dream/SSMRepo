@@ -1,0 +1,243 @@
+body 
+{ 
+SCROLLBAR-FACE-COLOR: #9AB1F8; 
+SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+SCROLLBAR-SHADOW-COLOR: #E3EAFD; 
+SCROLLBAR-3DLIGHT-COLOR: #ffffff; 
+SCROLLBAR-ARROW-COLOR: #FFFF00; 
+SCROLLBAR-TRACK-COLOR: #ffffff;
+SCROLLBAR-DARKSHADOW-COLOR: #CCCCCC;
+font-size:12px;font-family:Arial;
+}
+table,td,tr,p,input,select{font-size:12px}
+/*
+	列表页样式
+*/
+.page_title{
+	font-family:"Verdana","宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 18px;
+	font-weight:bold;
+}
+/*表示强调，用于提示必输项*/
+.red_star{
+	color:red;
+	font-weight:bold;
+	font-size: 20px;
+}
+/*查询表单样式*/
+.query_form_table{
+	FONT-SIZE: 12px
+}
+.query_form_table th{
+	font-size:12px;
+	font-weight:normal;
+	border-bottom:solid 1px #8c8c8c;
+	background-color:#6EC2FD;/*#FF9999;/*6EC2FD*/
+	font-weight:400;
+	font-size:13px;
+	color:#000;
+	height:23px;
+}
+.query_form_table td{
+	FONT-SIZE: 12px
+}
+/*列表样式*/
+.data_list_table{
+	FONT-SIZE: 12px
+}
+.data_list_table th{
+	font-size:12px;
+	font-weight:normal;
+	border-bottom:solid 1px #8c8c8c;
+	background-color:#6EC2FD;/*6EC2FD*/
+	font-weight:400;
+	font-size:13px;
+	color:#000;
+	height:23px;
+}
+.data_list_table td{
+	FONT-SIZE: 12px
+}
+/*列表样式 绿颜色*/
+.green_list_table{
+	background: #dafec5;
+	FONT-SIZE: 12px;
+}
+.green_list_table th{
+	font-size:12px;
+	font-weight:normal;
+	/*border-bottom:solid 1px #8c8c8c;
+	/*background-color:#FF9999;6EC2FD*/
+	font-weight:400;
+	font-size:13px;
+	color:#000;
+	height:23px;
+}
+.green_list_table td{
+	FONT-SIZE: 12px
+}
+
+TR {
+	FONT-SIZE: 12px
+}
+P {
+	FONT-SIZE: 12px
+}
+INPUT {
+	FONT-SIZE: 12px
+}
+SELECT {
+	FONT-SIZE: 12px
+}
+INPUT {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+.textarea1 {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: 宋体; BACKGROUND-COLOR: #ffffff; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000
+}
+TEXTAREA {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: 宋体; BACKGROUND-COLOR: #ffffff; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000
+}
+SELECT {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: 宋体; BACKGROUND-COLOR: #ffffff; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000
+}
+
+
+
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:unknown {
+	TEXT-DECORATION: none
+}
+.h {
+	COLOR: #ffffff; FONT-FAMILY: 仿宋,宋体; TEXT-DECORATION: none
+}
+.h:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.h:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.h:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.h:unknown {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+
+.f_lefttitle {
+	COLOR:#000066; font-size:15pt; font-weight: 1; font-family: FONT-FAMILY: "song", "MS Shell Dlg", "宋体";
+}
+.f_title {
+	COLOR:#336699;
+}
+.f_login {
+	COLOR:#000000;
+}
+.f_pic {
+	COLOR:#ffffff;
+}
+.f_topic {
+	COLOR:#000000;
+}
+.f_query {
+	COLOR:#000000;
+}
+.f_list1 {
+	COLOR:#000000
+}
+.f_list2 {
+	COLOR:#000000
+}
+.f_list {
+	COLOR:#000000
+}
+
+
+.bg_line {
+	background-color:#bdcbd9;
+}
+.bg_line1 {
+	background-color:#cccccc;
+}
+.bg_pic {
+	background-color:#ffffff;
+}
+.bg_topic {
+	background-color:#ffffff;
+}
+.bg_left {
+	background-color:#F0F3F7;
+}
+.bg_query {
+	background-color:#ffffff;
+}
+.bg_right {
+	background-color:#ffffff;
+}
+.bg_child {
+	background-color:#F7F7F7;
+}
+
+
+
+.flyline {
+	BORDER-TOP: #8080ff 1px solid; BORDER-LEFT: #8080ff 1px solid;BORDER-RIGHT: #8080ff 1px solid; BORDER-BOTTOM: #8080ff 1px solid;
+}
+.flybg1 {
+	background-color:#ffffcc;
+}
+.flybg2 {
+	background-color:#f7ffe7;
+}
+.flyfont1 {
+	color:#ff0000;size:12px;
+}
+.flyfont2 {
+	color:#008800;size:12px;
+}
+
+
+
+.fashion
+{BACKGROUND: D0E7FF; border:1 solid #CCCCCC; COLOR: #000000; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
+.fashion1
+{BACKGROUND: #FFCCFF; border:1 solid #CCCCCC; COLOR: #000000; FONT-SIZE: 9pt; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: normal; HEIGHT: 18px; LINE-HEIGHT: normal}
+
+.txtframe
+{
+border-style: double; border-color: #CCCCCC
+}
+.chkfashion
+{
+border-style: double; border-color: #3399FF
+}
+.selectfashion
+{
+   border-style: double;border-color: #CCCCCC; FONT-SIZE: 9pt;
+}
+  .zipcode { color:#333;}
+  .zipcode dl {float: left;padding:4px;padding-top:8px; }
+  .zipcode dd{padding:4px;}
+  .zipcode select {width:160px;}
+  
+  
+.dtree a.node01, .dtree a.nodeSel01 {
+	
+	color:red;
+}
+.dtree a.node02, .dtree a.nodeSel02 {
+	
+	color:blue;
+}
+.dtree a.node03, .dtree a.nodeSel03 {
+	
+	color:green;
+}

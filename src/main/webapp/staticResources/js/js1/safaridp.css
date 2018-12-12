@@ -1,0 +1,25 @@
+a.adulink {
+	font-size:12px;
+	text-decoration:none;
+	margin:1px;
+        color:#015D58;
+}
+
+table.jCalendar td {
+	background: #DADFAE;
+	color: #006D64;
+	padding: 3px 4px;
+	text-align: center;
+}
+
+
+
+div.dp-popup {
+	position: relative;
+	background: #C0C100;
+	font-size: 10px;
+	font-family: arial, sans-serif;
+	padding: 2px;
+	width: 177px;
+	line-height: 1.2em;
+}

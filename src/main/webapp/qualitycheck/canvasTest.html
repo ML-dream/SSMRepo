@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+    
+    <head>
+        <title>
+            canvas
+        </title>
+        <style type="text/css">
+            h2{text-align: center;}
+            .content{ width:600px; height:500px; border:1px solid #ccc; margin: 0 auto;}
+					canvas{width:600px;height:500px;}
+        </style>
+    </head>
+    
+    <body>
+        <h2>
+            canvas
+        </h2>
+        <div class="content">
+            <canvas id="can" width="600" height="500"></canvas>
+            <button onclick="erease()">clear</button>
+            <button onclick="clearAll()">clearAll</button>
+            <button onclick="paint()">paint</button>
+            
+        </div>
+            
+        <script type="text/javascript">
+        var  options = {     //定义画笔相关参数
+                    lineWidth : 1,      //粗细
+                    strokeStyle: '#000000' //颜色
+                };
+                
+            var canvas = document.getElementById('can');
+            var context = canvas.getContext('2d');
+        (function(){
+           /* var canvas = document.getElementById('can'),
+                context= canvas.getContext('2d'),
+                options = options,
+                options = {     //定义画笔相关参数
+                    lineWidth : 1,      //粗细
+                    strokeStyle: '#000000' //颜色
+                },*/
+                events = {
+                    mousedown: function(e){ //鼠标按下记住
+                        this.isButtonDown = true;
+                        context.beginPath();
+                        context.moveTo( e.offsetX,e.offsetY )
+                    },
+                    mousemove:function(e){  //移动画图
+                        var pos = { x:e.offsetX, y:e.offsetY };
+											
+                        if(this.isButtonDown){
+							setTimeout(function(){
+								context.lineTo(pos.x, pos.y);
+	                            context.stroke();},0);
+                            
+                        }
+                    },
+                    mouseup:function(e){    //鼠标放开停止画图
+                       this.isButtonDown = false; 
+                    }
+                };
+
+            /*把画笔相关参数赋值*/
+            for(var k in options){
+                context[k] = options[k]
+            }
+            /*绑定相关事件*/
+            for(var i in events){
+                canvas.addEventListener(i,events[i]);
+            }
+        })();
+        
+        function erease(){
+        	options = {     //定义画笔相关参数
+                    lineWidth :18,      //粗细
+                    //fillStyle:'#FFFFFF',
+                    strokeStyle: '#FFFFFF' //颜色
+                };
+               /*把画笔相关参数赋值*/
+            for(var k in options){
+                context[k] = options[k]
+            }  
+        }
+        
+        function paint(){
+        	options = {     //定义画笔相关参数
+                    lineWidth : 1,      //粗细
+                    //fillStyle:'#FFFFFF',
+                    strokeStyle: '#000000' //颜色
+                };
+               /*把画笔相关参数赋值*/
+            for(var k in options){
+                context[k] = options[k]
+            }
+        }
+        </script>
+    </body>
+</html>

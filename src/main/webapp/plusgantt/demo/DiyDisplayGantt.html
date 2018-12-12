@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>自定义显示条形图</title>
+    <script src="../scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>    
+    <script src="../scripts/miniui/locale/zh_CN.js" type="text/javascript"></script>
+
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" /><link href="../scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <script src="../scripts/plusgantt/GanttMenu.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttSchedule.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttService.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .myitem{
+            background:#9ccc5e;border:solid 1px #6e845c;
+            position:absolute;overflow:hidden;display:block;
+            z-index:100;
+        }
+        .myitem2
+        {
+        	background:#9ccc5e;border:solid 1px #0c3f5f;
+            position:absolute;overflow:hidden;        	
+        }
+        .percentcomplete
+        {
+        	margin-top:1px;
+        	height:10px;overflow:hidden;background:#0d55a4;        	
+        }
+    </style>      
+</head>
+<body>
+    <div>
+        可以自定义条形图、文本、以及提示框信息显示。
+    </div>   
+    <div>                        
+    
+    </div>
+    <br />
+    <div id="viewCt">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    /* 创建甘特图对象，设置列配置
+    -----------------------------------------------------------------------------*/
+
+    var gantt = new CreateGantt();
+    gantt.render(document.body);
+
+    gantt.loading();
+    $.ajax({
+        url: "data/taskList.txt",
+        cache: false,
+        success: function (text) {
+            var data = mini.decode(text);
+
+            //列表转树形
+            data = mini.arrayToTree(data, "children", "UID", "ParentTaskUID");
+
+            gantt.loadTasks(data);
+
+            gantt.unmask();
+        }
+    });
+
+    /* 业务代码
+    -----------------------------------------------------------------------------*/
+
+
+    //1)自定义条形图外观显示
+    gantt.on("drawitem", function (e) {
+        var item = e.item;
+        var left = e.itemBox.left,
+        top = e.itemBox.top,
+        width = e.itemBox.width,
+        height = e.itemBox.height;
+
+        if (!item.Summary && !item.Milestone) {
+            if (e.baseline) {    //区分比较基准
+                
+
+            } else {
+                var percentWidth = width * (item.PercentComplete / 100);
+
+                e.itemHtml = '<div id="' + item._id + '" class="myitem" style="left:' + left + 'px;top:' + top + 'px;width:' + width + 'px;height:' + (height) + 'px;">';
+                e.itemHtml += '<div style="width:' + (percentWidth) + 'px;" class="percentcomplete"></div>';
+                e.itemHtml += '</div>';
+
+                //右侧的文本
+                //e.itemHtml += '<div style="left:' + (left + width + 4) + 'px;top:' + (top - 3) + 'px;height:' + (height) + 'px;position:absolute;z-index:100;">' + item.Name + '</div>';
+                
+            }
+        }
+    });
+    //2)自定义条形图提示信息
+    gantt.on('itemtooltipneeded', function (e) {
+        var task = e.task;
+
+        if (e.baseline) {    //区分比较基准
+        } else {
+            e.tooltip = "<div>任务：" + task.Name + "</div>"
+            //                +   "<div ><div style='float:left;'>进度：<b>"+task.PercentComplete + "%</b></div>"
+            //                +   "<div style='float:right;'>工期："+task.Duration + "日</div></div>"
+                + "<div style='clear:both;'>开始日期：" + mini.formatDate(task.Start, 'yyyy-MM-dd') + "</div>"
+                + "<div>完成日期：" + mini.formatDate(task.Finish, 'yyyy-MM-dd') + "</div>";
+        }
+    });
+
+    //3)自定义条形图label内容
+    gantt.on("drawitem", function (e) {
+        e.label = e.task["PercentComplete"] + "%";
+        e.labelAlign = "left";
+    });
+
+
+
+</script>

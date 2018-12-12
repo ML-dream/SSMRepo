@@ -1,0 +1,14 @@
+[
+	{id: "XX", text: "小学"},	
+	{id: "CZ", text: "初中"},
+	{id: "GZ", text: "高中"},	
+	{id: "GZY", text: "高职"},	
+	{id: "DZ", text: "大专"},	
+	{id: "BK", text: "本科"},
+	{id: "SS", text: "硕士"},	
+	{id: "BS", text: "博士"},	
+	{id: "BSH", text: "博士后"},	
+	{id: "JS", text: "讲师"},	
+	{id: "FJS", text: "副教授"},	
+	{id: "ZJS", text: "教授"}				
+]

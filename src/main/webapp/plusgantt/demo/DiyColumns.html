@@ -1,0 +1,180 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+    <title>自定义列(String/Number/Date/Boolean/Array类型演示)</title>
+    <script src="../scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>    
+    <script src="../scripts/miniui/locale/zh_CN.js" type="text/javascript"></script>
+
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" /><link href="../scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <script src="../scripts/plusgantt/GanttMenu.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttSchedule.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttService.js" type="text/javascript"></script> 
+</head>
+<body>
+    <div>
+                   支持多种数据类型的列：String、Number、Boolean、Date、Array等<br />
+                   支持多种单元格编辑器：TextBox、NumberBox、CheckBox、datepicker、ComboBox、ComboTree、ComboGrid等<br />
+                    支持任意扩展任务属性<br />
+    </div>  
+    <div>                        
+    
+    </div>
+    <br />
+    <div id="viewCt">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    /* 创建甘特图对象，设置列配置
+    -----------------------------------------------------------------------------*/
+    
+    var gantt = new CreateGantt();
+    gantt.render(document.body);
+
+    //右键菜单
+    var ganttMenu = new GanttMenu();
+    gantt.setContextMenu(ganttMenu);
+
+    gantt.loading();
+    $.ajax({
+        url: "data/taskList.txt",
+        cache: false,
+        success: function (text) {
+            var data = mini.decode(text);
+
+            //列表转树形
+            data = mini.arrayToTree(data, "children", "UID", "ParentTaskUID");
+
+            gantt.loadTasks(data);
+
+            gantt.unmask();
+        }
+    });
+
+    /* 业务代码
+    -----------------------------------------------------------------------------*/
+
+    //以下进行自定义列, 演示各种数据类型对应使用什么列
+
+var columns = [];
+
+//String => TextBoxColumn
+var stringColumn = {
+    name: "name",
+    header: "任务名称<br/>String",
+    field: "Name",
+    width: 150,
+    editor: {
+        type: "textbox"
+    }
+};
+columns.push(stringColumn);
+
+//Number => NumericUpDownColumn
+var numberColumn = {
+    header: "进度<br/>Number",
+    field: "PercentComplete",
+    width: 60,
+    editor: {
+        type: "spinner", minValue: 0, maxValue: 100
+    }
+};
+columns.push(numberColumn);
+
+//Date => DatePickerColumn
+var dateColumn = {
+    header: "开始日期<br/>Date",
+    field: "Start",
+    width: 100,
+    renderer: function (e) {
+        var date = e.value;
+        if (!date) return "";
+        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    },
+    editor: {
+        type: "datepicker"
+    }
+};
+columns.push(dateColumn);
+
+//Boolean => CheckBoxColumn
+var boolColumn = {
+    header: "关键任务<br/>Boolean",
+    field: "Critical",
+    width: 70,
+    type: "checkboxcolumn",
+    trueValue: 1,
+    falseValue: 0
+};
+columns.push(boolColumn);
+
+//Array => ComboBoxColumn
+var TaskStatus = [
+    { id: 1, name: '未启动' },
+    { id: 2, name: '进行中' },
+    { id: 3, name: '暂停中' },
+    { id: 4, name: '已完成' }
+];
+var arrayColumn = {
+    header: "任务状态<br/>Array",
+    field: "TaskStatus",
+    width: 120,
+    editor: {
+        type: "combobox", valueField: "id", textField: "name",
+        data: TaskStatus
+    },
+    renderer: function (e) {
+        var value = e.value;
+        for (var i = 0, l = TaskStatus.length; i < l; i++) {
+            var o = TaskStatus[i];
+            if (o.id == value) return o.name;
+        }
+        return "";
+    }
+};
+columns.push(arrayColumn);
+
+//Multi => ComboBoxColumn
+var Principals = [
+    { id: 1, name: '张三' },
+    { id: 2, name: '李四' },
+    { id: 3, name: '赵五' },
+    { id: 4, name: '钱六' }
+];
+var multiColumn = {
+    header: "负责人<br/>Multi",
+    field: "Principal",
+    width: 120,
+    editor: {
+        type: "combobox", valueField: "id", textField: "name",
+        multiSelect: true, showCheckIcon: true,
+        data: Principals
+    },
+    renderer: function (e) {
+        var values = e.value ? e.value.split(",") : [];
+        var sb = [];
+        for (var i = 0, l = Principals.length; i < l; i++) {
+            var o = Principals[i];
+            for (var j = 0, k = values.length; j < k; j++) {
+                if (o.id == values[j]) {
+                    sb.push(o.name);
+                }
+            }
+
+        }
+        return sb.join(",");
+    }
+};
+columns.push(multiColumn);
+
+//将列集合数组设置给甘特图
+gantt.setColumns(columns);
+gantt.setTreeColumn("name");
+
+
+
+
+</script>

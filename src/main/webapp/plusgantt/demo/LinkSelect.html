@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+    <title>多选任务</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</head>
+<body style="font-size:14px;">
+    
+    <ol>
+        <li>选择任务时，同时选择其父任务和所有子任务</li>
+        <li>取消选择任务时，同时取消其所有子任务</li>
+    </ol>
+   
+    <br />
+    <div id="viewCt">
+    </div>
+
+</body>
+</html>
+    <script src="../scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>    
+    <script src="../scripts/miniui/locale/zh_CN.js" type="text/javascript"></script>
+
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" /><link href="../scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <script src="../scripts/plusgantt/GanttMenu.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttSchedule.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttService.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    /* 创建项目甘特图对象
+    -----------------------------------------------------------------------------*/
+
+    var gantt = new CreateGantt();
+    gantt.render(document.body);
+
+    gantt.loading();
+    $.ajax({
+        url: "data/taskList.txt",
+        cache: false,
+        success: function (text) {
+            var data = mini.decode(text);
+
+            //列表转树形
+            data = mini.arrayToTree(data, "children", "UID", "ParentTaskUID");
+
+            gantt.loadTasks(data);
+
+            gantt.unmask();
+        }
+    });
+
+    /* 业务代码
+    -----------------------------------------------------------------------------*/
+
+
+    gantt.setMultiSelect(true);                   //允许多选
+    gantt.setColumns([
+        { header: "", field: "ID", width: 30, cellCls: "mini-indexcolumn", align: "center" },
+        { type: "checkcolumn" },
+        { header: "任务名称", field: "Name", width: 200, name: "taskname" },
+        { header: "完成百分比", field: "PercentComplete" }
+    ]);
+
+    gantt.on("beforeselect", function (e) {
+        e.cancel = true;
+        var task = e.task;
+
+        var isSelected = this.isSelected(task);
+        if (isSelected) {
+            //任务和子任务全部取消选择
+            var tasks = this.getAllChildTasks(task);
+            tasks.push(task);
+            this.deselects(tasks);
+
+            //?如果父任务下没有选中的任务，则父任务也取消选择
+
+        } else {
+            //任务、父任务、子任务选中
+            var tasks = this.getAncestorTasks(task);
+            tasks.push(task);
+
+            var childs = this.getAllChildTasks(task);
+            tasks.addRange(childs);
+
+            this.selects(tasks);
+
+        }
+
+    });
+</script>

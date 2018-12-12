@@ -1,0 +1,440 @@
+﻿
+.fastui-mask-msg{	
+	border:2px solid #888;
+}
+/*----------------------------------- tools ----------------------------------*/
+
+.fastui-tools-close
+{
+    background:url(images/tools/close.gif) no-repeat 50% 0px;
+}
+
+/*----------------------------------- toolbar ----------------------------------*/
+
+.fastui-toolbar
+{
+    border:solid 1px #8C8C8C;
+    padding:5px;
+    background:#F3F3F3;
+}
+.separator
+{
+    border-left:solid 1px #A8A8A8;    
+}
+
+/*----------------------------------- button ----------------------------------*/
+
+.fastui-button
+{
+    border:1px solid #aaa;
+    background:#E0DFDF url(images/button/button.gif) repeat-x 0 0;
+    color:#000000;
+}
+body a:hover.fastui-button
+{
+    border: 1px solid #999;
+    background:#f2f2f2 url(images/button/hover.gif) repeat-x 0 0;              
+}
+body .fastui-button-pressed, body a:hover.fastui-button-pressed,
+body .fastui-button-checked, body a:hover.fastui-button-checked,
+body a.fastui-button-popup, body a:hover.fastui-button-popup
+{
+    background:#d5d5d5;     
+}
+body .fastui-button-disabled, body a:hover.fastui-button-disabled
+{
+    border: 1px solid #cecec3;
+    color:#808080;
+    background:#E0DFDF url(images/button/disabled.gif) repeat-x 0 0px;        
+}
+
+
+/*----------------------------------- buttonedit ----------------------------------*/
+
+.fastui-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
+.fastui-buttonedit-border
+{
+    border-color: #9DA0AA #C2C4CB #D9DAE0;
+    border-style: solid;
+    border-width: 1px;            
+}
+.fastui-buttonedit-button, .fastui-buttonedit-disabled .fastui-buttonedit-button
+{
+    background-color: #E6E6E6;
+    background-image: url(images/buttonedit/button.gif);
+    background-position: center top;
+    background-repeat: repeat-x;    
+    border: 1px solid #7F7F7F; 
+}
+.fastui-buttonedit-button-hover,
+.fastui-buttonedit-hover .fastui-buttonedit-popup
+{
+    border: 1px solid #606060;
+    background:#f2f2f2 url(images/buttonedit/hover.gif) repeat-x 0 0;      
+}
+body .fastui-buttonedit-popup .fastui-buttonedit-button, body .fastui-buttonedit-popup a:hover.fastui-buttonedit-pressed,
+.fastui-buttonedit-pressed .fastui-buttonedit-popup
+{
+    border: 1px solid #606060;
+    background:#d5d5d5;
+}
+/* edit icons */
+
+.fastui-buttonedit-icons-popup
+{
+    background:url(images/buttonedit/icon2.gif) no-repeat 0 -1px;
+}
+.fastui-buttonedit-icons-date
+{
+    background:url(images/buttonedit/icon2.gif) no-repeat 0 -1px;
+}
+
+/* spin edit */
+body .fastui-buttonedit tr .fastui-buttonedit-spinButton
+{
+    background:none;
+    border: 1px solid #606060;
+}
+.fastui-buttonedit-spin
+{   
+    background-color: #E6E6E6;
+    background-image: url(images/buttonedit/button.gif);
+    background-position: center top;
+    background-repeat: repeat-x; 
+}
+.fastui-buttonedit-spinSplit
+{
+    display:block;
+}
+a:hover.fastui-buttonedit-up, a:hover.fastui-buttonedit-down
+{    
+    background:#f2f2f2 url(images/buttonedit/hover.gif) repeat-x 0 0;         
+}
+.fastui-buttonedit-up span, .fastui-buttonedit-down span
+{
+    background:url(images/buttonedit/icon3.gif) no-repeat -18px 0;
+}
+.fastui-buttonedit-down span
+{    
+    background:url(images/buttonedit/icon3.gif) no-repeat 0px 0px;     
+}
+body .fastui-buttonedit-button-pressed, body a:hover.fastui-buttonedit-button-pressed
+{    
+    background:#ccc;
+}
+/*------------------------- panel -----------------------*/
+
+.fastui-panel-border
+{
+    border:1px solid #8B8B8B;  
+}
+.fastui-panel-header
+{
+    height:21px;
+    background:#DCDCDC;
+}
+.fastui-panel-header-inner
+{
+   padding-top:3px;
+}
+.fastui-panel-toolbar
+{
+    border-bottom:solid 1px #C9C9C9;
+    background:#F3F3F3;
+}
+
+.fastui-panel-footer
+{
+    border-top:solid 1px #C9C9C9;
+    background:#F3F3F3;
+}
+
+/*----------------------------- window -------------------------*/
+.fastui-window .fastui-panel-header
+{
+    background:#DCDCDC;
+}
+.fastui-window .fastui-panel-footer
+{
+    background:#F3F3F3;
+}
+
+/*------------------- navbar ------------------*/
+.fastui-outlookbar-border
+{
+    border:1px solid #A8A8A8;         
+}
+.fastui-outlookbar-groupHeader
+{
+    background:#E0E0E0;    
+}
+/* view2 */
+.fastui-outlookbar-view2 .fastui-outlookbar-groupHeader
+{
+    border:solid 1px #A8A8A8; 
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-groupBody
+{    
+    background:#efefef;
+}
+/* view3 */
+.fastui-outlookbar-view3 .fastui-outlookbar-group
+{
+    border:solid 1px #A8A8A8; 
+}
+
+
+/*----------------------- layout -----------------------*/
+
+.fastui-layout-region
+{
+    border:1px solid #8B8B8B;
+}
+.fastui-layout-region-header
+{
+    background:#E0E0E0;
+    border-bottom:solid 1px #A8A8A8;
+}
+.fastui-layout-proxy
+{
+    background:#E0E0E0;
+}
+.fastui-layout-proxy-hover
+{
+    background:#F2F2F2;    
+}
+
+/*------------------------- menu --------------------------------*/
+
+.fastui-menu
+{
+    border-color:#8B8B8B;
+    background:white url(images/menu/menubg.gif) repeat-y;   
+    color:Black;
+}
+.fastui-menuitem
+{
+    line-height:20px;
+}
+.fastui-menuitem-hover
+{
+    border-color:#888888;
+    background:#f2f2f2;
+}
+.fastui-menu-popup
+{
+    border-color:#888888; 
+    background:#f2f2f2;    
+}
+.fastui-menuitem-selected
+{    
+    border-color:#888888; 
+    background:#cbcbcb;    
+}
+.fastui-menuitem-text, .fastui-menuitem-text a
+{
+    color:Black;
+}
+/* menu horizontal */
+.fastui-menu-horizontal .fastui-menu-inner
+{
+    background:#f0f0f0;
+}
+.fastui-menu-horizontal .fastui-menuitem-hover
+{
+    border:solid 1px #888888;
+    background:#cbcbcb;
+}
+.fastui-menu-horizontal  .fastui-menu-popup
+{
+    border:solid 1px #888888;
+    border-bottom:0px;
+    background:#cbcbcb;
+}
+
+/*---------------------- listbox -----------------------------*/
+.fastui-listbox-border
+{
+    border:solid 1px #9f9f9f;
+}
+.fastui-listbox-item-hover{
+	background:#CFCFCF;
+}
+.fastui-listbox-item-selected{
+	background:#a5a5a5;
+	color:White;
+}
+.fastui-listbox-header
+{    
+    background:#dcdcdc;
+    border-bottom:solid 1px #a0a0a0;
+}
+
+/*---------------------- calendar -----------------------------*/
+.fastui-calendar
+{    
+    border:1px solid #9f9f9f;       
+}
+.fastui-calendar-header
+{   
+    background:#dcdcdc;
+    border-bottom:solid 1px #c9c9c9;    
+}
+.fastui-calendar-footer
+{
+    background:#ededed;
+}
+.fastui-calendar-tadayButton, .fastui-calendar-clearButton,
+.fastui-calendar-okButton, .fastui-calendar-cancelButton
+{
+    border:1px solid #7F7F7F;
+    background:#E0DFDF url(images/calendar/button.gif) repeat-x 0 0;
+    color:#000000;
+}
+.fastui-calendar-menu-selected, a:hover.fastui-calendar-menu-selected
+{
+    color:White;
+    background:#8D8D8D;
+    border:solid 1px black;
+}
+.fastui-calendar .fastui-calendar-selected
+{
+    background:#8D8D8D;
+    color:White;
+    border:solid 1px #606060;
+}
+.fastui-calendar .fastui-calendar-today
+{
+    border:1px solid #C00000;
+}
+
+
+/*---------------------- tabs -----------------------------*/
+
+.fastui-tabs-leftButton, .fastui-tabs-rightButton
+{
+    border:solid 1px #7F7F7F;
+    background-color:#E0E0E0;
+}
+a:hover.fastui-tabs-leftButton,a:hover.fastui-tabs-rightButton
+{
+    background-color:#F2F2F2;
+}
+/* top */
+.fastui-tabs-bodys
+{
+    border:solid 1px #a8a8a8;
+    border-top:0;
+}
+.fastui-tabs-space
+{
+    border-bottom:solid 1px #a8a8a8;
+}
+.fastui-tabs-space2
+{
+    border-bottom:solid 1px #a8a8a8;
+}
+
+.fastui-tab
+{
+    background-color: #E0E0E0;
+    border: 1px solid #a8a8a8;
+    color:Black;
+}
+.fastui-tab-hover
+{        
+    background:#F2F2F2;    
+}
+.fastui-tab-active
+{
+    border-bottom:solid 1px white;
+    background:white;    
+}
+
+/* bottom */
+.fastui-tabs-position-bottom .fastui-tabs-space,
+.fastui-tabs-position-bottom .fastui-tabs-space2
+{
+    border:0;
+    border-top: 1px solid #a8a8a8;
+}
+.fastui-tabs-position-bottom .fastui-tabs-bodys
+{    
+    border:solid 1px #a8a8a8;
+    border-bottom:0;
+}
+.fastui-tabs-position-bottom .fastui-tab-active
+{
+    border-top:solid 1px white;
+    border-bottom:solid 1px #a8a8a8;
+}
+
+/* left */
+.fastui-tabs-position-left .fastui-tabs-space,
+.fastui-tabs-position-left .fastui-tabs-space2
+{
+    border:0;
+    border-right: 1px solid #a8a8a8;
+}
+.fastui-tabs-position-left .fastui-tabs-bodys
+{
+    border:solid 1px #a8a8a8;
+    border-left:0;
+}
+.fastui-tabs-position-left .fastui-tab-active
+{    
+    border:solid 1px #a8a8a8;
+    border-right:solid 1px white;
+}
+
+/* right */
+.fastui-tabs-position-right .fastui-tabs-space,
+.fastui-tabs-position-right .fastui-tabs-space2
+{
+    border:0;
+    border-left: 1px solid #a8a8a8;
+}
+.fastui-tabs-position-right .fastui-tabs-bodys
+{    
+    border:solid 1px #a8a8a8;
+    border-right:0;
+}
+.fastui-tabs-position-right .fastui-tab-active
+{    
+    border:solid 1px #a8a8a8;
+    border-left:solid 1px white;
+}
+
+
+/*---------------------- tree -----------------------------*/
+
+.fastui-tree-hottrack .fastui-tree-node-hover
+{
+    border:1px solid #888888;
+    background:#f2f2f2;
+}
+
+.fastui-tree-selectedNode .fastui-tree-nodeshow
+{
+    border:1px solid #888888;
+    background:#d8d8d8;
+}
+
+/*---------------------- grid -----------------------------*/
+.fastui-grid-headerCell
+{
+    background:#dcdcdc;
+    border-right:#9f9f9f 1px solid;
+    border-bottom:#9f9f9f 1px solid;
+}
+.fastui-grid-footer
+{
+    background:#f2f2f2;
+}
+.fastui-grid-detailRow
+{
+    background:#F0F0F0;
+}

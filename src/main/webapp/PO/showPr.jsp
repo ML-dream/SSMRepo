@@ -1,0 +1,460 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>采购收货</title>
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">-->
+	
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/js.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>css/pagecard.css">
+	<style type="text/css">
+	<!--
+	table {
+	    table-layout:fixed;
+	    word-break: break-all;
+	} 
+	-->
+	</style>
+	<style type="text/css">
+    	*{margin: 0;padding: 0;}
+    </style>
+	<script type='text/javascript' src="<%=basePath%>resources/js/tabcard.js"></script>
+	<script type="text/javascript" src="<%=basePath%>resources/jquery/jquery.min.js"></script>
+	<jsp:include page="/commons/miniui_header.jsp" />
+  </head>
+  
+  <body>
+  <div class="mini-toolbar">
+  <!--<a class="mini-button" iconCls="icon-print" plain="false"  onclick="print()">打印</a>
+  --><span class="separator"></span>
+  <a class="mini-button" iconCls="icon-save" plain="false" onclick="getForm()">保存</a>
+  <span class="separator"></span>
+ <a class="mini-button" plain="false" iconCls="icon-undo" onclick="pageBack()">返回</a>
+  </div>
+  <fieldset id="prdiv"align="center">
+  <legend>采购收货单</legend>
+  
+  <form id="Prsheet" name="Prsheet" action="#" method="post">
+  <table style="text-align: right;border-collapse:collapse;" border="gray 1px solid;" width="100%">
+  <tr bgcolor=#EBEFF5>
+  <td ><label for="prDate$text">开单日期</label></td>
+  <td><input id="prDate" name="prDate" class="mini-datepicker" required="true" dateFormat="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" 
+  		showTodayButton="false" showClearButton="false" allowInput="false" width="100%"  value="${prsheet.prDate }" enabled="false"/>
+  <input id="prSheetid" name="prSheetid" class="mini-hidden" required="true" enabled="false" width="100%" value="${prsheet.prSheetid }" ></td>
+  <td><label for="customerId$text">供应商</label></td>
+  <td><input id="customerId" name="customerId" class="mini-buttonedit" width="100%" value="${prsheet.customerId }"  text= "${prsheet.customerName  }" enabled="false" onbuttonclick="onSupplierButtonEdit" textName="customerName" required="true" allowInput="false"/></td>
+  <td><label for="purchase$text"></label></td>
+  <td><!-- 订货单单号 <input id="purchase" name="purchase" class="mini-combobox"  value="${prsheet.purId }" width="100%" textName="" textField="text" valueField="id"
+  			url=""  allowInput="true" showNullItem="true" nullItemText="请选择..." required="true" onvaluechanged="LoadGrid()"/>-->
+  </td>
+  </tr>
+  
+  <tr bgcolor=#EBEFF5>
+  <td><label for="purState$text">订货单状态</label></td>
+  <td><input id="purState" name="purState" class="mini-combobox" value="${prsheet.purState }" width="100%" textName="" textField="text" valueField="id"
+  			url="data/purchaseState.txt" allowInput="false" showNullItem="true" nullItemText="请选择..." required="false"/></td>
+  <td><label for="connector$text">联系人</label></td>
+  <td><input id="connector" name="connector" class="mini-textbox" value="${prsheet.connector  }" required="true" width="100%"/></td>
+  <td><label for="connectorTel$text">联系电话</label></td>
+  <td><input id="connectorTel"  name="connectorTel" class="mini-textbox" value="${prsheet.connectorTel  }" required="true" width="100%" /></td>
+  </tr>
+  
+   <tr bgcolor=#EBEFF5>
+  <td><label for="payTerm$text">付款期限</label></td>
+  <td><input id="payTerm" name="payTerm" class="mini-combobox" required="true" value="${prsheet.payTerm  }"  style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
+  url="data/payTerm.txt" allowInput="false" showNullItem="true" nullItemText="请选择..."/></td> 
+   <td><label for="isBill$text">是否开具发票</label></td>
+  <td><input id="isBill" name="isBill" class="mini-combobox" value="${prsheet.isBill  }"  required="true" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
+   url="data/trueOrFalse.txt" value="1" allowInput="false" showNullItem="true" nullItemText="请选择..."/></td>
+  <td><label for="receipt$text">发票类型</label></td>
+  <td><input id="receipt" name="receipt" class="mini-combobox" value="${prsheet.receipt  }" required="true" url="ReceiptServlet" style="width:100%" valueField="id" textField="text" 
+   emptyText="请选择..." allowInput="false" showNullItem="true" nullItemText="请选择..."/></td>  
+  
+  </tr>
+  <tr bgcolor=#EBEFF5>
+  <td><label for="dutyParagraph$text">税务登记号</label></td>
+  <td><input id="dutyParagraph" name="dutyParagraph" value="${prsheet.dutyParagraph   }" class="mini-textbox" width="100%" /></td>
+  <td><label for="bank$text">开户银行</label></td>
+  <td><input id="bank" name="bank" class="mini-textbox" value="${prsheet.bank  }" width="100%"/></td>
+  <td><label for="account$text">账号</label></td>
+  <td><input id="account" name="account" class="mini-textbox" value="${prsheet.account  }" width="100%"/></td>
+  </tr>
+  <tr bgcolor=#EBEFF5>
+  
+	  <td><label for="examineId$text">审核人</label></td>
+	  <td><input id="examineId" name="examineId"  class="mini-buttonedit" value="${prsheet.examineId  }" text= "${prsheet.examineName   }" width="100%" textName="examineName" onbuttonclick="onButtonEditEmployee" allowInput="false" required="false" readonly ></td>
+	  <td><label for="salesmanId$text">业务员</label></td>
+	  <td><input id="salesmanId" name="salesmanId"  class="mini-buttonedit" value="${prsheet.salesmanId  }"  text= "${prsheet.salesmanName   }" width="100%" textName="salesmanName" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true"></td>
+	  <td><label for="drawerId$text">开单人</label></td>
+	  <td><input id="drawerId" name="drawerId"  class="mini-buttonedit" value="${prsheet.drawerName  }" text= "${prsheet.drawerName   }" width="100%" textName="drawerName" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true"></td>
+  </tr>
+  </table>
+  
+  <div id="tablediv">
+   	 <div id="datagrid1" class="mini-datagrid" style="width:1300px;height:530px;" 
+        url="SeePurchaseItem?key=${prsheet.prSheetid}" idField="id" allowResize="true" pageSize="20"   multiSelect="true" allowCellSelect="true" allowCellEdit="true"
+    	showPager= "true" showPageInfo="true" showReloadButton = "false" showPagerButtonIcon="false" 
+    	   showColumnsMenu ="true"   editNextOnEnterKey= "true" 
+    	allowCellWrap="true"  onshowrowdetail="" 
+    >
+ 		<div property="columns">
+ 			<!-- <div type="checkcolumn" visible="true"></div> -->
+            <div field="itemId" name = "itemId" width="80" headerAlign="center" allowSort="false" showColumnsMenu="true" headerStyle="height:40px;">货品编码</div>
+            <div field="itemName" width="80" headerAlign="center" allowSort="false" >货品名称</div>
+           
+            <div field="spec" width="100" headerAlign="center" allowSort="false">规格</div>    
+            <div field="unit" width="40" headerAlign="center" allowSort="false">单位</div> 
+            <div field="itemTypeName" width="60" headerAlign="center" allowSort="false" visible="true">类型
+            </div>
+            <div field="ussage" width="100" headerAlign="center" allowSort="false" visible="true">用途</div>
+             <div field="prNum" width="60" headerAlign="center" allowSort="false" visible="true">订货数量</div>
+             
+            <div field="inNum" width="60" headerAlign="center" allowSort="false"  visible="true" headerStyle="color:red;">入库数量
+            	<input property="editor" class="mini-textbox" style="width:100%;height:100%;" minHeight="20" vtype="float" value=""/>
+            </div>
+            
+            <div field="unitPrice" width="60" headerAlign="center" allowSort="false" headerStyle="color:red;">单价
+            	<input property="editor" class="mini-textbox" style="width:100%;height:100%;" minHeight="20" vtype="float" value="0"/>
+            </div>
+            <div field="price" width="60" headerAlign="center" allowSort="false" headerStyle="color:red;">货款
+            	<input property="editor" class="mini-textbox" style="width:100%;height:100%;" minHeight="20" vtype="float" value="0"/>
+            </div>
+            <div field="warehouseId" width="80" headerAlign="center" allowSort="false" headerStyle="color:red;" renderer="onHouseRenderer">库房
+            	 <input id="combo1" property="editor" class="mini-combobox" style="width:100%;" data="warehouse"  allowinput = "true"/>
+            </div>
+            <div field="payMethod" width="80" headerAlign="center" allowSort="false" headerStyle="color:red;" renderer="onStateRenderer">付款方式
+    		<input property="editor" class="mini-combobox" style="width:100%;height:100%;" minHeight="20" url="data/payMethod.txt"/>
+    		</div>
+            <div field="status" width="80" headerAlign="center" allowSort="false" headerStyle="" renderer="onStateRenderer">审核结果
+    		</div>
+            <div field="stockId" width="80" headerAlign="center" allowSort="false" headerStyle="">库位
+    		</div>
+    		<div field="poSheetid" width="70" headerAlign="center" allowSort="false" visible="false">订货单
+            </div>
+        </div>
+     </div>
+  	<table>
+     	<tr height= "30px">
+     		<td width="80px"></td>
+     		<td width="60px"> <a class="Update_Button" href="javascript:firstpage()">首页</a> </td>
+     		<td width="60px"> <a class="Update_Button" href="javascript:uppage()">上一页</a> </td>
+     		<td width="60px"> <a class="Update_Button" href="javascript:downpage()">下一页</a> </td>
+     		<td width="60px"> <a class="Update_Button" href="javascript:endpage()">末页</a> </td>
+     		<td width="60px"> <a class="Update_Button" href="javascript:freshGrid()">刷新</a> </td>
+     		<!-- <td width="60px"> <a class="Update_Button" href="javascript:saveData()">保存</a> </td>  -->
+     		<td><label>鼠标右击表头，可选择隐藏列</label></td>
+     	</tr>
+     </table>
+  		
+
+  <input id="id" name="id" class="mini-hidden" value="${pr_sheetid.id }"/>
+  <input id="seq" name="seq" class="mini-hidden" value="${pr_sheetid.seq }"/>
+  </form>
+  
+  
+  </fieldset>
+  
+  
+  
+  
+  <script type="text/javascript">
+  	mini.parse();
+  	var warehouse=null;
+  	LoadGrid();
+  	
+  	function pageBack(){
+  		window.location="PO/showPrSheet.jsp"
+  	}
+  	var prstate=[{id:"1",text:"通过"},{id:"0" ,text:"不通过"},{id:"3" ,text:"待审核"}];
+  	function onStateRenderer(e) {
+            for (var i = 0, l = prstate.length; i < l; i++) {
+                var g = prstate[i];
+                if (g.id == e.value) return g.text;
+            }
+            return "";
+        }
+        
+  	function freshGrid(){
+		var grid  = mini.get("datagrid1");
+		grid.reload();
+	}
+  	function onHouseRenderer(e) {
+            for (var i = 0, l = warehouse.length; i < l; i++) {
+                var g = warehouse[i];
+                if (g.id == e.value) return g.text;
+            }
+            return "";
+        }
+  	
+  	function LoadGrid(){
+  		//var purId = mini.get("purchase").getValue();
+  		var grid  = mini.get("datagrid1");
+  		mini.get("datagrid1").load();
+  	//	grid.load({key: purId});
+  		 $.ajax({
+        	type: "post",
+            url: "ShowWarehouse",
+            cache: false,
+            success: function (text) {
+                var o = mini.decode(text);
+                warehouse = o;
+            }
+	       });
+  	}
+  	
+  	function uppage(){
+			helpSave();
+			var size = grid.getPageSize();
+			var npage = grid.getPageIndex();	//获取当前页码 
+			var page = npage;
+			if(npage ==0){
+			}else{
+				page = npage -1;
+				grid.gotoPage ( page, size );
+			}
+			issave =0;
+		}
+		function downpage(){
+			helpSave();
+			var size = grid.getPageSize();
+			var npage = grid.getPageIndex();	//获取当前页码 
+			
+			var total = grid.getTotalCount();	//数据总数 
+			var tpage = Math.ceil(total/size);	//总页数 
+			
+			var page = npage;		//跳转页码 
+			if(npage == tpage-1){
+			}else{
+				page = npage +1;
+				grid.gotoPage ( page, size );
+			}
+			issave =0;
+		}
+		function firstpage(){
+			helpSave();
+			var size = grid.getPageSize();
+			grid.gotoPage ( 0, size );
+			issave =0;
+		}
+		function endpage(){
+			helpSave();
+			var size = grid.getPageSize();
+			var npage = grid.getPageIndex();	//获取当前页码 
+			
+			var total = grid.getTotalCount();	//数据总数 
+			var tpage = Math.ceil(total/size);	//总页数 
+			
+			grid.gotoPage ( tpage-1, size );
+			issave =0;
+		}
+		function celorder(){
+			helpSave();
+			grid.clearSort ( );		
+		}
+		
+		function saveData(){
+			// var data = grid.getChanges();
+			var grid  = mini.get("datagrid1");
+			grid.selectAll();
+			var data = grid.getSelecteds();
+    		 var json = mini.encode(data);
+    		//alert (json);
+    		grid.deselectAll();
+    		alert (json);
+    		/*
+    		$.ajax({
+				type:"post",
+				url: "SaveCostConfirm",
+				data:{"data" : json},
+				cache: false,
+				success: function (text){
+					var t = confirm(text +",是否刷新数据 ？");
+					if(t==true){
+						grid.reload();
+					}
+				},
+				error: function (text){
+					alert ("保存失败 ");
+				}
+			});
+			*/
+		}
+		function helpSave(){
+			var data = grid.getChanges();
+			var json = mini.encode(data);
+			if(json != "[]" && issave ==0){
+				var r = confirm("当前页数据已发生修改，是否保存?");
+				if(r == true){
+					saveData();
+					issave = 1;
+				}
+			}
+		}
+  	function getForm(){
+	  	var form=new mini.Form("Prsheet");
+	  	var data=form.getData();
+	  	data.prDate=mini.get("prDate").getFormValue();
+	 	 var json=mini.encode(data);
+	 	 
+	 	var grid  = mini.get("datagrid1");
+		//grid.selectAll();
+		var griddata = grid.getChanges ();
+   		var gridjson = mini.encode(griddata);
+   		//grid.deselectAll();
+   		//alert(gridjson);
+	  	form.validate();
+	    if (form.isValid() == false) {
+	          return;
+	   }else{
+	  	$.ajax({
+	  		type:"post",
+	  		url:"PrServlet",
+	 	    data:{submitData:json, gridjson:gridjson},
+	 	    dataType:"json",
+	 		success: function(data){
+	  		alert(data.result);
+	  		freshGrid();
+	  		/*
+	  		if(data.status==1){
+	  			//window.location.href=window.location.href;
+	  		}
+	  		*/
+	  
+	  		}
+	  	});
+	  	}
+		
+   		//alert (json);
+   		/*
+   		$.ajax({
+			type:"post",
+			url: "SaveCostConfirm",
+			data:{"data" : json},
+			cache: false,
+			success: function (text){
+				var t = confirm(text +",是否刷新数据 ？");
+				if(t==true){
+					grid.reload();
+				}
+			},
+			error: function (text){
+				alert ("保存失败 ");
+			}
+		});
+		*/
+	  }
+  
+    function nextForm(){
+    window.location.href=window.location.href;
+    } 
+  
+   function onSupplierButtonEdit(e) {
+            var btnEdit = this;
+            mini.open({
+                //url: bootPATH + "../demo/CommonLibs/SelectGridWindow.html",
+                url: "Supplier/selectSupplierWindow.jsp",
+                title: "选择列表",
+                width: 650,
+                height: 380,
+                ondestroy: function (action) {
+                    //if (action == "close") return false;
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);    //必须
+                        if (data) {
+                            btnEdit.setValue(data.companyId);
+                            btnEdit.setText(data.companyName);
+                            mini.get("connector").setValue(data.connector);
+                            mini.get("connectorTel").setValue(data.connectorTel); 
+ //                           mini.get("telephone").setValue(data.telephone);
+                       		mini.get("dutyParagraph").setValue(data.dutyParagraph);
+                       		mini.get("bank").setValue(data.bank);
+                       		mini.get("account").setValue(data.account);
+                       		
+                       		//加载对应供货商下的订货单  
+                       		 $.ajax({
+					        	type: "post",
+					            url: "FindPurchaseId?companyId=" + data.companyId,
+					            cache: false,
+					            success: function (text) {
+					                var o = mini.decode(text);
+					                mini.get("purchase").setData(o);
+					            }
+						       });
+                        }
+                    }
+
+                }
+            });
+        }
+        
+        
+        function onButtonEditEmployee(e) {
+            var btnEdit = this;
+            mini.open({
+                url: "employeeManage/selectEmployeeWindow.jsp",
+                title: "选择上级部门",
+                width: 650,
+                height: 380,
+                ondestroy: function (action) {
+                    //if (action == "close") return false;
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);    //必须
+                        if (data) {
+                            btnEdit.setValue(data.staffCode);
+                            btnEdit.setText(data.staffName);
+                            //mini.get("connector").setValue(data.connector);
+                            //mini.get("connectorTel").setValue(data.connectorTel);
+                        }
+                    }
+                }
+            });
+        }
+        
+   function onButtonEditWarehouse(e){
+   	var btnEdit = this;
+            mini.open({
+                url: "warehouseDefi/selectWarehouseWindow.jsp",
+                title: "选择库房",
+                width: 650,
+                height: 380,
+                ondestroy: function (action) {
+                    //if (action == "close") return false;
+                    if (action == "ok") {
+                        var iframe = this.getIFrameEl();
+                        var data = iframe.contentWindow.GetData();
+                        data = mini.clone(data);    //必须
+                        if (data) {
+                            btnEdit.setValue(data.warehouseid);
+                            btnEdit.setText(data.warehousename);
+                         
+                        }
+                    }
+                }
+            });
+   
+   }
+   var prstate=[{id:"1",text:"现金"},{id:"2" ,text:"月结"}];
+   	     
+   	     function onStateRenderer(e) {
+            for (var i = 0, l = prstate.length; i < l; i++) {
+                var g = prstate[i];
+                if (g.id == e.value) return g.text;
+            }
+            return "";
+        }
+ </script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+[
+	{id: "NL-XS", text: "科研"},	
+	{id: "NL-CP", text: "生产"}			
+]

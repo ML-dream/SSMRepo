@@ -1,0 +1,677 @@
+﻿/*----------------------------------- button ----------------------------------*/
+
+.fastui-button
+{
+	background:#9cbdeb url(images/button/button.gif) repeat-x;
+	border:solid 1px #6a8ccb;
+    color:#222;
+}
+body a:hover.fastui-button
+{
+	background:#ffd294 url(images/button/hover.gif) repeat-x;
+	border:solid 1px #000080;	         
+}
+body .fastui-button-pressed, body a:hover.fastui-button-pressed,
+body .fastui-button-checked, body a:hover.fastui-button-checked,
+body a.fastui-button-popup, body a:hover.fastui-button-popup
+{
+	background:#ffcf8b url(images/button/pressed.gif) repeat-x;	
+	border-color:#000080;
+}
+body .fastui-button-disabled, body a:hover.fastui-button-disabled
+{
+    border-color:#bfbfbf;
+    color:#808080;
+    background:#cecece url(images/button/disabled.gif) repeat-x 0 0px;       
+}
+
+/*------------------------- menu --------------------------------*/
+.fastui-menu
+{
+	background:#f4f4ee url(images/menu/menu_bg.gif) repeat-y 0 0;
+	border-color:#002d96;	
+    color:black;
+}
+.fastui-menuitem
+{
+    line-height:20px;    
+}
+.fastui-menuitem-hover
+{
+    border-color:#002d96;
+	background:#ffd89e url(images/menu/hover.gif) repeat-x 0 0px;		
+}
+.fastui-menu-popup
+{
+    border-color:#002d96;
+	background:#ffeec2 url(images/menu/hover.gif) repeat-x 0 0px;    
+}
+.fastui-menuitem-selected
+{
+    border-color:#002d96;  
+    background:#ffad55 url(images/menu/pressed.gif) repeat-x 0 0;
+}
+.fastui-menuitem-text, .fastui-menuitem-text a
+{
+    color:black;
+}
+.fastui-separator
+{
+    border-top:solid 1px #002d96;
+}
+/* menu horizontal */
+.fastui-menu-horizontal .fastui-menu-inner
+{
+    background:#f4f4ee;
+}
+.fastui-menu-horizontal .fastui-menuitem-hover
+{
+    border:1px solid #002d96;
+	background:#ffeec2 url(images/menu/hover.gif) repeat-x 0 0px;
+}
+.fastui-menu-horizontal  .fastui-menu-popup
+{
+    border:1px solid #002d96;
+	background:#ffeec2 url(images/menu/hover.gif) repeat-x 0 0px;
+    border-bottom:0px;
+}
+
+/*---------------------- calendar -----------------------------*/
+.fastui-calendar
+{    
+    border:1px solid #6a8ccb;
+}
+.fastui-calendar-header
+{   
+    background:#81a9e2 url(images/calendar/header.gif) repeat-x 0 0;
+    border-bottom:solid 1px #6a8ccb;    
+}
+.fastui-calendar-footer
+{
+    background:#ddecfe;
+    border-top:solid 1px #cbe1fc;
+}
+.fastui-calendar-tadayButton, .fastui-calendar-clearButton,
+.fastui-calendar-okButton, .fastui-calendar-cancelButton
+{
+	background:url(images/button/button.gif) repeat-x 0px 50%;
+	border:solid 1px #6a8ccb;	
+    color:#222;
+}
+.fastui-calendar-menu-selected, a:hover.fastui-calendar-menu-selected
+{
+    color:#333;
+    background:#ffcf8b url(images/button/pressed.gif) repeat-x;
+    border:solid 1px #000080;
+}
+
+.fastui-calendar .fastui-calendar-selected
+{
+    color:#333;
+    background:#ffc076;
+    border:0;
+}
+.fastui-calendar .fastui-calendar-today
+{
+    border:1px solid #C00000;
+}
+.fastui-calendar-daysheader td{
+    border-bottom:solid 1px #cbe1fc;
+}
+.fastui-calendar td.fastui-calendar-weeknumber{
+    color:#81a9e2;
+}
+a:hover.fastui-calendar-menu-month{
+    background:#ddecfe;
+    border:solid 1px #6a8ccb;
+}
+a:hover.fastui-calendar-menu-year
+{
+    background:#ddecfe;
+    border:solid 1px #6a8ccb;
+}
+
+
+/*----------------------------------- toolbar ----------------------------------*/
+
+.fastui-toolbar
+{
+    border:solid 1px #002d96;
+    padding:5px;
+    background:#c3daf9 url(images/toolbar/header.gif) repeat-y 0 0;
+}
+.separator
+{
+    border-left:solid 1px #002d96;    
+}
+
+/*------------------------- panel -----------------------*/
+.fastui-panel
+{    
+    border:1px solid #002d96;
+}
+.fastui-panel-border
+{
+    border:1px solid #002d96;
+}
+.fastui-panel-header
+{
+    height:25px;
+    background:#7ba4e0 url(images/panel/header.gif) repeat-x 0 0px;
+    color:#000000;
+    font-weight:bold;
+    border-bottom:solid 1px #002d96;
+}
+.fastui-panel-header-inner
+{
+   padding-top:4px;
+}
+.fastui-panel-toolbar
+{
+    border-bottom:solid 1px #6a8ccb;
+    background:#ddecfe;
+}
+
+.fastui-panel-footer
+{
+    border-top:solid 1px #6a8ccb;
+    background:#ddecfe;
+}
+
+/*----------------------------- window -------------------------*/
+.fastui-window .fastui-panel-header
+{
+    background:#7ba4e0 url(images/window/header.gif) repeat-x 0 0px;
+}
+.fastui-window .fastui-panel-footer
+{
+    background:#ddecfe;
+}
+
+/*------------------- navbar ------------------*/
+.fastui-outlookbar
+{
+    border:1px solid #002d96;
+}
+.fastui-outlookbar .fastui-outlookbar-groupHeader
+{
+    background:#7ba4e0 url(images/navbar/header.gif) repeat-x 0 0;    
+    border-color:#002d96;
+}
+.fastui-outlookbar .fastui-outlookbar-groupTitle
+{
+    color:Black;
+    font-weight:normal;
+}
+.fastui-outlookbar .fastui-outlookbar-group 
+{
+    border-color:#99bce8;
+}
+.fastui-outlookbar .fastui-outlookbar-groupBody
+{    
+    border-color:#99bce8;
+}
+/* view2 */
+.fastui-outlookbar-view2 .fastui-outlookbar-groupHeader
+{
+    border:solid 1px #002d96; 
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-groupBody
+{    
+    background:#ddecfe;
+    border:solid 1px #002d96;
+    border-top:0;
+}
+/* view3 */
+.fastui-outlookbar-view3 .fastui-outlookbar-group
+{
+    border:solid 1px #99bce8; 
+}
+
+.fastui-outlookbar .fastui-tools-collapse
+{
+    width:15px;	
+}
+.fastui-outlookbar .fastui-outlookbar-expand .fastui-tools-collapse
+{
+    background:url(images/navbar/expand.gif) no-repeat 50% 50%;   
+}
+.fastui-outlookbar .fastui-outlookbar-collapse .fastui-tools-collapse
+{
+    background:url(images/navbar/collapse.gif) no-repeat 50% 50%;   
+}
+
+/*----------------------------------- buttonedit ----------------------------------*/
+
+.fastui-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
+.fastui-buttonedit-box
+{
+	background:white url(images/buttonedit/text-bg.gif) repeat-x 0px top;
+	border:solid 1px #608058;
+}
+.fastui-buttonedit-button, .fastui-buttonedit-disabled .fastui-buttonedit-button
+{
+	background:url(images/buttonedit/btn.gif) no-repeat 0 50%;		
+	border:#6a8ccb 1px solid;
+}
+
+body .fastui-buttonedit tr .fastui-buttonedit-spinButton
+{
+    background:none;
+    border:0;
+}
+
+.fastui-buttonedit-button-hover,
+.fastui-buttonedit-hover .fastui-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
+	border:#000080 1px solid;
+}
+
+body .fastui-buttonedit-popup .fastui-buttonedit-button, body .fastui-buttonedit-popup a:hover.fastui-buttonedit-pressed,
+.fastui-buttonedit-pressed .fastui-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#000080 1px solid;
+}
+body .fastui-buttonedit-button-pressed, body a:hover.fastui-buttonedit-button-pressed
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#000080 1px solid;
+}
+body .fastui-buttonedit-focus .fastui-buttonedit-box
+{
+    border-color: #000080;
+}
+
+/* edit icons */
+.fastui-buttonedit-icon
+{
+    width:11px;
+}
+.fastui-buttonedit-icons-popup
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+.fastui-buttonedit-icons-date
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+
+/* spin edit */
+
+.fastui-buttonedit-spin
+{   
+    background:none;    
+    height:17px;
+}
+.fastui-buttonedit-spinSplit
+{
+    display:none;
+}
+a:hover.fastui-buttonedit-up, a:hover.fastui-buttonedit-down
+{    
+    background:#ffdda6 url(images/buttonedit/hover.gif) no-repeat ;
+}
+.fastui-buttonedit-up, .fastui-buttonedit-down{
+    background:#c7d7e8 url(images/buttonedit/arrowbg.gif) no-repeat ;
+    height:8px;
+    margin-bottom:1px;
+    border:#6787b8 1px solid;
+}
+.fastui-buttonedit-up span, .fastui-buttonedit-down span
+{
+    background:url(images/buttonedit/icon3.gif) no-repeat -6px -1px;    
+    margin:0;
+    width:14px;
+    left:0;
+    top:0;
+    height:6px;
+}
+.fastui-buttonedit-down span
+{    
+    background:url(images/buttonedit/icon3.gif) no-repeat 3px 2px;        
+}
+body .fastui-buttonedit-spin .fastui-buttonedit-button-pressed, body .fastui-buttonedit-spin a:hover.fastui-buttonedit-button-pressed
+{    
+    background:#ffbc78 url(images/buttonedit/pressed.gif) no-repeat;
+	border:#6787b8 1px solid;
+}
+
+/*----------------------- splitter -----------------------*/
+.fastui-splitter
+{
+    border:solid 1px #002d96;     
+}
+.fastui-splitter-border{
+    border-color:#002d96;
+}
+.fastui-splitter-handler
+{
+    background:url(images/splitter/splitter.gif) repeat-y;
+}
+.fastui-splitter .fastui-splitter-pane1{
+    border-color:#002d96;
+}
+.fastui-splitter .fastui-splitter-pane2{
+    border-color:#002d96;
+}
+
+/*----------------------- layout -----------------------*/
+.fastui-layout
+{
+    
+}
+.fastui-layout-region
+{
+    border:1px solid #002d96;
+}
+.fastui-layout-region-header
+{
+    background:url(images/layout/header.gif) repeat-x 0 0;
+    border-bottom:solid 1px #002d96;
+}
+.fastui-layout-proxy
+{
+    border-color:#002d96;
+    background:#7ba4e0;
+}
+.fastui-layout-proxy-hover
+{
+    background:#ffd294 url(images/layout/hover.gif) repeat-x 0 0;
+}
+ffe7b6
+.fastui-layout-region-west .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-east .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-north .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-south .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+
+.fastui-layout-proxy-west .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-east .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-north .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-south .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+
+/*---------------------- listbox -----------------------------*/
+.fastui-listbox
+{    
+    border:#6a8ccb 1px solid;
+}
+.fastui-listbox-border
+{
+    border:#6a8ccb 1px solid;
+}
+.fastui-listbox-inner td
+{
+    line-height:20px;       
+}
+.fastui-listbox-item td{
+	border-top:white 1px dotted;
+	border-bottom:white 1px dotted;	
+}
+.fastui-listbox-item-hover td{
+    background:#cce2fc;
+	border-top:#cce2fc 1px dotted;
+	border-bottom:#cce2fc 1px dotted;
+}
+.fastui-listbox-item-selected td{
+	background:#ffc076;
+	border-top:#ffc076 1px dotted;
+	border-bottom:#ffc076 1px dotted;
+}
+.fastui-listbox-header
+{
+    background:#81a9e2 url(images/listbox/header.gif) repeat-x 0 0;    
+    border-bottom:solid 1px #6a8ccb;
+}
+
+/*---------------------- tabs -----------------------------*/
+
+.fastui-tabs-leftButton, .fastui-tabs-rightButton
+{
+    border:solid 1px #b5afaf;
+    background-color:#EBEBEE;
+}
+a:hover.fastui-tabs-leftButton,a:hover.fastui-tabs-rightButton
+{
+    border:solid 1px #758d5e;
+    background-color:#E1E8FD;
+}
+
+/* top */
+.fastui-tabs-bodys
+{
+    border:solid 1px #002d96;
+    border-top:0;
+}
+.fastui-tabs-space
+{
+    border-bottom:solid 1px #002d96;
+}
+.fastui-tabs-space2
+{
+    border-bottom:solid 1px #002d96;
+}
+
+.fastui-tab
+{
+    background: #b5c48f url(images/tabs/tab.gif) repeat-x 0 0;  
+    border: 1px solid #002d96;
+    color: #333;    
+    
+}
+.fastui-tab-hover
+{    
+    background:#ffd091 url(images/tabs/hover.gif) repeat-x 0 0; 
+}
+.fastui-tab-active
+{
+    border-bottom:solid 1px white;
+    background:#ddecfe;  
+}
+
+/* bottom */
+.fastui-tabs-position-bottom .fastui-tabs-space,
+.fastui-tabs-position-bottom .fastui-tabs-space2
+{
+    border:0;
+    border-top: 1px solid #002d96;
+}
+.fastui-tabs-position-bottom .fastui-tabs-bodys
+{    
+    border:solid 1px #002d96;
+    border-bottom:0;
+}
+.fastui-tabs-position-bottom .fastui-tab-active
+{
+    border-top:solid 1px white;
+    border-bottom:solid 1px #002d96;
+}
+
+/* left */
+.fastui-tabs-position-left .fastui-tabs-space,
+.fastui-tabs-position-left .fastui-tabs-space2
+{
+    border:0;
+    border-right: 1px solid #002d96;
+}
+.fastui-tabs-position-left .fastui-tabs-bodys
+{
+    border:solid 1px #002d96;
+    border-left:0;
+}
+.fastui-tabs-position-left .fastui-tab-active
+{    
+    border:solid 1px #002d96;
+    border-right:solid 1px white;
+}
+
+/* right */
+.fastui-tabs-position-right .fastui-tabs-space,
+.fastui-tabs-position-right .fastui-tabs-space2
+{
+    border:0;
+    border-left: 1px solid #002d96;
+}
+.fastui-tabs-position-right .fastui-tabs-bodys
+{    
+    border:solid 1px #002d96;
+    border-right:0;
+}
+.fastui-tabs-position-right .fastui-tab-active
+{    
+    border:solid 1px #002d96;
+    border-left:solid 1px white;
+}
+
+/*---------------------- tree -----------------------------*/
+
+.fastui-tree-hottrack .fastui-tree-node-hover
+{	    
+	background:#ffeec2;
+	border:solid 1px #002d96;
+}
+
+.fastui-tree-selectedNode .fastui-tree-nodeshow
+{
+    background:#ffad55 url(images/tree/pressed.gif) repeat-x 0px 50%;
+	border:solid 1px #002d96;	
+}
+
+.fastui-tree-collapse .fastui-tree-node-ecicon
+{
+    background-image:url(images/tree/collapse.gif);
+}
+.fastui-tree-expand .fastui-tree-node-ecicon
+{
+    background:transparent url(images/tree/expand.gif) no-repeat 1px 4px;
+}
+/*treeline*/
+.fastui-tree-treeLine .fastui-tree-indent{
+    background:transparent url(images/tree/treeline.gif) repeat-y 9px 0; 
+}
+/*leaf*/
+.fastui-tree-treeLine .fastui-tree-node-ecicon
+{
+    background:transparent url(images/tree/treeNodeLine.gif) no-repeat -3px 0; 
+}
+/*has children*/
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon{
+    background:transparent url(images/tree/expandLine.gif) no-repeat -3px -8px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon{
+    background:transparent url(images/tree/collapseLine.gif) no-repeat -4px -9px;
+}
+.fastui-tree-treeLine .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastline.gif) no-repeat 2px -8px; 
+}
+
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-first
+{
+    background:transparent url(images/tree/firstExpandNode.gif) no-repeat -4px 0;
+}
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastExpandNode.gif) no-repeat -2px -8px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-first
+{
+    background:transparent url(images/tree/firstCollapseNode.gif) no-repeat -4px 3px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastCollapseNode.gif) no-repeat -4px -6px;
+}
+
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-firstAndlast
+{
+    background-position:40% 45%;
+    background-image:url(images/tree/firstAndlastexpand.gif);
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-firstAndlast
+{
+    background-position:50% 50%;
+    background-image:url(images/tree/firstAndlastcollapse.gif);
+}
+
+
+/*------------------- grid --------------------*/
+.fastui-grid-border
+{
+	border:1px solid #728d9e;
+}
+.fastui-grid-headerCell
+{
+    background:#95b6e9 url(images/grid/header.gif) repeat-x 0 0;
+    border-right:#6291c9 1px solid;
+    border-bottom:#6291c9 1px solid;
+}
+.fastui-grid-footer
+{
+    background:#E7EAEE url(images/grid/footer.png) repeat-x 0 0;
+}
+.fastui-grid-detailCell
+{    
+    padding: 8px 10px 10px;
+    border-right:#cdced3 1px solid;
+    border-bottom:#cdced3 1px solid;
+}
+.fastui-grid-summaryCell
+{
+    padding-right:8px;
+    border-top:#cdced3 1px solid;
+    border-right:0;
+}
+.fastui-grid-cell, .fastui-grid-headerCell,
+.fastui-grid-filterCell, .fastui-grid-summaryCell
+{
+    border-right:#cdced3 1px solid;
+    border-bottom:#cdced3 1px solid;
+}
+.fastui-grid-headerCell
+{
+	border-right:#6291c9 1px solid;
+    border-bottom:#6291c9 1px solid;
+}
+.fastui-grid-footer
+{
+    background:#81a9e2;
+}
+.fastui-grid-filterRow .fastui-grid-table, .fastui-grid-summaryRow .fastui-grid-table {
+    background: none repeat scroll 0 0 #ddecfe;
+}
+.fastui-grid-detailRow {
+    background: none repeat scroll 0 0 #c0d7f7;
+}
+
+/*------------------- popup --------------------*/
+.fastui-popup{
+    border:1px solid #4f93e3;
+}

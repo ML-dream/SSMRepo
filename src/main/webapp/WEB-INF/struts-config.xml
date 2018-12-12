@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+ -->
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+  <form-beans>
+    <form-bean name="partbean" type="com.wl.forms.Parts"></form-bean>
+    <form-bean name="processesbean" type="com.wl.forms.Processes"></form-bean>
+    <form-bean name="treebean" type="com.wl.forms.Tree" ></form-bean>
+    <form-bean name="processPlanbean" type="com.wl.forms.ProcessPlan"></form-bean>
+    <form-bean name="itembean" type="com.wl.forms.Item"></form-bean>
+  </form-beans>
+  <action-mappings >
+  
+    <action
+      input="/WEB-INF/intomain.jsp"
+      path="/intomain"
+      name="treebean"
+      type="com.wl.testaction.IntomainAction">
+      <forward name="maintree" path="/WEB-INF/mainpage.jsp" />
+    </action>
+    <action
+      attribute="partbean"
+      input="/WEB-INF/workplan.jsp"      
+      parameter="flag"
+      name="partbean"
+      path="/workplan_disp"
+      type="com.wl.testaction.Workplan_dispAction">
+      <forward name="workplan" path="/WEB-INF/workplan.jsp" />
+      <forward name="addparts" path="/WEB-INF/ok_parts_update.jsp" />
+      <forward name="err" path="/WEB-INF/err_add_parts.jsp" />
+    </action>
+    <action
+      attribute="processesbean"
+      input="/WEB-INF/processList.jsp"
+      name="processesbean"
+      parameter="flag"
+      path="/processes_disp"
+      type="com.wl.testaction.Processes_dispAction">
+      <forward name="processes" path="/WEB-INF/process.jsp" />
+      <forward name="processList" path="/WEB-INF/processList.jsp" />
+      <forward name="addprocesses" path="/WEB-INF/ok_processes_update.jsp" />
+      <forward name="err" path="/WEB-INF/err_add_parts.jsp" />
+    </action>
+    
+    <action
+      input="/GT/demo/wlgandt.jsp"
+      parameter="flag"
+      path="/showGT"
+      type="com.wl.testaction.ShowGTAction">
+      <forward name="wlgandt" path="/GT/demo/wlgandt.jsp" />
+    </action>
+    
+    <action
+      attribute="processPlanbean"
+      input="/WEB-INF/processplanList.jsp"
+      name="processPlanbean"
+      parameter="flag"
+      path="/processplan"
+      type="com.wl.testaction.ProcessplanAction">
+      <forward name="err" path="/WEB-INF/err_add_parts.jsp" />
+      <forward name="processplanList" path="/WEB-INF/processplanList.jsp" />
+      <forward name="ok" path="/WEB-INF/ok_processes_update.jsp" />
+      <forward name="wljsp" path="/GT/demo/wlJsp.jsp" />
+      <forward name="alreadyhere" path="/alreadyhere.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/intomain.jsp"
+      parameter="flag"
+      path="/toprocessplan"
+      type="com.wl.testaction.ToprocessplanAction">
+      <forward name="toprocessplan" path="/WEB-INF/process_plan.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/intomain.jsp"
+      name="itembean"
+      parameter="flag"
+      path="/toitemList"
+      type="com.wl.testaction.ToitemListAction">
+      <forward name="toitemList" path="/WEB-INF/itemList.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/addprocesses.jsp"
+      parameter="flag"
+      path="/addprocess"
+      type="com.wl.testaction.AddprocessAction">
+      <forward name="ok" path="/WEB-INF/ok_processes_update.jsp" />
+    </action>
+    <action
+      input="/GT/demo/wlgandt.jsp"
+      parameter="flag"
+      path="/partplan_oper"
+      type="com.wl.testaction.Partplan_operAction">
+      <forward name="query_partplan" path="/GT/demo/wlgandt.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/itemList.jsp"
+      parameter="flag"
+      path="/to_add_items"
+      type="com.wl.testaction.To_add_itemsAction">
+      <forward name="toadditems" path="/WEB-INF/add_items.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/add_items.jsp"
+      parameter="flag"
+      path="/add_items"
+      type="com.wl.testaction.Add_itemsAction">
+      <forward name="ok" path="/WEB-INF/ok_processes_update.jsp" />
+      <forward name="err" path="/WEB-INF/err_add_parts.jsp" />
+    </action>
+    <action
+      input="/WEB-INF/processplanList.jsp"
+      parameter="flag"
+      path="/add_process_plan"
+      type="com.wl.testaction.Add_process_planAction">
+      <forward name="ok" path="/WEB-INF/timeoutGO.jsp" />
+      
+    </action>
+    <action
+      input="/WEB-INF/processplanList.jsp"
+      parameter="flag"
+      path="/work_processplan"
+      type="com.wl.testaction.Work_processplanAction">
+      <forward name="ok" path="/WEB-INF/ok_parts_update.jsp" />
+      <forward name="err" path="/WEB-INF/err_add_parts.jsp" />
+    </action>
+    
+    
+  </action-mappings>
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml"/>
+  </plug-in>
+</struts-config>
+

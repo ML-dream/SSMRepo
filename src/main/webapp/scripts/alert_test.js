@@ -1,0 +1,1 @@
+alert("I find you£¡£¡£¡£¡");

@@ -1,0 +1,77 @@
+package com.xm.testaction.qualitycheck.statejudge;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.wl.tools.ChineseCode;
+
+public class ShowReject2 extends HttpServlet {
+
+	/**
+	 * Constructor of the object.
+	 */
+	public ShowReject2() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
+
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		doPost(request, response);
+	}
+
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String barcode = ChineseCode.toUTF8(request.getParameter("barcode").trim());
+	    String fo_no =  ChineseCode.toUTF8(request.getParameter("fo_no").trim()); 
+	    String bnum =  ChineseCode.toUTF8(request.getParameter("bnum").trim());
+		request.setAttribute("barcode", barcode);
+		request.setAttribute("fo_no", fo_no);
+		request.setAttribute("bnum", bnum);
+		request.getRequestDispatcher("qualitycheck/rejectOccured2.jsp").forward(request, response);
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
+	}
+
+}

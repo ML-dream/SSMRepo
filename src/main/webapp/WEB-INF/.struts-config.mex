@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/intomain.do" location="50,50" dimension="231,104" />
+  <StrutsActivity path="/workplan_disp.do" location="350,50" dimension="267,104" />
+  <StrutsActivity path="/processes_disp.do" location="950,50" dimension="268,104" />
+  <StrutsActivity path="/showGT.do" location="50,250" dimension="227,104" />
+  <StrutsActivity path="/processplan.do" location="350,250" dimension="250,104" />
+  <StrutsActivity path="/toprocessplan.do" location="650,250" dimension="266,104" />
+  <StrutsActivity path="/toitemList.do" location="1250,250" dimension="239,104" />
+  <StrutsActivity path="/addprocess.do" location="50,450" dimension="250,104" />
+  <StrutsActivity path="/partplan_oper.do" location="350,450" dimension="261,104" />
+  <StrutsActivity path="/to_add_items.do" location="950,450" dimension="259,104" />
+  <StrutsActivity path="/add_items.do" location="50,650" dimension="240,104" />
+  <StrutsActivity path="/add_process_plan.do" location="350,650" dimension="285,104" />
+  <StrutsActivity path="/work_processplan.do" location="1501,1225" dimension="150,100" />
+  <StrutsActivity path="/WEB-INF/mainpage.jsp" location="950,650" dimension="172,53" />
+  <StrutsActivity path="/WEB-INF/intomain.jsp" location="1250,650" dimension="164,53" />
+  <StrutsActivity path="/WEB-INF/workplan.jsp" location="50,850" dimension="168,53" />
+  <StrutsActivity path="/WEB-INF/err_add_parts.jsp" location="350,850" dimension="194,53" />
+  <StrutsActivity path="/WEB-INF/ok_parts_update.jsp" location="650,850" dimension="210,53" />
+  <StrutsActivity path="/WEB-INF/process.jsp" location="950,850" dimension="160,53" />
+  <StrutsActivity path="/WEB-INF/processList.jsp" location="1250,850" dimension="179,53" />
+  <StrutsActivity path="/WEB-INF/ok_processes_update.jsp" location="50,1050" dimension="239,53" />
+  <StrutsActivity path="/GT/demo/wlgandt.jsp" location="350,1050" dimension="163,53" />
+  <StrutsActivity path="/alreadyhere.jsp" location="650,1050" dimension="126,53" />
+  <StrutsActivity path="/WEB-INF/processplanList.jsp" location="950,1050" dimension="204,53" />
+  <StrutsActivity path="/GT/demo/wlJsp.jsp" location="1250,1050" dimension="148,53" />
+  <StrutsActivity path="/WEB-INF/process_plan.jsp" location="50,1250" dimension="190,53" />
+  <StrutsActivity path="/WEB-INF/itemList.jsp" location="350,1250" dimension="158,53" />
+  <StrutsActivity path="/WEB-INF/addprocesses.jsp" location="650,1250" dimension="196,53" />
+  <StrutsActivity path="/WEB-INF/add_items.jsp" location="950,1250" dimension="173,53" />
+  <StrutsActivity path="/WEB-INF/timeoutGO.jsp" location="1250,1250" dimension="177,53" />
+  <StrutsTransition id="/workplan_disp.do,workplan,/WEB-INF/workplan.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="483,154" />
+      <AbsolutePoint location="483,199" />
+      <AbsolutePoint location="5,199" />
+      <AbsolutePoint location="5,876" />
+      <AbsolutePoint location="50,876" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/toitemList.do,toitemList,/WEB-INF/itemList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1444,354" />
+      <AbsolutePoint location="1444,1378" />
+      <AbsolutePoint location="429,1378" />
+      <AbsolutePoint location="429,1303" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/showGT.do,wlgandt,/GT/demo/wlgandt.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,302" />
+      <AbsolutePoint location="-55,302" />
+      <AbsolutePoint location="-55,918" />
+      <AbsolutePoint location="417,918" />
+      <AbsolutePoint location="417,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/intomain.jsp,null,/intomain.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1332,650" />
+      <AbsolutePoint location="1332,399" />
+      <AbsolutePoint location="-25,399" />
+      <AbsolutePoint location="-25,102" />
+      <AbsolutePoint location="50,102" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/workplan_disp.do,err,/WEB-INF/err_add_parts.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="617,102" />
+      <AbsolutePoint location="931,102" />
+      <AbsolutePoint location="931,799" />
+      <AbsolutePoint location="477,799" />
+      <AbsolutePoint location="477,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processplan.do,alreadyhere,/alreadyhere.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="493,354" />
+      <AbsolutePoint location="493,369" />
+      <AbsolutePoint location="695,369" />
+      <AbsolutePoint location="695,665" />
+      <AbsolutePoint location="875,665" />
+      <AbsolutePoint location="875,1076" />
+      <AbsolutePoint location="776,1076" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/work_processplan.do,ok,/WEB-INF/ok_parts_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1546,1325" />
+      <AbsolutePoint location="1546,1558" />
+      <AbsolutePoint location="875,1558" />
+      <AbsolutePoint location="875,1148" />
+      <AbsolutePoint location="791,1148" />
+      <AbsolutePoint location="791,903" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/intomain.jsp,null,/toitemList.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1369,650" />
+      <AbsolutePoint location="1369,354" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/processplanList.jsp,null,/work_processplan.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1138,1103" />
+      <AbsolutePoint location="1138,1468" />
+      <AbsolutePoint location="1576,1468" />
+      <AbsolutePoint location="1576,1325" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processplan.do,wljsp,/GT/demo/wlJsp.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,302" />
+      <AbsolutePoint location="337,302" />
+      <AbsolutePoint location="337,954" />
+      <AbsolutePoint location="1324,954" />
+      <AbsolutePoint location="1324,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/to_add_items.do,toadditems,/WEB-INF/add_items.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1209,502" />
+      <AbsolutePoint location="1474,502" />
+      <AbsolutePoint location="1474,1148" />
+      <AbsolutePoint location="1036,1148" />
+      <AbsolutePoint location="1036,1250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processplan.do,processplanList,/WEB-INF/processplanList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="513,250" />
+      <AbsolutePoint location="513,199" />
+      <AbsolutePoint location="1534,199" />
+      <AbsolutePoint location="1534,1008" />
+      <AbsolutePoint location="1052,1008" />
+      <AbsolutePoint location="1052,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processplan.do,ok,/WEB-INF/ok_processes_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,312" />
+      <AbsolutePoint location="347,312" />
+      <AbsolutePoint location="347,1076" />
+      <AbsolutePoint location="289,1076" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/workplan_disp.do,addparts,/WEB-INF/ok_parts_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="617,132" />
+      <AbsolutePoint location="632,132" />
+      <AbsolutePoint location="632,495" />
+      <AbsolutePoint location="755,495" />
+      <AbsolutePoint location="755,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add_items.do,err,/WEB-INF/err_add_parts.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="263,754" />
+      <AbsolutePoint location="263,876" />
+      <AbsolutePoint location="350,876" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processes_disp.do,err,/WEB-INF/err_add_parts.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1218,102" />
+      <AbsolutePoint location="1504,102" />
+      <AbsolutePoint location="1504,978" />
+      <AbsolutePoint location="447,978" />
+      <AbsolutePoint location="447,903" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processes_disp.do,processes,/WEB-INF/process.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1218,132" />
+      <AbsolutePoint location="1233,132" />
+      <AbsolutePoint location="1233,876" />
+      <AbsolutePoint location="1110,876" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addprocess.do,ok,/WEB-INF/ok_processes_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,502" />
+      <AbsolutePoint location="-25,502" />
+      <AbsolutePoint location="-25,978" />
+      <AbsolutePoint location="169,978" />
+      <AbsolutePoint location="169,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processes_disp.do,processList,/WEB-INF/processList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1218,72" />
+      <AbsolutePoint location="1564,72" />
+      <AbsolutePoint location="1564,876" />
+      <AbsolutePoint location="1429,876" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/intomain.jsp,null,/toprocessplan.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1309,703" />
+      <AbsolutePoint location="1309,829" />
+      <AbsolutePoint location="845,829" />
+      <AbsolutePoint location="845,354" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processes_disp.do,addprocesses,/WEB-INF/ok_processes_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1114,154" />
+      <AbsolutePoint location="1114,429" />
+      <AbsolutePoint location="35,429" />
+      <AbsolutePoint location="35,1076" />
+      <AbsolutePoint location="50,1076" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add_process_plan.do,ok,/WEB-INF/timeoutGO.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="559,754" />
+      <AbsolutePoint location="559,1318" />
+      <AbsolutePoint location="1338,1318" />
+      <AbsolutePoint location="1338,1303" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add_items.do,ok,/WEB-INF/ok_processes_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="233,754" />
+      <AbsolutePoint location="233,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/GT/demo/wlgandt.jsp,null,/partplan_oper.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,1082" />
+      <AbsolutePoint location="293,1082" />
+      <AbsolutePoint location="293,647" />
+      <AbsolutePoint location="480,647" />
+      <AbsolutePoint location="480,554" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/processList.jsp,null,/processes_disp.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1339,850" />
+      <AbsolutePoint location="1339,718" />
+      <AbsolutePoint location="815,718" />
+      <AbsolutePoint location="815,369" />
+      <AbsolutePoint location="1084,369" />
+      <AbsolutePoint location="1084,154" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/GT/demo/wlgandt.jsp,null,/showGT.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="461,1103" />
+      <AbsolutePoint location="461,1178" />
+      <AbsolutePoint location="1594,1178" />
+      <AbsolutePoint location="1594,229" />
+      <AbsolutePoint location="163,229" />
+      <AbsolutePoint location="163,250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/partplan_oper.do,query_partplan,/GT/demo/wlgandt.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="498,554" />
+      <AbsolutePoint location="498,569" />
+      <AbsolutePoint location="1199,569" />
+      <AbsolutePoint location="1199,1208" />
+      <AbsolutePoint location="431,1208" />
+      <AbsolutePoint location="431,1103" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/work_processplan.do,err,/WEB-INF/err_add_parts.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1606,1325" />
+      <AbsolutePoint location="1606,1648" />
+      <AbsolutePoint location="528,1648" />
+      <AbsolutePoint location="528,903" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/workplan.jsp,null,/workplan_disp.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="134,850" />
+      <AbsolutePoint location="134,829" />
+      <AbsolutePoint location="-85,829" />
+      <AbsolutePoint location="-85,-25" />
+      <AbsolutePoint location="483,-25" />
+      <AbsolutePoint location="483,50" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/itemList.jsp,null,/to_add_items.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="508,1276" />
+      <AbsolutePoint location="589,1276" />
+      <AbsolutePoint location="589,918" />
+      <AbsolutePoint location="1137,918" />
+      <AbsolutePoint location="1137,554" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/add_items.jsp,null,/add_items.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,1276" />
+      <AbsolutePoint location="931,1276" />
+      <AbsolutePoint location="931,847" />
+      <AbsolutePoint location="170,847" />
+      <AbsolutePoint location="170,754" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/processplan.do,err,/WEB-INF/err_add_parts.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="453,250" />
+      <AbsolutePoint location="453,169" />
+      <AbsolutePoint location="1624,169" />
+      <AbsolutePoint location="1624,769" />
+      <AbsolutePoint location="447,769" />
+      <AbsolutePoint location="447,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/processplanList.jsp,null,/processplan.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,1076" />
+      <AbsolutePoint location="905,1076" />
+      <AbsolutePoint location="905,447" />
+      <AbsolutePoint location="475,447" />
+      <AbsolutePoint location="475,354" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/processplanList.jsp,null,/add_process_plan.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1022,1050" />
+      <AbsolutePoint location="1022,1008" />
+      <AbsolutePoint location="619,1008" />
+      <AbsolutePoint location="619,754" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/intomain.do,maintree,/WEB-INF/mainpage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="281,102" />
+      <AbsolutePoint location="315,102" />
+      <AbsolutePoint location="315,599" />
+      <AbsolutePoint location="1036,599" />
+      <AbsolutePoint location="1036,650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/addprocesses.jsp,null,/addprocess.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="748,1250" />
+      <AbsolutePoint location="748,1118" />
+      <AbsolutePoint location="1169,1118" />
+      <AbsolutePoint location="1169,629" />
+      <AbsolutePoint location="175,629" />
+      <AbsolutePoint location="175,554" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/toprocessplan.do,toprocessplan,/WEB-INF/process_plan.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="785,354" />
+      <AbsolutePoint location="785,829" />
+      <AbsolutePoint location="315,829" />
+      <AbsolutePoint location="315,1276" />
+      <AbsolutePoint location="240,1276" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

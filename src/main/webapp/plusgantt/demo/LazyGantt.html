@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+    <title>懒加载甘特图</title>
+    <script src="../scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>    
+    <script src="../scripts/miniui/locale/zh_CN.js" type="text/javascript"></script>
+
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" /><link href="../scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <script src="../scripts/plusgantt/GanttMenu.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttSchedule.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttService.js" type="text/javascript"></script>
+    
+</head>
+<body style="font-size:13px">    
+    <div>
+    懒加载甘特图：打开时只加载第一级节点，点击折叠图标时，加载下一级节点。<br />
+    适用于大数据量显示。
+    </div>
+    <br />
+    <div id="viewCt">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+/* 创建甘特图对象，设置列配置
+-----------------------------------------------------------------------------*/
+
+var gantt = new CreateGantt();
+gantt.render(document.body);
+
+
+/* 业务代码
+-----------------------------------------------------------------------------*/
+
+
+function onTreeExpand(e) {
+    var task = e.task;
+    if (!task.children || task.children.length == 0) {
+        var sf = this;
+        this.addTaskCls(task, "mini-supertree-loading");
+        setTimeout(function () {
+            loadNodes(function (tasks) {
+
+                //示例数据是静态的，因此需要修改UID（实际项目，从动态页面加载，UID不会重复）
+                for (var i = 0, l = tasks.length; i < l; i++) {
+                    var t = tasks[i];
+                    t.UID = UUID();
+                }
+
+                sf.removeTaskCls(task, "mini-supertree-loading");
+                sf.addTasks(tasks, -1, task);
+                sf.acceptTask(task);
+            });
+        }, 200);
+    }
+}
+function loadNodes(callback) {
+    $.ajax({
+        url: "data/nodes.txt",
+        success: function (text) {
+            var nodes = mini.decode(text);
+
+            if (callback) callback(nodes);
+        }
+    });
+};
+//监听expandtask事件
+gantt.on("expandtask", onTreeExpand);
+loadNodes(function (tasks) {
+    gantt.loadTasks(tasks);
+});
+
+
+</script>

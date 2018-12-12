@@ -1,0 +1,221 @@
+.icon-add{
+	background:url(icons/add.gif) no-repeat;
+}
+.icon-addnew{
+	background:url(icons/addnew.gif) no-repeat;
+}
+.icon-edit{
+	background:url(icons/edit.gif) no-repeat;
+}
+.icon-remove{
+	background:url(icons/remove.gif) no-repeat;
+}
+.icon-save{
+	background:url(icons/save.gif) no-repeat;	/* modify by zhuli */
+}
+.icon-close{
+	background:url(icons/cancel.gif) no-repeat;
+}
+.icon-cut{
+	background:url(icons/cut.png) no-repeat;
+}
+.icon-ok{
+	background:url(icons/ok.png) no-repeat;
+}
+.icon-no{
+	background:url(icons/no.png) no-repeat;
+}
+.icon-cancel{
+	background:url(icons/cancel.gif) no-repeat;
+}
+.icon-reload{
+	background:url(icons/reload.png) no-repeat;
+}
+.icon-search{
+	background:url(icons/search.gif) no-repeat;
+}
+.icon-print{
+	background:url(icons/print.gif) no-repeat;
+}
+.icon-help{
+	background:url(icons/help.gif) no-repeat;
+	
+}
+.icon-undo{
+	background:url(icons/undo.gif) no-repeat;
+}
+.icon-redo{
+	background:url(icons/redo.gif) no-repeat;
+}
+.icon-tip{
+	background:url(icons/tip.png) no-repeat;
+}
+.icon-zoomin{
+	background:url(icons/zoomin.gif) no-repeat;
+}
+.icon-zoomout{
+	background:url(icons/zoomout.gif) no-repeat;
+}
+.icon-goto{
+	background:url(icons/goto.gif) no-repeat;
+}
+.icon-date{
+	background:url(icons/date.gif) no-repeat;
+}
+.icon-filter{
+	background:url(icons/filter.gif) no-repeat;
+}
+.icon-find{
+	background:url(icons/find.gif) no-repeat;
+}
+.icon-folder{
+	background:url(icons/folder.gif) no-repeat;
+}
+.icon-folderopen{
+	background:url(icons/folder-open.gif) no-repeat;
+}
+.icon-lock{
+	background:url(icons/disable.png) no-repeat scroll 0 3px transparent; /* modify by zhuli lock.png */
+}
+.icon-unlock{
+	background:url(icons/enable.png) no-repeat scroll 0 3px transparent; /* modify by zhuli unlock.png */
+}
+.icon-new{
+	background:url(icons/new.gif) no-repeat;
+}
+.icon-node{
+	background:url(icons/node.gif) no-repeat;
+}
+.icon-nowait{
+	background:url(icons/nowait.gif) no-repeat;
+}
+.icon-sort{
+	background:url(icons/sort.gif) no-repeat;
+}
+.icon-wait{
+	background:url(icons/wait.gif) no-repeat;
+}
+.icon-upgrade{
+	background:url(icons/upgrade.gif) no-repeat;
+}
+.icon-downgrade{
+	background:url(icons/downgrade.gif) no-repeat;
+}
+.icon-download{
+	background:url(icons/download.gif) no-repeat;
+}
+.icon-upload{
+	background:url(icons/upload.gif) no-repeat;
+}
+.icon-user{
+	background:url(icons/user.gif) no-repeat;
+}
+.icon-split{
+	background:url(icons/split.gif) no-repeat;
+}
+.icon-addfolder{
+	background:url(icons/addfolder.gif) no-repeat;
+}
+
+/* ADD BY ZHULI */
+/* 查询 */
+.icon-query{
+	background:url(icons/query.png) no-repeat scroll 0 3px transparent;
+}
+/* 打印 */
+.icon-printBig{
+	background:url(icons/printBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 导出 */
+.icon-expBig{
+	background:url(icons/expBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 添加 */
+.icon-addBig{
+	background:url(icons/addBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 编辑 */
+.icon-editBig{
+	background:url(icons/editBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 审批 */
+.icon-approval{
+	background:url(icons/approval.png) no-repeat scroll 0 3px transparent;
+}
+/* 申报 */
+.icon-declare{
+	background:url(icons/declare.png) no-repeat scroll 0 3px transparent;
+}
+/* 上传 */
+.icon-load{
+	background:url(icons/load.png) no-repeat scroll 0 3px transparent;
+}
+/* 下载 */
+.icon-unload{
+	background:url(icons/unload.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 退出 */
+.icon-signOut{
+	background:url(icons/signOut.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 启用 */
+.icon-enable{
+	background:url(icons/enable.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 禁用 */
+.icon-disable{
+	background:url(icons/disable.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 准装 */
+.icon-appLoad{
+	background:url(icons/appLoad.gif) no-repeat scroll 0 3px transparent;
+}
+
+/* 准卸 */
+.icon-appUnload{
+	background:url(icons/appUnload.gif) no-repeat scroll 0 3px transparent;
+}
+
+/* 提交代理 */
+.icon-subAgent{
+	background:url(icons/subAgent.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 提交码头 */
+.icon-subWharf{
+	background:url(icons/subWharf.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 保存业务 */
+.icon-saveBus{
+	background:url(icons/saveBus.png) no-repeat scroll 0 3px transparent;
+}
+
+/* 确定 */
+.icon-okBus{
+	background:url(icons/okBus.png) no-repeat scroll 0 3px transparent;
+}
+/* 返回/取消 */
+.icon-return{
+	background:url(icons/return.png) no-repeat scroll 0 3px transparent;
+}
+/* 反核住 */
+.icon-doNote{
+	background:url(icons/doNote.png) no-repeat scroll 0 3px transparent;
+}
+/* 刷新 */
+.icon-refreshBig{
+	background:url(icons/refreshBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 删除 */
+.icon-deleteBig{
+	background:url(icons/deleteBig.png) no-repeat scroll 0 3px transparent;
+}
+/* 审核*/
+.icon-check{
+	background:url(icons/transmit.gif) no-repeat scroll 0 3px transparent;
+}

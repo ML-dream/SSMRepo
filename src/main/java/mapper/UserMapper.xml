@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- <mapper>
+  <cache-ref namespace=""/>
+</mapper> -->
+<mapper namespace="mapper.UserMapper">
+	<select id="selectMachineInfo5505ById" parameterType="String" resultType="javaBean.machineInfo5505">
+		select * from machine_5505 where machineId=#{machineId}
+	</select>
+	
+	<select id="findUserById" parameterType="String" resultType="javaBean.user">
+
+		select * from MACHINFO t  where machineId=#{id}
+	</select>
+</mapper>
+

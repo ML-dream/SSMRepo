@@ -1,0 +1,4 @@
+[
+	{text:"返工", id:"toFix"},
+	{text:"报废", id:"toDiscard"}
+]

@@ -1,0 +1,47 @@
+package com.wl.testaction.outAssistManage;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.wl.tools.ChineseCode;
+import com.wl.tools.Sqlhelper;
+
+public class ProcessOutAssistSaveServlet extends HttpServlet {
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+        doPost(request,response);
+	}
+
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+      String orderId=ChineseCode.toUTF8(request.getParameter("orderId"));
+      String productId=ChineseCode.toUTF8(request.getParameter("productId"));
+      String issueNum=ChineseCode.toUTF8(request.getParameter("issueNum"));
+      String operId=ChineseCode.toUTF8(request.getParameter("operId"));
+      String companyName=ChineseCode.toUTF8(request.getParameter("companyName"));
+      String sql="update processesPlan set waixieCom="+companyName+
+    		    " where orderid=? and productId=? and issueNum=? and operId=?";
+      String[] params={orderId,productId,issueNum,operId};
+      try{
+    	  Sqlhelper.executeUpdate(sql, params);
+    	  String json = "{\"result\":\"操作成功!\"}";
+		  response.setCharacterEncoding("UTF-8");
+	      response.getWriter().append(json).flush();
+		} catch (SQLException e) {
+		  String json = "{\"result\":\"操作失败!\"}";
+		  response.setCharacterEncoding("UTF-8");
+		  response.getWriter().append(json).flush();
+	      e.printStackTrace();
+		}
+
+	}
+
+
+}

@@ -1,0 +1,66 @@
+﻿[
+	{Name: "P1", UID: 1,
+		Tasks: [
+			{Name: "task1", UID: "p1", Start: "2007-01-03T00:00:00", Finish: "2007-01-03T23:59:59", PercentComplete: 0, Duration: 1*24*3600},
+			{Name: "task2", UID: "p2", Start: "2007-01-07T00:00:00", Finish: "2007-01-09T23:59:59", PercentComplete: 0, Duration: 3*24*3600},
+			{Name: "task3", UID: "p3", Start: "2007-01-09T00:00:00", Finish: "2007-01-10T23:59:59", PercentComplete: 80, Duration: 2*24*60*60},
+			{Name: "task4", UID: "p4", Start: "2007-01-12T00:00:00", Finish: "2007-01-16T23:59:59", PercentComplete: 100, Duration: 5*24*60*60}
+		]
+	},
+	{Name: "P2", UID: 2,
+		Tasks: [
+			{Name: "task5", UID: "p5", Start: "2007-01-02T00:00:00", Finish: "2007-01-05T23:59:59", PercentComplete: 0, Duration: 4*24*3600},
+			{Name: "task6", UID: "p6", Start: "2007-01-09T00:00:00", Finish: "2007-01-12T23:59:59", PercentComplete: 0, Duration: 3*24*3600},
+			{Name: "task7", UID: "p7", Start: "2007-01-19T00:00:00", Finish: "2007-01-20T23:59:59", PercentComplete: 80, Duration: 2*24*60*60},
+			{Name: "task8", UID: "p8", Start: "2007-02-12T00:00:00", Finish: "2007-02-16T23:59:59", PercentComplete: 100, Duration: 4*24*60*60}
+		]
+	},
+	{Name: "P3", UID: 3,
+		Tasks: [
+			{Name: "task9", UID: "p9", Start: "2007-01-08T00:00:00", Finish: "2007-01-09T23:59:59", PercentComplete: 0, Duration: 2*24*3600},
+			{Name: "task10", UID: "p10", Start: "2007-02-07T00:00:00", Finish: "2007-02-09T23:59:59", PercentComplete: 0, Duration: 3*24*3600},
+			{Name: "task11", UID: "p11", Start: "2007-02-14T00:00:00", Finish: "2007-02-15T23:59:59", PercentComplete: 80, Duration: 2*24*60*60},
+			{Name: "task12", UID: "p12", Start: "2007-02-15T00:00:00", Finish: "2007-02-22T23:59:59", PercentComplete: 100, Duration: 7*24*60*60}
+		]
+	},
+
+	{Name: "D1", UID: 4,
+		Tasks: [
+			{Name: "task11", UID: "d1", Start: "2007-01-01T00:00:00", Finish: "2007-01-03T23:59:59", PercentComplete: 0, Duration: 3*24*3600},
+			{Name: "task12", UID: "d2", Start: "2007-01-05T00:00:00", Finish: "2007-01-09T23:59:59", PercentComplete: 0, Duration: 5*24*3600},
+			{Name: "task13", UID: "d3", Start: "2007-01-10T00:00:00", Finish: "2007-01-10T23:59:59", PercentComplete: 80, Duration: 1*24*60*60},
+			{Name: "task14", UID: "d4", Start: "2007-01-12T00:00:00", Finish: "2007-01-15T23:59:59", PercentComplete: 100, Duration: 4*24*60*60}
+		]
+	},
+	{Name: "D2", UID: 5,
+		Tasks: [
+			{Name: "task15", UID: "d5", Start: "2007-01-03T00:00:00", Finish: "2007-01-06T23:59:59", PercentComplete: 0, Duration: 4*24*3600},
+			{Name: "task16", UID: "d6", Start: "2007-01-11T00:00:00", Finish: "2007-01-14T23:59:59", PercentComplete: 0, Duration: 4*24*3600},
+			{Name: "task17", UID: "d7", Start: "2007-02-19T00:00:00", Finish: "2007-02-20T23:59:59", PercentComplete: 80, Duration: 2*24*60*60},
+			{Name: "task18", UID: "d8", Start: "2007-02-12T00:00:00", Finish: "2007-02-16T23:59:59", PercentComplete: 100, Duration: 4*24*60*60}
+		]
+	},
+	{Name: "D3", UID: 6,
+		Tasks: [
+			{Name: "task19", UID: "d9", Start: "2007-01-08T00:00:00", Finish: "2007-01-09T23:59:59", PercentComplete: 0, Duration: 2*24*3600},
+			{Name: "task20", UID: "d10", Start: "2007-02-08T00:00:00", Finish: "2007-02-09T23:59:59", PercentComplete: 0, Duration: 2*24*3600},
+			{Name: "task21", UID: "d11", Start: "2007-03-09T00:00:00", Finish: "2007-03-10T23:59:59", PercentComplete: 80, Duration: 2*24*60*60},
+			{Name: "task22", UID: "d12", Start: "2007-03-12T00:00:00", Finish: "2007-03-19T23:59:59", PercentComplete: 100, Duration: 7*24*60*60}
+		]
+	},
+	{Name: "D4", UID: 7},
+	{Name: "D5", UID: 8},
+
+	{Name: "F1", UID: 9},
+	{Name: "F2", UID: 10},
+	{Name: "F3", UID: 11},
+
+	{Name: "M1", UID: 12},
+	{Name: "M2", UID: 13},
+	{Name: "M3", UID: 14},
+
+	{Name: "X1", UID: 15},
+	{Name: "X2", UID: 16},
+	{Name: "X3", UID: 17}
+]
+

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>jQuery Barcode</title>
+		<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="jquery-barcode.js"></script>
+		<style type="text/css">
+		.barcodeImg{margin:10px 0px;
+			height:160px;
+		}
+		</style>
+	</head>
+	<body>
+		<div style="margin:10px">	
+			<input id="src" value=""></input><br/>				
+			<input type="button" onclick='code39()' value="code39"> 
+			<input type="button" onclick='code128()' value="code128">
+			<div id="bcTarget" class="barcodeImg" ></div>			
+		</div>
+
+		<script type="text/javascript">
+
+		function code39(){
+			$("#bcTarget").empty().barcode($("#src").val(), "code39",{barWidth:3, barHeight:60,showHRI:false});
+		}
+
+		function code128(){
+			$("#bcTarget").empty().barcode($("#src").val(), "code128",{barWidth:2, barHeight:60,showHRI:true});
+		}
+
+		</script>
+
+	</body>
+</html>

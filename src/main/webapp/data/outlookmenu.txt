@@ -1,0 +1,14 @@
+﻿[
+	{ id: "user", text: "用户管理", iconCls: "icon-lock"},
+	{ id: "addUser", pid: "user", text: "第一个标签", iconCls: "icon-node", url: "../datagrid/celledit.html" },
+	{ id: "editUser", pid: "user", text: "第二个标签", iconCls: "icon-node", url: "../datagrid/rowedit.html" },
+	{ id: "removeUser", pid: "user", text: "第三个标签", iconCls: "icon-node", url: "../datagrid/datagrid.html" },
+		
+	{ id: "right", text: "权限管理",iconCls: "icon-lock"},
+	{ id: "addRight", pid: "right", text: "第四个标签", iconCls: "icon-node", url: "../tree/detailgrid.html"},
+	{ id: "editRight", pid: "right", text: "第五个标签", iconCls: "icon-node", url: "../buttonedit/selectGrid.html"},
+	
+	{ id: "system", text: "系统管理",iconCls: "icon-lock"},
+	{ id: "addRight", pid: "system", text: "第六个标签", iconCls: "icon-node", url: "../tree/detailgrid.html"},
+	{ id: "editRight", pid: "system", text: "第七个标签", iconCls: "icon-node", url: "../buttonedit/selectGrid.html"}		
+]

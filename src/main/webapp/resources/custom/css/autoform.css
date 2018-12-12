@@ -1,0 +1,35 @@
+/* 保存并调整顺序 */
+.icon-saveOrder{
+	background:url(../images/commit.png) no-repeat;
+}
+
+/* 添加 */
+.icon-addBig{
+	background:url(../images/addBig.png) no-repeat;
+}
+/* 编辑 */
+.icon-editBig{
+	background:url(../images/editBig.png) no-repeat;
+}
+
+
+/* 删除 */
+.icon-deleteBig{
+	background:url(../images/deleteBig.png) no-repeat;
+}
+
+/**测试自动表单**/
+.icon-rss_go{
+	background:url(../images/rss_go.png) no-repeat;
+}
+
+/**测试自动查询**/
+.icon-grid_test{
+	background:url(../images/grid.png) no-repeat;
+}
+
+
+/**查询参数设置**/
+.icon-grid_queryParams{
+	background:url(../images/event16.png) no-repeat;
+}

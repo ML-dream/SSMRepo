@@ -1,0 +1,658 @@
+﻿.fastui-button
+{
+    border-radius: 2px; 
+}
+.fastui-tab
+{
+    border-radius:3px;   
+}
+.fastui-tabs-position-right .fastui-tab
+{
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;     
+}
+
+.fastui-tabs-position-left .fastui-tab
+{
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;     
+}
+.fastui-tabs-position-bottom .fastui-tab
+{
+    border-top-right-radius:0px;
+    border-top-left-radius:0px;     
+}
+.fastui-tabs-position-top .fastui-tab
+{
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px; 
+}
+
+
+/*----------------------------------- bgcss ----------------------------------*/
+.bg-toolbar
+{
+    background:#f0f0f0 url(images/toolbar/toolbar.gif) repeat-x 0 0;
+}
+
+
+/*----------------------------------- tools ----------------------------------*/
+
+.fastui-tools .fastui-tools-collapse
+{
+    background:url(images/tools/collapse.gif) no-repeat 50% 50%;
+    width:15px;	
+}
+.fastui-tools .fastui-tools-expand
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;
+    width:15px;	
+}
+.fastui-tools-close
+{
+    background:url(images/tools/close.gif) no-repeat 50% 0px;
+    width:15px;	
+}
+
+
+/*----------------------------------- toolbar ----------------------------------*/
+
+.fastui-toolbar
+{
+    border:solid 1px #99bce8;
+    padding:5px;
+    background:#f0f0f0 url(images/toolbar/toolbar.gif) repeat-x 0 0;
+}
+.separator
+{
+    border-left:solid 1px #A8A8A8;    
+}
+
+/*----------------------------------- button ----------------------------------*/
+
+.fastui-button
+{
+	background:url(images/button/button.gif) repeat-x 0px 50%;
+	border:solid 1px #b5afaf;	
+    color:#222;
+}
+body a:hover.fastui-button
+{
+	background:#e2f2fe url(images/button/hover.gif) repeat-x 0px 50%;
+	border:solid 1px #80a4d0;	         
+}
+body .fastui-button-pressed, body a:hover.fastui-button-pressed,
+body .fastui-button-checked, body a:hover.fastui-button-checked,
+body a.fastui-button-popup, body a:hover.fastui-button-popup
+{
+	background:#bacee4 url(images/button/pressed.gif) repeat-x 0px 50%;	
+	border-color:#7a9ac4;
+}
+body .fastui-button-disabled, body a:hover.fastui-button-disabled
+{
+    border-color:#E1E2E5;
+    color:#BABAC1;
+    background:#F8F9FA url(images/button/disabled.png) repeat-x 0 0px;       
+}
+
+
+/*----------------------------------- textbox ----------------------------------*/
+.fastui-textbox-border
+{
+    background:white url(images/buttonedit/text-bg.gif) repeat-x 0px top;
+	border:solid 1px #b5b8c8;        
+}
+body .fastui-textbox-focus .fastui-textbox-border
+{
+    border-color: #7eadd9;
+}
+
+
+/*----------------------------------- buttonedit ----------------------------------*/
+
+.fastui-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
+.fastui-buttonedit-border
+{
+	background:white url(images/buttonedit/text-bg.gif) repeat-x 0px top;
+	border:solid 1px #b5b8c8;    
+}
+.fastui-buttonedit-button, .fastui-buttonedit-disabled .fastui-buttonedit-button
+{
+	background:url(images/buttonedit/btn.gif) repeat-x 0px 50%;		
+	border:#b5b8c8 1px solid;   
+}
+
+.fastui-buttonedit-spinButton
+{
+    background:none;
+    border:1px solid transparent; 
+_border-color:tomato;
+_filter:chroma(color=tomato);
+}
+
+.fastui-buttonedit-button-hover,
+.fastui-buttonedit-hover td.fastui-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
+}
+
+body .fastui-buttonedit-popup .fastui-buttonedit-button, body .fastui-buttonedit-popup a:hover.fastui-buttonedit-pressed,
+.fastui-buttonedit-pressed td.fastui-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
+}
+body .fastui-buttonedit-button-pressed, body a:hover.fastui-buttonedit-button-pressed
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
+}
+body .fastui-buttonedit-focus .fastui-buttonedit-border
+{
+    border-color: #7eadd9;
+}
+
+/* edit icons */
+.fastui-buttonedit-icon
+{
+    width:11px;
+}
+.fastui-buttonedit-icons-popup
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+.fastui-buttonedit-icons-date
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+
+.fastui-datepicker .fastui-buttonedit-popup
+{
+    border:solid 1px white;
+    background:none;  
+}
+
+
+/* spin edit */
+
+.fastui-buttonedit-spin
+{   
+    background:none;    
+}
+.fastui-buttonedit-spinSplit
+{
+    display:none;
+}
+a:hover.fastui-buttonedit-up, a:hover.fastui-buttonedit-down
+{    
+    background:none;
+}
+.fastui-buttonedit-up span, .fastui-buttonedit-down span
+{
+    background:url(images/buttonedit/arrow_up.gif) no-repeat 0px 0;   
+}
+.fastui-buttonedit-down span
+{    
+    background:url(images/buttonedit/arrow_down.gif) no-repeat 0px 0px;        
+}
+body .fastui-buttonedit-spin .fastui-buttonedit-button-pressed, body .fastui-buttonedit-spin a:hover.fastui-buttonedit-button-pressed
+{    
+	border:none;
+}
+
+
+/*------------------------- panel -----------------------*/
+
+.fastui-panel-border
+{    
+    border:1px solid #99bce8;     
+}
+.fastui-panel-header
+{
+    height:25px;
+    background:#E3E6E8 url(images/panel/header.gif) repeat-x 0 0px;
+    color:#04408c;
+    font-weight:bold;
+    border-bottom:solid 1px #99bce8;
+}
+.fastui-panel-header-inner
+{
+   padding-top:4px;
+}
+.fastui-panel-toolbar
+{
+    border-bottom:solid 1px #99bce8;
+    background:#D3E1F1;
+}
+
+.fastui-panel-footer
+{
+    border-top:solid 1px #99bce8;
+    background:#D3E1F1;
+}
+
+.fastui-panel-collapse .fastui-tools-collapse
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;
+}
+
+/*----------------------------- window -------------------------*/
+.fastui-window .fastui-panel-header
+{
+    background:#E3E6E8 url(images/window/header.gif) repeat-x 0 0px;
+}
+.fastui-window .fastui-panel-footer
+{
+    background:#D3E1F1;
+}
+
+/*------------------- navbar ------------------*/
+.fastui-outlookbar-border
+{
+    border:1px solid #99bce8;         
+}
+.fastui-outlookbar .fastui-outlookbar-groupHeader
+{
+    background:#d9e8fb url(images/navbar/header.gif) repeat-x 0 0;    
+    border-color:#99bce8;
+}
+.fastui-outlookbar .fastui-outlookbar-groupTitle
+{
+    color:Black;
+    font-weight:normal;
+}
+.fastui-outlookbar .fastui-outlookbar-group 
+{
+    border-color:#99bce8;
+}
+.fastui-outlookbar .fastui-outlookbar-groupBody
+{    
+    border-color:#99bce8;
+}
+/* view2 */
+.fastui-outlookbar-view2 .fastui-outlookbar-groupHeader
+{
+    border:solid 1px #99bce8; 
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-groupBody
+{    
+    background:#fff;
+}
+/* view3 */
+.fastui-outlookbar-view3 .fastui-outlookbar-group
+{
+    border:solid 1px #99bce8; 
+}
+
+.fastui-outlookbar .fastui-tools-collapse
+{
+    width:15px;	
+}
+.fastui-outlookbar .fastui-outlookbar-expand .fastui-tools-collapse
+{
+    background:url(images/navbar/expand.gif) no-repeat 50% 50%;   
+}
+.fastui-outlookbar .fastui-outlookbar-collapse .fastui-tools-collapse
+{
+    background:url(images/navbar/collapse.gif) no-repeat 50% 50%;   
+}
+
+
+/*----------------------- splitter -----------------------*/
+.fastui-splitter-border
+{
+    border:solid 1px #99bce8;     
+}
+.fastui-splitter .fastui-splitter-pane1{
+    border-color:#99bce8;
+}
+.fastui-splitter .fastui-splitter-pane2{
+    border-color:#99bce8;
+}
+
+/*----------------------- layout -----------------------*/
+.fastui-layout-border
+{
+    
+}
+.fastui-layout-region
+{
+    border-color:#90b5e3;    
+}
+.fastui-layout-region-header
+{
+    background:url(images/layout/header.gif) repeat-x 0 0;
+    border-bottom:solid 1px #99bce8;
+}
+.fastui-layout-proxy
+{
+    border-color:#90b5e3;
+    background:#D2E0F2;
+}
+.fastui-layout-proxy-hover
+{
+    background:#e1f0f2;    
+}
+
+.fastui-layout-region-west .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-east .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-north .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-south .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+
+.fastui-layout-proxy-west .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-east .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-north .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-south .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+
+/*------------------------- menu --------------------------------*/
+
+.fastui-menu
+{
+	background:#f0f0f0 url(images/menu/menu.gif) repeat-y -5px 0;		
+	border-color:#89b1e4;
+    color:black;
+}
+.fastui-menuitem
+{
+    line-height:20px;    
+}
+.fastui-menuitem-hover
+{
+    border-color:#80a4d0;
+	background:#d6e6fa url(images/menu/hover.gif) repeat-x;	
+}
+.fastui-menu-popup
+{
+    border-color:#80a4d0;
+	background:#d6e6fa url(images/menu/hover.gif) repeat-x;	
+}
+.fastui-menuitem-selected
+{
+    border-color:#80a4d0;
+    background:#DBDDE2 url(images/menu/pressed.png) repeat-x 0 0;
+}
+.fastui-menuitem-text, .fastui-menuitem-text a
+{
+    color:black;
+}
+.fastui-separator
+{
+    border-top:solid 1px #8EAADE;
+}
+
+/* menu horizontal */
+.fastui-menu-horizontal .fastui-menu-inner
+{
+    background:#d3e1f1 url(images/menu/hmenu.gif) repeat-x 0 0;
+}
+.fastui-menu-horizontal .fastui-menuitem-hover
+{
+    border:solid 1px #80a4d0;
+    background:#d6e6fa url(images/menu/hover.gif) repeat-x;	
+}
+.fastui-menu-horizontal  .fastui-menu-popup
+{
+    border:solid 1px #80a4d0;
+    background:#d6e6fa url(images/menu/hover.gif) repeat-x;	
+    border-bottom:0px;
+}
+
+/*---------------------- listbox -----------------------------*/
+.fastui-listbox-border
+{    
+    border:#98c0f4 1px solid;
+}
+.fastui-listbox-border td
+{
+    line-height:20px;       
+}
+.fastui-listbox-item td{
+	border-top:white 1px dotted;
+	border-bottom:white 1px dotted;	
+}
+.fastui-listbox-item-hover td{
+    background:#dfe8f6;
+	border-top:#8eabe4 1px dotted;
+	border-bottom:#8eabe4 1px dotted;
+}
+.fastui-listbox-item-selected td{
+	background:#cbdaf0;
+	border-top:#8eabe4 1px dotted;
+	border-bottom:#8eabe4 1px dotted;
+}
+.fastui-listbox-header
+{
+    background:#E7EBEF url(images/listbox/header.png) repeat-x 0 0;    
+    border-bottom:solid 1px #a5acb5;
+}
+
+/*---------------------- calendar -----------------------------*/
+.fastui-calendar
+{    
+    border:1px solid #98c0f4;       
+}
+.fastui-calendar-header
+{   
+    background:#cad8ec url(images/calendar/footer.gif) repeat-x 0 0;    
+    border-bottom:solid 1px #9bb5d3;    
+}
+.fastui-calendar-footer
+{
+    border-top:solid 1px #b2d1f5;
+    background:#cad8ec url(images/calendar/footer.gif) repeat-x 0 0;    
+}
+.fastui-calendar-tadayButton, .fastui-calendar-clearButton,
+.fastui-calendar-okButton, .fastui-calendar-cancelButton
+{
+	background:url(images/button/button.gif) repeat-x 0px 50%;
+	border:solid 1px #b5afaf;	
+    color:#222;
+}
+.fastui-calendar-menu-selected, a:hover.fastui-calendar-menu-selected
+{
+    color:#333;
+    background:#dae5f3;
+    border:solid 1px #8db2e3;
+}
+
+.fastui-calendar .fastui-calendar-selected
+{
+    color:#333;
+    background:#dae5f3;
+    border:solid 1px #8db2e3;
+}
+.fastui-calendar .fastui-calendar-today
+{
+    border:1px solid #C00000;
+}
+.fastui-calendar-daysheader td
+{border-bottom:solid 1px #b2d1f5;    
+}
+    
+/*---------------------- tabs -----------------------------*/
+
+.fastui-tabs-leftButton, .fastui-tabs-rightButton
+{
+    border:solid 1px #b5afaf;
+    background-color:#EBEBEE;
+}
+a:hover.fastui-tabs-leftButton,a:hover.fastui-tabs-rightButton
+{
+    border:solid 1px #80a4d0;
+    background-color:#E1E8FD;
+}
+/* top */
+.fastui-tabs-bodys
+{
+    border-color:#8CB2E2;
+}
+.fastui-tabs-space
+{
+    border-color:#8CB2E2;
+}
+.fastui-tabs-space2
+{
+    border-color:#8CB2E2;
+}
+
+.fastui-tab
+{
+    background: #EBEBEE url(images/tabs/tab.gif) repeat-x 0 0;  
+    border: 1px solid #8CB2E2;
+    color: #333;    
+    
+}
+.fastui-tab-hover
+{    
+    background:#E1E8FD url(images/tabs/hover.gif) repeat-x 0 0; 
+}
+.fastui-tab-active
+{
+    border-bottom:solid 1px #deecfd;
+    background:#E1E8FD url(images/tabs/pressed.gif) repeat-x 0 0;  
+}
+
+/* bottom */
+.fastui-tabs-position-bottom .fastui-tabs-space,
+.fastui-tabs-position-bottom .fastui-tabs-space2
+{
+    border:0;
+    border-top: 1px solid #8CB2E2;
+}
+.fastui-tabs-position-bottom .fastui-tabs-bodys
+{    
+    border:solid 1px #99bce8;
+    border-bottom:0;
+}
+.fastui-tabs-position-bottom .fastui-tab-active
+{
+    border-top:solid 1px white;
+    border-bottom:solid 1px #99bce8;
+}
+
+/* left */
+.fastui-tabs-position-left .fastui-tabs-space,
+.fastui-tabs-position-left .fastui-tabs-space2
+{
+    border:0;
+    border-right: 1px solid #99bce8;
+}
+.fastui-tabs-position-left .fastui-tabs-bodys
+{
+    border:solid 1px #99bce8;
+    border-left:0;
+}
+.fastui-tabs-position-left .fastui-tab-active
+{    
+    border:solid 1px #99bce8;
+    border-right:solid 1px white;
+}
+
+/* right */
+.fastui-tabs-position-right .fastui-tabs-space,
+.fastui-tabs-position-right .fastui-tabs-space2
+{
+    border:0;
+    border-left: 1px solid #99bce8;
+}
+.fastui-tabs-position-right .fastui-tabs-bodys
+{    
+    border:solid 1px #99bce8;
+    border-right:0;
+}
+.fastui-tabs-position-right .fastui-tab-active
+{    
+    border:solid 1px #99bce8;
+    border-left:solid 1px white;
+}
+
+/*---------------------- tree -----------------------------*/
+
+
+.fastui-tree-hottrack .fastui-tree-node-hover
+{
+    background:url(images/tree/button.gif) repeat-x 0px 50%;
+	border:solid 1px #b5afaf;		  
+}
+.fastui-tree-selectedNode .fastui-tree-nodeshow
+{
+    background:#e2f2fe url(images/tree/hover.gif) repeat-x 0px 50%;
+	border:solid 1px #80a4d0;	
+}
+
+.fastui-tree-leaf
+{
+    background-image:url(images/tree/leaf.gif);
+}
+.fastui-tree-folder
+{
+    background-image:url(images/tree/folder.gif);
+}
+.fastui-tree-expand .fastui-tree-folder
+{
+    background-image:url(images/tree/folder-open.gif);
+}
+
+/*------------------- grid --------------------*/
+.fastui-grid-border
+{
+    border-color:#99bce8;
+}
+.fastui-grid-header
+{
+    background:url(images/grid/header.gif) repeat-x scroll left top #e2e4e6;
+}
+.fastui-grid-headerCell
+{
+    background:url(images/grid/header.gif) repeat-x scroll left top #e2e4e6;
+    border-right:#c5c5c5 1px solid;
+    border-bottom:#c5c5c5 1px solid;
+}
+.fastui-grid-cell
+{
+    border-color:#d0d0d0;
+    border-bottom-color:#d0d0d0;
+}
+.fastui-grid-footer
+{
+    border-top:solid 1px #99bce8;    
+    background:url(images/grid/footer.gif) repeat-x scroll left top #d4e2f1;
+}
+
+
+body .fastui-grid-row-hover, body .fastui-grid-row-hover .fastui-grid-frozenCell
+{
+    background:#ecedef;    
+}
+body .fastui-grid-row-selected, body .fastui-grid-row-selected .fastui-grid-frozenCell
+{
+    background:#dfe8f6;		
+}

@@ -1,0 +1,9 @@
+[
+	{id: "YUAN", text: "人民币"},
+	{id: "DOLLAR", text: "美元"},
+	{id: "POUND", text: "英镑"},
+	{id: "EURO", text: "欧元"},	
+	{id: "YEN", text: "日元"},
+	{id: "WON", text: "韩元"},
+	{id: "RUBLE", text: "卢布"}			
+]

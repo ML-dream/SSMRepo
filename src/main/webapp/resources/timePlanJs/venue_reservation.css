@@ -1,0 +1,553 @@
+/* Created by 周辰芳 on 2016/12/12*/
+ article{
+ 	border:none;
+ }
+
+.yuyueBox {
+    /*height: 1210px;*/
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    background: #fff;
+}
+.tabs-container {
+  border:1px solid #ebebeb;
+}
+.tabs-container .panel-body{
+  border:none;
+}
+.iconBox{
+	width:1128px;
+	height:80px;
+	line-height: 80px;
+	border:1px solid #ebebeb;
+  background-color:red;
+	/*position:relative;*/
+}
+
+.iconBox .qg_b{
+  width:1046px;
+  height:78px;
+  float:left;
+  background-color: yellow;
+  position:relative;
+  overflow:hidden;
+}
+
+.qg_b .qg_icon{
+  border:#cdcdcd 1px solid;
+  /*width:100px;*/
+  float:left;
+  height:76px;
+  margin-right:10px
+}
+.qg_icon li{
+  float:left;
+  width:100px;
+  height:76px;
+  text-align: center;
+  border:1px solid red;
+}
+.qg_icon img{
+  margin-left: 24px;
+  width:40px;
+  display:table-cell;
+  height:40px;
+  font-size:75px;
+  vertical-align:middle;
+}
+.qg_icon a{
+  text-decoration:underline;
+}
+.qg_icon li a{
+  display: inline-block;
+  width:100px;
+  height:76px;
+  text-decoration: none;
+  position:relative;
+}
+.qg_icon a .bg_qiu{
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  position:absolute;
+  left:8px;
+  top:5px;
+}
+.qg_icon a .bg_qiu img{
+  width:100%;
+  height:100%;
+}
+.qg_icon p{
+  width:100%;
+  height:30px;
+  text-align: center;
+  color:#333333;
+  position:absolute;
+  top:24px;
+}
+.iconBox a:hover{
+  color:#3385ff;
+}
+.qg_icon li a:hover p{
+  color:#40b5ff;
+}
+
+.control_left{
+  float:left;
+}
+.control_right{
+  float:right;
+}
+.control_left,.control_right{
+	width:40px;
+	height:78px;
+	font-size: 40px;
+	text-align: center;
+	color:#e1e1e1;
+	text-decoration: none;
+  background-color:#fff;
+  border:none;
+}
+
+
+
+
+
+
+
+.venue_infor{
+	color:#747474;
+	width:100%;
+	height:140px;
+	border:1px solid #ebebeb;
+	margin:140px 0 0 0;
+}
+.venue_infor .infor_left{
+/*	background:url(../images/venue_reservation/yumaoqiu.jpg) no-repeat 40px;*/
+	width:100%;
+	height:140px;
+	float: left;
+  position:relative;
+}
+.venue_infor .infor_left img{
+  display: inline-block;
+  position:absolute;
+  left:14px;
+  top:14px;
+
+}
+.infor_left .leftText{
+  display: inline-block;
+	margin:14px 0 0 150px;
+}
+.infor_left .leftText p{
+	margin-top:4px;
+}
+.venue_infor .infor_left h3{
+	color:#333333;
+}
+.venue_infor .infor_right{
+	width:100%;
+	height:100%;
+	float: right;
+	padding:24px 0 0 160px;
+}
+.venue_infor .infor_right p{
+	margin-top:4px;
+}
+.kuailai_yd{
+	width:100%;
+	height:30px;
+	background-color: #f5f5f5;
+	padding-left:10px;
+	line-height: 30px;
+	margin-bottom:2px;
+}
+.kuailai_yd img{
+	display: inline-block;
+	width:24px;
+	height:24px;
+	margin-right: 10px;
+}
+
+/*预约操作模块样式*/
+/*
+*现场订单
+*/
+.panel-body{
+	min-height: 532px;
+}
+#juzhong{
+	margin-top: 20px;
+}
+.yuyuecaozuo{
+	width:100%;
+}
+.l-detail {
+    margin-right: 270px;
+    z-index: 0;
+}
+.ibox-content{
+	position:relative;
+  border-top:none;
+}
+.r-detail {
+    width: 250px;
+    height:581px;
+    float: right;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border:1px solid #ebebeb;
+    background-color:#f5f5f5;
+    color:#333333;
+    padding:4px;
+}
+.r-detail-top {
+    width: 350px;
+    float: right;
+    z-index: 100;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+}
+.icon-shanchu{
+    position: absolute;
+    right: -5px;
+    font-size: 20px;
+    top: -10px;
+}
+div.num input[type="button"] {
+    border: none;
+    cursor: pointer;
+}
+.num {
+    float: left;
+}
+.num button {
+    height: 30px;
+    vertical-align: middle;
+    width: 34px;
+    font-size: 26px;
+    line-height: 0px;
+    text-align: center;
+    border: none;
+    background: #fff;
+}
+/*减号*/
+.minus {
+    float: left;
+}
+/*数量*/
+.inputBorder {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 35px;
+    border: 1px solid #CCCCCC;
+}
+/*加号*/
+.add {
+    float: left;
+}
+.choose{
+    display: block;
+    border: 1px solid #ededed;
+    height: 20px;
+    width: 60px;
+    float: left;
+    margin-right: 5px;
+    text-align: center;
+}
+.icon-serve{
+    width: 64px;
+    height:64px;
+    background:url(../images/venue_reservation/service.png) no-repeat 100% 100%;
+}
+.serve-jia{
+    background:url(../images/venue_reservation/service-jia.png) no-repeat 100% 100%;
+}
+.serve-shooes{
+    background:url(../images/venue_reservation/service-shooes.png) no-repeat 100% 100%;
+}
+#orderContent{
+    max-height: 345px;
+    overflow-y: auto;
+}
+
+.ibox-content{
+	padding:0;
+}
+.tabs-container .nav-tabs{
+	border-bottom: none;
+}
+.tabs-container .nav-tabs>li{
+	margin-bottom:0;
+}
+.tabs-container .nav li{
+	width:94px;
+	padding:0;
+}
+.tabs-container .nav li a{
+	display: inline-block;
+	width:94px;
+	height:47px;
+	padding:4px 0 4px 0 ;
+	background-color:#efeded;
+	border-radius: 0;
+}
+/*.tabs-container .nav li:last-child{
+	width:198px;
+	height:47px;
+	background-color:#efeded;
+	border-radius: 0;
+}
+.tabs-container .nav li:last-child i{
+	display: inline-block;
+	font-size: 40px;
+	color:#4da4fe;
+	margin-top:0;
+	height:42px;
+	margin-left: 22px;
+}*/
+
+.tabs-container .booking-weather{
+    width:198px;
+    height:47px;
+    background-color:#efeded;
+    border-radius: 0;
+    float: right;
+}
+.tabs-container .booking-weather i{
+    display: inline-block;
+    font-size: 40px;
+    color:#4da4fe;
+    margin-top:0;
+    height:42px;
+    margin-left: 22px;
+}
+
+.tab-content .panel-body .unstyled li img{
+	display: inline-block;
+}
+.tab-content #tab-1 .panel-body{
+    /*height:692px;*/
+	padding:0;
+}
+.p-tb-xs{
+	margin-top: 20px;
+}
+.p-tb-xs .p-xxs:first-child{
+	border-left:2px solid #3385ff;
+}
+/*今天样式*/
+.tabs-container .nav li a:hover p{
+  background-color: #fff;
+  color:#4c9cff;
+}
+.tabs-container .nav li a:focus p{
+  background-color: #fff;
+  color:#4c9cff;
+}
+.tabs-container .nav li a.active{
+	background-color: #fff;
+  color:#4c9cff;
+}
+.tabs-container .nav li a.active p{
+	color:#4c9cff;
+}
+/*现场订单结束*/
+/*中间表格开始*/
+.article_2 {
+	width:850px;
+	/*height:272px;*/
+	/*background-color:gray;*/
+	margin-top: 60px;
+}
+/*.scroll_title{
+	padding:0 2% ;
+}*/
+.shijianduan{
+	overflow: hidden;
+
+}
+.shijianduan li{
+	text-align: right;
+	width:54px;
+	float:left;
+	height:20px;
+}
+
+.shijianduan li:nth-child(-n+3){
+	margin-left: 10px;
+}
+.fengexian{
+	margin:0 auto;
+	overflow: hidden;
+}
+.fengexian li{
+	width:56px;
+	float:left;
+	height:10px;
+	border-right:1px solid #cccccc;
+}
+.fengexian li:first-child{
+	width:54px;
+}
+
+
+/*右侧*/
+.zuoce{
+	border:1px solid #ffe4ba;
+	background-color: #fdf2e1;
+	margin-top:10px;
+}
+#orderContent .col-xs-12{
+	padding-right:0;
+}
+.overflow{
+	margin-top: 0px;
+}
+.col-xs-12{
+	width:96%;
+}
+#orderContent .col-lg-1, .col-lg-10,
+ .col-lg-11, .col-lg-12, .col-lg-2, 
+ .col-lg-3, .col-lg-4, .col-lg-5, 
+ .col-lg-6, .col-lg-7, .col-lg-8, 
+ .col-lg-9, .col-md-1, .col-md-10, 
+ .col-md-11, .col-md-12, .col-md-2, 
+ .col-md-3, .col-md-4, .col-md-5,
+  .col-md-6, .col-md-7, .col-md-8, 
+  .col-md-9, .col-sm-1, .col-sm-10,
+   .col-sm-11, .col-sm-12, .col-sm-2, 
+   .col-sm-3, .col-sm-4, .col-sm-5, 
+   .col-sm-6, .col-sm-7, .col-sm-8, 
+   .col-sm-9, .col-xs-1, .col-xs-10,
+    .col-xs-11, .col-xs-12, .col-xs-2, 
+    .col-xs-3, .col-xs-4, .col-xs-5, 
+    .col-xs-6, .col-xs-7, .col-xs-8,
+     .col-xs-9.col-xs-12{
+	padding-left: 0px;
+	padding-right: 15px;
+}
+.word-wrap .m-l-sm{
+	display: inline-block;
+	margin-left: 0px;
+	margin-top: 6px;
+}
+#orderContent .fadeInDown{
+	border:1px solid #e7e7e7;
+}
+
+/*可选样式*/
+.selectTrue{
+    background-color: #fff;
+}
+/*已选样式*/
+.selected{
+    background:url(../images/venue_reservation/gou.png) no-repeat 50% ;
+    background-color: #78a719;
+}
+/*预订样式*/
+.selectYuding{
+    background-color: #4c9cff;
+
+}
+/*锁场样式*/
+.selectFalse{
+    background-color: #dddddd;
+
+}
+
+
+/*预约 开始*/
+.box-scroll{
+    width: 830px;
+    /*max-height: 460px;*/
+    overflow-y:  auto;
+    overflow-x: auto;
+}
+.boxScroll{
+    width: 900px;
+    max-height: 280px;
+    overflow-y:  auto;
+    overflow-x: auto;
+}
+.box-title{
+    width: 80px;float: left;background: #fff;
+}
+.box-title div:first-child{
+    border-top: 1px solid #CCCCCC;
+}
+.box-title div{
+    width: 80px;height: 40px;line-height: 40px;
+    text-align: center;
+    padding:0px;
+    border-left:1px solid #CCCCCC;
+    border-right:1px solid #CCCCCC;
+    border-bottom:1px solid #CCCCCC;
+    margin:0px;
+}
+.bgColor{
+  background-color: #efeded;
+  /*font-weight: 600;*/
+}
+.box-time{
+    margin-left: 80px;
+
+}
+.box-list{
+    width: 700px;
+    overflow: hidden;
+
+}
+.box-list:first-child div{
+    border-top: 1px solid #CCCCCC;
+}
+.box-list div{
+    width: 50px;height: 40px;line-height: 40px;text-align: center;
+    float: left;
+    border-right: 1px solid #CCCCCC;
+    border-bottom:1px solid #CCCCCC;
+}
+
+/*方块预约 结束*/
+
+/*预约 结束*/
+
+/* apply */
+.apply{width:1150px;}
+.apply_array{width:104px;float:left;height:100px;}
+
+.apply_img{text-align:center;width:100px;display:table-cell;height:50px;font-size:80px;vertical-align:middle;}
+.apply_img img{
+    width:100px;
+	margin:0 auto;
+  height: 100px;
+  
+}
+.apply_array a{text-decoration:underline}
+.apply_array a:hover{color:#4c9cff}
+.apply_info a.info{color:#4c9cff;font-weight: 600;}/*选中样式*/
+.apply_info{text-align:center;padding:3px;}
+/*.apply_comment{text-align:center}*/
+.apply_info a{text-decoration: none;color:#333333;}
+.apply_nav{position:relative;width:1044px;float:left;height:124px;overflow:hidden}
+.apply_w{position:absolute;width:2000px;float:left;left:0px}/*宽度**14*/
+.apply .img_l{padding:36px 12px 0 12px;float:left;cursor:pointer;}
+.apply .img_r{padding:36px 12px 0 12px;float:left;cursor:pointer;}
+
+/* apply */
+
+footer{
+  position:relative;
+  bottom:0;
+}
+
+.tabs-container .nav-tabs>li:hover{
+    background-color: #FFFFFF;
+}

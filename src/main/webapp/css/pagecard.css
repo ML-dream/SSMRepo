@@ -1,0 +1,53 @@
+/*定义整个卡片选项*/
+.tab_card
+{
+	margin:0 auto;
+	border:1px solid #d2cfce;
+/*	background-color:#00FF00;	*/
+}
+/*卡片菜单*/
+.tab_card .menu,.tab_card .menu li
+{
+	margin:0;
+	padding:0;
+	height:22px;
+	text-align:center;
+	text-valign:middle;
+/*	background-color:#FF0000;*/
+}
+
+.tab_card .menu ul {margin:0;	padding:0;  }
+.tab_card .menu li {list-style-type:none; }
+.tab_card .menu {border-bottom:1px solid #d2cfce;}
+.tab_card .menu .default
+{
+	width:100px;
+	float:left;
+	font-size:10pt;
+	line-height:1.5;
+	margin-left:1px;
+	cursor:pointer;
+	color:#484545;
+	background:url('../images/default.jpg') no-repeat;
+}
+.tab_card .menu .active
+{
+	width:100px;
+	float:left;
+	font-size:10pt;
+	line-height:1.5;
+	margin-left:1px;
+	cursor:pointer;
+	font-weight:bold;
+	color:#106ca7;
+	background:url('../images/active.jpg') no-repeat;
+}
+.tab_card .con
+{
+	margin:0 auto;
+	clear:both;
+	width:100%;
+	height:540px;
+	padding:0;
+/*	background-color:#cccccc;	*/
+}

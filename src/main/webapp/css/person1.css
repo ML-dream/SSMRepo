@@ -1,0 +1,68 @@
+body 
+{ 
+SCROLLBAR-FACE-COLOR: #9AB1F8; 
+SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+SCROLLBAR-SHADOW-COLOR: #E3EAFD; 
+SCROLLBAR-3DLIGHT-COLOR: #ffffff; 
+SCROLLBAR-ARROW-COLOR: #FFFF00; 
+SCROLLBAR-TRACK-COLOR: #ffffff;
+SCROLLBAR-DARKSHADOW-COLOR: #CCCCCC;
+font-size:12px;font-family:Arial;
+}
+table,td,tr,p,input,select{font-size:12px}
+/*
+	�б�ҳ��ʽ
+*/
+.page_title{
+	font-family:"Verdana","����", "Arial", "Helvetica", "sans-serif";
+	font-size: 18px;
+	font-weight:bold;
+}
+/*��ʾǿ����������ʾ������*/
+.red_star{
+	color:red;
+	font-weight:bold;
+	font-size: 15px;
+}
+/*��ѯ�?��ʽ*/
+.query_form_table{
+	FONT-SIZE: 12px
+}
+.query_form_table th{
+	font-size:12px;
+	font-weight:normal;
+	border-bottom:solid 1px #8c8c8c;
+	background-color:#6EC2FD;/*#FF9999;/*6EC2FD*/
+	font-weight:400;
+	font-size:13px;
+	color:#000;
+	height:23px;
+}
+.query_form_table td{
+	FONT-SIZE: 12px;
+	text-align: center;
+	
+	
+}
+
+.query_form_table div{
+	cursor: pointer;
+
+
+
+}
+  .zipcode { color:#333;}
+  .zipcode dl {float: left;padding:4px;padding-top:8px; }
+  .zipcode dd{padding:4px;}
+  .zipcode select {width:160px;}
+
+
+.alt{background-color:#bcfffc;}
+.over{background:#f7c8bE;}
+
+a{color: blue;text-decoration: none;}
+a:hover{color: gray;text-decoration: underline;}
+
+
+
+

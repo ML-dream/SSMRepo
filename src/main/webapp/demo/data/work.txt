@@ -1,0 +1,37 @@
+[
+	{id: "1", text: "jsp1"},
+	
+	{id: "gongxu1", text: "gongxu1", pid: "1"},
+	{id: "gongxu2", text: "gongxu2", pid: "1"},
+	{id: "3", text: "gongxu3", pid: "1", checked: true},
+	{id: "gongxu4", text: "gongxu4", pid: "1"},
+
+	{id: "gongxu1", text: "gongxu5", pid: "1"},
+	
+	{id: "gongxu1", text: "gongxu6", pid: "1"},
+	{id: "gongxu1", text: "gongxu7", pid: "1"},
+	{id: "gongxu1", text: "gongxu8", pid: "1"},
+	
+	{id: "2", text: "jsp2"},
+	
+	{id: "gongxu1", text: "gongxu9", pid: "2"},			
+	{id: "gongxu1", text: "gongxu10", pid: "2"},
+	{id: "gongxu1", text: "gongxu11", pid: "2"},
+
+	{id: "3", text: "jsp3"},
+	
+	{id: "gongxu1", text: "gongxu12", pid: "3"},
+	{id: "gongxu1", text: "gongxu13", pid: "3"},
+	{id: "gongxu1", text: "gongxu14", pid: "3"},
+
+	{id: "4", text: "jsp4"},
+			
+	{id: "gongxu1", text: "gongxu15", pid: "4"},
+	{id: "gongxu1", text: "gongxu16", pid: "4"},
+	{id: "gongxu1", text: "gongxu17", pid: "4"},
+	{id: "gongxu1", text: "gongxu18", pid: "4"},
+	{id: "gongxu1", text: "gongxu19", pid: "4"},
+
+	{id: "5", text: "jsp5", isLeaf: false, asyncLoad: false}
+
+]

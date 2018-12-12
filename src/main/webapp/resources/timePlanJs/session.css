@@ -1,0 +1,41 @@
+
+/**场次状态的样式 */
+
+/**鼠标悬浮块右边预约信息样式*/
+.hover-booking {
+    background-color: #fff;
+    width: 150px;
+    height: auto;
+    border: 1px solid #e1e1e1;
+    display: none;
+    padding: 4px;
+    position: absolute;
+    color: #222222;
+    font-size: 12px;
+}
+
+/**鼠标悬浮块右边锁场信息样式*/
+.hover-locked{
+    background-color: #fff;
+    width: 310px;
+    height: auto;
+    border: 1px solid #e1e1e1;
+    display: none;
+    padding: 4px;
+    position: absolute;
+    color: #222222;
+    font-size: 12px;
+}
+
+/**鼠标悬浮块右边禁用信息样式*/
+.hover-disabled{
+    background-color: #fff;
+    width: 220px;
+    height: auto;
+    border: 1px solid #e1e1e1;
+    display: none;
+    padding: 4px;
+    position: absolute;
+    color: #222222;
+    font-size: 12px;
+}

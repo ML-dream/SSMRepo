@@ -1,0 +1,80 @@
+1.工序计划==>  	启用过滤,现在不能跳转带参数,
+				树的来源：TreeService.jsp 的LoadTreeprocess方法中
+						表：根节点来自partplan表，叶子节点来自fo_detail表
+						工序计划存入表 process_plan 表中
+							orderid			订单号
+							product_id		产品号
+							item_id			物料号
+							oper_id			工序号
+							num				数量
+							start_time		开始时间
+							end_time		结束时间
+							processplan_a	设备
+
+2.派工	==>		过滤的订单来自表：partplan,其他选项来自process_plan表
+				派工到的表是：departuresheet
+							orderid		订单号
+							issue_num	版本号
+							item_id		物料号
+							oper_id		工序号
+							machine_id	设备号
+							start_time	开始时间
+							end_time	结束时间
+							worker		工人
+
+3.实时监测==>	树的来源：TreeService.jsp的LoadTreeShuaxin方法
+						表：根节点来自departuresheet表，叶子节点来自part_temp表
+						检测数据来自：JianceServlet ==>  process_temp，machinfo_cch，quality_info
+						
+						
+4.完工	==>		树的来源：TreeService.jsp的LoadTreeFinish方法
+						表：根节点来自process_temp 表，叶子节点也是来自process_temp表
+						零件级别：数据来自part_temp表
+						工序级别：数据来自process_temp表，machinfo_cch表，
+						下一道工序：数据来自process_plan表，machinfo_cch表
+						
+						
+5.物料主文件维护：添加物料  ==>
+				物料添加到表item中：
+				item_name			物料名称
+				item_typeid			物料类型（B部件；L零件；G组件；H标准件；Y原材料；F辅料；S工装；K刀量具；W外协）
+				item_id				物料编号
+
+6.BOM版本查询及维护： ==>
+				添加一个BOM到表：work.ebom表
+							product_id			产品号
+							issue_num			版本号
+							item_id				物料号，此处填上的是product_id
+							id					1
+							father_item_id		#
+							fid					1
+							level_id			01
+							item_num			1
+							scrap				0
+							memo				0
+								work.issuedeploy 表
+							product_type		产品类型
+							product_id			产品号
+							lot					批次	
+							b_sortie			起始编号
+							e_sortie			终止编号
+							issue_num			版本号
+							memo				备注
+				下拉列表中的值从issuedeploy表中获取Bom_Bean.java 的getFlight_Name方法
+							工艺维护的树结构：从Bom_TreeDAO.java类的getCapp_List方法获得
+											从ebom表中获取最大的levelId
+											从ebom表和item表中获取List集合
+
+
+
+
+
+
+
+
+
+
+
+
+
+

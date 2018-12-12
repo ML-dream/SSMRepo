@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<head>
+    <title>条形图日历背景</title>
+    <script src="../scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>    
+    <script src="../scripts/miniui/locale/zh_CN.js" type="text/javascript"></script>
+
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" /><link href="../scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <script src="../scripts/plusgantt/GanttMenu.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttSchedule.js" type="text/javascript"></script>
+    <script src="../scripts/plusgantt/GanttService.js" type="text/javascript"></script>
+</head>
+<body>
+    
+                    
+    <br /><br />
+</body>
+</html>
+<script type="text/javascript">
+    /* 创建甘特图对象，设置列配置
+    -----------------------------------------------------------------------------*/
+
+    var gantt = new CreateGantt();
+    gantt.render(document.body);
+
+    //右键菜单
+    var ganttMenu = new GanttMenu();
+    gantt.setContextMenu(ganttMenu);
+
+    gantt.loading();
+    $.ajax({
+        url: "data/taskList.txt",
+        cache: false,
+        success: function (text) {
+            var data = mini.decode(text);
+
+            //列表转树形
+            data = mini.arrayToTree(data, "children", "UID", "ParentTaskUID");
+
+            gantt.loadTasks(data);
+
+            gantt.unmask();
+        }
+    });
+
+    /* 业务代码
+    -----------------------------------------------------------------------------*/
+
+
+    //甘特图项目日历背景
+    //定义一个项目日历数据对象,规定了一些基本工作日与非工作日范围
+    /*
+        type: 1为工作周,0为例外日期
+        work: 1工作日,0非工作日
+        day: 星期日 0, 星期一 1... 星期六 6
+    */
+    var Calendar = [
+        {type: 1,work: 0,day: 0},   //星期日:非工作日
+        {type: 1,work: 0,day: 1},   //周一, 也为非工作日!
+        {type: 1,work: 1,day: 2},
+        {type: 1,work: 1,day: 3},
+        {type: 1,work: 1,day: 4},
+        {type: 1,work: 1,day: 5},
+        {type: 1,work: 0,day: 6},   //星期六:非工作日
+        //从 2009年1月28日 到 2009年2月1号为非工作日
+        {type: 0,work: 0,start: new Date(2007, 0, 28),finish: new Date(2009, 1, 1)},
+        //从 2009年2月38 到 2009年2月18号为工作日
+        {type: 0,work: 1,start: new Date(2007, 1, 8),finish: new Date(2009, 1, 18)}    
+    ]
+    function isWorkingDate(date) {    
+        var day = date.getDay();
+        var time = date.getTime();
+    
+        //先处理是否包含在例外日期中(例外日期优先级高)    
+        for(var i=0,l=Calendar.length; i<l; i++){
+            var d = Calendar[i];        
+            //如果包含在例外日期范围中
+            if(d.type == 0 && time >= d.start.getTime() && time <= d.finish.getTime()){
+                return d.work;
+            }
+        }
+        //后处理通用星期天逻辑
+        for(var i=0,l=Calendar.length; i<l; i++){
+            var d = Calendar[i];
+            //如果星期天一样
+            if(d.type == 1 && d.day == day){
+                return d.work;
+            }
+        }
+    }
+    //将判断一天是否工作日, 设置给GanttView
+    gantt.ganttView.isWorking = isWorkingDate;
+
+</script>

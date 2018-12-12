@@ -1,0 +1,4139 @@
+﻿.fullpage
+{
+    padding:0;border:0;margin:0;
+    width:100%;height:100%;
+    font-family:Tahoma, Verdana, 宋体;   
+    font-size:12px;
+    line-height:22px;
+    overflow:hidden;
+}
+
+/* modify by zhuli 修改不可编辑状态下的透明度 0.7 改为 0.5(50) */
+.fastui-disabled {
+    color: gray;
+    cursor: default;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+}
+.fastui-disabled * {
+    
+}
+.fastui-repaint {
+    zoom: 1;
+    background-color: transparent;
+    -moz-outline: none;
+}
+
+.fastui-modal
+{
+    position:fixed;
+    *position:absolute;
+    overflow:hidden;left:0;top:0px;width:100%;height:100%;
+	background:#bbb;opacity: .3;-moz-opacity: .3;filter: alpha(opacity=30);
+}
+
+.fastui-shadow{
+	position:absolute;
+	overflow:hidden;
+	background:#ddd;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.3);
+	z-index:99;
+}
+
+.fastui-popup
+{
+    background:white;
+    border:1px solid #8B8B8B;
+    overflow:auto;
+    position:absolute;
+    left:0;
+    top:0;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+}
+
+.fastui-proxy
+{
+    position:absolute;
+    overflow:hidden;
+    z-index:100000000;
+    background:gray;
+    opacity: .4;-moz-opacity: .4;filter: alpha(opacity=40);
+}
+
+.fastui-resizer-mask
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:100000;
+    background:white;
+	opacity:0;
+	filter:alpha(opacity=0)    
+}
+
+
+
+.fastui-mask{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:1000000;	
+}
+.fastui-mask-background{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:#ccc;
+	opacity:0.2;
+	filter:alpha(opacity=20);
+}
+.fastui-mask-msg{
+	position:absolute;
+	cursor:wait;
+	left:50%;
+	top:50%;
+	width:auto;		
+	color:#222;
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:12px;
+}
+.fastui-mask-loading
+{
+    padding:10px 8px 10px 30px;	
+    background:#fff url(images/grid/loading.gif) no-repeat scroll 5px 50%;
+	border:2px solid #517fad;
+}
+
+
+.fastui-tools
+{
+    position:absolute;
+    top:3px;right:5px;
+}
+.fastui-tools span
+{
+    display:inline-block;   
+    width:15px;
+    height:15px;
+    overflow:hidden;    
+    cursor:pointer;
+    margin-right:2px;
+}
+.fastui-tools-close
+{
+    background:url(images/tools/close.gif) no-repeat 50% 1px;
+}
+.fastui-tools .fastui-tools-collapse
+{
+    background:url(images/tools/collapse.gif) no-repeat 50% 50%;
+    width:13px;	
+}
+.fastui-tools .fastui-tools-expand
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;
+    width:13px;	
+}
+.fastui-tools-max
+{
+    background:url(images/tools/max.gif) no-repeat 50% 50%;
+}
+.fastui-tools-min
+{
+    background:url(images/tools/min.gif) no-repeat 50% 50%;
+}
+.fastui-tools-restore
+{
+    background:url(images/tools/restore.gif) no-repeat 50% 50%;
+}
+.fastui-tools-refresh
+{
+    background:url(images/tools/refresh.gif) no-repeat 50% 50%;
+}
+
+
+
+.fastui-toolbar
+{
+    border:solid 1px #909aa6;
+    padding:5px;   
+    background:#E7EAEE url(images/toolbar/toolbar.png) repeat-x 0 0;
+}
+.separator
+{    
+    display:inline-block;
+    zoom:1;            
+    border:0;
+    border-left:solid 1px #adb3b9;
+    margin:1px;
+    margin-top:0px;    
+    height:18px; 
+    vertical-align:middle;
+    margin-left:8px;
+    margin-right:8px;
+}
+
+body .fastui-toolbar a.fastui-button-disabled, body .fastui-toolbar a:hover.fastui-button-disabled
+{ 
+    cursor:default;    
+    background:none;    
+    border:0;
+    padding:1px;
+}
+body .fastui-toolbar .fastui-button-disabled .fastui-button-text, body .fastui-toolbar a:hover.fastui-button-disabled .fastui-button-text
+{
+    color:#a9a9a9;    
+}
+
+
+
+.fastui-drag-proxy
+{
+    position:absolute;
+    overflow:hidden;
+    z-index:100000000;
+    background:gray;
+    border:solid 1px #000;
+    opacity: .4;-moz-opacity: .4;filter: alpha(opacity=40);
+}
+
+.fastui-feedback-line
+{
+    position:absolute;left:-1000px;top:-1000px;z-index:2000080;
+    height:1px;overflow:hidden;background:blue;
+}
+.fastui-feedback
+{
+    position:absolute;left:-1000px;top:-1000px;background:no-repeat 3px 50% white;z-index:2000090;
+    border:solid 1px #aaa;padding:3px;padding-left:22px;padding-bottom:5px;padding-right:5px;
+    font:normal 12px tahoma, arial, helvetica, sans-serif;
+	*font-size:11px;line-height:16px;
+}
+.fastui-feedback-add
+{
+    background-image:url(images/dragdrop/drop-add.gif);
+}
+.fastui-feedback-before
+{
+    background-image:url(images/dragdrop/drop-over.gif);
+}
+.fastui-feedback-after
+{
+    background-image:url(images/dragdrop/drop-under.gif);
+}
+.fastui-feedback-no
+{
+    background-image:url(images/dragdrop/drop-no.gif);
+}
+.fastui-feedback-yes
+{
+    background-image:url(images/dragdrop/drop-yes.gif);
+}
+.fastui-supergrid-feedback-add .fastui-supertree-nodetext
+{    
+	border:dotted 1px #aaa;
+    background:#ddd;
+    font-weight:bold;
+}
+body .fastui-tree-feedback-add .fastui-tree-nodeshow
+{
+    border:dotted 1px #aaa;
+    background:#ddd;
+    padding:0;
+    padding-left:1px;
+    padding-right:2px;    
+}
+
+.fastui-box
+{
+    overflow:hidden;        
+}
+.fastui-box-border
+{
+    border:1px solid #999999;
+    overflow:auto;
+    position:relative;    
+}
+
+
+body .fastui-grid *,
+body .fastui-supergird *,
+body .fastui-gantt *,
+body .fastui-panel *,
+body .fastui-window *
+{
+    box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -ms-box-sizing:content-box;
+    -webkit-box-sizing:content-box;    
+}
+
+body .fastui-textbox *,
+body .fastui-buttonedit *
+{
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -webkit-box-sizing:border-box;    
+}
+
+.fastui-button
+{
+    padding:0;
+    border:1px solid #A9ACB5;
+    background:#EBEDF2 url(images/button/button.png) repeat-x 0 0;
+    
+    font-size:9pt;
+    font-family:Tahoma,Verdana,宋体;
+    
+    line-height:22px;
+    
+    text-decoration:none;
+    text-align: center;
+    display:inline-block;
+    zoom:1;    
+    cursor:pointer;
+    -khtml-user-select: none;
+    -moz-user-select:none;
+    vertical-align:middle;          
+}
+.fastui-button, a.fastui-button
+{
+    color:#201F35;
+}
+body a:hover.fastui-button
+{    
+    padding:0;
+    border:1px solid #A9ACB5;
+    background:#dde6fe url(images/button/hover.png) repeat-x 0 0;      
+    text-decoration:none;
+}
+.fastui-button-text
+{    
+    line-height:16px;
+    vertical-align:middle;
+    display:inline-block;
+    padding:2px 8px 4px 8px;
+    padding:3px 8px 3px 8px\9;    
+}
+.fastui-button .fastui-button-icon
+{
+    padding-left:25px;
+    background-position: 6px 50%;        
+    background-repeat:no-repeat;    
+}
+.fastui-button .fastui-button-iconOnly
+{
+    padding-left:14px;    
+    background-repeat:no-repeat;    
+    background-position:50% 50%;
+}
+
+
+body .fastui-button-plain
+{    
+    background:transparent;
+    border:0;
+    padding:1px;
+}
+
+
+body .fastui-button-pressed, body a:hover.fastui-button-pressed,
+body .fastui-button-checked, body a:hover.fastui-button-checked,
+body a.fastui-button-popup, body a:hover.fastui-button-popup
+{
+    border:solid 1px  #888;    
+    padding:0px;
+    color:#3C3C3C;
+    background:#DBDDE2 url(images/button/pressed.png) repeat-x 0 0; 
+    cursor:pointer;   
+}
+
+
+body a.fastui-button-disabled, body a:hover.fastui-button-disabled
+{
+    border:1px solid #ccc;
+    padding:0px;
+    color:#999;
+    background:#F8F9FA url(images/button/disabled.png) repeat-x 0 0px;      
+    cursor:default;
+}
+body .fastui-button-disabled .fastui-button-icon,
+body .fastui-button-disabled .fastui-button-allow
+{    
+    cursor: default;
+    opacity: .6;
+    -moz-opacity: .6;
+    filter: alpha(opacity=60);    
+}
+
+
+.fastui-button-iconRight .fastui-button-icon
+{
+    padding-left:8px;
+    padding-right:18px;
+    background-position:right 50%;
+    margin-right:5px;
+}
+.fastui-button-iconTop .fastui-button-icon
+{
+    padding-left:8px;
+    padding-top:22px;
+    background-position:50% 4px;        
+}
+.fastui-button-iconBottom .fastui-button-icon
+{
+    padding-left:8px;
+    padding-bottom:18px;
+    margin-bottom:4px;
+    background-position:50% bottom;        
+}
+
+
+.fastui-button-allow
+{
+    width:14px;
+    height:16px;
+    overflow:hidden;
+    display:inline-block;
+    vertical-align:middle;
+}
+.fastui-button-menu
+{
+    background:url(images/button/menu_arrow.png) no-repeat 0px 50%;
+}
+.fastui-button-split
+{
+    width:18px;
+    background:url(images/button/split_arrow.png) no-repeat 0px 50%;
+}
+
+
+.fastui-checkbox
+{
+    font-size:9pt;
+    font-family:Tahoma,Verdana,宋体;
+    line-height:22px;
+}
+.fastui-checkbox-check
+{
+    padding:0;
+    margin:0;
+    margin-right:4px;
+    vertical-align:bottom;
+    vertical-align:middle;
+}
+/*
+.fastui-required .fastui-textbox-border
+{
+    
+}
+*/
+
+/* modify by ZHULI 2012-07-27 */
+.fastui-required .fastui-textbox-input, .fastui-required .fastui-buttonedit-input {
+    background: url(images/must.png) no-repeat scroll right top;
+}
+
+.fastui-textbox
+{
+    width:160px;
+    height:21px;
+    
+    display:inline-table;
+    *display:inline;
+    zoom:1;
+    
+    table-layout:fixed;
+    border-collapse:collapse;
+    border-collapse:separate;
+    vertical-align:middle;
+}
+.fastui-textbox-border
+{
+    border-style: solid;
+    border-width: 1px;
+    background:white;    
+    border-color: #9DA0AA #C2C4CB #D9DAE0;   
+    
+    padding-top:1px;
+    padding-left:2px;
+    padding-right:2px;
+         
+    width:100%;
+    cursor:text;
+}
+body .fastui-textbox-focus .fastui-textbox-border
+{
+    border-color: #434756 #7D808D #AAACB9;
+}
+.fastui-textbox-input
+{
+    display:block;
+    width:100%;
+    height:14px;
+    
+    font-family: Verdana;
+    font-size: 9pt;
+    background:none;    
+    border: 0 none !important;
+    padding: 0;
+    margin:0;
+    outline:none;   
+    padding-right:1px\9;    
+}
+
+
+.fastui-textarea .fastui-textbox-input
+{
+    resize:none;
+    height:100%;
+    margin:0;
+}
+.fastui-textarea .fastui-textbox-border
+{    
+    padding:0;
+    padding-left:2px;    
+    padding-right:1px\9;
+}
+
+
+.fastui-textbox .fastui-errorIcon
+{
+    margin-left:3px;
+}
+.fastui-error .fastui-errorIcon
+{
+    display:block;
+}
+.fastui-errorIcon
+{
+    background:url(images/textbox/error.gif) no-repeat 50% 50%;
+    width:14px;
+    height:16px;
+    overflow:hidden;
+    display:none;
+    cursor:default;
+    margin-top:2px;
+}
+.fastui-invalid .fastui-textbox-border
+{
+    border-color:Red;
+}
+
+
+
+
+.fastui-buttonedit
+{
+    width:180px;
+    height:21px;
+    
+    overflow:hidden;
+    position:relative;    
+    
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    font-size:9pt;
+    font-family: Tahoma, Verdana; 
+    vertical-align:middle;
+}
+body .fastui-buttonedit tr td
+{
+    padding:0;
+    border-width:0;    
+}
+.fastui-buttonedit-inner
+{
+    height:100%;
+}
+.fastui-buttonedit-border
+{
+    border-color: #9DA0AA #C2C4CB #D9DAE0;
+    border-style: solid;
+    border-width: 1px;
+    background:white;
+    border-collapse:collapse;
+    border-collapse:separate;   
+    border-spacing: 1px;   
+    width:100%;
+    height:100%;
+}
+
+.fastui-buttonedit-noInput .fastui-buttonedit-border, .fastui-buttonedit-noInput .fastui-buttonedit-input
+{
+    cursor:pointer;
+}
+.fastui-buttonedit-readOnly, .fastui-buttonedit-readOnly *, .fastui-buttonedit-readOnly td, .fastui-buttonedit-readOnly .fastui-buttonedit-input
+{
+    cursor:default;
+}
+
+.fastui-buttonedit-input
+{
+    font-family: Tahoma, Verdana;
+    font-size: 9pt;
+    background:none;    
+    width:100%;    
+    border: 0 none !important;
+    padding: 0;
+    margin:0; 
+    outline:none;
+    height:14px;    
+    margin-top:1px\9;
+    padding-right:1px\9;
+}
+
+.fastui-buttonedit-inputWrap
+{    
+    padding-left:1px;
+    padding-right:1px;
+    width:100%;
+}
+
+/* modify by zhuli 修改不可编辑状态下的透明度 0.6 改为 0.5(50) */
+.fastui-buttonedit-disabled
+{
+    cursor:default;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+}
+body .fastui-buttonedit tr .fastui-buttonedit-button
+{
+    border-style:solid;
+    border-width:1px;    
+    vertical-align:middle;
+}
+.fastui-buttonedit-button, .fastui-buttonedit-disabled .fastui-buttonedit-button
+{
+    border-color:White;
+    background:none;         
+    text-align:center;    
+    cursor:pointer;
+    font-size:9pt;
+    font-family: Tahoma, Verdana;         
+}
+ .fastui-buttonedit-disabled .fastui-buttonedit-button
+ {
+     cursor:default;
+ }
+.fastui-buttonedit-button-hover,
+.fastui-buttonedit-hover .fastui-buttonedit-popup
+{
+    border:1px solid #ababab;
+    background:#dde6fe url(images/buttonedit/hover.png) repeat-x 0 0;   
+}
+body .fastui-buttonedit-popup .fastui-buttonedit-button, body .fastui-buttonedit-popup a:hover.fastui-buttonedit-pressed,
+.fastui-buttonedit-pressed .fastui-buttonedit-popup
+{
+    border:1px solid #888;
+    background:#DBDDE2 url(images/buttonedit/pressed.png) repeat-x 0 0;
+}
+body .fastui-buttonedit-button-pressed, body a:hover.fastui-buttonedit-button-pressed
+{
+    background:#DBDDE2 url(images/buttonedit/pressed.png) repeat-x 0 0;
+}
+.fastui-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0px -2px;
+    width:10px;
+    height:11px;
+    overflow:hidden;
+    margin:0px 2px;
+}
+body .fastui-buttonedit-button-disabled,
+body .fastui-buttonedit-button-disabled *
+{
+    cursor: default;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);    
+}
+
+.fastui-buttonedit-error .fastui-buttonedit-inner
+{
+    margin-right:18px;
+}
+.fastui-buttonedit-error .fastui-buttonedit-errorIcon
+{
+    display:block;
+}
+.fastui-buttonedit-errorIcon
+{
+    background:url(images/buttonedit/error.gif) no-repeat 50% 50%;
+    width:14px;    
+    height:16px;
+    overflow:hidden;        
+    position:absolute;
+    right:1px;
+    top:50%;
+    margin-top:-8px;
+    display:none;
+    cursor:default;
+}
+
+.fastui-buttonedit-empty .fastui-buttonedit-input
+{
+    color:#B1B1B8;
+}
+body .fastui-buttonedit-invalid .fastui-buttonedit-border
+{
+    border-color: Red;
+}
+body .fastui-buttonedit-focus .fastui-buttonedit-border
+{
+    border-color: #434756 #7D808D #AAACB9;
+}
+
+
+.fastui-buttonedit-icons-popup
+{
+    background:url(images/buttonedit/icon2.gif) no-repeat 0px -1px;
+}
+.fastui-buttonedit-icons-date
+{
+    background:url(images/buttonedit/icon2.gif) no-repeat 0px -1px;
+}
+
+
+
+
+
+
+.fastui-datepicker .fastui-buttonedit-icon
+{
+    background:url(images/datepicker/date.gif) no-repeat 2px 50%;   
+    *background-position:2px 50%;
+    width:14px;
+    height:15px;
+    overflow:hidden;
+    margin:0px;    
+}
+
+
+.fastui-buttonedit-spin
+{       
+    height:15px;
+    width:16px;
+    overflow:hidden;
+}
+.fastui-buttonedit-up, .fastui-buttonedit-down
+{
+    overflow:hidden;
+    height:50%;
+    position:relative;
+    display:block;
+    cursor:pointer;
+    outline:none;
+    z-index:1;    
+}
+.fastui-buttonedit-spinSplit
+{
+    height:1px;
+    position:absolute;
+    top:50%;width:16px;    
+    overflow:hidden;
+    background:#7F7F7F;
+    margin-top:-1px;
+    margin-top:0px\9;
+    z-index:10;
+    display:none;
+}
+
+.fastui-buttonedit-up span, .fastui-buttonedit-down span
+{
+    background:url(images/buttonedit/icon3.gif) no-repeat -8px 0;   
+    width:10px;
+    height:5px;
+    overflow:hidden;
+    position:absolute;
+    left:50%;margin-left:-5px;
+    top:50%;margin-top:-3px;
+    display:block;
+}
+.fastui-buttonedit-down span
+{    
+    background:url(images/buttonedit/icon3.gif) no-repeat 1px 0px;        
+    margin-top:-2px;
+}
+
+
+
+input.fastui-datepicker,
+input.fastui-spinner,
+input.fastui-timespinner,
+input.fastui-combobox,
+input.fastui-treeselect,
+input.fastui-lookup,
+input.fastui-htmlfile,
+input.fastui-textbox,
+input.fastui-password,
+input.fastui-checkbox,
+input.fastui-textarea
+{
+    visibility:hidden;
+    border:0;
+    padding:0;
+    height:21px;
+    width:160px;
+}
+input.fastui-textarea
+{   
+    height:50px;
+}
+
+.fastui-panel
+{
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;
+    overflow:hidden;
+    position:relative;
+}
+.fastui-panel-border
+{
+    border:1px solid #999999;
+    overflow:hidden;
+    position:relative;    
+    
+}
+.fastui-panel .fastui-panel-viewport
+{
+    overflow:hidden;  
+}
+.fastui-panel-header
+{
+    width:100%;
+    height:25px;
+    overflow:hidden;
+    background:#E3E6E8 url(images/panel/header.png) repeat-x 0 0px;
+    color:#201F35;  
+    border-bottom:solid 1px #bbb;
+    cursor:default;
+}
+
+.fastui-panel-header-inner
+{
+    padding:3px;
+    padding-bottom:2px;
+    padding-top:4px;
+    padding-left:8px;
+}
+.fastui-panel .fastui-panel-title
+{
+    padding-top:1px\9;
+    float:left;
+    line-height:16px;
+    line-height:18px\9;
+}
+.fastui-panel .fastui-panel-icon
+{
+    float:left;
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    vertical-align:middle;
+    margin-right:2px;
+    display:none;
+}
+
+.fastui-panel-body
+{
+    position:relative;
+    padding:5px;
+    text-align:left;    
+    width:auto;
+    overflow:auto;
+    
+}
+.fastui-messagebox-content table
+{
+    
+}
+
+.fastui-panel .fastui-tools
+{
+    position:absolute;
+    top:5px;right:3px;
+}
+
+.fastui-panel-toolbar
+{
+    clear:both;
+    border-bottom:solid 1px #C9C9C9;
+    background:#eff2f4;
+    
+    width:auto;
+}
+
+.fastui-panel-footer
+{
+    border-top:solid 1px #C9C9C9;
+    background:#eff2f4;
+    
+    width:auto;
+}
+
+
+.fastui-panel-collapse .fastui-panel-header
+{
+    border-bottom:0;
+}
+.fastui-panel-collapse .fastui-tools-collapse
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;
+}
+
+
+.fastui-window
+{
+    background:white;
+    position:absolute;
+}
+.fastui-window .fastui-panel-header
+{
+    background:#E3E6E8 url(images/window/header.png) repeat-x 0 0px;
+    width:50px;
+}
+.fastui-window .fastui-panel-footer
+{
+    background:#E3E6E8 url(images/window/footer.png) repeat-x 0 0px;
+}
+.fastui-window-drag .fastui-panel-header
+{
+    cursor:move;
+}
+.fastui-panel-resizeGrid
+{
+    position:absolute;
+    width:14px;height:12px;
+    right:1px;bottom:1px;
+    overflow:hidden;
+    cursor:se-resize;
+    background:url(images/panel/resize.gif) no-repeat right bottom;
+}
+.fastui-windiw-resizeProxy
+{
+    border:dotted 1px black;
+    overflow:hidden;
+    position:absolute;
+    z-index:10000000000;
+}
+
+
+.fastui-messagebox-content
+{
+    padding:5px;
+    cursor:default;
+}
+.fastui-messagebox-table
+{   
+}
+.fastui-messagebox-content td
+{
+    font-size:12px;
+}
+.fastui-messagebox-buttons
+{
+    text-align:center;
+    padding:5px;
+    padding-left:15px;
+    padding-right:15px;
+}
+.fastui-messagebox-info,
+.fastui-messagebox-warning,
+.fastui-messagebox-question,
+.fastui-messagebox-error,
+.fastui-messagebox-waiting
+{
+    width:40px;
+    height:40px;
+    background:url(images/messagebox/icon-info.gif) no-repeat 50% 50%;
+}
+.fastui-messagebox-warning
+{
+    background:url(images/messagebox/icon-warning.gif) no-repeat 50% 50%;
+}
+.fastui-messagebox-question
+{
+    background:url(images/messagebox/icon-question.gif) no-repeat 50% 50%;
+}
+.fastui-messagebox-error
+{
+    background:url(images/messagebox/icon-error.gif) no-repeat 50% 50%;
+}
+.fastui-messagebox-waiting
+{
+    width:40px;
+    height:30px;
+    background:url(images/messagebox/loading.gif) no-repeat 50% 50%;
+}
+
+.fastui-messagebox-input
+{
+    
+}
+/* Modify By ZHULI 修改字体 */
+.fastui-outlookbar
+{        
+    font-size:9pt;
+    font-family: "微软雅黑","宋体"; /* Tahoma, Verdana, 宋体 */     
+    overflow:hidden;
+}
+.fastui-outlookbar-border
+{
+    border:1px solid #999999;
+    overflow:hidden;
+}
+
+.fastui-outlookbar-group 
+{
+    overflow:hidden;
+    height:auto; 
+    border-bottom:solid 1px #a7abb0;
+}
+.fastui-outlookbar-groupHeader
+{
+    position:relative;
+    background:url(images/navbar/header.png) repeat-x 0 0;        
+    cursor:pointer;    
+    overflow:hidden; 
+    height:23px;
+    padding-left:8px;
+    padding-right:25px;
+}
+.fastui-outlookbar-groupTitle
+{
+    overflow:hidden;
+    white-space:nowrap;
+    width:100%;
+    font-weight:bold;   
+    line-height:22px;
+}
+.fastui-outlookbar-groupHeader .fastui-tools
+{   
+    position:absolute;
+    top:3px;right:3px;
+ 
+}
+.fastui-outlookbar-groupBody
+{    
+    clear:both;    
+    border-top:solid 1px #a7abb0;    
+    overflow:auto;
+    overflow-x:hidden;
+    position:relative;
+}
+
+.fastui-outlookbar-firstGroup 
+{
+    
+}
+
+.fastui-outlookbar .fastui-outlookbar-icon
+{
+    float:left;
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    vertical-align:middle;
+    margin-right:4px;
+    margin-top:3px;
+}
+
+.fastui-outlookbar-collapse .fastui-outlookbar-groupBody
+{
+    display:none;
+}
+.fastui-outlookbar-lastGroup
+{
+    border-bottom:0;
+}
+.fastui-outlookbar-lastGroup .fastui-outlookbar-groupHeader
+{
+    border-bottom:0;
+}
+
+.fastui-outlookbar .fastui-outlookbar-expand .fastui-tools-collapse
+{
+    background:url(images/tools/expand.gif) no-repeat 50% 50%;   
+}
+.fastui-outlookbar-collapse
+{
+    
+}
+.fastui-outlookbar-expand
+{    
+}
+
+
+.fastui-outlookbar-view2 .fastui-outlookbar-border
+{
+    border:0;
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-group
+{
+    border:0;
+    margin-bottom:1px;
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-groupHeader
+{
+    border:solid 1px #a7abb0; 
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-groupBody
+{
+    border:0;
+    background:#fff;
+}
+.fastui-outlookbar-view2 .fastui-outlookbar-lastGroup 
+{
+    margin:0;
+}
+
+
+.fastui-outlookbar-view3 .fastui-outlookbar-border
+{
+    border:0;
+}
+.fastui-outlookbar-view3 .fastui-outlookbar-group
+{
+    border:solid 1px #a7abb0; 
+    margin-bottom:8px;
+}
+.fastui-outlookbar-view3 .fastui-outlookbar-groupBody
+{    
+    padding:5px;
+}
+.fastui-outlookbar-view3 .fastui-outlookbar-lastGroup 
+{
+    margin:0;
+    margin-bottom:0px;
+}
+.fastui-tabs
+{
+    overflow:hidden;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+    position:relative;         
+}
+.fastui-tabs-table
+{
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+        
+    border-collapse:collapse;
+    border-collapse:separate;
+}
+.fastui-tabs-headers
+{    
+    width:auto;  
+    padding:0;
+    padding-top:0px;
+}
+
+
+.fastui-tabs-position-top .fastui-tabs-headers
+{
+    width:auto;
+    overflow:hidden;
+}
+.fastui-tabs-scroll .fastui-tabs-headers
+{
+    
+    position:relative;
+    top:1px;    
+}
+.fastui-tabs-scroll .fastui-tabs-scrollCt
+{
+    position:relative;
+    border-bottom:solid 1px #A8A8A8;   
+    padding-left:30px;
+    padding-right:30px;
+}
+.fastui-tabs-scroll .fastui-tabs-firstSpace div
+{
+    width:0;
+}
+.fastui-tabs-scroll .fastui-tabs-leftButton,
+.fastui-tabs-scroll .fastui-tabs-rightButton
+{
+    display:block;
+}
+.fastui-tabs-leftButton, .fastui-tabs-rightButton
+{
+    border:solid 1px #adadad;
+    background:#EBEBEE url(images/tabs/allow_left.gif) no-repeat -1px 0 ;
+    position:absolute;left:5px;top:7px;
+    width:17px;height:16px;    
+    display:none;
+    cursor:pointer;
+    outline:none;
+}
+.fastui-tabs-rightButton
+{
+    left:auto;right:5px;
+    background:#EBEBEE url(images/tabs/allow_right.gif) no-repeat -1px 0 ;
+}
+a:hover.fastui-tabs-leftButton,a:hover.fastui-tabs-rightButton
+{
+    background-color:#E1E8FD;
+}
+
+.fastui-tabs-body
+{
+    overflow:hidden;
+    height:100%;
+}
+
+.fastui-tabs-bodys
+{
+    position:relative;
+    border:solid 1px #999999;
+    border-top:0;
+    
+    padding:0px;    
+    vertical-align:top;
+    text-align:left;
+    overflow:auto;    
+}
+.fastui-tabs-header
+{
+    width:100%;    
+    border-collapse:collapse;
+    border-collapse:separate;       
+    margin:0;
+    padding:0;
+    border:0;
+}
+.fastui-tabs-header2
+{
+    margin-bottom:1px;
+}
+.fastui-tabs-header2 .fastui-tabs-firstSpace,
+.fastui-tabs-header2 .fastui-tabs-lastSpace
+{
+    border-bottom:1px solid transparent;    
+    _border-color:tomato;
+    _filter:chroma(color=tomato);
+}
+.fastui-tabs-space
+{
+    width:5px;
+    border-bottom:solid 1px #999999;
+}
+.fastui-tabs-space div{
+    height:1px;width:5px;overflow:hidden;
+}
+.fastui-tabs-space2
+{
+    width:3px;
+    border-bottom:solid 1px #999999;
+}
+.fastui-tabs-space2 div{
+    height:3px;width:3px;overflow:hidden;
+}
+
+/* Modify By ZHULI 修改字体 */
+.fastui-tab
+{    
+    background: #EBEBEE url(images/tabs/tab.png) repeat-x 0 0;  
+    color: #201F35;  
+    border: 1px solid #999999;
+    color: black;
+    font: 9pt "微软雅黑"; /* Tahoma */
+    padding: 3px 10px 4px 10px;
+    text-align: center;
+    cursor:pointer;
+    white-space:nowrap;
+    
+            
+    
+}
+.fastui-tab-hover
+{    
+    background:#E1E8FD url(images/tabs/hover.png) repeat-x 0 0; 
+}
+.fastui-tab-active
+{
+    border-bottom:solid 1px white;
+    background:white;
+    cursor:default;
+     
+}
+.fastui-tab-body
+{
+    position:relative;
+}
+.fastui-tab-text
+{
+    display:inline-block;
+    vertical-align:middle;
+    line-height:16px;
+    padding-left:2px;
+    padding-right:2px;
+}
+.fastui-tab .fastui-tab-icon
+{
+    display:inline-block;
+    width:16px;height:16px;    
+    vertical-align:middle;
+    background-position:50% 50%;
+    
+}
+.fastui-tab-close
+{
+    display:inline-block;
+    width:13px;height:13px;    
+    vertical-align:top;
+    margin-top:1px;
+
+    background:url(images/tabs/close.gif) no-repeat 3px 3px;
+    cursor:pointer;
+}
+.fastui-tab-close-hover
+{
+    background-color:#aaa;
+}
+
+
+
+
+
+.fastui-tabs-position-bottom .fastui-tabs-space,
+.fastui-tabs-position-bottom .fastui-tabs-space2
+{
+    border:0;
+    border-top: 1px solid #999999;
+}
+.fastui-tabs-position-bottom .fastui-tabs-headers
+{    
+    padding:0;
+    padding-bottom:0px;
+}
+.fastui-tabs-position-bottom .fastui-tabs-bodys
+{
+    border:solid 1px #999999;
+    border-bottom:0;
+}
+.fastui-tabs-position-bottom .fastui-tab-active
+{
+    border-top:solid 1px white;
+    border-bottom:solid 1px #999999;
+}
+
+.fastui-tabs-position-bottom .fastui-tabs-header2
+{
+    margin:0px;
+    margin-top:1px;
+}
+.fastui-tabs-position-bottom .fastui-tabs-header2 .fastui-tabs-firstSpace,
+.fastui-tabs-position-bottom .fastui-tabs-header2 .fastui-tabs-lastSpace
+{    
+    border-top:1px solid transparent;    
+    _border-color:tomato;
+    _filter:chroma(color=tomato);
+}
+
+
+
+
+.fastui-tabs-position-left .fastui-tabs-space,
+.fastui-tabs-position-left .fastui-tabs-space2
+{
+    border:0;
+    border-right: 1px solid #999999;
+}
+.fastui-tabs-position-left .fastui-tabs-space div{
+    height:3px;width:1px;
+}
+.fastui-tabs-position-left .fastui-tabs-space2 div{
+    height:3px;width:3px;
+}
+.fastui-tabs-position-left .fastui-tabs-headers
+{   
+    vertical-align:top;
+    text-align:left;
+    padding:0;
+    padding-left:0px;
+}
+.fastui-tabs-position-left .fastui-tabs-header{
+     
+}
+.fastui-tabs-position-left .fastui-tabs-bodys
+{
+    border:solid 1px #999999;
+    border-left:0;
+}
+.fastui-tabs-position-left .fastui-tab-active
+{    
+    border:solid 1px #999999;
+    border-right:solid 1px white;
+}
+
+.fastui-tabs-position-left .fastui-tabs-header2
+{
+    margin:0px;
+    padding-right:1px;
+}
+.fastui-tabs-position-left .fastui-tabs-header2 .fastui-tabs-firstSpace,
+.fastui-tabs-position-left .fastui-tabs-header2 .fastui-tabs-lastSpace
+{    
+    border-right:1px solid transparent;    
+    _border-color:tomato;
+    _filter:chroma(color=tomato);
+}
+
+
+
+
+.fastui-tabs-position-right .fastui-tabs-space,
+.fastui-tabs-position-right .fastui-tabs-space2
+{
+    border:0;
+    border-left: 1px solid #999999;
+}
+.fastui-tabs-position-right .fastui-tabs-space div{
+    height:2px;width:2px;
+}
+.fastui-tabs-position-right .fastui-tabs-space2 div{
+    height:2px;width:2px;
+}
+.fastui-tabs-position-right .fastui-tabs-headers
+{
+    vertical-align:top;
+    text-align:left;
+    padding:0;
+    padding-right:0px;
+}
+.fastui-tabs-position-right .fastui-tabs-header{
+
+}
+.fastui-tabs-position-right .fastui-tabs-bodys
+{
+    border:solid 1px #999999;
+    border-right:0;
+}
+.fastui-tabs-position-right .fastui-tab-active
+{    
+    border:solid 1px #999999;
+    border-left:solid 1px white;
+}
+
+.fastui-tabs-position-right .fastui-tabs-header2
+{
+    margin:0px;
+    padding-left:1px;
+}
+.fastui-tabs-position-right .fastui-tabs-header2 .fastui-tabs-firstSpace,
+.fastui-tabs-position-right .fastui-tabs-header2 .fastui-tabs-lastSpace
+{    
+    border-left:1px solid transparent;    
+    _border-color:tomato;
+    _filter:chroma(color=tomato);
+}
+.fastui-splitter
+{
+    width:300px;
+    height:180px;    
+    
+    overflow:hidden;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;      
+}
+.fastui-splitter-border
+{
+    border:solid 1px #8C8C8C;
+    position:relative;
+    overflow:hidden;
+}
+.fastui-splitter-pane
+{
+    position:absolute;
+    padding:0;
+    overflow:hidden;
+    left:0px;
+    top:0px;
+}
+.fastui-splitter-pane1{
+    border-right:solid 1px #8C8C8C;    
+}
+.fastui-splitter-pane2{
+    border-left:solid 1px #8C8C8C;
+}
+.fastui-splitter-handler
+{
+    cursor:w-resize;
+    position:absolute;
+    width:6px;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+}
+.fastui-splitter-nodrag
+{
+    cursor:default;
+}
+
+.fastui-splitter-handler-buttons
+{
+    position:absolute;
+    left:0;top:0px;
+    top:50%;
+    width:100%;
+}
+.fastui-splitter-resize-button
+{
+    width:100%;
+    height:18px;
+    display:block;
+    background:url(images/splitter/resize.gif) no-repeat 50% 50%;
+}
+.fastui-splitter-pane1-button, .fastui-splitter-pane2-button
+{
+    width:100%;
+    height:16px;
+    display:block;
+    background:url(images/splitter/buttons.gif) no-repeat -30px 5px;
+    cursor:pointer;
+}
+.fastui-splitter-pane2-button
+{
+    background-position:-44px 5px;
+}
+
+.fastui-splitter-vertical .fastui-splitter-pane1
+{
+    border:0;
+    border-bottom:solid 1px #8C8C8C;
+}
+.fastui-splitter-vertical .fastui-splitter-pane2
+{
+    border:0;
+    border-top:solid 1px #8C8C8C;
+}
+
+.fastui-splitter-handler-vertical
+{
+    cursor:n-resize;
+    position:absolute;
+    width:100%;
+    height:6px;    
+}
+
+.fastui-splitter-handler-vertical .fastui-splitter-handler-buttons
+{
+    height:100%;width:auto;top:0px;left:50%;    
+}
+
+.fastui-splitter-handler-vertical .fastui-splitter-pane1-button, 
+.fastui-splitter-handler-vertical .fastui-splitter-pane2-button
+{
+    display:inline-block;
+    width:16px;height:6px;
+    background-position:4px 0px;
+}
+.fastui-splitter-handler-vertical .fastui-splitter-pane2-button
+{
+    background-position:-11px 0px;
+}
+.fastui-splitter-handler-vertical .fastui-splitter-resize-button
+{
+    display:inline-block;
+    width:18px;height:6px;
+    background:url(images/splitter/resize_h.gif) no-repeat 50% 50%;
+}
+.fastui-layout
+{
+    width:500px;
+    height:250px;    
+    
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;
+}
+.fastui-layout-border
+{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.fastui-layout-split
+{
+    cursor:w-resize;
+    position:absolute;
+    width:6px;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+}
+.fastui-layout-split-north, .fastui-layout-split-south
+{
+    cursor:n-resize;
+}
+.fastui-layout-split-nodrag
+{
+    cursor:default;
+}
+
+.fastui-layout-region
+{
+    border:1px solid #A8A8A8;
+    
+    position:absolute;
+    padding:0;
+    overflow:hidden;
+    left:0px;
+    top:0px;
+}
+.fastui-layout-region-north
+{
+    border-top:0;   
+    border-left:0;  
+    border-right:0;  
+}
+.fastui-layout-region-south
+{
+    border-bottom:0; 
+    border-left:0;  
+    border-right:0;      
+}
+.fastui-layout-region-west
+{
+    border-left:0;
+}
+.fastui-layout-region-east
+{
+    border-right:0;
+}
+
+
+.fastui-layout-region-header
+{
+    
+    background:url(images/layout/header.png) repeat-x 0 0;    
+    border-bottom:solid 1px #a7abb0;
+    cursor:default;    
+    overflow:hidden; 
+    height:22px;
+    padding-left:6px;
+}
+.fastui-layout-region-title
+{
+    font-weight:bold;    
+    float:left;
+    line-height:22px;
+}
+.fastui-layout-region-icon
+{
+    float:left;
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    vertical-align:middle;
+    margin-right:4px;
+    margin-top:3px;
+}
+.fastui-layout-region-body
+{
+    overflow:auto;
+}
+
+.fastui-layout-proxy
+{
+    background:#e9edf1;
+    border:solid 1px #A8A8A8;
+    cursor:default;    
+    overflow:hidden; 
+    height:22px;
+    padding-left:6px;
+    position:absolute;
+    z-index:100;
+    left:-500px;top:-500px;
+}
+.fastui-layout-proxy-hover
+{
+    background:#f1f5f6;    
+}
+
+.fastui-layout-proxy-east .fastui-layout-region-title,
+.fastui-layout-proxy-east .fastui-layout-region-icon,
+.fastui-layout-proxy-west .fastui-layout-region-title,
+.fastui-layout-proxy-west .fastui-layout-region-icon
+{
+    display:none;
+}
+.fastui-layout-proxy-east .fastui-tools,
+.fastui-layout-proxy-west .fastui-tools
+{
+    
+}
+.fastui-layout-proxy-north .fastui-tools,
+.fastui-layout-proxy-south .fastui-tools
+{
+    
+}
+
+
+.fastui-layout-region-header .fastui-tools
+{
+    
+}
+.fastui-layout-region-west .fastui-layout-region-header .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-east .fastui-layout-region-header .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-north .fastui-layout-region-header .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+.fastui-layout-region-south .fastui-layout-region-header .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+
+.fastui-layout-proxy-west .fastui-tools-collapse
+{
+    background:url(images/layout/east.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-east .fastui-tools-collapse
+{
+    background:url(images/layout/west.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-north .fastui-tools-collapse
+{
+    background:url(images/layout/south.gif) no-repeat 50% 50%;
+}
+.fastui-layout-proxy-south .fastui-tools-collapse
+{
+    background:url(images/layout/north.gif) no-repeat 50% 50%;
+}
+.fastui-layout-popup
+{
+    background:white;
+    z-index:101;    
+}
+.fastui-layout-maxZIndex
+{
+    z-index:200;
+}
+.fastui-menu
+{
+    border:1px solid #999999;
+    background:white;
+    color:#201F35;
+    
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;      
+    border-collapse:collapse;
+    border-collapse:separate;    
+}
+.fastui-menu-inner
+{
+    padding:1px;
+}
+
+.fastui-menuitem
+{
+    line-height:20px;
+    
+    height:auto;
+    width:auto;
+    position:relative;
+    
+    border:0;
+    padding:1px;  
+}
+
+.fastui-menuitem-hover
+{    
+    padding:0px;    
+    border:solid 1px #9a9a9a;
+    background:#E3EBFF url(images/menu/item.png) repeat-x 0 0;    
+}
+.fastui-menu-popup
+{    
+    padding:0px;    
+    border:solid 1px #9a9a9a;
+    background:#E3EBFF url(images/menu/item.png) repeat-x 0 0;
+}
+.fastui-menuitem-selected
+{
+    padding:0px;
+    border:solid 1px #9a9a9a;     
+    background:#DBDDE2 url(images/menu/pressed.png) repeat-x 0 0;
+}
+
+.fastui-menuitem-inner
+{
+    position:relative;
+    padding-right:20px;
+    padding-left:28px;
+}
+.fastui-menuitem-text
+{        
+    cursor:default;
+    color:#201F35;
+    overflow:hidden;
+    white-space:nowrap;
+    word-break:break-all;
+}
+.fastui-menuitem-text a
+{
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+    text-decoration:none;    
+    color:#201F35;
+}
+.fastui-menuitem-text a:hover
+{
+    text-decoration:underline;
+}
+.fastui-menuitem-icon, .fastui-menuitem-allow
+{
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    position:absolute;
+    left:3px;
+    top:2px;
+    display:none;    
+    _left:-25px;
+    _top:1px;
+}
+.fastui-menuitem .fastui-menuitem-icon{
+    
+    background-position:50% 50%;
+}
+.fastui-menuitem-allow
+{
+    left:auto;
+    right:3px;
+    background:url(images/menu/arrow.png) no-repeat 8px 50%;
+}
+.fastui-menu .fastui-menuitem-showcheck .fastui-menuitem-icon
+{
+   
+    background:none;
+}
+.fastui-menu .fastui-menuitem-checked .fastui-menuitem-icon
+{    
+
+    background:url(images/menu/checked.gif) no-repeat 50% 6px;
+}
+
+body .fastui-menuitem-icontop .fastui-menuitem-inner
+{
+    text-align:center;
+    padding-top:5px;
+    padding-bottom:7px;
+    line-height:12px;
+    margin-right:10px;
+}
+.fastui-menuitem-icontop .fastui-menuitem-icon
+{
+    position:static;
+    margin:auto;    
+}
+.fastui-menuitem-icontop .fastui-menuitem-text
+{        
+    padding:0;
+    padding-top:5px;
+}
+
+
+.fastui-menu-horizontal .fastui-menu-inner
+{
+    margin:0;
+    border:0;
+    padding:3px; 
+    height:23px;
+    background:#F1F2F6 url(images/menu/hmenubg.png) repeat-x 0 0;
+}
+.fastui-menu-horizontal .fastui-menuitem
+{
+    float:left;
+    display:inline;
+}
+.fastui-menu-horizontal .fastui-menuitem-inner
+{
+    padding-left:6px;
+    padding-right:6px;
+}
+.fastui-menu-horizontal .fastui-menuitem-icon, 
+.fastui-menu-horizontal .fastui-menuitem-text,
+.fastui-menu-horizontal .fastui-menuitem-allow
+{
+    position:static;
+    float:left;
+    vertical-align:middle;
+}
+.fastui-menu-horizontal .fastui-menuitem-icon
+{
+    margin-top:2px;
+}
+.fastui-menu-horizontal .fastui-menuitem-allow
+{
+    background:url(images/menu/hallow.gif) no-repeat 50% 0px;
+    width:5px;height:3px;overflow:hidden;
+    margin-top:9px;
+    margin-right:2px;
+    margin-left:2px;
+}
+.fastui-menu-horizontal .fastui-menuitem-text
+{
+    padding:0;
+    padding-left:3px;
+    padding-right:3px;
+}
+.fastui-separator
+{
+    display:block;
+    border-top:solid 1px #9b9b9b;
+    margin-top:1px;
+    margin-bottom:1px;
+    margin-right:1px;
+    margin-left:26px;
+}
+.fastui-menu-horizontal .fastui-separator
+{
+    float:left;
+    display:inline;    
+    border:0;
+    border-left:solid 1px #9b9b9b;
+    margin:1px;
+    margin-top:6px;    
+    height:12px; 
+}
+.fastui-calendar
+{    
+    border:1px solid #999999;
+       
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;      
+    border-collapse:collapse;
+    border-collapse:separate;  
+}
+body .fastui-calendar td
+{
+    line-height:14px;
+}
+.fastui-calendar-views
+{
+    width:100%;
+    height:100%;    
+}
+.fastui-calendar-view
+{
+    width:100%;
+    height:100%;
+    border-collapse:collapse;
+    border-collapse:separate;
+}
+.fastui-calendar-daysheader td
+{
+    padding:3px;
+    border-bottom:solid 1px #CFCFCF;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;      
+    cursor:default;
+    font-weight:400;
+    text-align:center;
+    vertical-align:middle;
+}
+.fastui-calendar td.fastui-calendar-weeknumber
+{
+    border:0;
+    font-size:10px;
+    color:#BFBFBF;
+    cursor:default;
+}
+.fastui-calendar-days td
+{
+    text-align:center;
+    vertical-align:middle;
+    padding:3px;
+    padding-left:3px;
+    padding-right:3px;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;      
+    cursor:default;
+}
+.fastui-calendar .fastui-calendar-weekend
+{
+    color:#C00000;
+}
+.fastui-calendar .fastui-calendar-othermonth{
+    color:#888888;
+}
+.fastui-calendar .fastui-calendar-disabled
+{
+    color:#aaa;
+    text-decoration:line-through;
+}
+.fastui-calendar-space
+{
+    width:3px;
+}
+.fastui-calendar-bottom td
+{
+    height:3px;
+}
+.fastui-calendar-date
+{
+    border:solid 1px white;
+}
+
+.fastui-calendar-header
+{
+    height:25px;        
+    text-align:center;        
+    background:#E7EBEF url(images/calendar/header.png) repeat-x 0 0;    
+    border-bottom:solid 1px #a7abb0;      
+}
+.fastui-calendar-headerInner
+{    
+    position:relative;
+    height:100%;
+}
+.fastui-calendar-title
+{
+    line-height:25px;
+    font-weight:400;
+    font-size:12px;
+    cursor:pointer;
+}
+.fastui-calendar-prev, .fastui-calendar-next
+{
+    position:absolute;
+    left:8px;top:6px;
+    overflow:hidden;
+}
+.fastui-calendar-next
+{
+    left:auto;right:8px;
+}
+.fastui-calendar-yearPrev, .fastui-calendar-yearNext,
+.fastui-calendar-monthPrev, .fastui-calendar-monthNext
+{
+    display:inline-block;margin-right:8px;cursor:pointer;
+    width:11px;height:12px;overflow:hidden;
+    background:url(images/calendar/prev.gif) no-repeat 50% 3px;
+}
+.fastui-calendar-yearNext
+{
+    margin:0;
+    margin-left:8px;
+    background:url(images/calendar/next.gif) no-repeat 50% 3px;
+}
+.fastui-calendar-monthPrev
+{
+    background:url(images/calendar/months.gif) no-repeat 0 50%;    
+}
+.fastui-calendar-monthNext
+{
+    margin:0;
+    margin-left:8px;
+    background:url(images/calendar/months.gif) no-repeat right 50%;    
+}
+
+.fastui-calendar-footer
+{
+    padding:6px;
+    padding-bottom:8px;
+    background:#efefef;
+    border-top:solid 1px #c9c9c9;
+    text-align:center;
+}
+.fastui-calendar-footerSpace
+{    
+    display:inline-block;
+    width:10px;
+}
+.fastui-calendar-tadayButton, .fastui-calendar-clearButton,
+.fastui-calendar-okButton, .fastui-calendar-cancelButton
+{        
+    border:1px solid #A9ACB5;
+    background:#EBEDF2 url(images/calendar/button.png) repeat-x 0 0;
+    color:#201F35;    
+    
+    display:inline-block;    
+    font-size:9pt;
+    font-family:Tahoma,Verdana,宋体;
+    text-decoration:none;
+    padding:4px;
+    padding-top:3px;
+    padding-left:0px;
+    padding-right:0px;
+    width:55px;
+    text-align: center;  
+    outline:none;
+    cursor:pointer; 
+    vertical-align:middle;
+}
+body a:hover.fastui-calendar-tadayButton, body a:hover.fastui-calendar-clearButton,
+body a:hover.fastui-calendar-okButton, body a:hover.fastui-calendar-cancelButton
+{
+    text-decoration:none;
+}
+
+.fastui-calendar .fastui-calendar-today
+{    
+    border:1px solid #C00000;
+}
+.fastui-calendar .fastui-calendar-selected
+{    
+    color:black;
+    background:#e2ecf7;
+    border:solid 1px #999999;
+}
+
+.fastui-calendar-menu
+{
+    width:250px;
+    border:#9f9f9f 1px solid;
+    background:white;
+    position:absolute;
+    z-index:10000000;
+    overflow:hidden;
+}
+.fastui-calendar-menu-months
+{
+    margin-top:12px;
+    margin-bottom:10px;
+    margin-left:21px;
+    margin-right:18px;    
+    height:75px;
+}
+.fastui-calendar-menu-month
+{
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;       
+    display:inline;
+    float:left;        
+    text-align:center;
+    width:50px;height:23px;
+    line-height:24px;    
+    color:#000000;
+    text-decoration:none;
+    border:solid 1px white;
+    outline:none;
+}
+a:hover.fastui-calendar-menu-month
+{
+    background:#e5e5d5;
+    border:solid 1px #d6d6d5;
+}
+.fastui-calendar-menu-years
+{
+    margin-top:8px;
+    margin-left:8px;
+    margin-right:8px;
+    padding-left:25px;
+    padding-right:20px;
+    position:relative;
+    height:50px;
+    margin-bottom:5px;
+}
+.fastui-calendar-menu-year
+{
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;       
+    display:inline;
+    float:left;        
+    text-align:center;
+    width:35px;height:21px;
+    line-height:20px;    
+    color:#000000;
+    text-decoration:none;
+    border:solid 1px white;
+}
+a:hover.fastui-calendar-menu-year
+{
+    background:#e5e5d5;
+    border:solid 1px #d6d6d5;
+}
+
+.fastui-calendar-menu-prevYear,
+.fastui-calendar-menu-nextYear
+{
+    position:absolute;
+    left:0;top:15px;
+    width:20px;
+    height:15px;
+    cursor:pointer;
+    background:url(images/calendar/months.gif) no-repeat 0 50%;   
+}
+.fastui-calendar-menu-nextYear
+{
+    left:auto;right:0;
+    background:url(images/calendar/months.gif) no-repeat right 50%;   
+}
+.fastui-calendar-menu-selected, a:hover.fastui-calendar-menu-selected
+{    
+    color:#333;
+    background:#e2ecf7;
+    border:solid 1px #999999;
+}
+.fastui-listbox
+{                
+    background:white;
+    overflow:hidden;
+    position:relative;  
+}
+.fastui-listbox-border
+{
+    border:1px solid #999999;    
+    overflow:hidden;
+    border-spacing: 1px;
+}
+.fastui-listbox td
+{
+    line-height:22px;
+    cursor:default;
+    padding-left:4px;
+    padding-right:2px;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;        
+}
+.fastui-listbox-showColumns .fastui-listbox-header td
+{
+    padding-left:4px;
+    padding-right:4px;
+}
+.fastui-listbox-showColumns .fastui-listbox-view td
+{
+    padding-left:4px;
+    padding-right:4px;
+    border:0;
+    border-right:solid 1px #cfcfcf;
+    border-bottom:solid 1px #cfcfcf;
+}
+
+.fastui-listbox-header
+{
+    overflow:hidden;
+    background:#E7EBEF url(images/listbox/header.png) repeat-x 0 0;    
+    border-bottom:solid 1px #A5ACB5;
+}
+.fastui-listbox-header td
+{
+    border-right:solid 1px #A5ACB5;    ;
+}
+
+.fastui-listbox-view
+{
+    width:100%;
+    overflow:auto;
+}
+.fastui-listbox-items, .fastui-listbox-headerInner
+{
+    text-align:left;
+    width:100%;
+    border-collapse:collapse;
+    border-collapse:separate;    
+    display:table;
+}
+.fastui-listbox-showcolumns .fastui-listbox-items,
+.fastui-listbox-showcolumns .fastui-listbox-headerInner
+{
+    table-layout:fixed!important;
+}
+
+
+.fastui-listbox .fastui-listbox-checkbox
+{
+    text-align:center;
+    width:22px;
+    padding:0;
+}
+.fastui-listbox .fastui-listbox-checkbox input
+{
+    width:18px\9;
+    height:16px\9;
+}
+.fastui-listbox-hideCheckBox .fastui-listbox-checkbox
+{
+    display:none;    
+    width:0;
+}
+
+.fastui-listbox-item-hover{	
+	background:#e2ecf7;
+}
+.fastui-listbox-item-selected{	
+	background:#ecedef;
+	color:Black;
+}
+
+
+.fastui-error .fastui-listbox-border
+{
+    margin-right:18px;
+}
+.fastui-listbox .fastui-errorIcon
+{
+    position:absolute;
+    right:1px;
+    top:0;
+}
+
+
+.fastui-checkboxlist
+{    
+    overflow:auto;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+}
+
+.fastui-checkboxlist-item
+{
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    margin-right:8px;
+}
+.fastui-checkboxlist label
+{
+    padding-left:2px;
+    line-height:16px;
+    display:inline-block;
+}
+.fastui-checkboxlist input,
+.fastui-radiobuttonlist input
+{
+    overflow:hidden;
+    vertical-align:middle;
+    width:16px;
+    height:16px;
+    margin:0;
+    padding:0;
+}
+
+
+.fastui-radiobuttonlist
+{    
+    overflow:auto;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;   
+}
+
+.fastui-radiobuttonlist-item
+{
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    margin-right:8px;
+}
+.fastui-radiobuttonlist label
+{
+    padding-left:2px;
+    line-height:16px;
+    display:inline-block;
+    font-size:9pt;
+    font-family:Tahoma, Verdana, 宋体;       
+}
+.fastui-radiobuttonlist input
+{
+    overflow:hidden;
+    vertical-align:middle;
+    width:16px;
+    height:16px;
+    margin:0;
+    padding:0;
+}
+
+/*Modify By ZHULI 修改字体*/
+.fastui-tree
+{
+    color:#201f35;
+    overflow:auto;
+    font-size:9pt;
+    font-family: "微软雅黑","宋体"; /* Tahoma, Verdana, 宋体 */ 
+    display:none;
+    background:white;
+}
+.fastui-tree-rootnodes
+{   
+    padding:2px;
+    padding-left:4px;
+}
+.fastui-tree-node
+{
+    
+}
+.fastui-tree-nodes
+{
+    
+}
+.fastui-tree-indent
+{
+    display:inline-block;
+    width:18px;
+    height:24px;
+}
+.fastui-tree-nodetitle
+{
+    margin-top:0px;
+    cursor:default;white-space:nowrap;         
+}
+
+.fastui-tree .fastui-tree-icon
+{
+    display:inline-block;
+    width:18px;height:22px;overflow:hidden;    
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+    vertical-align:middle;
+}
+.fastui-tree-nodetext
+{	
+    line-height:20px;   
+    vertical-align:middle;
+    display:inline-block;
+    padding-left:3px;    
+    padding-right:3px;    
+    white-space:nowrap;
+}
+.fastui-tree-nodetext a
+{
+    text-decoration:none;
+    color:#000;
+    outline:none;
+}
+.fastui-tree-nodetext a:hover
+{
+    text-decoration:underline;    
+}
+
+
+.fastui-tree-node-ecicon
+{
+    display:inline-block;
+    width:18px;
+    height:24px;    
+    background:no-repeat 50% 50%;  
+    outline:none;
+    
+}
+
+.fastui-tree-collapse .fastui-tree-node-ecicon
+{
+    background-image:url(images/tree/collapse.gif);
+}
+.fastui-tree-expand .fastui-tree-node-ecicon
+{
+    background-image:url(images/tree/expand.gif);
+}
+.fastui-tree-leaf
+{
+    background-image:url(images/tree/file.png);
+}
+.fastui-tree-folder
+{
+    background-image:url(images/tree/folder.gif);
+}
+.fastui-tree-expand .fastui-tree-folder
+{
+    
+}
+
+.fastui-tree-checkbox
+{
+	width:16px\9;height:14px\9;margin:0;padding:0;
+	vertical-align:middle;
+}
+
+body .fastui-tree .fastui-tree-loading .fastui-tree-node-ecicon,
+body .fastui-tree-loading .fastui-treegrid-ec-icon
+{
+    background:#fff url(images/tree/loading.gif) no-repeat scroll 50% 50%;
+}
+
+
+.fastui-tree-nodeshow
+{
+    display:inline-block;
+    vertical-align:top;
+    padding:1px;
+    padding-left:2px;
+    padding-right:3px;
+    border:0;
+   
+}
+
+.fastui-tree-hottrack .fastui-tree-node-hover
+{
+    padding:0;
+    padding-left:1px;
+    padding-right:2px;
+    border:1px solid #A9ACB5;
+    background:#dde6fe url(images/tree/hover.png) repeat-x 0 0;        
+}
+
+.fastui-tree-selectedNode .fastui-tree-nodeshow
+{
+    padding:0;
+    padding-left:1px;
+    padding-right:2px;
+    border:1px solid #A9ACB5;
+    background:#EBEDF2 url(images/tree/button.png) repeat-x 0 0;
+}
+
+
+.fastui-tree-treeLine .fastui-tree-indent{
+    background:transparent url(images/tree/treeline.gif) repeat-y 9px 0; 
+}
+
+.fastui-tree-treeLine .fastui-tree-node-ecicon
+{
+    background:transparent url(images/tree/treeNodeLine.gif) no-repeat; 
+}
+
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon{
+    background:transparent url(images/tree/expandLine.gif) no-repeat -1px -6px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon{
+    background:transparent url(images/tree/collapseLine.gif) no-repeat -1px -1px;
+}
+.fastui-tree-treeLine .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastline.gif) no-repeat 1px -8px; 
+}
+
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-first
+{
+    background:transparent url(images/tree/firstExpandNode.gif) no-repeat -3px -4px;
+}
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastExpandNode.gif) no-repeat -2px -6px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-first
+{
+    background:transparent url(images/tree/firstCollapseNode.gif) no-repeat -3px -3px;
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-last
+{
+    background:transparent url(images/tree/lastCollapseNode.gif) no-repeat -4px -6px;
+}
+
+.fastui-tree-treeLine .fastui-tree-expand .fastui-tree-node-ecicon-firstAndlast
+{
+    background-position:50% 70%;
+    background-image:url(images/tree/firstAndlastexpand.gif);
+}
+.fastui-tree-treeLine .fastui-tree-collapse .fastui-tree-node-ecicon-firstAndlast
+{
+    background-position:50% 50%;
+    background-image:url(images/tree/firstAndlastcollapse.gif);
+}
+
+
+
+
+
+.fastui-tree-editinput
+{
+        border-style: solid;
+    border-width: 1px;
+    background:white;    
+    border-color: #9DA0AA #C2C4CB #D9DAE0;   
+    
+    padding-top:1px;
+    padding-left:2px;
+    padding-right:2px;
+    margin-top:1px;
+    
+    width:80px;
+}
+
+
+.fastui-grid
+{        
+    overflow:hidden;
+    position:relative;  
+    font-size:9pt;
+    font-family: Tahoma, Verdana;         
+    background:white;
+    display:none;    
+}
+
+.fastui-datagrid
+{
+    display:none;
+}
+.fastui-grid-border
+{
+    border:1px solid #9f9f9f;
+    overflow:hidden;
+    position:relative;
+}
+.fastui-grid-table
+{
+    text-align:left;
+    border-collapse:separate;
+    border-collapse:collapse\9;
+    table-layout:fixed!important;
+    display:table;
+    width:100%;   
+}
+.fastui-grid-row
+{
+}
+.fastui-grid-row-alt
+{
+    background:#f7f4fd;
+}
+body .fastui-grid-row-hover, body .fastui-grid-row-hover .fastui-grid-frozenCell
+{
+    background:#e2ecf7;    
+}
+body .fastui-grid-row-selected, body .fastui-grid-row-selected .fastui-grid-frozenCell
+{
+    background:#ecedef;		
+	color:Black;
+}
+
+.fastui-grid-cell, .fastui-grid-headerCell,
+.fastui-grid-filterCell, .fastui-grid-summaryCell
+{
+    overflow: hidden;
+    padding:4px;
+    padding-left:6px;
+    padding-right:6px;
+    border:0;
+    border-right:#cfcfcf 1px solid;
+    border-bottom:#cfcfcf 1px solid;
+    cursor:default;
+    font-size:9pt;
+    font-family: Tahoma, Verdana;              
+    line-height:14px;
+}
+.fastui-grid-headerCell
+{
+    background:#E7EBEF url(images/grid/header.png) repeat-x 0 0;
+    border-right:#A5ACB5 1px solid;
+    border-bottom:#A5ACB5 1px solid;
+
+}
+.fastui-grid-filterCell
+{
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-right:8px;
+    padding-left:2px;
+}
+.fastui-grid-last-column
+{
+    border-right:0;
+}
+.fastui-grid-last-row
+{
+    
+}
+
+.fastui-grid-summaryCell
+{
+    padding-right:8px;    
+    border-right:0;
+}
+
+.fastui-grid-hideVLine .fastui-grid-cell
+{
+    border-right:0;
+}
+.fastui-grid-hideHLine .fastui-grid-cell
+{
+    border-bottom:0;
+}
+
+.fastui-grid-cellInner
+{
+     overflow:hidden;
+}
+
+.fastui-grid-header
+{
+    overflow:hidden;
+    width:100%;
+    position:relative;
+}
+.fastui-grid-body
+{
+    overflow:auto;
+    width:100%;
+    position:relative;
+}
+.fastui-grid-footer
+{
+    border-top:solid 1px #C9C9C9;
+    background:#E7EAEE url(images/grid/footer.png) repeat-x 0 0;
+}
+.fastui-grid-scroller
+{
+    overflow-x: scroll; 
+    overflow-y: hidden; 
+    height: 17px;    
+    display:none;
+}
+.fastui-grid-scroller div
+{
+    width:1px;height:1px;
+}
+.fastui-grid-frozenCell
+{
+    background-color:#FFFFD6;
+}
+.fastui-grid-frozen .fastui-grid-body
+{
+    overflow-x:hidden;
+}
+.fastui-grid-frozen .fastui-grid-scroller
+{
+    display:block;
+}
+
+.fastui-grid-filterRow .fastui-grid-table, .fastui-grid-summaryRow .fastui-grid-table
+{    
+    background:#f6f6f6;    
+}
+.fastui-grid-filterRow .fastui-grid-filterCell
+{
+    border-right:0;
+    padding:2px;
+}
+.fastui-grid-summaryRow .fastui-grid-summaryCell
+{
+    border-bottom:0;
+}
+.fastui-grid-summaryRow
+{
+    border-top:#cfcfcf 1px solid;
+}
+
+.fastui-grid-filterRow, .fastui-grid-summaryRow
+{        
+    overflow:hidden;
+    width:100%;    
+}
+.fastui-grid-detailRow
+{
+    background:#F7F7F8;
+}
+.fastui-grid-detailCell
+{    
+    padding: 8px 10px 10px;
+    border-right:#cfcfcf 1px solid;
+    border-bottom:#cfcfcf 1px solid;
+}
+
+.fastui-grid-sortIcon
+{
+    width:9px;
+    height:10px;
+    overflow:hidden;
+    display:inline-block;
+    background:url(images/grid/icons.png) no-repeat -19px -18px;
+    margin-left:2px;
+    margin-right:2px;
+    position:absolute;
+    top:2px;right:0px;
+}
+.fastui-grid-asc .fastui-grid-sortIcon
+{
+    background-position:-19px -18px;
+}
+.fastui-grid-desc .fastui-grid-sortIcon
+{
+    background-position:-19px 0;
+}
+.fastui-grid-asc .fastui-grid-cellInner, .fastui-grid-desc .fastui-grid-cellInner
+{
+    position:relative;
+    padding-right:18px;
+}
+.fastui-grid-rowEdit
+{
+    background:#f9f9fc;
+}
+.fastui-grid-rowEdit .fastui-grid-cellEdit
+{
+    padding:1px;    
+}
+
+.fastui-checkcolumn
+{
+    padding:0;text-align:center;
+}
+.fastui-checkcolumn .fastui-supergrid-cell-inner
+{
+    padding-top:0px;
+}
+.fastui-checkcolumn .fastui-supergrid-headercell-inner
+{
+    padding-top:5px;
+}
+
+.fastui-grid-ecIcon
+{
+    display:inline-block;
+    width:18px;
+    height:24px;    
+    background:no-repeat 50% 50%;  
+    outline:none;
+    background-image:url(images/tree/collapse.gif);
+}
+.fastui-grid-expandRow .fastui-grid-ecIcon
+{
+    background-image:url(images/tree/expand.gif);
+}
+
+
+.fastui-grid-resizeGrid
+{
+    z-index:100;
+    position:absolute;
+    width:14px;height:12px;
+    right:0px;bottom:0px;
+    overflow:hidden;
+    cursor:se-resize;
+    background:url(images/grid/resize.gif) no-repeat right bottom;
+}
+.fastui-grid-resizeProxy
+{
+    border:dotted 1px black;
+    overflow:hidden;
+    position:absolute;
+    z-index:10000000000;
+    background:gray;
+    opacity: .30;-moz-opacity: .30;filter: alpha(opacity=30);
+    border:solid 1px black;    
+}
+
+
+.fastui-grid-splitters
+{
+    position:absolute;
+    left:0;top:0;width:0;height:0;
+}
+.fastui-grid-splitter
+{
+    position:absolute;
+    overflow:hidden;    
+    background:red;
+    cursor:col-resize;
+    opacity: .0;-moz-opacity: .0;filter: alpha(opacity=0);
+    z-index:100;
+    top:0px;left:0;
+    height:100px;width:5px;
+}
+.fastui-grid-proxy
+{
+    position:absolute;
+    overflow:hidden;
+    background:gray;
+    opacity: .30;-moz-opacity: .30;filter: alpha(opacity=30);
+    border:solid 1px black;
+    z-index:100000000;
+    box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;
+}
+.fastui-grid-columnproxy
+{
+    position:absolute;
+    overflow:hidden;
+    line-height:28px;
+    padding:6px;
+    padding-right:10px;
+    padding-top:0;
+    padding-bottom:0;
+    z-index:1000000;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    
+    background:#E7EBEF url(images/grid/header.png) repeat-x 0 0;
+    border:#A5ACB5 1px solid;    
+}
+.fastui-grid-movetop, .fastui-grid-movebottom
+{
+    position:absolute;
+    overflow:hidden;
+    width:9px;height:9px;
+    background:url(images/supergrid/col-move-top.gif) no-repeat;
+    display:none;
+    z-index:100000;
+}
+.fastui-grid-movebottom
+{
+    background:url(images/supergrid/col-move-bottom.gif) no-repeat;
+}
+.fastui-grid-no .fastui-grid-columnproxy-inner
+{
+    padding-left:20px;background:url(images/supergrid/no.gif) no-repeat 0 6px;
+}
+.fastui-grid-ok .fastui-grid-columnproxy-inner
+{
+    padding-left:20px;background:url(images/supergrid/ok.gif) no-repeat 0 6px;
+}
+
+
+
+
+.fastui-grid .fastui-grid-cell .x-form-item
+{
+    margin:0;
+}
+.fastui-treegrid-node
+{
+    padding:0;
+    padding-left:2px;
+    vertical-align:top;
+}
+.fastui-treegrid-node-inner
+{
+	position:relative;
+	width:100%;
+	height:100%;
+	overflow:hidden;	
+}
+.fastui-treegrid-nodetext
+{
+	white-space:nowrap;
+	line-height:22px; 
+}
+.fastui-treegrid-ec-icon
+{
+	width:18px;height:18px;overflow:hidden;position:absolute;background:red;
+	top:2px;
+	background:no-repeat 50% 50%;
+}
+.fastui-treegrid-expand .fastui-treegrid-ec-icon
+{
+	background-image:url(images/treegrid/expand.gif);
+}
+.fastui-treegrid-collapse .fastui-treegrid-ec-icon
+{
+	background-image:url(images/treegrid/collapse.gif);
+}
+.fastui-treegrid-nodeicon
+{
+    width:18px;
+    height:18px;
+    overflow:hidden;    
+    position:absolute;
+    top:2px;
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+}
+
+.fastui-treegrid-leaf
+{
+    background-image:url(images/treegrid/file.png);
+}
+.fastui-treegrid-folder
+{
+    background-image:url(images/treegrid/folder.gif);
+}
+.fastui-pager
+{   
+    padding:5px; 
+    
+    height:20px;
+    border-collapse:collapse;
+    border-collapse:separate;   
+    font-size:9pt;
+    font-family: Tahoma, Verdana;         
+}
+.fastui-pager-buttons
+{
+	/* width:290px; */
+    width:350px;
+    height:25px;
+    overflow:hidden;    
+}
+
+.fastui-pager .fastui-button
+{
+    margin-right:5px;
+}
+.fastui-pager-num
+{    
+	border:1px solid #ccc;
+	margin:0 2px;
+	width:35px;
+	text-align:center;	
+	outline:none;
+	+vertical-align:middle;
+}
+.fastui-pager-pages
+{
+    padding-left:5px;
+    padding-right:5px;
+    display:inline-block;
+    line-height:25px;
+}
+.fastui-pager-sizeLabel, .fastui-pager-total
+{
+    white-space:nowrap;
+}
+.fastui-pager-index
+{
+    vertical-align:middle;
+}
+.fastui-htmlfile-file
+{
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:100;
+    width:10px;
+    height:10px;
+    overflow:hidden;
+    cursor:pointer;
+    opacity: .0;-moz-opacity: .0;filter: alpha(opacity=0);
+    
+}
+.fastui-htmlfile .fastui-buttonedit-border
+{
+    border-color: #9DA0AA #9DA0AA #9DA0AA;
+    border-style: solid;
+    border-width: 1px;
+}
+.fastui-htmlfile .fastui-buttonedit-button
+{
+    font-size:9pt;
+    font-family: Tahoma, Verdana;    
+    white-space:nowrap;
+    padding-left:8px;
+    padding-right:8px;
+        
+    border:1px solid #A9ACB5; 
+    background:#EBEDF2 url(images/buttonedit/button.png) repeat-x 0 0;
+    color:#201F35;
+}
+.fastui-htmlfile .fastui-buttonedit-button-hover
+{
+    border:0;
+    border-left:1px solid #ababab;    
+    background:#dde6fe url(images/buttonedit/hover.png) repeat-x 0 0;  
+}
+.fastui-htmlfile .fastui-buttonedit-button-pressed
+{
+    border:0;
+    border-left:1px solid #888;    
+    background:#DBDDE2 url(images/buttonedit/pressed.png) repeat-x 0 0;
+}
+
+.swfupload
+{
+    position:absolute;
+}
+
+.fastui-fileupload .fastui-buttonedit-inner
+{
+    position:relative;
+    z-index:10;
+}
+.fastui-fileupload .fastui-buttonedit-button
+{
+    +font-size:11px; 
+}
+.fastui-textboxlist
+{
+    width:160px;
+    height:24px;
+    
+    display:inline-table;
+    *display:inline;
+    zoom:1;
+    
+    table-layout:fixed;
+    border-collapse:collapse;
+    border-collapse:separate;
+    vertical-align:middle;
+    
+    font: 9pt Verdana;
+}
+.fastui-textboxlist-border
+{
+    border-style: solid;
+    border-width: 1px;
+    background:white;    
+    border-color: #9DA0AA #C2C4CB #D9DAE0;       
+         
+    width:100%;
+    cursor:text;
+    vertical-align:top;
+}
+body .fastui-textboxlist-focus .fastui-textboxlist-border
+{
+    border-color: #434756 #7D808D #AAACB9;
+}
+
+.fastui-textboxlist ul
+{
+    zoom: 1; overflow: hidden; margin: 0; padding: 2px;padding-bottom:0;
+}
+.fastui-textboxlist li
+{
+    list-style-type: none; float: left; display:inline-block; padding: 0; margin: 0 3px 0px 0; cursor: default;       
+}
+.fastui-textboxlist .fastui-textboxlist-inputLi
+{
+    margin-right:2px;    
+    margin-bottom:2px;
+}
+.fastui-textboxlist .fastui-textboxlist-input
+{
+    border: 0; padding: 0; font: 9pt "Lucida Grande", Verdana;
+    outline:none;
+    width:20px;
+    height: 16px;
+    margin-top:2px;
+    *+margin-top:0px; 
+}
+
+
+.fastui-textboxlist .fastui-textboxlist-item
+{
+    position: relative; padding: 0 6px; -moz-border-radius: 9px; -webkit-border-radius: 9px; border-radius: 9px; border: 1px solid #CAD8F3; background: #DEE7F8; cursor: default;
+    padding-right: 15px;
+    height:16px;
+    line-height: 16px;
+    margin-bottom:2px;
+    white-space:nowrap;
+}
+.fastui-textboxlist .fastui-textboxlist-item-hover
+{
+    background: #BBCEF1; border: 1px solid #6D95E0;
+}
+.fastui-textboxlist .fastui-textboxlist-item-selected
+{
+    border-color: #598BEC; background: #598BEC; color: #fff;
+}
+.fastui-textboxlist-close { position: absolute; right: 4px;top:5px; display: block; width: 7px; height: 7px; font-size: 1px; background: url(images/textboxlist/close.gif); cursor:pointer; }
+.fastui-textboxlist-close-hover, .fastui-textboxlist-item-selected .fastui-textboxlist-close{ background-position: bottom; }
+
+.fastui-textboxlist .fastui-errorIcon
+{
+    margin-left:2px;
+    margin-top:2px;
+}
+
+.fastui-textboxlist-popup-loading
+{
+    background:url(images/textboxlist/loading.gif) no-repeat 0 5px;
+    padding-left:20px;
+    line-height:25px;
+    display:block;
+}
+.fastui-textboxlist-popup-error
+{
+    background:url(images/textboxlist/error.gif) no-repeat 0 5px;
+    padding-left:20px;
+    line-height:25px;
+    display:block;
+}
+.fastui-textboxlist-popup-noresult
+{
+    padding-left:20px;
+    line-height:25px;
+    display:block;
+}
+
+.fastui-textboxlist-popup .fastui-listbox-item td
+{
+    white-space:nowrap;
+}
+.mygantt
+{
+    background:white;
+    font-size:9pt;
+    font-family: Tahoma, Verdana;    
+    overflow:hidden; 
+}
+.myganttview
+{
+    overflow:hidden;
+}
+.mygantt .fastui-grid-cell
+{
+	white-space:nowrap;
+}
+.mygantt .fastui-grid-header .fastui-grid-table
+{
+    height:40px;
+}
+.mygantt-headercell
+{
+    background:#E7EBEF url(images/grid/header.png) repeat-x 0 0;    
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    overflow:hidden;
+    padding-left:2px;
+    padding-right:2px;
+    border-right:#A5ACB5 1px solid;    
+    text-align:center;
+    cursor:default;
+}
+.mygantt-toptimescale .mygantt-headercell
+{
+    text-align:left;
+}
+
+.mygantt-header
+{
+    position:relative;
+    overflow:hidden;
+}
+.mygantt-toptimescale, .mygantt-bottomtimescale
+{
+    position:relative;
+    overflow:hidden;
+    border-bottom:#A5ACB5 1px solid;    
+}
+
+.mygantt-body
+{
+    position:relative;
+    width:100%;
+    height:2000px;
+    overflow:hidden;
+    overflow-y:scroll;
+}
+.mygantt-row
+{
+    border-bottom:#cfcfcf 1px solid;
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:22px;
+    overflow:hidden;
+    z-index:10;
+}
+.mygantt-column
+{
+    border-left:#cfcfcf 1px solid;
+    border-right:#cfcfcf 1px solid;
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:20px;
+    overflow:hidden;
+    z-index:1;
+}
+
+.mygantt-item
+{
+    position:absolute;
+    overflow:hidden;
+    left:0;top:0;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    z-index:100;
+    
+    border:solid 1px #0031ff;
+    background:url(images/gantt/taskbg.gif); 
+}
+.mygantt-critical
+{
+	border:solid 1px #dd5040;
+	
+}
+.mygantt-critical .mygantt-percentcomplete
+{	
+	background:#f73823;
+}
+.mygantt-baseline
+{
+    border:solid 1px #000;
+}
+.mygantt .mygantt-baselinemilestone
+{
+    background:url(images/gantt/baseline-milestone.gif) no-repeat;
+    z-index:90;
+}
+.mygantt-milestone
+{	
+	margin-top:4px;
+	width:12px;
+	height:12px;
+	border:0;
+	background:url(images/gantt/milestone.gif) no-repeat;
+}
+
+.mygantt-summary
+{		    
+	border:0;
+	background:#58629b;
+	overflow:visible;
+	height:6px;
+}
+.mygantt-summary-left, .mygantt-summary-right
+{
+    position:absolute;
+    overflow:hidden;
+    width:5px;height:12px;
+    background:url(images/gantt/summary.gif) no-repeat;
+    left:0;top:0;
+}
+.mygantt-summary-right
+{
+    background-position:right top;
+    left:auto;right:0;
+}
+
+
+.mygantt-percentcomplete
+{
+	position:absolute;overflow:hidden;
+	background:blue;height:6px;left:-1px;width:40px;top:50%;margin-top:-3px;
+}
+.mygantt-label
+{
+    position:absolute;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    z-index:100;
+    white-space:nowrap;
+    cursor:default;
+}
+
+.mygantt-gridlines, .mygantt-bars, .mygantt-lines
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width:1;
+    height:0;
+    z-index:1;
+}
+
+.mygantt-lines 
+{
+    z-index:10;   
+    
+    
+}
+
+.mygantt-offday
+{
+    background:#eee;
+}
+
+
+.mygantt-line
+{
+	background:#2f51d3;position:absolute;width:1px;height:1px;overflow:hidden;	
+}
+.mygantt-line-critical
+{
+	background:#dd5040;
+}
+.mygantt-arrow-left
+{
+	width:6px;height:9px;background:url(images/gantt/arrow_blue_left.gif) no-repeat;
+	margin-top:-4px;margin-left:0px;
+}
+.mygantt-arrow-right
+{
+	width:6px;height:9px;background:url(images/gantt/arrow_blue_right.gif) no-repeat;
+	margin-top:-4px;margin-left:-5px;
+}
+.mygantt-arrow-top
+{
+	width:9px;height:5px;background:url(images/gantt/arrow_blue_up.gif) no-repeat;
+	margin-left:-4px;
+}
+.mygantt-arrow-bottom
+{
+	width:9px;height:5px;background:url(images/gantt/arrow_blue_down.gif) no-repeat;
+	margin-top:-5px;margin-left:-4px;
+}
+.mygantt-arrow-left-critical
+{
+	background-image:url(images/gantt/arrow_red_left.gif);
+}
+.mygantt-arrow-right-critical
+{
+	background-image:url(images/gantt/arrow_red_right.gif);
+}
+.mygantt-arrow-top-critical
+{
+	background-image:url(images/gantt/arrow_red_up.gif);
+}
+.mygantt-arrow-bottom-critical
+{
+	background-image:url(images/gantt/arrow_red_down.gif);
+}
+
+
+.mygantt-hscroller
+{
+    position:absolute;width:100%;height:18px;left:0;bottom:0;overflow:auto;z-index:100;
+    overflow-x:scroll;
+}
+.mygantt-hscrollercontent
+{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+}
+
+
+.mygantt-tooltip
+{
+	position:absolute;border:solid 1px black;background:#ffffe1;
+	padding:5px;z-index:1000;display:none;
+	line-height:16px;padding-left:5px;padding-right:5px;width:180px;
+    font-size:9pt;
+    font-family: Tahoma, Verdana; 	
+}
+
+.mygantt-timeline
+{
+	position:absolute;left:0;top:0;width:1px;height:1000px;overflow:hidden;
+	background:blue;
+	z-index:1000;
+}
+.fastui-supergrid
+{
+    overflow:hidden;
+    background:#fff;    
+    text-align:left;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    text-align:left;
+    position:relative;
+}
+.fastui-supergrid-border
+{
+    border:1px solid #9ebcd6;
+    overflow:hidden;
+    position:relative;
+    position:relative;
+}
+
+.fastui-supergrid-header
+{
+    width:auto;
+    overflow:hidden;
+    background:#fafafa url(images/supergrid/header.gif) repeat-x left bottom;
+    border-bottom:#c5c5c5 1px solid;
+    height:25px;
+    position:relative;    
+}
+
+.fastui-supergrid-body
+{
+    width:auto;
+    overflow:auto;
+}
+.fastui-supergrid-footer
+{
+    width:auto;
+    overflow:hidden;
+}
+.fastui-supergrid-table
+{
+    border:0;
+    margin:0;
+    padding:0;
+}
+.fastui-supergrid-cell, .fastui-supergrid-headercell
+{
+    border:0;
+    border-bottom:#d4d6d9 1px solid;
+    border-right:#d4d6d9 1px solid;    
+    line-height:20px;
+    cursor:default;     
+	font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    padding:0px;    
+}
+.fastui-supergrid-cell
+{
+    position:absolute;
+    overflow:hidden;    
+}
+.fastui-supergrid-cell-inner
+{
+    white-space:nowrap; 
+	padding: 0px 4px;
+	overflow:hidden;
+}
+.fastui-supergrid-headercell
+{    
+    border-bottom:#c5c5c5 1px solid;
+    border-right:#c5c5c5 1px solid;     
+    line-height:16px;
+	background:#fafafa url(images/supergrid/header.gif) repeat-x left bottom;
+	position:relative;
+    overflow:hidden;
+    position:absolute;
+    left:0;
+    top:0;
+    height:25px; 	
+}
+.fastui-supergrid-headercell-inner
+{
+	padding: 2px 4px;
+	padding-top:0;padding-bottom:0;
+	overflow:hidden;
+	
+}
+.fastui-supergrid-headercell-hover
+{
+	background:#e7f6fd url(images/supergrid/header-hover.gif) repeat-x left bottom;
+}
+.fastui-supergrid-headercell-pressed
+{
+    border-top:#bce4f9 1px solid;     
+	background:#e7f6fd url(images/supergrid/header-pressed.gif) repeat-x left 50%;
+}
+.fastui-supergrid-lastcell
+{
+	width:0px;overflow:hidden;height:22px;
+}
+
+.fastui-supergrid .fastui-supergrid-frozenCell
+{
+    border-right:solid 1px #333;
+}
+
+.fastui-supergrid-row
+{
+    position:absolute;
+    overflow:hidden;
+    width:100%;
+    left:0px;
+}
+
+.fastui-supergrid .fastui-supergrid-viewport .fastui-supergrid-rowselected
+{
+	background:#cae6f5;
+}
+.fastui-supergrid-alternating
+{
+	background:#f0f8ff;
+}
+.fastui-supergrid .fastui-supergrid-viewport .fastui-supergrid-cellselected
+{
+    background:#95cafc;
+    z-index:100;
+    
+}
+
+.fastui-supergrid-viewport
+{
+    position:relative;
+    width:auto;
+    overflow:hidden;
+    z-index:10;
+}
+.fastui-supergrid-cells, .fastui-supergrid-lockedcells
+{
+    position:absolute;
+    overflow:hidden;
+    left:0;
+    top:0;
+    z-index:10;
+}
+
+.fastui-supergrid-hscroller
+{
+    position:absolute;width:100%;height:18px;left:0;bottom:0;overflow:auto;z-index:100;
+    overflow-x:scroll;
+}
+.fastui-supergrid-vscroller
+{
+    position:absolute;width:18px;height:18px;right:0;top:0;overflow:auto;z-index:100;
+    overflow-y:scroll;
+}
+.fastui-supergrid-hscrollercontent, .fastui-supergrid-vscrollercontent
+{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+}
+
+
+.fastui-supergrid-cell-dirtytip 
+{
+    position:absolute;
+    top:2px;right:2px;
+    overflow:hidden;width:5px;height:5px;
+    background:url(images/supergrid/dirty.gif) no-repeat top right;
+}
+
+
+.fastui-supergrid-splitter
+{
+    position:absolute;
+    overflow:hidden;
+    width:5px;
+    background:red;
+    cursor:col-resize;
+    opacity: .0;-moz-opacity: .0;filter: alpha(opacity=0);
+}
+.fastui-supergrid-proxy
+{
+    position:absolute;
+    overflow:hidden;
+    background:gray;
+    opacity: .30;-moz-opacity: .30;filter: alpha(opacity=30);
+    border:solid 1px black;
+    z-index:100000000;
+    box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;
+}
+.fastui-supergrid-columnproxy
+{
+    position:absolute;
+    overflow:hidden;
+    line-height:25px;
+    border:#9ebcd6 1px solid;    
+    padding:4px;
+    padding-top:0;
+    padding-bottom:0;
+    background:url(images/supergrid/header.gif) repeat-x 0 bottom; 
+    z-index:1000000;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+}
+.fastui-supergrid-movetop, .fastui-supergrid-movebottom
+{
+    position:absolute;
+    overflow:hidden;
+    width:9px;height:9px;
+    background:url(images/supergrid/col-move-top.gif) no-repeat;
+    display:none;
+    z-index:100000;
+}
+.fastui-supergrid-movebottom
+{
+    background:url(images/supergrid/col-move-bottom.gif) no-repeat;
+}
+.fastui-supergrid-no .fastui-supergrid-columnproxy-inner
+{
+    padding-left:20px;background:url(images/supergrid/no.gif) no-repeat 0 5px;
+}
+.fastui-supergrid-ok .fastui-supergrid-columnproxy-inner
+{
+    padding-left:20px;background:url(images/supergrid/ok.gif) no-repeat 0 5px;
+}
+
+
+.fastui-supertree-leaf
+{
+    background-image:url(images/supertree/file.gif);
+}
+.fastui-supertree-folder
+{
+    background-image:url(images/supertree/folder.gif);
+}
+.fastui-supertree-expand .fastui-supertree-folder
+{
+    background-image:url(images/supertree/folder-open.gif);
+}
+
+.fastui-supertree-node
+{
+	position:absolute;
+	left:0;top:0;width:100%;height:100%;overflow:hidden;	
+}
+.fastui-supertree-nodetext
+{
+	white-space:nowrap; 
+}
+.fastui-supertree-ec-icon
+{
+	width:18px;height:18px;overflow:hidden;position:absolute;background:red;
+	top:1px;
+	background:no-repeat 50% 50%;
+}
+.fastui-supertree-expand .fastui-supertree-ec-icon
+{
+	background-image:url(images/supertree/expand.gif);
+}
+.fastui-supertree-collapse .fastui-supertree-ec-icon
+{
+	background-image:url(images/supertree/collapse.gif);
+}
+.fastui-supertree-nodeicon
+{
+    width:18px;height:18px;overflow:hidden;    
+    position:absolute;
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+}
+
+body .fastui-supertree-loading .fastui-supertree-ec-icon
+{
+    background:#fff url(images/tree/loading.gif) no-repeat scroll 50% 50%;
+}
+.fastui-gantt
+{
+    overflow:hidden;
+    position:relative;
+    border:#9ebcd6 1px solid;
+    cursor:default;
+    text-align:left;
+}
+.fastui-gantt-splitter
+{
+    position:absolute;
+    left:0;top:0;
+    width:6px;height:100%;
+    background:white;
+    cursor:w-resize;
+    z-index:60;
+}
+.fastui-gantt .fastui-ganttview
+{
+    border:0;    
+    position:relative;
+    z-index:100;
+}
+.fastui-ganttview
+{
+    position:absolute;
+    overflow:hidden;
+    border:0;    
+    top:0;right:0;
+    z-index:50;
+    background:white;
+}
+.fastui-ganttview-header
+{
+    height:36px;width:100%;
+    overflow:hidden;
+    background:url(images/gantt/header.gif) repeat-x 0 bottom;    
+    border-bottom:#d4d6d9 1px solid;    
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+}
+.fastui-ganttview-viewport
+{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    z-index:10;
+}
+.fastui-ganttview-headercell
+{
+    cursor:default;
+    overflow:hidden;
+    position:absolute;
+    left:0;
+    top:0;
+    height:25px;
+    line-height:14px;    
+    border-top:#fff 1px dotted;
+	border-bottom:#d4d6d9 1px solid;
+    border-right:#d4d6d9 1px solid;    
+    padding:0px;
+    background:url(images/gantt/header.gif) repeat-x 0 bottom;
+    text-align:center;
+    white-space:nowrap;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+}
+.fastui-ganttview-toptimescale, .fastui-ganttview-bottomtimescale
+{
+    position:absolute;
+    overflow:hidden;
+    width:100%;
+}
+.fastui-ganttview-toptimescale .fastui-ganttview-headercell
+{
+    text-align:left;padding-left:4px;
+}
+.fastui-gantt-label
+{
+    position:absolute;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    z-index:100;
+    white-space:nowrap;
+}
+.fastui-gantt-item
+{
+    position:absolute;
+    overflow:hidden;
+    left:0;top:0;
+    border:blue;
+    border:solid 1px #0031ff;
+    font-family:tahoma,arial,verdana,sans-serif;
+    font-size:9pt;
+    z-index:100;
+    background:url(images/gantt/taskbg.gif);     
+}
+.fastui-gantt-percentcomplete
+{
+	position:absolute;overflow:hidden;
+	background:blue;height:4px;left:-1px;width:40px;top:50%;margin-top:-2px;
+}
+.fastui-gantt-critical
+{
+	border:solid 1px #dd5040;
+	
+}
+.fastui-gantt-critical .fastui-gantt-percentcomplete
+{	
+	background:#f73823;
+}
+.fastui-gantt-track .fastui-gantt-percentcomplete
+{
+    top:0;height:10px;
+}
+.fastui-gantt-baseline
+{
+    border:solid 1px #000;
+}
+.fastui-gantt .fastui-gantt-baselinemilestone
+{
+    background:url(images/gantt/baseline-milestone.gif) no-repeat;
+    z-index:90;
+}
+.fastui-gantt-milestone
+{	
+	margin-top:4px;
+	width:12px;
+	height:12px;
+	border:0;
+	background:url(images/gantt/milestone.gif) no-repeat;
+}
+.fastui-gantt-summary
+{		    
+	border:0;
+	background:#58629b;
+	overflow:visible;
+	height:6px;
+}
+.fastui-gantt-summary-left, .fastui-gantt-summary-right
+{
+    position:absolute;
+    overflow:hidden;
+    width:5px;height:12px;
+    background:url(images/gantt/summary.gif) no-repeat;
+    left:0;top:0;
+}
+.fastui-gantt-summary-right
+{
+    background-position:right top;
+    left:auto;right:0;
+}
+
+.fastui-ganttview-linklines, .fastui-ganttview-gridlines
+{
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:10;
+    width:1px;
+    height:1px;
+}
+.fastui-ganttview-linklines
+{
+    z-index:15;
+}
+.fastui-ganttview-cells
+{
+    z-index:20;
+    overflow:visible;
+    width:1px;
+    height:1px;
+}
+.fastui-gantt-row
+{
+    z-index:5;
+    position:absolute;
+    left:0;top:0;width:100%;
+    overflow:hidden;
+    border-bottom:solid 1px #dedede;
+    cursor:default;
+}
+.fastui-gantt-column
+{
+    z-index:1;
+    position:absolute;
+    left:0;top:0;height:100%;
+    overflow:hidden;
+    border-right:solid 1px #dedede;
+    cursor:default;
+}
+.fastui-gantt-offday
+{
+    background:#eee;
+}
+.fastui-gantt-line
+{
+	background:#2f51d3;position:absolute;width:1px;height:1px;overflow:hidden;	
+}
+.fastui-gantt-line-critical
+{
+	background:#dd5040;
+}
+.fastui-gantt-arrow-left
+{
+	width:6px;height:9px;background:url(images/gantt/arrow_blue_left.gif) no-repeat;
+	margin-top:-4px;margin-left:0px;
+}
+.fastui-gantt-arrow-right
+{
+	width:6px;height:9px;background:url(images/gantt/arrow_blue_right.gif) no-repeat;
+	margin-top:-4px;margin-left:-5px;
+}
+.fastui-gantt-arrow-top
+{
+	width:9px;height:5px;background:url(images/gantt/arrow_blue_up.gif) no-repeat;
+	margin-left:-4px;
+}
+.fastui-gantt-arrow-bottom
+{
+	width:9px;height:5px;background:url(images/gantt/arrow_blue_down.gif) no-repeat;
+	margin-top:-5px;margin-left:-4px;
+}
+.fastui-gantt-arrow-left-critical
+{
+	background-image:url(images/gantt/arrow_red_left.gif);
+}
+.fastui-gantt-arrow-right-critical
+{
+	background-image:url(images/gantt/arrow_red_right.gif);
+}
+.fastui-gantt-arrow-top-critical
+{
+	background-image:url(images/gantt/arrow_red_up.gif);
+}
+.fastui-gantt-arrow-bottom-critical
+{
+	background-image:url(images/gantt/arrow_red_down.gif);
+}
+.fastui-ganttview-vscrolltooltip
+{
+	position:absolute;border:solid 1px black;background:#ffffe1;right:20px;top:30px;padding:3px;z-index:10000;display:none;
+}
+.fastui-ganttview-hscrolltooltip
+{
+	position:absolute;border:solid 1px black;background:#ffffe1;left:3px;bottom:21px;padding:3px;z-index:10000;display:none;
+}
+.fastui-ganttview-tooltip
+{
+	position:absolute;border:solid 1px black;background:#ffffe1;padding:5px;z-index:1000;display:none;
+	line-height:16px;padding-left:5px;padding-right:5px;width:180px;font-family:宋体;font-size:12px;
+}
+.fastui-gantt-resize-start, .fastui-gantt-resize-finish, .fastui-gantt-resize-percentcomplete
+{
+	position:absolute;top:0px;left:0px;width:0px;height:0px;overflow:hidden;
+	cursor:w-resize;z-index:120;
+    background:red;
+    opacity: .0;-moz-opacity: .0;filter: alpha(opacity=0);
+}
+.fastui-gantt-resize-percentcomplete
+{
+	cursor:col-resize;
+	z-index:130;
+}
+.fastui-gantt-resize-finish
+{
+    z-index:150;
+}
+.fastui-gantt-move
+{
+    cursor:move;
+}
+
+.fastui-gantt-constraint2, .fastui-gantt-constraint3
+, .fastui-gantt-constraint4, .fastui-gantt-constraint5
+, .fastui-gantt-constraint6, .fastui-gantt-constraint7
+{
+	background:url(images/gantt/constraint-finish.gif) center center no-repeat;
+	width:16px;
+	height:20px;
+	overflow:hidden;
+	float:left;
+	display:block;
+	position:relative;
+	top:0px;
+}
+.fastui-gantt-constraint4, .fastui-gantt-constraint5
+{
+	background-image:url(images/gantt/constraint-start.gif);
+}
+
+.fastui-gantt-taskstatus
+{
+	background:url(images/gantt/taskstatus.gif) center center;
+	width:16px;
+	height:16px;
+	overflow:hidden;
+}
+.fastui-gantt-finished, .fastui-gantt-notes, .fastui-gantt-milestone-green, .fastui-gantt-milestone-red,.fastui-gantt-project
+,.fastui-gantt-conflict
+{
+	background:url(images/gantt/finished.gif) center center no-repeat;
+	width:16px;
+	height:20px;
+	overflow:hidden;
+	float:left;
+	display:block;
+	position:relative;
+	top:0px;
+}
+.fastui-gantt-subproject
+{
+	background-image:url(images/gantt/project-icon.gif);
+}
+.fastui-gantt-notes
+{
+	background-image:url(images/gantt/notes.gif);
+}
+.fastui-gantt-milestone-red
+{
+	background-image:url(images/gantt/milestone-red.gif);
+}
+.fastui-gantt-conflict
+{
+	background-image:url(images/gantt/warning.png);
+}
+.fastui-gantt-timeline
+{
+	position:absolute;left:0;top:0;width:1px;height:1000px;overflow:hidden;
+	background:blue;
+	z-index:1000;
+}
+.fastui-gantt-gvdp
+{	
+	width:12px;
+	height:12px;
+	border:0;
+	background:url(images/gantt/gvdp.gif) no-repeat;
+}
+.fastui-gantt-gvdp .s-gantt-percentcomplete
+{
+	display:none;
+}
+
+.fastui-rgantt 
+{
+    
+}
+.fastui-rgantt  .fastui-splitter-border
+{
+    border:#2d2c2c 1px solid;
+}
+.fastui-rgantt .fastui-splitter-handler
+{
+    border-left:1px solid #232930;
+    border-right:1px solid #232930;
+}
+
+.fastui-rgantt .fastui-supergrid-headercell
+,.fastui-rgantt .fastui-ganttview-headercell
+{
+    background:url(images/rgantt/hdbg.gif) repeat-x 0 -5px;
+    border-top:0;
+	border-bottom:#2d2c2c 1px solid;
+    border-right:#2d2c2c 1px solid;       
+    color:#232930;
+}
+.fastui-rgantt .fastui-supergrid-headercell
+{
+    background:url(images/rgantt/hdbg.gif) repeat-x 0 0px;
+}
+.fastui-rgantt .fastui-ganttview-header
+,.fastui-rgantt .fastui-supergrid-header
+{
+    border-bottom:#2d2c2c 1px solid;
+}
+.fastui-rgantt .fastui-supergrid-cell 
+{
+    border-right:solid 1px #c0c0c0;
+    border-bottom:solid 1px #c0c0c0;
+}
+.fastui-rgantt .fastui-gantt-row
+{
+    border-bottom:solid 1px #c0c0c0;
+}
+.fastui-rgantt .fastui-gantt-column
+{
+    border-right:solid 1px #c0c0c0;
+}
+
+
+.fastui-rgantt .fastui-gantt-item
+{
+    border:solid 1px #404040;
+    background:none;    
+}
+.fastui-gantt-itembg
+{
+    position:absolute;overflow:hidden;
+    margin:0;padding:0;
+    top:0;left:0;width:100%;height:100%;z-index:5;   
+    background:#dbedff url(images/rgantt/bg.gif) repeat-x;    
+}
+.fastui-rgantt .fastui-gantt-percentcomplete
+{
+    position:absolute;overflow:hidden;
+    margin:0;padding:0;
+    top:0;left:0;height:100%;z-index:8;   
+    background:#70b8ff url(images/rgantt/pc_03.gif) repeat-x;
+    border-right:solid 1px #777474;
+    box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;    
+}
+.fastui-gantt-text
+{
+    position:absolute;overflow:hidden;
+    top:0;left:0;
+    width:100%;height:100%;z-index:10;
+    text-align:center;
+    line-height:15px;
+    font-size:11px;
+}
+.fastui-gantt-cross
+{
+    position:absolute;overflow:hidden;
+    top:0;left:0;z-index:10;height:3px;
+    background:#e30909;
+}
+.fastui-rgantt .fastui-ganttview-cells .fastui-gantt-selected
+{
+    border:solid 1px red;
+    z-index:120;
+}
+
+.fastui-gantt-proxy
+{
+    position:absolute;
+    overflow:hidden;
+    z-index:100000000;
+    background:gray;
+    border:solid 1px black;
+    opacity: .4;-moz-opacity: .4;filter: alpha(opacity=40);
+}
+.fastui-gantt-dragicon
+{
+    position:absolute;
+    overflow:hidden;
+    z-index:100000000;
+    width:16px;height:16px;
+    background:url(images/rgantt/cancel.gif) no-repeat;
+    display:none;
+}

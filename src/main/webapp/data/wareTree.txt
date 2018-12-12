@@ -1,0 +1,23 @@
+[
+	{id:"ckgl", text:"仓库管理",iconCls: "icon-node",url:""},
+	
+	{id: "kfdy", text: "库房定义", pid:"ckgl", iconCls:"icon-ok",url:"warehouseDefi/mainIndex.jsp"},
+	{id: "dqkc", text: "库存信息", pid: "ckgl", iconCls: "icon-ok",url:"Stock/mainIndex.jsp"},
+	{id:"ll", text: "领料", pid:  "ckgl", iconCls: "icon-ok",url:"Lingliao/mainIndex.jsp"},
+	{id:"tl", text: "退料", pid:  "ckgl", iconCls: "icon-ok",url:"Tuiliao/mainIndex.jsp"},
+	{id: "jkgl", text: "入库", pid: "ckgl", iconCls: "icon-ok",url:"Checkin/mainIndex.jsp"},
+	{id: "outcl", text: "出库", pid: "ckgl", iconCls: "icon-ok",url:"Checkout/mainIndex.jsp"},
+	{id:"kcpd", text: "库存盘点", pid:  "ckgl", iconCls: "icon-add",url:"WarehouseCount/mainIndex.jsp"},
+	
+	{id: "cggl", text: "采购管理", iconCls: "icon-node", url:""},
+	{id: "gysxx", text: "供应商信息",  pid:  "cggl", iconCls:"icon-ok",url:"PO/supplierMainIndex.jsp"},
+	{id: "cgdh", text: "采购订货", pid:  "cggl", iconCls: "icon-ok", url:"PO/mainIndex.jsp"},
+	{id: "cgfk", text: "采购付款", pid:  "cggl", iconCls: "icon-wait", url:"PO/payIndexmain.jsp"},
+	{id: "cgsh", text: "采购收货", pid:  "cggl", iconCls: "icon-ok", url:"PO/PrmainIndex.jsp"},
+	{id: "cgth", text:"采购退货", pid:  "cggl", iconCls: "icon-ok",	url:"PO/RemainIndex.jsp"}
+	
+	
+	
+	
+
+]
