@@ -1,18 +1,23 @@
 package service.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+
 import javaBean.machineInfo5505;
+import javaBean.machineInfoSiemens;
 import mapper.UserMapper;
 import service.selectMachineInfoService;
 
 
 @Service
-public  class selectMachineInfoServiceImpl implements selectMachineInfoService {
+public   class selectMachineInfoServiceImpl implements selectMachineInfoService {
 	@Resource
 	UserMapper userMapper;
 	
@@ -24,6 +29,7 @@ public  class selectMachineInfoServiceImpl implements selectMachineInfoService {
 	 * */
 	/*@Resource
 	ApplicationContext applicationContext；*/
+	
 	public machineInfo5505 selectMachineInfo5505ById(String machineId) {
 		
 		/*applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");  */
@@ -31,12 +37,39 @@ public  class selectMachineInfoServiceImpl implements selectMachineInfoService {
 		
 		try {
 
-			return userMapper.selectMachineInfo5505ById(machineId);
+			return userMapper.machineInfo5505(machineId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
+	@Override
+	public String selectTotalMachineInfo(String machineId5501, String machineId5502, String machineId5503,
+			String machineId5513, String machineId5505) {
+		machineInfoSiemens  machineInfoSiemens1 =userMapper.selectTotalMachineInfo5501ById(machineId5501);
+		machineInfoSiemens  machineInfoSiemens2 =userMapper.selectTotalMachineInfo5502ById(machineId5502);
+		machineInfoSiemens  machineInfoSiemens3 =userMapper.selectTotalMachineInfo5503ById(machineId5503);
+		machineInfoSiemens  machineInfoSiemens4 =userMapper.selectTotalMachineInfo5513ById(machineId5513);
+		machineInfo5505      machineInfo5505    =userMapper.selectTotalMachineInfo5505ById(machineId5505);
+		
+		@SuppressWarnings("rawtypes")
+		List list =new ArrayList();
+		
+		list.add(machineInfoSiemens1);
+		list.add(machineInfoSiemens2);
+		list.add(machineInfoSiemens3);
+		list.add(machineInfoSiemens4);
+		list.add(machineInfo5505);
+		
+		String json = PluSoft.Utils.JSON.Encode(list);
+	
+		return json;
+	
+	}
+
+
+
 
 	
 

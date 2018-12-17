@@ -4,7 +4,7 @@
   <cache-ref namespace=""/>
 </mapper> -->
 <mapper namespace="mapper.UserMapper">
-	<select id="selectMachineInfo5505ById" parameterType="String" resultType="javaBean.machineInfo5505">
+	<select id="machineInfo5505" parameterType="String" resultType="javaBean.machineInfo5505">
 		select * from machine_5505 where machineId=#{machineId}
 	</select>
 	
@@ -12,5 +12,34 @@
 
 		select * from MACHINFO t  where machineId=#{id}
 	</select>
+	
+	<select id="selectTotalMachineInfo5501ById" parameterType="String" resultType="javaBean.machineInfoSiemens">
+		select * from machine_5501 where machineId=#{machineId}
+	</select>
+	
+
+	
+	<select id="selectTotalMachineInfo5502ById" parameterType="String" resultType="javaBean.machineInfoSiemens">
+		select * from machine_5502 where machineId=#{machineId}
+	</select>
+
+	
+	<select id="selectTotalMachineInfo5503ById" parameterType="String" resultType="javaBean.machineInfoSiemens">
+		select * from machine_5503 where machineId=#{machineId}
+	</select>
+	
+	
+	
+	<select id="selectTotalMachineInfo5513ById" parameterType="String" resultType="javaBean.machineInfoSiemens">
+		select * from machine_5513 where machineId=#{machineId}
+	</select>
+	
+
+	
+	<select id="selectTotalMachineInfo5505ById" parameterType="String" resultType="javaBean.machineInfo5505">
+		select * from machine_5505 where machineId=#{machineId}
+	</select>
+	
+
 </mapper>
 

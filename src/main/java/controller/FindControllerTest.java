@@ -59,6 +59,23 @@ public class FindControllerTest {
 		/*System.out.println(user.getMachineName());
 		return user.toString();*/
 	}
+	
+	@RequestMapping(value="DataShows/totalDataFeedback.action",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+    public String totalDataFeedback(){ 
+	
+		String json  = selectMachineInfoService.selectTotalMachineInfo("5501","5502","5503","5513","5505");
+		//model.addAttribute("machineName",user);
+		//String json=PluSoft.Utils.JSON.Encode(user);
+		
+	
+		
+		System.out.println(json);
+		
+		return json;//转向首页
+
+		
+	}
 
 	
 	 
