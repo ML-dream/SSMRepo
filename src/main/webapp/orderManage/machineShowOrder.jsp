@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@ page language="java" import="java.util.*,com.wl.forms.Employee" pageEncoding="utf-8"%>
 <html>
+ 
 <head>
     <title>场地预约</title>
     
@@ -230,7 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                      onclick="onSelectVenues(this)">
                                     <div class="apply_img">
                                         <img src="{{item.picture}}"
-                                             onerror="javascript:this.src='<%=path %>/resource/images/ic_default_circle.png'"/>
+                                             onerror="javascript:this.src='<%=path %>/resource/images/machine.jpg'"/>
                                     </div>
                                     <div class="apply_info">
                                         <a href="javascript:void(0);">{{item.name}}</a>
@@ -293,6 +294,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                            aria-expanded="false">
                                                             {{if item.isToday}}
                                                             <p class="text-font16 m-n text-block">今天</p>
+                                                            {{else if item.week ==0}}
+                                                            <p class="text-font16 m-n text-block">周日</p>
                                                             {{else if item.week ==1}}
                                                             <p class="text-font16 m-n text-block">周一</p>
                                                             {{else if item.week ==2}}
@@ -302,11 +305,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                             {{else if item.week ==4}}
                                                             <p class="text-font16 m-n text-block">周四</p>
                                                             {{else if item.week ==5}}
-                                                            <p class="text-font16 m-n text-block">周五</p>
+                                                            <p class="text-font16 m-n text-info">周五</p>
                                                             {{else if item.week ==6}}
                                                             <p class="text-font16 m-n text-info">周六</p>
-                                                            {{else if item.week ==7}}
-                                                            <p class="text-font16 m-n text-info">周日</p>
                                                             {{/if}}
                                                             <p class="m-n text-muted">{{item.date}}</p>
                                                         </a>
@@ -566,7 +567,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </article>
     <!-- 内容部分结束 -->
 
-    <form id="order-form" name="order-form" action="bookingSubmit" method="post" onsubmit="return saveReport()  style="display: none;">
+    <form id="order-form" name="order-form" action="bookingSubmit" method="post" >
         <input id="temp_order_content" name="order" type="hidden"/>
     </form>
 </div>
@@ -611,6 +612,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var curVenuesName;
     var allVenues;//所有场馆
     var userTypeId = U.transfer('1');
+    //一下两个变量是用于对于保存后的二次加载，没有搞清出他们为社么需要重新初始化！！以后在了解
+    var curVenuesIdSecond;
+    var curDate;
+    
     console.log("user type=" + userTypeId);
     
     
@@ -707,6 +712,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var id = $(obj).data('id');
         var name = $(obj).data('name');
         curVenuesId = id;
+        curVenuesIdSecond=id;
         curVenuesName = name; 
         resetOrder();//重置清空订单信息
 
@@ -725,8 +731,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $('#dataLine_container').find('a').removeClass('active');
         $(obj).find('a').addClass('active');
         $(obj).removeClass('active');
-
+		
         date = $(obj).data('date');
+        curDate=date;
         initSessions(date);
     }
 
@@ -735,7 +742,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      */
     function initAllVenues() {
         U.ajax({
-            url: "resource/list.txt",// 请求URL
+            url: "/SSM/resource/list.txt",// 请求URL
             data: {},
             loading: true,
             success: function (data, status) {
@@ -799,7 +806,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	 if (data.no == 2000) {
                      var html = template("dataLine_tmpl", data);
                      $("#dataLine_container").html(html);
-
+					
                      $('#dataLine_container').find('a:first').trigger('click');
                  } else {
                      U.msg("获取场馆可选日期失败");
@@ -813,7 +820,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      * 初始化场次
      */
     function initSessions(date) {
-        
     	 $.ajax({
              type: "POST",
              url: "load",
@@ -1063,7 +1069,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             //跳转到订单确认页面，因为参数数据量大，所以必须采取form方式POST传参并跳转
             $('#temp_order_content').val(JSON.stringify(order));
-            $('#order-form').submit();//上面那个地方有地址
+            saveReport();
+            /* $('#order-form').submit(); *///上面那个地方有地址
         } else {
             U.msg('请先选择场次或服务');
         }
@@ -1071,11 +1078,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     function saveReport() { 
     	// jquery 表单提交 
-    	$("#order-form").ajaxSubmit(function(message) { 
+    	/* $("#order-form").ajaxForm(function(message) { 
     	
     		alert(message.result);// 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容 
     	}); 
-    	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+    	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 */
+    	var formData=document.getElementById("temp_order_content").value;
+    	 $.ajax({
+             type:"POST",
+             url:"bookingSubmit",
+            
+             
+             data: {order: formData},
+             dataType: "json",
+             success:function(data){
+            	 U.msg(data.result);
+               //alert(data.result);
+             //  initAllVenues();
+              //initDateLines(curVenuesIdSecond);
+             	 resetOrder();
+               initSessions(curDate);  
+              // bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件， 
+             } ,
+             error:function(data){
+              alert(data.result);
+             } 
+         });
+    	
     	}
     
   

@@ -106,7 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	mini.parse();
 	    var grid = mini.get("grid1");
-	    grid.load();
+	    var orderId=<%=request.getParameter("orderId")%>
+	    grid.load({orderId:orderId});
 	    
 	    function onOperatePower(e) {
 	        var str = "";

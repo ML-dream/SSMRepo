@@ -29,7 +29,7 @@ public class AddSysUsersServlet extends HttpServlet {
 	throws ServletException, IOException {
 		String userId= ChineseCode.toUTF8(request.getParameter("userId").trim());
 		String staffCode= ChineseCode.toUTF8(request.getParameter("staffCode"));
-		String userName= ChineseCode.toUTF8(request.getParameter("userName").trim());
+		String userName= request.getParameter("userName").trim();
 		String password= ChineseCode.toUTF8(request.getParameter("password").trim());
 		password = MD5.MD5Convert(password);
 		String authority= ChineseCode.toUTF8(request.getParameter("authority").trim());

@@ -359,7 +359,10 @@ body .mini-error .mini-textboxlist-border
 {
     background:#f8f8f8;
 }
-
+.mini-grid-column-trigger
+{
+    border-color:#ddd;
+}
 .mini-grid-headerCell,
 .mini-grid-topRightCell,
 .mini-grid-columnproxy

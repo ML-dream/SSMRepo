@@ -60,7 +60,7 @@ public class AddEmployeeServlet extends HttpServlet {
 				technicalGrade+"','"+address+"','"+officePhne+"','"+mobilePhone+"','"+
 				homePhone+"','"+position+"','"+workTime+"','"+RFIDCode+"','"+QQ+"','"+email+"',to_date('"+birthday+"','yyyy-mm-dd,hh24:mi:ss'),'"+
 				fee+"','"+IDCard+"',to_date('"+joinTime+"','yyyy-mm-dd,hh24:mi:ss'),'N')";
-		System.out.println("addMachineSql=="+addEmployeeSql);
+		System.out.println("addMachineSql=="+addEmployeeSql);  
 		
 		//######################################################################//
 		

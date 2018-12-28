@@ -93,7 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="endTime" width="80" headerAlign="center"  dateFormat="yyyy 年 MM 月 dd 日">交付日期
             </div>
-            <div field="orderStatus" width="60" headerAlign="center" renderer="onGenderRenderer">订单状态
+            <div field="bookStatus" width="60" headerAlign="center" align="center" renderer="onGenderRenderer">预约状态
+            
             </div>
         </div>
     </div>
@@ -163,12 +164,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	    //var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
         
-        var Genders=[{id: "1", text: "新建"},{id: "2", text: "待审核"},{id: "3", text: "提交上级审核"},{id: "4", text: "审核不通过"},{id: "5", text: "审核通过"},	
+        var orderGenders=[{id: "1", text: "待预约 "},{id: "2", text: "待审核"},{id: "3", text: "提交上级审核"},{id: "4", text: "审核不通过"},{id: "5", text: "审核通过"},	
 	                {id: "6", text: "备料"},{id: "7", text: "代加工"},{id: "8", text: "加工中"},{id: "9", text: "完成"},{id: "10", text: "交付中"},{id: "11", text: "交付完成"}]
+        
+        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "提交上级审核"},{id: "14", text: "审核不通过"},{id: "15", text: "审核通过"},{id: "16", text: "交付完成"}]
+        
+        
 //	    var Genders = [{id: "1", text: "新建"},{id: "2", text: "备料"},{id: "3", text: "代加工"},{id: "4", text: "加工中"},{id: "5", text: "完成"}];
         function onGenderRenderer(e) {
-            for (var i = 0, l = Genders.length; i < l; i++) {
-                var g = Genders[i];
+            for (var i = 0, l = bookGenders.length; i < l; i++) {
+                var g = bookGenders[i];
                 if (g.id == e.value) return g.text;
             }
             return "";

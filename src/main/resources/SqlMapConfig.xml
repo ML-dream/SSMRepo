@@ -4,6 +4,7 @@
 	<settings>
 		<setting name="logImpl" value="LOG4J"/>
 		<setting name="mapUnderscoreToCamelCase" value=""/>
+		<setting name="mapUnderscoreToCamelCase" value="true" /> 
 	</settings>
 <!-- 	<environments default="development">
 		<environment id="development">
@@ -24,4 +25,6 @@
 		<mapper class="po.UserMapper"/> 
 		<package name="mapper"/> 
 	</mappers> -->
+	 
+	 
 </configuration>

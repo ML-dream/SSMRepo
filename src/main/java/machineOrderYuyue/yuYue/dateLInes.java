@@ -45,14 +45,14 @@ public class dateLInes extends HttpServlet {
 			
 	        ArrayList<dateContent> dateContentList = new ArrayList<dateContent>();
 	        
-	        for(int i=0;i<9;i++){
+	        for(int i=0;i<18;i++){
 	        	
 	        	dateContent dateContent = new dateContent();
 	        	calendar2.add(Calendar.DATE, 0);
 	        	dateContent.setDate(sdf2.format(calendar2.getTime()));
 	        	dateContent.setIsSelected(false);
 	        	dateContent.setIsToday(false);
-	        	dateContent.setWeek(calendar2.get(Calendar.DAY_OF_WEEK));
+	        	dateContent.setWeek(calendar2.get(Calendar.DAY_OF_WEEK)-1);
 	        	dateContentList.add(dateContent);
 	        	calendar2.add(Calendar.DATE, 1);
 	        }

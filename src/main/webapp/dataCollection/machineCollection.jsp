@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   <div id="layout1" class="mini-layout" style="width:100%;height:100%;">
 		    <div showHeader="false" region="west" width="180" maxWidth="250" minWidth="100" >
 		    	<a class="mini-button" iconCls="icon-reload" plain="false" onclick="refresh()" >刷新</a>
+		    	<a class="mini-button" iconCls="icon-reload" plain="false" onclick="vison()" >可视化显示</a>
 		        <ul id="leftTree" class="mini-tree" url="SearchMachineInfo" style="width:100%;height:95%;" 
                     showTreeIcon="true" textField="text" idField="id" resultAsTree="false"  
                     onnodeselect="onNodeSelect"  >        
@@ -72,6 +73,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        function refresh(){
 				var tree = mini.get("leftTree");
 				tree.load();
+		    }
+	        
+	        function vison(){
+	        	window.open("DataShows/totalVison.jsp");
 		    }
 		</script>
 	</body>

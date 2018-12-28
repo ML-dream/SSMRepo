@@ -324,9 +324,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
    <div id="grid1" class="cals" style="padding:2px;border-top:50;border-left:10;position:relative;border-right:0;width:100%;height:150px;">
-   		 <div id="container" style="height:150%;margin:0px auto;margin-top:0px;margin-left:220px;"></div>
+   		 <div id="container" style="height:150%;margin:0px auto;margin-top:0px;margin-left:27%;"></div>
    		  <div id="container1" style="height:150%;"></div>
    		   <div id="container2" style="height:150%;"></div>
+   		   
+   		   
+   		   
    		   
    	<fieldset style="width: 100%;" align="center">
 		<legend>

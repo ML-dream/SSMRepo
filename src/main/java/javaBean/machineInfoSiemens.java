@@ -5,6 +5,7 @@ package javaBean;
 public class machineInfoSiemens {
 	
 	private String machineIp;
+	private String machineSystem;
 	private String machineName;
 	private String machineId;
 	private String createTime;
@@ -57,6 +58,12 @@ public class machineInfoSiemens {
 	
 	
 	
+	public String getMachineSystem() {
+		return machineSystem;
+	}
+	public void setMachineSystem(String machineSystem) {
+		this.machineSystem = machineSystem;
+	}
 	public String getMachineName() {
 		return machineName;
 	}

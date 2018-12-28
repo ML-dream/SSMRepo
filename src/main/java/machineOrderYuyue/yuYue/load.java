@@ -48,7 +48,7 @@ public class load extends HttpServlet {
 		
 		if(deptId1.equals("551")){
 			machineNames.add("数控电火花成形机床");
-			machineNames.add("数控低速走丝电火花线切割机床");
+			machineNames.add("数控低速走丝电火花线切割");
 			machineNames.add("数控高速成型磨床");
 			machineNames.add("超精密成形平面磨床");				
 			machineNames.add("数控车床");

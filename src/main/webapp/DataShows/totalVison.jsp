@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-<title>法兰克系统实时显示界面</title>   
+<title>智能制造数据可视化系统</title>   
 
  <script type="text/javascript" src="<%=path %>/staticResources/js/echarts.js"></script>
 <script type="text/javascript" src="<%=path %>/staticResources/js/jquery.min.js"></script>
@@ -23,10 +23,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <style> 
+
+/* html, body {
+    width: 100%;
+} */
 /* .container,.container1,.container2{ float:left}  没有用*/
 .box {
 	
-/* 	border-style: groove; */
+	//border-style: groove; 
 	border-radius: 15px;
 	
 
@@ -41,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	left:0px;
 	top:0px;
 	border-radius: 15px;
-/* 	border-style: groove; */
+ 	//border-style: groove; 
 	   text-align:center;
 }
   #boxclass2 {
@@ -51,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	right:0px;
 	top:0px;
 	border-radius: 15px;
-/* 	border-style: groove; */
+ //	border-style: groove; 
 	   text-align:center;
 	
 }
@@ -62,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	left:31%;
 	top:0px;
 	border-radius: 15px;
-/* 	border-style: groove; */
+// 	border-style: groove; 
 	   text-align:center;
 }
   
@@ -184,7 +188,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         {
             float: left;
             margin: 0;
-            width: 53%;
+            width: 63%;  //这个 表示input所在的div的大小
+            
         }
 
         ul h3
@@ -193,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-size: 3%;
             font-weight: bold;
             margin: 1px 0 0 0;
-            width: 34%;
+            width: 35%;   /* 这个是控制左边相距编边界的距离 */
             margin-left:1%;
         }
 
@@ -208,7 +213,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         {
 
-            width:50%;
+            width:75%;/* 这个是控制input的大小的 */
             padding:1.1%;
             position:relative;
 			  border:solid 1% #00FFFF; 
@@ -250,85 +255,81 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div id="boxclass3">
 
-<div class="title" id="TopTitle"><h1><strong>南航机电学院实验室实时显示系统</strong></h1></div>
+<div class="title" id="TopTitle"><h1><strong>智能制造数据可视化系统</strong></h1></div>
 
 
 <div class="box" id="box3"  >
-
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<!-- <a href="链接的地址"><img src="图片的URL" width="图片的宽度" height="图片的高度" border="边框"></a> -->
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片1.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
 <h3>机床IP</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<p><input type="text" value="" id="machineIp5505" name="machineIp5505" /></p>
 </li>
 
 <li>
-<h3>机床名称</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>机床名称5505</h3>
+<p><input type="text" value="" id="machineName5505" name="machineName5505" /></p>
 </li>
 
 <li>
 <h3>操作系统</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<p><input type="text" value="" id="machineSystem5505" name="machineSyetem5505" /></p>
 </li>
 <li>
-<h3>主轴倍率</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>主轴数</h3>
+<p><input type="text" value="" id="spindleNum5505" name="spindleNum5505" /></p>
 </li>
 
 <li >
 <h3>主轴负载率</h3>
-<p><input type="text" value="" id="name" name="name" /></p>
+<p><input type="text" value="" id="spindleLoad5505" name="spindleLoad5505" /></p>
 </li>
 
 <li>
 <h3>主轴转速</h3>
-<p><input type="text" value="" id="name" name="email" /></p>
+<p><input type="text" value="" id="spindleSpeed5505" name="spindleSpeed5505" /></p>
 </li>
 
 <li>
 <h3>实际进给速度</h3>
-<p><input type="text" value="" id="name" name="passwd" /></p>
-</li>
-
-<li>
-<h3>实际进给倍率</h3>
-<p><input type="text" value="" id="name" name="passwd_conf" /></p>
-</li>
-
-<li>
-<h3>报警信息</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<p><input type="text" value="" id="factFeedSpeed5505" name="factFeedSpeed5505" /></p>
 </li>
 
 <li>
 <h3>报警编号</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<p><input type="text" value="" id="alarmNum5505" name="alarmNum5505" /></p>
 </li>
 
 <li>
-<h3>当前程序的程序名称</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>报警信息</h3>
+<p><input type="text" value="" id="alarmInfo5505" name="alarmInfo5505" /></p>
+</li>
+
+
+<li>
+<h3>当前程序的程序</h3>
+<p><input type="text" value="" id="runMode5505" name="runMode5505" /></p>
 </li>
 <li>
-<h3>启动以来的时间</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>运行时间</h3>
+<p><input type="text" value="" id="runTime5505" name="runTime5505" /></p>
 </li>
 <li>
-<h3>程序状态</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>运行状态</h3>
+<p><input type="text" value="" id="runCondition5505" name="runCondition5505" /></p>
 </li>
 <li>
-<h3>刀具啮合时间</h3>
-<p><input type="text" value="" id="userName" name="user_name" /></p>
+<h3>运行程序编号</h3>
+<p><input type="text" value="" id="runProgramNum5505" name="runProgramNum5505" /></p>
 </li>
 
 </ul>
 </div>
 
 <div class="box" id="box4">
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片2.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -337,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </li>
 
 <li>
-<h3>机床名称</h3>
+<h3>机床名称5504</h3>
 <p><input type="text" value="" id="userName" name="user_name" /></p>
 </li>
 
@@ -406,7 +407,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="box"  id="boxclass1">
 
 <div class="box"  id="box1"  >
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片5.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -480,7 +481,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="box" id="box2">
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片3.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -559,7 +560,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="boxclass2">
 
 <div class="box" id="box5">
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片6.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -632,7 +633,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div> 
 
 <div class="box" id="box6">
-<h2><img src="http://localhost:8080/SSM/staticResources/image/chexifuhe.jpg" alt="Account information" /></h2>
+<h2><a href="http://localhost:8080/SSM/FANUCshowData.jsp"><img src="http://localhost:8080/SSM/staticResources/image/图片4.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -851,6 +852,22 @@ $(function(){
            document.getElementById('poweronTime5513').value=msg[3].poweronTime;
            document.getElementById('progStatus5513').value=msg[3].progStatus;
            document.getElementById('cuttingTime5513').value=msg[3].cuttingTime;
+           
+           
+           document.getElementById('machineName5505').value=msg[4].machineName; 
+           document.getElementById('machineIp5505').value=msg[4].machineIp;   
+           document.getElementById('machineSystem5505').value=msg[4].machineSystem;
+           document.getElementById('spindleNum5505').value=msg[4].spindleNum;
+           document.getElementById('spindleLoad5505').value=msg[4].spindleLoad;
+           document.getElementById('spindleSpeed5505').value=msg[4].spindleSpeed;
+           document.getElementById('factFeedSpeed5505').value=msg[4].factFeedSpeed;
+           document.getElementById('alarmNum5505').value=msg[4].alarmInfo;
+           document.getElementById('alarmInfo5505').value=msg[4].fillText;
+           document.getElementById('runMode5505').value=msg[4].runMode;
+           document.getElementById('runTime5505').value=msg[4].runTime;
+           document.getElementById('runCondition5505').value=msg[4].runCondition;
+           document.getElementById('runProgramNum5505').value=msg[4].runProgramNum;
+          // document.getElementById('cuttingTime5505').value=msg[4].cuttingTime;
 		   
 		
 		},

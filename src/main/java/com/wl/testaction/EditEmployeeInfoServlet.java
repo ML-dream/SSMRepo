@@ -34,12 +34,12 @@ public class EditEmployeeInfoServlet extends HttpServlet {
 	    countPerPage = Integer.parseInt(request.getParameter("pageSize"));
 	    
 	    String section = "";
-	    String workType = "";
+	    String workName = "";
 	    String leave = "N";
 	    section = StringUtil.isNullOrEmpty(request.getParameter("section"))?section :request.getParameter("section");
-	    workType = StringUtil.isNullOrEmpty(request.getParameter("workType"))?workType :request.getParameter("workType");
-	    leave = StringUtil.isNullOrEmpty(request.getParameter("leave"))?leave :request.getParameter("leave");  
-	    String totalCountSql = "select count(*) from employee_info where leave like '%"+leave+"%' and section_code like '%"+section+"' and work_type like '%"+workType+"' ";
+	    workName = StringUtil.isNullOrEmpty(request.getParameter("workName"))?workName :request.getParameter("workName");
+	 /*   leave = StringUtil.isNullOrEmpty(request.getParameter("leave"))?leave :request.getParameter("leave");  */
+	    String totalCountSql = "select count(*) from employee_info where staff_name like '%"+workName+"%' and section_code like '%"+section+"%' "+"and leave like '%"+leave+"%' ";
 	    try {
 			totalCount = Sqlhelper.exeQueryCountNum(totalCountSql, null);
 		} catch (SQLException e1) {
@@ -51,8 +51,8 @@ public class EditEmployeeInfoServlet extends HttpServlet {
 	    	"select STAFF_CODE staffCode,STAFF_NAME staffName,SECTION_CODE sectionCode,GENDER,SCHOOL_FROM schoolFrom,ADDRESS,TECHNICAL_GRADE technicalGrade,BIRTHDAY," +
 	    	"EDUCATION_LEVEL educationLevel,SPECIALITY,WORK_TYPE workType,OFFICE_PHNE officePhne,MOBILE_PHONE mobilePhone," +
 	    	"HOME_PHONE homePhone,POSITION,WORKTIME,QQ,EMAIL,RFID_CODE RFIDCode,JOINTIME,FEE,LEAVETIME,IDCARD,C.DeptName sectionName " +
-	    	"from (select A.*,ROWNUM row_num from (select EM.* from employee_info EM where leave like '%"+leave+"%'and em.section_code like '%"+section+
-	    	"' and em.work_type like '%"+workType+"'   order by STAFF_CODE asc) A where ROWNUM<="+(countPerPage*pageNo)+" and leave like '%"+leave+"%' " +
+	    	"from (select A.*,ROWNUM row_num from (select EM.* from employee_info EM where staff_Name like '%"+workName+"%'and em.section_code like '%"+section+
+	    	"'  order by STAFF_CODE asc) A where ROWNUM<="+(countPerPage*pageNo)+" and leave like '%"+leave+"%' " +
 	    			"order by STAFF_CODE) B " +
 	    	"left join dept C on B.Section_Code=C.DeptId where row_num>="+((pageNo-1)*countPerPage+1)+" order by STAFF_CODE";
 	    List<Employee> employeeList = new ArrayList<Employee>();

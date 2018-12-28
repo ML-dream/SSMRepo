@@ -35,9 +35,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<tr>
    			<td><label for="orderId$text">订单编号</label></td>
             <td style="width:25%;">
-            <input id="orderHead"  name="orderHead" class="mini-combobox" style="width:30%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/OrderKinds.txt"   required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>  
-            <input id="orderId"  name="orderId" class="mini-textbox"  width="66%" required="true" readonly="readonly"/>
+            <!-- <input id="orderHead"  name="orderHead" class="mini-combobox" style="width:30%;" textField="text" valueField="id" emptyText="请选择..."
+    			url="data/OrderKinds.txt"   required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>   -->
+            <input id="orderId"  name="orderId" class="mini-textbox"  width="99%" required="true" readonly="readonly"/>
            	</td>
             <td><label for="customer$text">客    户</label></td>
             <td style="width:20%;"><input id="customer" name="customer" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEdit" textName="companyName" required="true" allowInput="false"/>
@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        	<tr>
             <td><label for="connectorTel$text">联系电话</label></td>
             <td><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%" required="true" readonly="readonly"/></td>
-   			<td><label for="deptUser$text">接收部门</label></td>
+   			<td><label for="deptUser$text">实验室</label></td>
             <td><input id="deptUser"  name="deptUser" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
     			url="data/dept.txt"   required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>  
             </td>
@@ -330,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             total="0"+total;
                             else if(total==100)
                             total="01";
- 	   					    mini.get("orderId").setValue("-"+data.companyId+"-"+nowRight+total);
+ 	   					    mini.get("orderId").setValue(data.companyId+"-"+nowRight+total);// mini.get("orderId").setValue("-"+data.companyId+"-"+nowRight+total);
  	   				          });      
                         }
                     }

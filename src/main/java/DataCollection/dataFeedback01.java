@@ -60,7 +60,7 @@ public class dataFeedback01 extends HttpServlet {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		/*if(totalCount<=20) {
+		if(totalCount<=20) {
 			
 			String noticeWillSql ="select b.x_axis_feed_speed, b.x_axis_coordinates,b.id,b.row_num, to_char(tydate,'yyyy-mm-dd  hh24:mi:ss') as time from(select a.*,rownum as row_num from (select t.* from DATACOLLECTION01 t order by tydate) a) b"
 					+ " where row_num<="+(countPerPage*pageNo) +" and row_num>="+((pageNo-1)*countPerPage+1);
@@ -72,6 +72,7 @@ public class dataFeedback01 extends HttpServlet {
 			}
 			 json = PluSoft.Utils.JSON.Encode(notices);
 		}
+		
 		else {
 			String noticeWillSql = "select b.x_axis_feed_speed, b.x_axis_coordinates,b.id,b.row_num,to_char(tydate,'yyyy-mm-dd  hh24:mi:ss') as time from(select a.*,rownum as row_num from (select t.* from DATACOLLECTION01 t order by tydate) a) b"
 					+ " where row_num<="+(countPerPage*pageNo) +"and row_num>="+((pageNo-1)*countPerPage+1);
@@ -82,7 +83,7 @@ public class dataFeedback01 extends HttpServlet {
 				System.out.print("关闭的语句");
 			}
 			 json = PluSoft.Utils.JSON.Encode(notices);
-		}*/
+		}
 		
 	    
 	    

@@ -87,9 +87,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 下面这个是页面中间的那个页面 -->
 			<div showCollapseButton="false" style="border: 0;">
 			<!--Tabs-->
-			<div id="mainTabs" class="mini-tabs" activeIndex="0"
+			<div id="mainTabs" class="mini-tabs main-tabs" activeIndex="0"
 				style="width: 100%; height: 100%;" plain="true"
-				onactivechanged="onTabsActiveChanged">
+				onactivechanged="onTabsActiveChanged" buttons="#tabsButtons" arrowPosition="side">
 				<div title="首页" url="waitDoPage.jsp">
 				</div>
 			</div>

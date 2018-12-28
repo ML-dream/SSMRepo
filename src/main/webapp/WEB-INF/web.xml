@@ -86,12 +86,12 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     </filter-mapping> 
 
 
-  <listener>
+  <!-- <listener>
     <listener-class>DataCollection.MachineCollection</listener-class>
   </listener>
   <listener>
     <listener-class>com.wl.listeners.SeverAndroid</listener-class>
-  </listener>
+  </listener> -->
   <session-config>
     <session-timeout>120</session-timeout>
   </session-config>

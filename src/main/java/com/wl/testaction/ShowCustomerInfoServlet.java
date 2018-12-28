@@ -31,8 +31,8 @@ public class ShowCustomerInfoServlet extends HttpServlet {
 	    orderStr = StringUtil.isNullOrEmpty(request.getParameter("sortField"))?orderStr:request.getParameter("sortField");
 	    pageNo = Integer.parseInt(request.getParameter("pageIndex"))+1;
 	    countPerPage = Integer.parseInt(request.getParameter("pageSize"));
-	  
-	    String customname=StringUtil.isNullOrEmpty(request.getParameter("companyname"))?"":request.getParameter("companyname");
+	    System.out.println(request.getParameter("customerName"));
+	    String customname=StringUtil.isNullOrEmpty(request.getParameter("customerName"))?"":request.getParameter("customerName");
 	    
 	    /*HttpSession session = request.getSession();
 		String userId = ((User)session.getAttribute("user")).getUserId();

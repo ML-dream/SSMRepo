@@ -54,6 +54,8 @@ public class bookingSubmit extends HttpServlet {
 		List<JSONObject> bookings=orderJsonObj.getJSONArray("bookings");
 		System.out.println(bookings);
 		
+		 String result = "successful";
+		 String json = "";
 		for(JSONObject booking:bookings){
 			
 			 String orderId=booking.getString("orderId");
@@ -109,24 +111,27 @@ public class bookingSubmit extends HttpServlet {
 			// System.out.println(timeYmd);
 			
 			 String lockTypeName = "已预订";
-			 
+			 String bookStatus="12";
 			 String bookingInsertSql= "INSERT INTO bookinginfo (unid,time_ymd,time_md,state,bookingusername,phone,deptId,machineId,"
 			 		+ "starttime_info,endtime_info,createTime,orderId,lockTypename)"
 			 		+ "VALUES (?,?,?,"+state+",?,?,"+deptId+","+machineId+",?,?,?,?,?)";
 			 String[] param ={unid,timeYmd,timeMd,bookingUserName,connectorTel,startTimeInfo,endTimeInfo,createTime,orderId,lockTypeName};
 			 
-			 String result = "操作成功";
-			 String json = "";
+			 String updateBookStatusSql="UPDATE orders set book_status=? where order_Id=?";
+			 String[] param1 = {bookStatus,orderId};
+		
 			 try {
 				Sqlhelper.executeUpdate(bookingInsertSql, param);
+				Sqlhelper.executeUpdate(updateBookStatusSql, param1);
 			} catch (Exception e) {
 				e.printStackTrace();
+				result="fail";
+				
 			}
-			/*json = "{\"result\":\""+result+"!\"}";
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().append(json).flush();*/
-			response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
+			 
+			
+			
+			/*PrintWriter out = response.getWriter();
 				out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 				out.println("<HTML>");
 				out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
@@ -136,7 +141,7 @@ public class bookingSubmit extends HttpServlet {
 				out.println("  </BODY>");
 				out.println("</HTML>");
 				out.flush();
-				out.close();
+				out.close();*/
 			
 			 
 			
@@ -144,6 +149,15 @@ public class bookingSubmit extends HttpServlet {
 			 
 			
 		}
+		
+		 response.setContentType("text/html;charset=utf-8");
+			
+			json = "{\"result\":\""+result+"!\"}";
+			System.out.println(json);
+			
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append(json).flush();
+			response.setContentType("text/html");
 	
 
 		

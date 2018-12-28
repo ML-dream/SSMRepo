@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- <mapper>
+  <cache-ref namespace=""/>
+</mapper> -->
+<mapper namespace="mapper.BookOrderMapper">
+		
+	
+	<select id="selectBookOrderCount" resultType="int">
+		select count(*) from orders B left join customer C on B.CUSTOMER=C.COMPANYID where B.order_status<![CDATA[<]]>11 and B.createPerson=#{staffCode}
+		
+		<!-- <where>
+  			<include refid="query_user_where"></include>
+  		</where> -->
+	</select>
+	
+	
+
+	
+	<select id="selectBookOrderList" resultType="com.wl.forms.Order">
+			select *  from (select A.*,ROWNUM row_num from
+		 (select EM.* from orders EM where order_status<![CDATA[<]]>11  order by ORDER_DATE desc) A 
+		 where ROWNUM<![CDATA[<=]]>#{one} and createperson like '%'||#{staffCode}||'%' order by ORDER_DATE desc) B left join customer C on B.CUSTOMER=C.COMPANYID 
+	    	left join dept D on B.DEPT_USER=D.deptid 
+	    	where row_num<![CDATA[>=]]>#{two}order by ORDER_DATE desc
+	</select>
+	
+	
+	
+	<!--  -->
+	
+	<!-- <sql id="query_user_where">
+		orders.order_status<![CDATA[ < ]]>11
+	</sql> -->
+	  
+	<select id="selectBookOrderMachineListByOrderId" resultType="javaBean.BookOrderMachine">
+		
+		
+		select rownum,c.* from (select * from bookingINfo A left join machinfo B on a.machineid=b.machineid where orderId=#{orderId} order by unid) c where rownum  between #{two} and #{one}
+		
+	</select>
+	
+	
+	
+	
+		<select id="AuditingBookUpdateStatusMapper" resultType="com.wl.forms.Order">
+			select * from Orders A left join ORDERBOOKSTATUS B on a.book_Status=B.bookStatus left join EMPLOYEE_INFO C on c.staff_code=A.auditing_staff_code  where order_id =#{orderId}
+	</select>
+	
+	<resultMap id="bookOrder" type="com.wl.forms.Order">
+        
+        <result column="machineName" property="machineName" />
+        <result column="time_ymd" property="timeYmd" />
+        <result column="startTimeInfo" property="endTimeInfo" />
+        <result column="bookState" property="bookState" />
+    </resultMap>
+    
+
+    
+    <update id="updateAuditingBookStatus" >
+          update orders 
+        	set book_Status=#{bookStatus} ,auditing_staff_code=#{auditingStaffCode},checkAdvice=#{checkAdvice}
+         where order_Id=#{orderId}     
+     </update>
+     
+     <update id="deleteAuditingBookOrderMapper" >
+          delete from bookingInfo  
+         where unid=#{unid}     
+     </update>
+     
+      <delete id="deleteAuditingOrderMapper" >
+          delete from orders  
+         where order_id=#{orderId}     
+     </delete>
+     
+      <delete id="deleteAuditingOrderbookingInfoMapper" >
+          delete from bookingInfo  
+         where orderId=#{orderId}     
+     </delete>
+    
+    	
+	
+	
+	
+	
+
+</mapper>
+

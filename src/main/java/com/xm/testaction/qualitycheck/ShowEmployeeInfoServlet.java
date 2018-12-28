@@ -70,7 +70,7 @@ public class ShowEmployeeInfoServlet extends HttpServlet {
 		String section = "";
 	    String workType = "";
 	    section = StringUtil.isNullOrEmpty(request.getParameter("section"))?section :request.getParameter("section");
-	    workType = StringUtil.isNullOrEmpty(request.getParameter("workType"))?workType :request.getParameter("workType");
+	    workType = StringUtil.isNullOrEmpty(request.getParameter("workName"))?workType :request.getParameter("workName");
 	    
 		String bodysql="";		
 		String totalsql="";
@@ -78,7 +78,7 @@ public class ShowEmployeeInfoServlet extends HttpServlet {
 //		待矫正， 加员工类型过滤
 		bodysql = "select b.* from (select a.staff_code,a.staff_name,c.deptname,a.gender,a.mobile_phone,rownum rn from employee_info a " +
 				"left join dept c on c.deptid = a.section_code " +
-				"where leave='N' and section_code like '%"+section+"%' and work_type like '%"+workType+"%' order by a.staff_code asc  ) b " +
+				"where leave='N' and section_code like '%"+section+"%' and staff_name like '%"+workType+"%' order by a.staff_code asc  ) b " +
 				"where "+min+ "<rn and rn <=" +max;
 		ResultSet brs = null;
 		List<EmployeeInfoBean> empList = new ArrayList<EmployeeInfoBean>();
@@ -110,7 +110,7 @@ public class ShowEmployeeInfoServlet extends HttpServlet {
 		}
 		
 		totalsql= "select count(*) from (select a.staff_code,a.staff_name from " +
-			"employee_info a where leave='N' and section_code like '%"+section+"%' and work_type like '%"+workType+"%') " ;
+			"employee_info a where leave='N' and section_code like '%"+section+"%' and staff_name like '%"+workType+"%') " ;
 		ResultSet trs = null;
 		try {
 			trs=Sqlhelper0.executeQuery(totalsql, null);

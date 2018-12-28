@@ -80,7 +80,7 @@ public class AddShiyanOrderServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		String orderId = requestValueMap.get("orderHead")+ChineseCode.toUTF8(requestValueMap.get("orderId").trim());
+		String orderId = ChineseCode.toUTF8(requestValueMap.get("orderId").trim());
 		String customer = ChineseCode.toUTF8(requestValueMap.get("customer").trim());
 	    String deptUser =requestValueMap.get("deptUser").trim();
 	    String endTime = ChineseCode.toUTF8(requestValueMap.get("endTime").trim());
@@ -105,16 +105,16 @@ public class AddShiyanOrderServlet extends HttpServlet {
 	    /*System.out.print(equipCode);
 	    System.out.print(machineTime01);*/
 	    
-    
+	    String bookStatus="11";
 		String  addOrderSql1 = "insert into orders " +
 				"(ORDER_ID,DEPT_USER,MEMO,endTime,ORDER_DATE," +
 				"ORDER_STATUS,CUSTOMER,CREATEPERSON,CREATETIME,CHANGEPERSON,CHANGETIME,connector,connectorTel," +
-				"orderPaper,duizhanghan,otherPaper) values ('"+
+				"orderPaper,duizhanghan,otherPaper,book_status) values ('"+
 				orderId+"','"+deptUser+"','"+memo+"',to_date('"+endTime+"','yyyy-mm-dd,hh24:mi:ss'),to_date('"+orderDate+"','yyyy-mm-dd,hh24:mi:ss'),'"+
 				orderStatus+"','"+customer+"','"+
 				createPerson+"',to_date('"+createTime+"','yyyy-mm-dd,hh24:mi:ss'),'"
 				+changePerson+"',to_date('"+changeTime+"','yyyy-mm-dd,hh24:mi:ss'),'"+connector+"','"+connectorTel+"'," +
-				"'"+orderPaper+"','"+duizhanghan+"','"+otherPaper+"')";
+				"'"+orderPaper+"','"+duizhanghan+"','"+otherPaper+"','"+bookStatus+"')";
 		
 		
 /*******************************************产品详细信息插入！！！！*********************************************/

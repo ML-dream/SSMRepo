@@ -24,6 +24,11 @@ public class Order implements Serializable {
 	private String orderType;		//订单类型
 	private String orderDate;		//订单日期
 	private String orderStatus;		//订单状态
+	private String bookStatus;		//订单状态
+	private String bookStatusName;		//订单状态name
+	private String auditingStaffCode;		//订单状态name
+	private String staffName;		//订单状态name
+	
 	private String customer;		//客户
 	private String createPerson;	//订单创建人
 	private String createTime;		//订单创建时间
@@ -129,6 +134,33 @@ public class Order implements Serializable {
 	private String deliverDay = ""; //订单实际交付日期
 	private String matirial="";	//原材料
 	
+	
+	
+	
+	public String getStaffName() {
+		return staffName;
+	}
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
+	}
+	public String getAuditingStaffCode() {
+		return auditingStaffCode;
+	}
+	public void setAuditingStaffCode(String auditingStaffCode) {
+		this.auditingStaffCode = auditingStaffCode;
+	}
+	public String getBookStatusName() {
+		return bookStatusName;
+	}
+	public void setBookStatusName(String bookStatusName) {
+		this.bookStatusName = bookStatusName;
+	}
+	public String getBookStatus() {
+		return bookStatus;
+	}
+	public void setBookStatus(String bookStatus) {
+		this.bookStatus = bookStatus;
+	}
 	public String getMatirial() {
 		return matirial;
 	}

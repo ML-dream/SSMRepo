@@ -37,17 +37,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<!-- 表头 -->
    			<tr>
 	   			<td>
-	   				<label>部门</label>
+	   				<label>院系</label>
 	   			</td>
 	   			<td>
 	   				<input id="workSection" class="mini-combobox" style="" textField="text" valueField="id" 
    						 url="LoadWorkSection" value="" showNullItem="true"  nullItemText="全部" allowInput="false" onvaluechanged="search()" />
 	   			</td>
-	   			<td><label>工种</label></td>
+	   			<td><label>姓名</label></td>
 	   			<td>
-	   				<input id="workType" class="mini-combobox" style="" textField="text" valueField="id" 
-   						 url="LoadWorkType" value="" showNullItem="true"  nullItemText="全部" allowInput="false" onvaluechanged="search()"/>
-	   			</td>
+	   				<input id="workName" class="mini-combobox" style="" textField="text" valueField="id" 
+   						 url="LoadWorkType" value="" showNullItem="true"  nullItemText="全部" allowInput="true" onvaluechanged="search()"/>
+	   			</td> 
 	   			<td><input value="确定" type="button" onclick="search()" /></td>
 	   		</tr>
    	 	</table>
@@ -82,8 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     function search(){
     	var section = mini.get("workSection").getValue();
-    	var workType = mini.get("workType").getValue();
-    	grid.load({section:section,workType:workType});
+    	var workName = mini.get("workName").getValue();
+    	grid.load({section:section,workName:workName});
     }
 
     //动态设置URL

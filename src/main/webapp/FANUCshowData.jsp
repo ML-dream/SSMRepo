@@ -24,7 +24,7 @@
     
 #box1 {
 	position: absolute;
-	border-style: groove;
+	/* border-style: groove; */
 	border-radius: 15px;
 	width: 545px;
 	height: 400px;
@@ -34,7 +34,7 @@
 }
 #box6{
 	position: absolute;
-	border-style: groove;
+	/* border-style: groove; */
 	border-radius: 15px;
 	width: 630px;
 	height: 510px;
@@ -56,7 +56,7 @@
 
 .box {
 	position: absolute;
-	border-style: groove;
+	/* border-style: groove; */
 	border-radius: 15px;
 	width: 530px;
 	height: 565px;
@@ -66,12 +66,12 @@
 .totalTable {
 	position: absolute;
 	left: 50%;
-   transform: translate(-50%,0);
+   	transform: translate(-50%,0);
    
     bottom: 0px;
    
 	border-radius: 15px;
-	border-style: groove;
+	/* border-style: groove; */
 	height: 800px;
 	width: 800px;
 }
@@ -81,7 +81,7 @@
 #machineInfo{
 	position: absolute;
 	left: 50%;
-   transform: translate(-50%,0);
+   	transform: translate(-50%,0);
     top: 95px;
    
 	height: 150px;
@@ -97,7 +97,7 @@
     text-align:center;
 	margin:0 auto;  
 	
-	border-style: groove;
+	/* border-style: groove; */
 }
 
     #panelName {
@@ -106,7 +106,7 @@
 	width: auto;
 	bottom: 0px;
 	border-radius: 15px;
-	border-style: groove;
+	/* border-style: groove; */
 }
 #panelPostion{
 	position: relative;
@@ -114,7 +114,7 @@
 	width: auto;
 	top: 0px;
 	border-radius: 15px;
-	border-style: groove;
+	/* border-style: groove; */
 	}
 #test02{
 		text-align: center;
@@ -175,7 +175,7 @@
         ul input[type="text"], ul input[type="password"]
 
         {
-
+				text-align:center;
             width:300px;
             padding:5px;
             position:relative;
@@ -196,13 +196,13 @@
 </head>
 <body   >
 
-<div class="title" id="TopTitle"><h1><strong>南京航空航天大学机电学院数据实时显示系统</strong></h1>
+<div class="title" id="TopTitle"><h1><strong>智能制造数据可视化系统</strong></h1>
 </div>
 <div class="title" id="machineInfo">
-<fieldset class="macinheInfoFiedldset">
-  <legend>机床基本信息</legend>
+<!-- <fieldset class="macinheInfoFiedldset">
+  <legend>机床基本信息</legend> -->
 
- <ul class="test02">
+ <!-- <ul class="test02">
 <li>
 <h3>机床IP</h3>
 <p>
@@ -220,9 +220,9 @@
 </li>
 <li>
 
-</ul>
+</ul> -->
 
- </fieldset>
+<!--  </fieldset> -->
 </div>
 <div class="box1" id="box1">
 <div class="panelPostion" id="panelPostion"></div>
@@ -254,7 +254,7 @@
 <input type="text" value="" id="machineSystem" name="MachineSystem" /></p>
 </li>
 <li>
-<h3>产生时间</h3>
+<h3>运行时间</h3>
 <p>
 <input type="text" value="" id="createTime" name="createTime" /></p>
 </li>
@@ -310,7 +310,7 @@
 <h2><img src="staticResources/image/机床状态信息.jpg" alt="Account information" /></h2>
 <ul>
 <li >
-<h3>被控制的伺服轴数</h3>
+<h3>伺服轴数量</h3>
 <p>
 <input type="text" value="" id="controledServoAsisNum" name="controledServoAsisNum" /></p>
 </li>
@@ -320,12 +320,12 @@
 <input type="text" value="" id="spindleNum" name="spindleNum" /></p>
 </li>
 <li>
-<h3>机床有无报警</h3>
+<h3>机床报警</h3>
 <p>
 <input type="text" value="" id="isAlarm" name="isAlarm" /></p>
 </li>
 <li>
-<h3>报警数量</h3>
+<h3>报警编号</h3>
 <p>
 <input type="text" value="" id="alarmNum" name="alarmNum" /></p>
 </li>
