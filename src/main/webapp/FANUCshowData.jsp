@@ -236,7 +236,7 @@
 <div class="box" id="box2">
 
 
-<h2><img src="staticResources/image/机床状态信息.jpg" alt="Account information" /></h2>
+<h2><img src="staticResources/image/machineStatusInfo.jpg" alt="Account information" /></h2>
 <ul>
 <li>
 <h3>机床IP</h3>
@@ -303,11 +303,13 @@
 
 <div class="box6" id="box6">
 </div> 
-
 <div class="box" id="box8">
 
 
-<h2><img src="staticResources/image/机床状态信息.jpg" alt="Account information" /></h2>
+<h2>
+			<img src="staticResources/image/machineStatusInfo.jpg"
+				alt="Account information" />
+		</h2>
 <ul>
 <li >
 <h3>伺服轴数量</h3>

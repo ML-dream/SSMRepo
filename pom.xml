@@ -278,6 +278,7 @@
   </dependencies> 
   
   <build>
+  	<defaultGoal>compile</defaultGoal>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -286,6 +287,20 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      
+      <plugin>
+	   <groupId>org.apache.tomcat.maven</groupId>
+	   <artifactId>tomcat9-maven-plugin</artifactId>
+	   <version>2.2</version>
+	   <configuration>
+	       <url>http://222.192.72.12:8080/manager/text</url>
+	       <username>admin</username>
+	       <password>admin123</password>
+	       <update>true</update>
+<!-- 	      <path>/SSM</path> -->
+	   </configuration>
+   </plugin>
+      
     </plugins>
   </build>
 </project>

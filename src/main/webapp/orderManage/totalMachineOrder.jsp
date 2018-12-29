@@ -796,7 +796,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	 $.ajax({
              type: "GET",
-             url: "http://localhost:8080/SSM/dateLInes",
+             url: "<%=path %>/dateLInes",
              data: {id: id,
                  userTypeId: userTypeId //用户身份类型
                  },
@@ -822,7 +822,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
     	 $.ajax({
              type: "POST",
-             url: "http://localhost:8080/SSM/load",
+             url: "<%=path %>/load",
              data: {id: curVenuesId,
             	 date: date,
                  userTypeId: userTypeId //用户身份类型
@@ -1086,7 +1086,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var formData=document.getElementById("temp_order_content").value;
     	 $.ajax({
              type:"POST",
-             url:"http://localhost:8080/SSM/bookingSubmit",
+             url:"bookingSubmit",
             
              data: {order: formData},
              dataType: "json",

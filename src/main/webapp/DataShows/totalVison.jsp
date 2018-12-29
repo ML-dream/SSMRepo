@@ -203,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
         ul li
-        {       	
+        {       	 
             padding: 0.1% 0;
             width:100%;
             overflow:hidden;
@@ -260,7 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="box" id="box3"  >
 <!-- <a href="链接的地址"><img src="图片的URL" width="图片的宽度" height="图片的高度" border="边框"></a> -->
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片1.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5505.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -329,7 +329,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <div class="box" id="box4">
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片2.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5504.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -407,7 +407,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="box"  id="boxclass1">
 
 <div class="box"  id="box1"  >
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片5.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5501.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -481,7 +481,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="box" id="box2">
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片3.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5502.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -560,7 +560,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="boxclass2">
 
 <div class="box" id="box5">
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片6.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5503.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
@@ -633,7 +633,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div> 
 
 <div class="box" id="box6">
-<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/图片4.png" alt="Account information" /></a></h2>
+<h2><a href="<%=path %>/FANUCshowData.jsp"><img src="<%=path %>/staticResources/image/5513.png" alt="Account information" /></a></h2>
 <ul>
 
 <li>
