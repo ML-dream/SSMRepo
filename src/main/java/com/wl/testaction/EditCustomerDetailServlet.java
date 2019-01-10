@@ -19,14 +19,14 @@ public class EditCustomerDetailServlet extends HttpServlet {
 	throws ServletException, IOException {
 	    
 	    String companyId = request.getParameter("companyId");
-	    String connector = ChineseCode.toUTF8(request.getParameter("connector"));
+	   // String connector = ChineseCode.toUTF8(request.getParameter("connector"));
 	
 		String	CustomerSql = 
 		    	"select COMPANYID,COMPANYNAME,FOUNDEINGTIME,EMPLLOYEENUM,TYPE,ADDRESS,POSTCODE,TELEPHONE," +
 		    	"WEBADDRESS,HEADER,BUSINESS,ADVISE,connector,connectorTel,connector2,connector2Tel,connector3,connector3Tel,connector4,connector4Tel " +
-		    	"from customer where companyId=? and connector=? ";
+		    	"from customer where companyId=? ";
 		
-		String[] params = {companyId,connector};
+		String[] params = {companyId};
 		Customer customer = new Customer();
 		try {
 			customer = Sqlhelper.exeQueryBean(CustomerSql, params, Customer.class);

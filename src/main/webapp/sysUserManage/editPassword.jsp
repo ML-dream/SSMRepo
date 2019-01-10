@@ -33,14 +33,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<div id= "userdiv">
    		<table style="text-align: right;border-collapse:collapse;" border="gray 1px solid;"  width="100%" >
    		<tr>
-   			<td><label for="userId$text">用户号</label></td>
+   			<td><label for="userId$text">用户号(登陆账户)</label></td>
             <td><input id="userId"  name="userId" class="mini-textbox" width="100%" required="true" value="${result.userId}" enabled="false" /></td>
    			<td><label for="staffCode$text">员工号</label></td>
             <td><input id="staffCode" name="staffCode" class="mini-buttonedit" width="100%" value="${result.staffCode}" text="${result.staffCode}"
             		onbuttonclick="onButtonEditEmployee" required="true" allowInput="false" enabled="false" />
         </tr>
        	<tr>
-   			<td><label for="userName$text">员工名称</label></td>
+   			<td><label for="userName$text">员工姓名</label></td>
             <td><input id="userName" name="userName" class="mini-textbox" width="100%" required="true" enabled="false" value="${result.userName}"/></td>
        		<td><label for="password$text">密码</label></td>
             <td><input id="password" name="password" class="mini-password" width="100%"/></td>

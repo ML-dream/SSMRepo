@@ -78,21 +78,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"
                  cellStyle="padding:0;">预约设备
             </div>
-            <div field="orderId" width="110" headerAlign="center">订单编号
+            <div field="orderId" width="110" headerAlign="center" align="center" >订单编号
             </div>
-            <div field="companyName" width="100" headerAlign="center">客户名称
+            <div field="companyName" width="100" headerAlign="center" align="center" >客户名称
             </div>
-            <div field="connector" width="50" headerAlign="center">联系人
+            <div field="connector" width="50" headerAlign="center" align="center" >联系人
             </div>
-            <div field="connectorTel" width="60" headerAlign="center">联系人电话
+            <div field="connectorTel" width="60" headerAlign="center" align="center" >联系人电话
             </div>
-            <div field="deptUser" width="50" headerAlign="center" renderer="onDeptRenderer">使用部门
+            <!-- <div field="deptUser" width="50" headerAlign="center"  align="center" renderer="onDeptRenderer">使用部门
             	
+            </div> -->
+            <div field="orderDate" width="80" headerAlign="center" align="center"  dateFormat="yyyy 年 MM 月 dd 日">订单日期
             </div>
-            <div field="orderDate" width="80" headerAlign="center" dateFormat="yyyy 年 MM 月 dd 日">订单日期
-            </div>
-            <div field="endTime" width="80" headerAlign="center"  dateFormat="yyyy 年 MM 月 dd 日">交付日期
-            </div>
+           <!--  <div field="endTime" width="80" headerAlign="center"  dateFormat="yyyy 年 MM 月 dd 日">交付日期
+            </div> -->
             <div field="bookStatus" width="60" headerAlign="center" align="center" renderer="onGenderRenderer">预约状态
             
             </div>
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function ondEdit(orderId,connector){
 	        //window.open("EditOrderDetailServlet?orderId=" + orderId,
 	        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
-	    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"2";
+	    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
 		}
 
 	    /* function ondSee(orderId,connector){
@@ -167,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var orderGenders=[{id: "1", text: "待预约 "},{id: "2", text: "待审核"},{id: "3", text: "提交上级审核"},{id: "4", text: "审核不通过"},{id: "5", text: "审核通过"},	
 	                {id: "6", text: "备料"},{id: "7", text: "代加工"},{id: "8", text: "加工中"},{id: "9", text: "完成"},{id: "10", text: "交付中"},{id: "11", text: "交付完成"}]
         
-        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "提交上级审核"},{id: "14", text: "审核不通过"},{id: "15", text: "审核通过"},{id: "16", text: "交付完成"}]
+        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
         
         
 //	    var Genders = [{id: "1", text: "新建"},{id: "2", text: "备料"},{id: "3", text: "代加工"},{id: "4", text: "加工中"},{id: "5", text: "完成"}];

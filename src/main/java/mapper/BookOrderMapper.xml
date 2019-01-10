@@ -19,7 +19,7 @@
 	
 	<select id="selectBookOrderList" resultType="com.wl.forms.Order">
 			select *  from (select A.*,ROWNUM row_num from
-		 (select EM.* from orders EM where order_status<![CDATA[<]]>11  order by ORDER_DATE desc) A 
+		 (select EM.* from orders EM  order by ORDER_DATE desc) A 
 		 where ROWNUM<![CDATA[<=]]>#{one} and createperson like '%'||#{staffCode}||'%' order by ORDER_DATE desc) B left join customer C on B.CUSTOMER=C.COMPANYID 
 	    	left join dept D on B.DEPT_USER=D.deptid 
 	    	where row_num<![CDATA[>=]]>#{two}order by ORDER_DATE desc
@@ -47,6 +47,12 @@
 			select * from Orders A left join ORDERBOOKSTATUS B on a.book_Status=B.bookStatus left join EMPLOYEE_INFO C on c.staff_code=A.auditing_staff_code  where order_id =#{orderId}
 	</select>
 	
+	
+	<select id="loadDefaultShiYanOrder" resultType="com.wl.forms.Customer">
+			select * from customer A   where staffcode =#{staffCode}
+	</select>
+	
+	
 	<resultMap id="bookOrder" type="com.wl.forms.Order">
         
         <result column="machineName" property="machineName" />
@@ -73,12 +79,18 @@
          where order_id=#{orderId}     
      </delete>
      
+     
       <delete id="deleteAuditingOrderbookingInfoMapper" >
           delete from bookingInfo  
          where orderId=#{orderId}     
      </delete>
     
+    	<insert id="insertAddShiYanOrder" >
+    	insert into orders (ORDER_ID,CUSTOMER,CREATEPERSON,CREATETIME,connector,connectorTel,book_status) 
+    	values (#{orderId,jdbcType=VARCHAR},#{customer,jdbcType=VARCHAR},#{staffCode,jdbcType=VARCHAR},to_date(#{createTime,jdbcType=VARCHAR},'yyyy-mm-dd,hh24:mi:ss'),#{connector,jdbcType=VARCHAR},#{connectorTel,jdbcType=VARCHAR},#{bookOrderStatus,jdbcType=VARCHAR})
+		
     	
+    	</insert>
 	
 	
 	

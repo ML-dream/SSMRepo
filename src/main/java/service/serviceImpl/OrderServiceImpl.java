@@ -1,13 +1,18 @@
 package service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wl.forms.Customer;
 import com.wl.forms.Order;
 import com.wl.forms.User;
 
@@ -164,5 +169,53 @@ public class OrderServiceImpl implements OrderService  {
 //			String json = "{\"result\":"+"\""+jsonData+"\"}";
 			return json;
 			
+		}
+
+		/**
+		 * @param orderId
+		 * @param customer
+		 * @param connector
+		 * @param connectorTel
+		 * @param productName
+		 * @param productNum
+		 * @param material
+		 * @return
+		 */
+		@Autowired
+		HttpServletRequest request;
+		
+		public String addShiYanOrder(String orderId, String customer, String connector, String connectorTel,
+				String productName, String productNum, String material) {
+			HttpSession session = request.getSession();
+			String userId = ((User)session.getAttribute("user")).getUserId();
+			String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+			
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	         System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+	         String createTime=df.format(new Date());
+	         
+			int count1 = bookOrdeMapper.insertAddShiYanOrder(orderId,customer,connector,connectorTel,productName,productNum,material,createTime,staffCode,new String("11"));
+			String jsonData="";
+			if (count1>=1) {
+				jsonData="操作成功";
+				
+			}else {
+				jsonData="操作失败";
+			}
+			 jsonData = "{\"result\":"+"\""+jsonData+"\"}";
+			return jsonData;
+			
+		}
+
+		/**
+		 * @param staffCode
+		 * @return
+		 */
+		public String loadDefaultShiYanOrder(String staffCode) {
+			Customer customer = bookOrdeMapper.loadDefaultShiYanOrder(staffCode);
+			
+			String json = PluSoft.Utils.JSON.Encode(customer);
+//			String json = "{\"result\":"+"\""+jsonData+"\"}";
+			return json;
 		}
 }

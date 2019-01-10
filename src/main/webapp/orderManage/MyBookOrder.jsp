@@ -43,7 +43,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
     
-
+	<div class="mini-toolbar" style="padding:2px;border:0;">
+		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('13')">审核通过</a>
+		<span class="separator"></span>
+		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('14')">审核不通过</a>	
+		<span class="separator"></span>
+		
+  			<a class="mini-button" iconCls="icon-find" plain="false"  onclick="bookModify()">修改用户预约</a>  
+    </div>
     <div id="bookOrder" class="mini-datagrid" style="width:100%;height:350px;" url="mybookOrder.action"  idField="id" onselectionchanged="onSelectionChanged"  selectOnLoad="true">
         <div property="columns">            
            <!--  <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"

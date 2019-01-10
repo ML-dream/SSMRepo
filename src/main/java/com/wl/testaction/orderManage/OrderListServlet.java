@@ -62,7 +62,7 @@ public class OrderListServlet extends HttpServlet {
 	    
 		
 	    String OrderSql= "select ORDER_ID orderId,DEPT_USER deptUser,ORDER_DATE orderDate,ENDTIME,CUSTOMER,ORDER_STATUS orderStatus,book_status bookStatus,C.COMPANYNAME companyName,D.deptname,B.connector,B.connectorTel " +
-	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_status<11 and order_id like '%"+orderId+"%' and createperson ='"+staffCode +"'  order by ORDER_DATE desc) " +
+	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_id like '%"+orderId+"%' and createperson ='"+staffCode +"'  order by ORDER_DATE desc) " +
 	    	"A where ROWNUM<="+(countPerPage*pageNo)+" order by ORDER_DATE desc) B " +
 	    	"left join customer C on B.CUSTOMER=C.COMPANYID " +
 	    	"left join dept D on B.DEPT_USER=D.deptid " +

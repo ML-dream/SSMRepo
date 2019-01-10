@@ -57,16 +57,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <a class="mini-button mini-button-iconTop" iconCls="icon-node" onclick="toMainIndex()"  plain="true" >首页</a> 
 		            <a class="mini-button mini-button-iconTop" iconCls="icon-edit"  href="EditSysUsersServlet?para=0" plain="true" >修改密码</a>          
 		            <a class="mini-button mini-button-iconTop" iconCls="icon-remove" onclick="" href="ToLogOut" plain="true" >注销</a><!-- onlick 没什么用 -->
-                    <a class="mini-button mini-button-iconTop" iconCls="icon-remove" onclick="ToStep" href="" plain="true" >跳转</a>       
         		</div>
         		
-        		<ul id="menu1" class="mini-menubar" style="width:80%;height=30;margin-left:1%;" borderStyle="border:0"
+        		<!-- <ul id="menu1" class="mini-menubar" style="width:80%;height=30;margin-left:1%;" borderStyle="border:0"
 		            url="LoadMainMenu" onitemclick="onItemClick" imgPath="imgs/"
 		            textField="text" idField="id" parentField="pid"  
 		        >
-		    	</ul>                <!--  总热言之  该处和下面的lefttree都是事实现 的是 分别展开相应的选项 -->
+		    	</ul>   -->              <!--  总热言之  该处和下面的lefttree都是事实现 的是 分别展开相应的选项 -->
         		
 			</div>
+			
 			
 			<div title="south" region="south" showSplit="false"
 				showHeader="false" height="30">

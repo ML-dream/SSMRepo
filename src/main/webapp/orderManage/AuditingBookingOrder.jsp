@@ -42,16 +42,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<form id="form0">
 	    <table >
 	   		<tr>
-	          <td>开始时间：</td>
+	         <!--  <td>开始时间：</td>
 	          <td><input id="bday" class="mini-datepicker" width="100"  allowinput="false"  format="yyyy-MM-dd" required="false"/>
 	          </td>
 	          <td>结束时间：</td>
 	          <td><input id="eday" class="mini-datepicker"   width="100" allowinput="false"  format="yyyy-MM-dd" required="false"/>
-	          </td>
-	          <td width="60px" align="right">接收人：</td>
+	          </td> -->
+	   <!--        <td width="60px" align="right">接收人：</td>
 	          <td><input id="creater" name="creater" class="mini-buttonedit" width="100" showClose="true" oncloseclick="onCloseClick('creater')"
             		onbuttonclick="onButtonEdit" textName="worker" required="false" value="" text="" onvaluechanged="loadgrid"  allowInput="false"/>
-	          </td>
+	          </td> -->
+	          
 	       </tr>
 	       <tr>
 	          <td>订单状态：</td>

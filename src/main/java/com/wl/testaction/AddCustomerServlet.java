@@ -54,10 +54,13 @@ public class AddCustomerServlet extends HttpServlet {
 	    String connector4 = request.getParameter("connector4");
 	    String connector4Tel =request.getParameter("connector4Tel");
 	    
+		String staffCode=((User)request.getSession().getAttribute("user")).getStaffCode();
+		
+		
 		String  addCustomerSql = "insert into customer " +
-				"(COMPANYID,COMPANYNAME,FOUNDEINGTIME,EMPLLOYEENUM,TYPE," +
+				"(createPerson,COMPANYID,COMPANYNAME,FOUNDEINGTIME,EMPLLOYEENUM,TYPE," +
 				"ADDRESS,POSTCODE,TELEPHONE,WEBADDRESS,HEADER,BUSINESS," +
-				"ADVISE,ISTOGETHER,connector,connectorTel,connector2,connector2Tel,connector3,connector3Tel,connector4,connector4Tel )values('"+
+				"ADVISE,ISTOGETHER,connector,connectorTel,connector2,connector2Tel,connector3,connector3Tel,connector4,connector4Tel )values('"+staffCode+"','"+
 				companyId+"','"+companyName+"',to_date('"+foundingTime+"','yyyy-mm-dd,hh24:mi:ss'),'"+employeeNum+"','"
 				+type+"','"+address+"','"+postCode+"','"+telephone+"','"+
 				webAddress+"','"+header+"','"+business+"','"+advise+"','Y','"+connector+"','"+connectorTel+"','"+connector2+"','"+connector2Tel+"','"+connector3+"','"+connector3Tel+"','"+connector4+"','"+connector4Tel+"')";

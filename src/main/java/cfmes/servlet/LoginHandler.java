@@ -34,6 +34,7 @@ public class LoginHandler extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 
@@ -47,9 +48,10 @@ public class LoginHandler extends HttpServlet {
 		String userId = request.getParameter("username").trim();
 		String password = request.getParameter("passwd").trim();
 		
+		
 		System.out.println("userId=="+userId);
 		System.out.println("password=="+password);
-		password = MD5.MD5Convert(password);
+//		password = MD5.MD5Convert(password);
 		User user = null;
 		
 		boolean loginok = false;

@@ -164,7 +164,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	window.location="OrderDetailSpecServlet?orderId=" + orderId+"&productId="+productId;
 		}
 	    //var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
-	    var Genders = [{id: "11", text: "新建"},{id: "12", text: "备料"},{id: "13", text: "代加工"},{id: "14", text: "加工中"},{id: "15", text: "完成"}];
+	   // var Genders = [{id: "11", text: "新建"},{id: "12", text: "备料"},{id: "13", text: "代加工"},{id: "14", text: "加工中"},{id: "15", text: "完成"}];
+	    
+	    var Genders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
+	      
         function onGenderRenderer(e) {
             for (var i = 0, l = Genders.length; i < l; i++) {
                 var g = Genders[i];

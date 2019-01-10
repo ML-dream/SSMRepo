@@ -157,5 +157,24 @@ public class OrderController {
  		return json;//转向首页
  	}
     
+    @RequestMapping(value="AddShiYanOrder.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnAddShiYanOrder(Model model,String orderId,String customer,String connector,String connectorTel,String productName,String productNum,String material){ 
+ 	
+
+ 		String json  = orderServiceImpl.addShiYanOrder(orderId,customer,connector,connectorTel,productName,productNum,material);
+ 		System.out.println(json);
+ 		return json;//转向首页
+ 	}
+    
+    @RequestMapping(value="LoadDefaultShiYanOrder.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnLoadDefaultShiYanOrder(Model model,String staffCode){ 
+ 	
+
+ 		String json  = orderServiceImpl.loadDefaultShiYanOrder(staffCode);
+ 		System.out.println(json);
+ 		return json;//转向首页
+ 	}
     
 }

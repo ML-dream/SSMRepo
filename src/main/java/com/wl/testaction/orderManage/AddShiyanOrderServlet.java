@@ -72,24 +72,28 @@ public class AddShiyanOrderServlet extends HttpServlet {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");  
         String time = sdf.format(d);  
         
-        try {
+       /* try {
 			requestValueMap = UploadUtils.UploadLoadFile(request, response, createPerson, requestValueMap);	//保存文件+得到request属性值
 		} catch (FileUploadException e1) {
 			String json = "{\"result\":\"文件太大，请检查文件上大小！！\"}";
 			response.getWriter().append(json).flush();
 			e1.printStackTrace();
-		}
+		}*/
 
-		String orderId = ChineseCode.toUTF8(requestValueMap.get("orderId").trim());
-		String customer = ChineseCode.toUTF8(requestValueMap.get("customer").trim());
-	    String deptUser =requestValueMap.get("deptUser").trim();
-	    String endTime = ChineseCode.toUTF8(requestValueMap.get("endTime").trim());
-	    String orderDate = ChineseCode.toUTF8(requestValueMap.get("orderDate").trim())+" "+time;
-	    String orderStatus = ChineseCode.toUTF8(requestValueMap.get("orderStatus").trim());
+		String orderId = request.getParameter("orderId");
+		String customer = request.getParameter("customer");
+		String connector = request.getParameter("connector");
+		String connectorTel = request.getParameter("connectorTel");
+		String productName = request.getParameter("productName");
+		String productNum = request.getParameter("productNum");
+		String material = request.getParameter("material");
+
+		String deptUser="";
+	    String endTime = "";
+	    String orderDate =time;
+	    String orderStatus = "";
 	    String memo = "null";
-	    String connector = requestValueMap.get("connector").trim();
 	    //System.out.println(connector);
-	    String connectorTel = ChineseCode.toUTF8(requestValueMap.get("connectorTel").trim());
 	    String orderPaper ="null" ;
 	    String duizhanghan = "null";
 	    String otherPaper = "null";
@@ -133,7 +137,6 @@ public class AddShiyanOrderServlet extends HttpServlet {
 	    String issueNum = "1";
 	    String deptNo = deptUser;
 	    String itemTypeId = ChineseCode.toUTF8(requestValueMap.get("itemTypeId").trim());
-	    String productNum = ChineseCode.toUTF8(requestValueMap.get("productNum").trim());
 	    
 	    String unitPrice = "0";
 	    String islailiao = "0";
@@ -149,10 +152,8 @@ public class AddShiyanOrderServlet extends HttpServlet {
 	    int willpaynum = (int)((Integer.parseInt(productNum))*1.05+1);
 	    
 	    request.setCharacterEncoding("utf-8");
-	    String productName = requestValueMap.get("productName").trim();
 	    String productId = orderId.substring(6);
 	    
-	    String material=requestValueMap.get("material").trim();
 	    
 	    if(StringUtil.isNullOrEmpty(requestValueMap.get("drawingId"))){
 	    	drawingId=productId;
@@ -298,7 +299,7 @@ public class AddShiyanOrderServlet extends HttpServlet {
 /******************************************以下是所有sql语句的操作！！！****************************************************/
 		sql_data sqlData = new sql_data();
 		System.out.println("addOrderSql1=="+addOrderSql1);
-		System.out.println("addOrderSql=="+addOrderSql2);
+		System.out.println("addOrderSql2=="+addOrderSql2);
 		System.out.println("addOrderItemSql=="+addOrderItemSql);
 		System.out.println("foHeadersql="+foHeadersql);
 		System.out.println("fo_detailsql="+fo_detailsql);
@@ -320,28 +321,29 @@ public class AddShiyanOrderServlet extends HttpServlet {
 			result = "操作失败";
 			e.printStackTrace();
 		}
-		try {
+		/*try {
 			sqlData.exeUpdateThrowExcep(addOrderItemSql);
 		} catch (Exception e) {
 			result = "操作失败";
 			e.printStackTrace();
-		}
-		try {
+		}*/
+		/*try {
 			
 			Sqlhelper.executeUpdate(foHeadersql, null);
 			
 		} catch (Exception e) {
 			result = "操作失败";
 			e.printStackTrace();
-		}
-		try {
+		}*/
+		
+	/*	try {
 			Sqlhelper.executeUpdate(fo_detailsql, params);
 			
 		} catch (Exception e) {
 			
 			result = "操作失败";
 			e.printStackTrace();
-		}
+		}*/
 		/*try {
 			Sqlhelper.executeUpdate(MachineInfoTime_Sql, params2);
 			
@@ -366,19 +368,19 @@ public class AddShiyanOrderServlet extends HttpServlet {
 		List <Order> orders = new ArrayList<Order>() ;
 		orders.add(order);
 		int num=1;
-		
+	/*	
 		try {
-			num =addPartsPlanUtil(request,orders);
+//			num =addPartsPlanUtil(request,orders);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		if(num==0) {
+		}*/
+	/*	if(num==0) {
 			
 		}else {
 			result = "操作失败";
-		}
+		}*/
 			
 /****************************************************************************************************/
 		json = "{\"result\":\""+result+"!\"}";

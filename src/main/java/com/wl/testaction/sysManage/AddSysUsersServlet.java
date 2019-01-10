@@ -31,7 +31,7 @@ public class AddSysUsersServlet extends HttpServlet {
 		String staffCode= ChineseCode.toUTF8(request.getParameter("staffCode"));
 		String userName= request.getParameter("userName").trim();
 		String password= ChineseCode.toUTF8(request.getParameter("password").trim());
-		password = MD5.MD5Convert(password);
+//		password = MD5.MD5Convert(password);
 		String authority= ChineseCode.toUTF8(request.getParameter("authority").trim());
 		
 	    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

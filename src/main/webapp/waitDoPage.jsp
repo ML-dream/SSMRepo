@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </br>
   	<!-- <h1 align="center">LAB_MES系统</h1> -->
    	</br>
-	<div id="tablediv">
+<!-- 	<div id="tablediv">
    	 <div id="datagrid1" class="mini-datagrid" style="width:580px;height:360px;" 
         url="LoadWaitDoPage" idField="id" allowResize="true" pageSize="10"   multiSelect="true" allowCellSelect="true" allowCellEdit="true"
     	showPager= "true" showPageInfo="true" showReloadButton = "true" showPagerButtonIcon="true"  editNextOnEnterKey= "true"
@@ -53,11 +53,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
              <div field="link" width="60" headerAlign="center" allowSort="false" visible= "false">链接
             </div> 
-                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                 为ECharts准备一个具备大小（宽高）的Dom
     
         </div>
      </div>
-   </div>   
+   </div>    -->
      <script src="http://echarts.baidu.com/build/dist/echarts.js"></script> 
      <script type="text/javascript">
         // 路径配置

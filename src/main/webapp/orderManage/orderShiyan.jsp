@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,com.wl.forms.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -18,112 +18,131 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>添加订单</title>
     <style type="text/css">
     	*{margin: 0;padding: 0;}
-    </style>
+ 
+    
+    
+    
+    
+    img 
+        {
+            border:none;
+        }
+
+        ul, ul li
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li.first
+        {
+            border-top: 2px solid #DFDFDF;
+        }
+       
+        ul p
+        {
+            float: left;
+            margin: 10px;
+            width: 30%;  //这个 表示input所在的div的大小
+            
+        }
+
+        ul h3
+        {
+            float: left;
+            font-size: 3%;
+            font-weight: bold;
+            margin: 10px 0 0 0;
+            width: 35%;   /* 这个是控制左边相距编边界的距离 */
+            margin-left:1%;
+        }
+
+        ul li
+        {       	 
+            padding: 0.1% 0;
+            width:100%;
+            overflow:hidden;
+        }
+
+  
+
+        
+   .test01 {
+	position: absolute;
+	/* height: 50%; */
+	width: 38%;
+	left:31%;
+	top:10%;
+	border-radius: 15px;
+		border-style: groove; 
+	   text-align:center;
+}
+
+       </style>
+    
   </head>
   
   <body >
-  	<div class="mini-toolbar">
-  		<a class="mini-button" iconCls="icon-save" plain="false"  onclick="getForm()">保存</a>
-  	</div>
-	<fieldset style="width: 99%;" align="center">
+  
+  
+	<fieldset class="test01"  align="center" >
 		<legend>
 			填写基本信息
 		</legend>
-   		<!--<div id= "userdiv">-->
-   		<form name="userdiv" id="userdiv" action="AddOrderServlet" method="post" enctype="multipart/form-data">
-   		<table style="text-align: right;border-collapse:collapse;" border="gray 1px solid;"  width="100%" >
-   		<tr>
-   			<td><label for="orderId$text">订单编号</label></td>
-            <td style="width:25%;">
-            <!-- <input id="orderHead"  name="orderHead" class="mini-combobox" style="width:30%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/OrderKinds.txt"   required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>   -->
-            <input id="orderId"  name="orderId" class="mini-textbox"  width="99%" required="true" readonly="readonly"/>
-           	</td>
-            <td><label for="customer$text">客    户</label></td>
-            <td style="width:20%;"><input id="customer" name="customer" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEdit" textName="companyName" required="true" allowInput="false"/>
-   			<td><label for="connector$text">联系人</label></td>
-            <td><input id="connector" name="connector" class="mini-textbox" width="100%" required="true" /></td>
-        </tr>
-       	<tr>
-            <td><label for="connectorTel$text">联系电话</label></td>
-            <td><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%" required="true" readonly="readonly"/></td>
-   			<td><label for="deptUser$text">实验室</label></td>
-            <td><input id="deptUser"  name="deptUser" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/dept.txt"   required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>  
-            </td>
-       
-            <td><label for="orderDate$text">计划开始/结束日期</label></td>
-            <td ><input id="orderDate" name ="orderDate" class="mini-datepicker" width="47%" dateFormat="yyyy-MM-dd" allowInput="true" />
-            至
-            <input id="endTime" name ="endTime" class="mini-datepicker" width="47%" dateFormat="yyyy-MM-dd" ondrawdate="onDrawDate" allowInput="true" /></td>
-        </tr>
-       	<tr>
-            <!-- <td><label for="endTime$text">计划完成日期</label></td>
-            <td><input id="endTime" name ="endTime" class="mini-datepicker" width="100%" dateFormat="yyyy-MM-dd" ondrawdate="onDrawDate" allowInput="true" /></td> -->
-            <td style="display:none" ><label for="orderStatus$text">状态信息</label></td>
-            <td style="display:none" ><input id="orderStatus"  name="orderStatus" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/orderStatus.txt" value="5"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." readonly="readonly"/>  
-            </td>
-           
-   		</tr>
-   		<!--一下为订单详细的信息！！！。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。分割线。。。。。。。。  -->
-   		<tr>
-   			<td><label for="productName$text">零件名称</label></td>
-            <td><input id="productName"  name="productName" class="mini-textbox"  width="100%" required="true"/></td>
-             <td><label for="productNum$text">零件数量</label></td>
-            <td><input id="productNum"  name="productNum" class="mini-textbox"  width="100%" required="true"/></td>
-              <td><label for="material$text">材料</label></td>
-            <td><input id="material"  name="material" class="mini-combobox"  url= "LoadStuff" width="100%" allowInput="true"/></td>
-       </tr>
-       <tr style="display:none" >         
-          	<td><label for="iswaixie$text">是否外协</label></td>
-            <td><input id="iswaixie"  name="iswaixie" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/trueOrFalse.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..." value="0"/>  
-            </td>
-            <td><label for="itemTypeId$text">零件种类</label></td>
-            <td><input id="itemTypeId"  name="itemTypeId" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="GetItemTypeServlet" value="L"  allowInput="false" showNullItem="true" nullItemText="请选择..."/>  
-            </td> 
-            <td><label for="drawingId$text">零件号</label></td>
-        	<td><input id="drawingId"  name="drawingId" class="mini-textbox"  width="100%"  /></td>
-       </tr>
-       <!-- ..........................以下为设备的预约信息。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
-       <tr style="display:none" >
-      <!-- <div class="mini.window" > -->
-            <td><label for="equipCode$text">设备预约</label></td>
-	    	<td><input id="equipCode" name="equipCode" class="mini-buttonedit" width="66%" onbuttonclick="onButtonEditMachine" required="false" allowInput="false"/>
-       	
-  			<a class="mini-button" iconCls="icon-search" width="30%" plain="false"  onclick="search()">保存并预约设备</a>
-  		</td>
-  		<!-- </div> -->
-       		<!-- <td><label for="machineTime01$text">预约时间一</label></td>
-            <td style="width:25%;">
-            <input id="machineTime01" name ="machineTime01" class="mini-datepicker" width="66%" dateFormat="yyyy-MM-dd" allowInput="true" showTodayButton="true" required="true" onvaluechanged="onChange()" ondrawdate="onDrawDate" />
-			<input id="machineTime0101"  name="machineTime0101" class="mini-combobox" style="width:30%;" textField="text" valueField="id" emptyText="请选择..."
-    			url="data/machineTime.txt"   required="true" allowInput="false" onvaluechanged="onChange()" showNullItem="true" nullItemText="请选择..."/> 
-       	    </td>
-       	    <td><label for="machineTime02$text">预约时间二</label></td>
-            <td style="width:25%;">
-            <input id="machineTime02" name ="mahineTime02" class="mini-datepicker" width="66%" dateFormat="yyyy-MM-dd" allowInput="true" showTodayButton="true"  required="true" ondrawdate="onDrawDate"/>
-          	<input id="machineTime0202"  name="machineTime0202" class="mini-combobox" style="width:30%;" textField="machineTime0202" valueField="machineTime0202" emptyText="请选择..."
-    				url="GetOrderHeadServlet" value="NL-XS"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>   
-           </td> -->
-         
-         
-         
-          <!--   <td><label for="machineTime03$text">预约时间二</label></td>
-            <td><input id="machineTime03" name ="mahineTime03" class="mini-datepicker" width="100%" dateFormat="yyyy-MM-dd" allowInput="true" showTodayButton="true"   ondrawdate="onDrawDate"/></td> -->
-       </tr>
 
-      
-     
    		
-   		<input type="hidden" id="machineName" name = "machineName" value=""/>
-   	</table>
-   	</form>
-   <!--</div>-->
-   </fieldset>
-   
+       
+       
+    
+    
+     <div class="box" id="box3"  >
+<ul>
+
+<li>
+<h3>客户</h3>
+<p><input id="companyName" name="companyName" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEdit" textName="companyName" required="true" allowInput="false"/></p>
+</li>
+
+<li>
+<h3>联系人</h3>
+<p><input id="connector" name="connector" class="mini-textbox" width="100%" required="true" /></p>
+</li>
+
+<li>
+<h3>订单编号</h3>
+<p><input id="orderId"  name="orderId" class="mini-textbox"  width="99%" required="true" readonly="readonly"/></p>
+</li>
+<li>
+<h3>联系电话</h3>
+<p><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%" required="true" /></p>
+</li>
+<li>
+<h3>订单名称</h3>
+<p><input id="productName"  name="productName" class="mini-textbox"  width="100%" required="true"/></p>
+</li>
+<li>
+<h3>加工数量</h3>
+<p><input id="productNum"  name="productNum" class="mini-textbox"  width="100%" value="1" required="true"/></p>
+</li>
+<li>
+<h3>材料</h3>
+<p><input id="material"  name="material" class="mini-combobox"  url= "LoadStuff" width="100%" allowInput="true"/></p>
+</li>
+
+</ul>
+</div>
+
+	<div >
+  		<a class="mini-button" iconCls="icon-save" plain="false"  onclick="getForm()">保存</a>
+  	</div>
+       
+      </fieldset>  
+       
+       
+       
+       
+
    
    <script charset="UTF-8">
    		mini.parse();
@@ -253,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             });
         }
-   		
+/*    		
    		  function getCurrentTime(){
    		      var now=new Date();
    		      var year = now.getFullYear();
@@ -261,34 +280,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      var day = ((now.getDate() < 10) ? "0" : "") + now.getDate();
    		       mini.get("orderDate").setValue(year+"-"+month+"-"+day);
    		      }
-   	     getCurrentTime();
+   	     getCurrentTime(); */
    		
+   	     
    		function getForm(){
-   			//document.forms[0].action = "AddOrderServlet";
- 		  	//document.forms[0].submit();
- 		  	var formData = new mini.Form("#userdiv");
- 		  	
- 		  	var form = new mini.Form("#userdiv");
-   			form.validate();
-            if (form.isValid() == false) {
-            	return;
-            }else{
+
+   	    	 var companyId=mini.get("companyName").getValue();
+   	    	var connector=mini.get("connector").getValue();
+   	    	var connectorTel=mini.get("connectorTel").getValue();
+   	    	var orderId=mini.get("orderId").getValue();
+   	    	var productName=mini.get("productName").getValue();
+   	    	var productNum=mini.get("productNum").getValue();
+   	    	var material=mini.get("material").getValue();
  		  		jQuery.ajax({
       				type: "POST",
-      				url: "AddShiyanOrderServlet",
+      				url: "AddShiYanOrder.action?customer="+companyId+"&connector="+connector+"&connectorTel="+connectorTel+"&orderId="+orderId+"&productName="+productName+"&productNum="+productNum+"&material="+material,
       				dataType: "json", 
       				cache: false,
-      				enctype: 'multipart/form-data',
-      				data: new FormData($('#userdiv')[0]),
-      				processData: false,
-    				contentType: false,
+      		
       				success: function (data) {
         				alert(data.result);
+        				
         				 window.location.href = window.location.href; 
         				//mini.get(div).setVisible(true)
       				}
     			});
-    		}
+    		
    		}
 		
 		var now = new Date();
@@ -339,6 +356,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
         }
 
+   		
+   		load();
+   		function load () {
+   			var staffCode="<%=((User)request.getSession().getAttribute("user")).getStaffCode()%>";
+		   			
+   				jQuery.ajax({
+		  				type: "POST",
+		  				url: "LoadDefaultShiYanOrder.action?staffCode="+staffCode,
+		  				dataType: "json", 
+		  				cache: false,
+		  				success: function (data) {
+		  					  mini.get("companyName").setValue(data.companyId);
+		  					  mini.get("companyName").setText(data.companyName);
+		                     mini.get("connector").setValue(data.connector);
+		                     mini.get("connectorTel").setValue(data.connectorTel);
+		 		          	  var params = {'companyId':data.companyId};
+		                     var url='CheckOrderIdCountServlet'; 
+		                     jQuery.post(url, params, function(text){
+		                     text=mini.decode(text);
+		                     total=text.total+1;
+		          /*            if(total>0&&total<10)
+		                     total="0"+total;
+		                     else if(total==100)
+		                     total="01"; */
+		 					   mini.get("orderId").setValue(data.companyId+"-"+nowRight+total);
+		 				          });
+		  				},
+		  				error:function(data){
+		  					alert("该订单号已经存在，请刷新界面");
+		  				}
+		  				
+		  				
+					});
+                         
+                }
+   		
 		function doShow()   
 	    { 
 	         document.getElementById("span1").innerHTML="<input type=file id=upload size=40  name=upload label=上传文件   class=buttonface />";   

@@ -25,6 +25,7 @@ public class Customer {
 	private String webAddress;
 	private String header;
 	
+	private String staffCode;
 	private String business;
 	private String advise;
 	private String isTogether;
@@ -38,6 +39,14 @@ public class Customer {
 	private String connector4;
 	private String connector4Tel;
 	
+	
+	
+	public String getStaffCode() {
+		return staffCode;
+	}
+	public void setStaffCode(String staffCode) {
+		this.staffCode = staffCode;
+	}
 	public String getConnector2() {
 		return connector2;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.wl.forms.Customer;
 import com.wl.forms.Order;
 
 import javaBean.BookOrderMachine;
@@ -33,5 +34,22 @@ public interface BookOrderMapper {
 	 * @return
 	 */
 	public Order AuditingBookUpdateStatusMapper(String orderId);
-
+	/**
+	 * @param orderId
+	 * @param customer
+	 * @param connector
+	 * @param connectorTel
+	 * @param productName
+	 * @param productNum
+	 * @param material
+	 * @return
+	 */
+	public int insertAddShiYanOrder(@Param("orderId") String orderId, @Param("customer") String customer,@Param("connector")  String connector,@Param("connectorTel")  String connectorTel,
+			@Param("productName") String productName, @Param("productNum") String productNum,@Param("material")  String material,@Param("createTime") String createTime,@Param("staffCode") String staffCode,@Param("bookOrderStatus") String bookOrderStatus);
+	/**
+	 * @param staffCode
+	 * @return
+	 */
+	public Customer loadDefaultShiYanOrder(String staffCode);
+		
 }

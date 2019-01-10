@@ -154,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		}
 
    		//校验手机号码
-   		function isMobile(e) {
+   	 function isMobile(e) {
    		    //var patrn = /^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
    		    if (e.isValid) {
    		    	var pattern = /^(13[0-9]{9})|(14[0-9])|(18[0-9])|(15[0-9][0-9]{8})$/;
@@ -163,21 +163,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     e.isValid = false;
                 }
             }
-   		}
+   		} 
+   		
+   		
 
    		function isTelephone(e){
-   			if (e.isValid) {
+   			/* if (e.isValid) {
    				var isPhone = /^([0-9]{3,4}-)?[0-9]{7,8}$/;
    				var isMobile = /^((\+?86)|(\(\+86\)))?(13[012356789][0-9]{8}|15[012356789][0-9]{8}|18[02356789][0-9]{8}|147[0-9]{8}|1349[0-9]{7})$/
                 if (!isPhone.exec(e.value)&&!isMobile.exec(e.value)) {
                     e.errorText = "必须输入正确电话号码";
                     e.isValid = false;
                 }
-            }
+            } */
    			
-   	   	}
+   	   	} 
 
-   		function isOnlyTelephone(e){
+  		function isOnlyTelephone(e){
    			if (e.isValid) {
    				var isPhone = /^([0-9]{3,4}-)?[0-9]{7,8}$/;
    				if (!isPhone.exec(e.value)) {
@@ -186,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             }
    			
-   	   	}
+   	   	} 
 
    		var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
         function onGenderRenderer(e) {
