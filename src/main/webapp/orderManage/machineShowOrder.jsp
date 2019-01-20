@@ -113,12 +113,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		font-size: small;
 		line-height:20px;
 			}
+			
+		.article_box{
+		
+		 
+		 
+		    overflow-x:auto;
+		    overflow-y:auto;
+
+		}
+		body{
+		    overflow-x:auto;
+		    overflow-y:auto;
+
+		}
     </style>
     
     
 </head>
 
-<body >
+<body>
 <div class="article_box">
     <!-- header开始 -->
 
@@ -933,7 +947,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    */
     mini.parse();
 	function loadgrid(){
-		
+			
 		 bday = mini.get("bday").getFormValue();
 		 eday = mini.get("eday").getFormValue();
 		 var form0 = new mini.Form("form0");

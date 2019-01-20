@@ -639,6 +639,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var curDate;
     var machineId;
     var machineName;
+    var bday;
+    var eday;
     
     console.log("user type=" + userTypeId);
     
@@ -667,6 +669,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        	machineId=record.machineID;
       	curVenuesId=machineId.substring(0,3);
       	curDate=machineId;
+      	var bday01=record.timeYmd;
+      	var d = new Date(bday01); 
+        d.setDate(d.getDate()-3);
+        /* bday =d.format("yyyy-MM-dd"); */
+        bday =mini.formatDate(d,'yyyy-MM-dd');
+        d.setDate(d.getDate()+6);
+        eday =mini.formatDate(d,'yyyy-MM-dd');
 /*       	curVenuesIdSecond=machineId.substring(0,3);
       	curVenuesId=machineId.substring(0,3);
       	curDate=machineId; */
@@ -678,12 +687,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	 /*  testmini(); */
         	 
         	  document.getElementById(machineId.substring(0,3)).click(); 
-        	 document.getElementById(machineId).click();
-        	 
+        	  document.getElementById(machineId).click();
+        	  loadDateline(bday,eday);
             /* bookMachine.load({ orderId: record.orderId }); */
         }
     }
-    
     
     function testmini(){
     	 /* $('#dataLine_container').find('a').removeClass('active');  */
@@ -929,8 +937,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     mini.parse();
 	function loadgrid(){
 		
-		var bday = mini.get("bday").getFormValue();
-		var eday = mini.get("eday").getFormValue();
+		bday = mini.get("bday").getFormValue();
+		eday = mini.get("eday").getFormValue();
+		loadDateline(bday,eday);
+	}
+	
+	function loadDateline(bday,eday){
 		 $.ajax({
              type: "POST",
              url:"/SSM/MachineShowOrderByMachine.action",
@@ -960,8 +972,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       }
          });
 	}
-	
-
     /**
      * 初始化场次
      */
@@ -971,6 +981,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              url:"/SSM/MachineShowOrderByMachine.action",
            <%-- "/SSM/resource/datelines.txt",  "<%=path %>/load", --%>
              data: {deptId: curVenuesId,
+            	 bday:bday,
+            	 eday:eday,
             	 machineId: machineId,
                  userTypeId: userTypeId //用户身份类型
                  },
