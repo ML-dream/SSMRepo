@@ -53,20 +53,25 @@ public class OrderListServlet extends HttpServlet {
 		String userId = ((User)session.getAttribute("user")).getUserId();
 		String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
 		
-	    String totalCountSql = "select count(*) from orders B left join customer C on B.CUSTOMER=C.COMPANYID  where order_status<11 and order_id like '%"+orderId+"%' and companyName like '%"+customer+"%'";
-//	    String[] params1 = {staffCode};
-	    
+	    String totalCountSql = "select count(*) from orders B left join customer C on B.CUSTOMER=C.COMPANYID  where  book_status>0 and order_id like '%"+orderId+"%' and companyName like '%"+customer+"%'";
+
+	    try {
+			totalCount=Sqlhelper.exeQueryCountNum(totalCountSql, null);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    //	    String[] params1 = {staffCode};
 //	    xiem 是否查询未交付完成订单  3表示全部订单
 	    String orderMode = StringUtil.isNullOrEmpty(request.getParameter("orderMode"))?"3":request.getParameter("orderMode");
-	   
 	    
 		
-	    String OrderSql= "select ORDER_ID orderId,DEPT_USER deptUser,ORDER_DATE orderDate,ENDTIME,CUSTOMER,ORDER_STATUS orderStatus,book_status bookStatus,C.COMPANYNAME companyName,D.deptname,B.connector,B.connectorTel " +
-	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_id like '%"+orderId+"%' and createperson ='"+staffCode +"'  order by ORDER_DATE desc) " +
-	    	"A where ROWNUM<="+(countPerPage*pageNo)+" order by ORDER_DATE desc) B " +
+	    String OrderSql= "select B.*,c.companyName,d.deptName " +
+	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_id like '%"+orderId+"%' and createperson ='"+staffCode +"' and book_status>0  order by createTime desc) " +
+	    	"A where ROWNUM<="+(countPerPage*pageNo)+" order by createTime desc) B " +
 	    	"left join customer C on B.CUSTOMER=C.COMPANYID " +
 	    	"left join dept D on B.DEPT_USER=D.deptid " +
-	    	"where row_num>="+((pageNo-1)*countPerPage+1)+"  and  C.companyName like '%"+customer+"%' order by ORDER_DATE desc";
+	    	"where row_num>="+((pageNo-1)*countPerPage+1)+"  and  C.companyName like '%"+customer+"%' ";
 	    
 	    List<Order> orderList = new ArrayList<Order>();
 	    

@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
       <div>
-  	名称  <input id="companyname" name="companyname" class="mini-textbox" onenter="Search()"/>
+  	客户名称  <input id="companyname" name="companyname" class="mini-textbox" onenter="Search()"/>
   	<a class="mini-button" plain="fasle" onclick="Search()">查询</a>
   	
   	</div>
@@ -48,17 +48,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div name="action" width="40" headerAlign="center" align="center" renderer="onOperatePower"
                  cellStyle="padding:0;">操作
             </div>
-            <div field="companyId" width="100" headerAlign="center">客户编号
+            <div field="companyId" width="100" headerAlign="center" align="center" >客户编号
             </div>
-            <div field="companyName" width="100" headerAlign="center">客户名称
+            <div field="companyName" width="100" headerAlign="center" align="center" >客户名称
             </div>
-            <div field="typeName" width="100" headerAlign="center">企业类型
+            <div field="typeName" width="100" headerAlign="center" align="center" >企业类型
             </div>
-            <div field="address" width="100" headerAlign="center">详细地址
+            <div field="address" width="100" headerAlign="center" align="center" >详细地址
             </div>
-            <div field="connector" width="100" headerAlign="center">联系人
+            <div field="connector" width="100" headerAlign="center" align="center" >联系人
             </div>
-            <div field="connectorTel" width="100" headerAlign="center">联系人电话
+            <div field="connectorTel" width="100" headerAlign="center" align="center" >联系人电话
             </div>
         </div>
     </div> 
@@ -73,8 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		function Search(){
     	 var s=mini.get("companyname").getValue();
      	  /*  var s=document.getElementById("username").getValue; */
-	 		alert(s);
-	 		grid.load({companyname:s});
+	 /* 		alert(s); */
+	 		grid.load({customerName:s});
 	 }
         
   $("#username").bind("keydown", function (e) {
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.companyId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
+	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.companyId+"\',\'"+e.row.connector + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;

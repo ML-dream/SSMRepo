@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<!-- 表头 -->
    			<tr>
 	   			<td>
-	   				<label>部门</label>
+	   				<label>院系</label>
 	   			</td>
 	   			<td>
 	   				<input id="workSection" class="mini-combobox" style="" textField="text" valueField="id" 
@@ -47,8 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   			</td>
 	   		<td><label>姓名</label></td>
 	   			<td>
-	   				<input id="workName" class="mini-combobox" style="" textField="text" valueField="id" 
-   						 url="LoadWorkType" value="" showNullItem="true"  nullItemText="全部" allowInput="true" onvaluechanged="search()"/>
+	   				<input id="workName" class="mini-textbox" style="" textField="text" valueField="id" 
+   						 value=""   allowInput="true" onvaluechanged="search()"/>
 	   			</td> 
 	   			<td><input value="确定" type="button" onclick="search()" /></td>
 	   		</tr>

@@ -28,10 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	*{margin: 0;padding: 0;}
     </style>
     
-       <script src="<%=path %>/resource/timePlanJs/jquery.min.js"></script>
-
-
-
+<script src="<%=path %>/resource/timePlanJs/jquery.min.js"></script>
+<script src="resources/scripts/boot.js" type="text/javascript"></script>
 
 <script src="<%=path %>/resource/timePlanJs/bootstrap.min.js?v=3.3.6"></script>
 <script src="<%=path %>/resource/timePlanJs/layer.js"></script>
@@ -52,6 +50,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type='text/javascript' src="<%=basePath%>resources/js/tabcard.js"></script>
 	<script type="text/javascript" src="<%=basePath%>resources/jquery/jquery.min.js"></script>
 	<jsp:include page="/commons/miniui_header.jsp" />
+	
+ <style>
+    .labelTd
+    {
+        text-align:center;
+        text-indent:5px;
+        }
+    </style>
+	
   </head>
   
   <body>
@@ -61,41 +68,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<span class="separator"></span>
 		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('14')">审核不通过</a>	
 		<span class="separator"></span>
-		
-  			<a class="mini-button" iconCls="icon-find" plain="false"  onclick="bookModify()">修改用户预约</a>  
+		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('12')">撤销审核</a>	
+		<span class="separator"></span>
+  			<a class="mini-button" iconCls="icon-find" plain="false"  onclick="bookModify()">修改预约时间</a>  
     </div>
-  	<fieldset style="width: 100%;" align="center">
+  	
+   	  <fieldset style="width: 100%;" align="center">
 		<legend>
 			订单信息
 		</legend>
 	
-   		<table style="text-align: right;border-collapse:collapse;" border="gray 1px solid;"  width="100%" >
+   		<table  style="text-align: right;border-collapse:collapse;" border="gray 1px solid;"  width="100%" >
    		<tr >
-   			<td width="10%"><label for="orderId$text">订单编号</label></td>
-            <td width="25%"><input id="orderId"  name="orderId" class="mini-textbox"  width="100%"  value="<%=request.getParameter("orderId")%>" enabled="false"/></td>
-            <td width="10%"><label for="companyName$text">订单客户</label></td>
-            <td width="25%"><input id="companyName" name="comapnyname" class="mini-textbox"  width="100%"  value="<%=request.getParameter("companyName")%>" enabled="false"/>
-   			<td width="10%"><label for="createTime$text">创建时间</label></td>
-            <td width="20%"><input id="createTime"  name="deptUser" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
+   			<td width="10%" class="labelTd"><label for="orderId$text">订单编号</label></td>
+            <td width="25%" ><input id="orderId"  name="orderId" class="mini-textbox"  width="100%"   value="<%=request.getParameter("orderId")%>" enabled="false" borderStyle="border:0"/></td>
+            <td width="10%" class="labelTd"><label for="companyName$text">订单客户</label></td>
+            <td width="25%"><input id="companyName" name="comapnyname" class="mini-textbox"  width="100%"  value="<%=request.getParameter("companyName")%>" enabled="false" borderStyle="border:0"/>
+   			<td width="10%" class="labelTd"><label for="createTime$text">创建时间</label></td>
+            <td width="20%"><input id="createTime"  name="deptUser" class="mini-textbox"  width="100%" value="<%=request.getParameter("createTime")%>" enabled="false"  borderStyle="border:0"/>  
             </td>
         </tr>
         <tr>
-       	    <td><label for="connector$text">联系人</label></td>
-            <td><input id="connector"  name="connector" class="mini-textbox"  width="100%"  enabled="false" value="<%=request.getParameter("connector")%>"/></td>
-            <td><label for="connectorTel$text">联系人电话</label></td>
-            <td><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%"  enabled="false" value="<%=request.getParameter("connectorTel")%>"/></td>
-            <td><label for="bookStatus$text">订单状态</label></td>
-            <td><input id="bookStatus"  name="bookStatus" class="bookStatus" style="width:100%;"    enabled="false" readonly="readonly" value="" />
+       	    <td class="labelTd"><label for="connector$text">联系人</label></td>
+            <td><input id="connector"  name="connector" class="mini-textbox"  width="100%"  enabled="false" value="<%=request.getParameter("connector")%>"  borderStyle="border:0"/></td>
+            <td class="labelTd"><label for="connectorTel$text">联系人电话</label></td>
+            <td><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%"  enabled="false" value="<%=request.getParameter("connectorTel")%>"  borderStyle="border:0"/></td>
+            <td class="labelTd"><label for="bookStatus$text">订单状态</label></td>
+            <td><input id="bookStatus"  name="bookStatus" class="bookStatus" style="width:100%;"    enabled="false" readonly="readonly" value=""  borderStyle="border:0"/>
            
         </tr>
          <tr>
-       	 <td><label for="bookStatus$text"></label>审核人</td>
+       	 <td class="labelTd"><label for="bookStatus$text"></label>审核人</td>
             <td><input id="auditingStaffCode"  name="auditingStaffCode" class="auditingStaffCode" style="width:100%;"    enabled="false" readonly="readonly" value="" />
     	    </td>
+             <td colspan="4">
+             </td>
     	     </tr>
    		<tr height="60px;">
-   			<td><label for="checkAdvice$text">审核意见</label></td>
-	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="请输入审核意见" width="100%" height="100%"/></td>
+   			<td class="labelTd"><label for="checkAdvice$text">审核意见</label></td>
+	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="请输入审核意见" style="height:100%;width:100%" borderStyle="border:0"/></td>
        </tr>
    	</table>
    	  </fieldset>
@@ -103,12 +114,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="bookMachine" class="mini-datagrid" style="width:100%;height:500px;" url="myBookOrderMachine.action?orderId=<%=request.getParameter("orderId")%>">
         <div property="columns">            
         	<div field="unid" width="120" headerAlign="center" allowSort="true" align="center" headerAlign="center">预约编号</div> 
-            <div field="machineName" width="120" headerAlign="center" allowSort="true" align="center" headerAlign="center">设备名称</div> 
+            <div field="machineName" width="120" headerAlign="center"  align="center" headerAlign="center">设备名称</div> 
             <div field="timeYmd" width="100" allowSort="true" align="center" headerAlign="center" align="center">日期</div>               
-            <div field="startTimeInfo" width="100" allowSort="true"  align="center" headerAlign="center">开始时间</div>            
-            <div field="endTimeInfo" width="100" allowSort="true" align="center" headerAlign="center">结束时间</div>
+            <div field="startTimeInfo" width="100"   align="center" headerAlign="center">开始时间</div>            
+            <div field="endTimeInfo" width="100"  align="center" headerAlign="center">结束时间</div>
                                                 
-            <div field="bookState" width="100" headerAlign="center" allowSort="true" align="center" renderer="onOperatePower">编辑</div>                
+            <div field="bookState" width="100" headerAlign="center"  align="center" renderer="onOperatePower">编辑</div>                
         
     </div> 
     </div>
@@ -126,34 +137,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a class='mini-button' iconCls=' icon-remove' style='margin-right:2px;' title='删除' href=javascript:bookDelete(\'" + e.row.unid+"\',\'"+e.row.orderId+ "\')>删除</a>";
+	        str = "<a class='mini-button' iconCls=' icon-remove' style='margin-right:2px;' title='删除' href=javascript:bookDelete(\'" + e.row.unid+"\',\'"+e.row.orderId+ "\',\'"+e.row.bookStatus+ "\')>删除</a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
 	    }
 	    
-	    function bookDelete(unid,productId){
+	    function bookDelete(unid,productId,bookStatus){
 	    	
-	    //	alert(unid);
-	    	 $.ajax({
-                 type:"POST",
-                 url:"AuditingBookOrderDelete.action",
-                 
-                 data: {unid:unid},
-                 dataType: "json",
-                 success:function(data){
-               	 // alert(data.result);
-               	  U.msg(data.result);
-               		grid.load();
-                 } ,
-                 error:function(data){
-                  U.msg(data.result);
-                 } 
-             });
-        	
-	    	
-	    	
-	    }
+			 	    //	alert(unid);
+			 	    	 $.ajax({
+			                  type:"POST",
+			                  url:"AuditingBookOrderDelete.action",
+			                  
+			                  data: {unid:unid},
+			                  dataType: "json",
+			                  success:function(data){
+			                	 // alert(data.result);
+			                	  U.msg(data.result);
+			                		grid.load();
+			                  } ,
+			                  error:function(data){
+			                   U.msg(data.result);
+			                  } 
+			              });
+				    }
 	    
 	    
 	    
@@ -180,25 +188,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
 //        var checkAdvice=document.getElementById('checkAdvice').value;
          function pass(bookStatus){
-        	 var checkAdvice=mini.get("checkAdvice").getValue();
-        	 alert(checkAdvice);
-         	 $.ajax({
-                  type:"POST",
-                  url:"AuditingBookOrderAll.action",
-                 
-                  
-                  data: {bookStatus:bookStatus,orderId:orderId,checkAdvice:checkAdvice},
-                  dataType: "json",
-                  success:function(data){
-                	//  alert(data.result);
-                	  U.msg(data.result);
-                	  updateBookOrderStatus();
-           
-                  },
-                  error:function(data){
-                   alert(data.result);
-                  } 
-              });
+        	 if(bookStatus==14){
+ 	    		layer.confirm('注意:审核不通过会使订单信息失效!', {
+ 	                btn: ['确定', '取消'],
+ 	                yes: function (index, layero) { 
+				        	 
+				        	 var checkAdvice=mini.get("checkAdvice").getValue();
+				        	/*  alert(checkAdvice); */
+				         	 $.ajax({
+				                  type:"POST",
+				                  url:"AuditingBookOrderAll.action",
+				                 
+				                  
+				                  data: {bookStatus:bookStatus,orderId:orderId,checkAdvice:checkAdvice},
+				                  dataType: "json",
+				                  success:function(data){
+				                	//  alert(data.result);
+				                	  U.msg(data.result);
+				                	  grid.load();
+				                	  updateBookOrderStatus();
+				           
+				                  },
+				                  error:function(data){
+				                	  U.msg(data.result);
+				                  } 
+				              });
+ 	               },
+ 	                btn2: function (index, layero) {
+ 	                    layer.close(index);
+ 	                }
+ 	            })
+ 	          		
+ 	          	}else{
+ 	   	
+ 	          	 var checkAdvice=mini.get("checkAdvice").getValue();
+	        	/*  alert(checkAdvice); */
+	         	 $.ajax({
+	                  type:"POST",
+	                  url:"AuditingBookOrderAll.action",
+	                 
+	                  
+	                  data: {bookStatus:bookStatus,orderId:orderId,checkAdvice:checkAdvice},
+	                  dataType: "json",
+	                  success:function(data){
+	                	//  alert(data.result);
+	                	  U.msg(data.result);
+	                	  grid.load();
+	                	  updateBookOrderStatus();
+	           
+	                  },
+	                  error:function(data){
+	                	  U.msg(data.result);
+	                  } 
+	              });
+ 	          	}
          	
          	}
          
@@ -223,14 +266,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   success:function(data){
                 	 //alert(data.bookStatus);
                 	  //U.msg(data.result);
-                	  
                 	  document.getElementById('bookStatus').value=data.bookStatusName;
                 	  document.getElementById('auditingStaffCode').value=data.staffName;
-                	  
+                	 /*  document.getElementById('checkAdvice').value=data.checkAdvice; */
+                	  mini.get("checkAdvice").setValue(data.checkAdvice);
            
                   },
                   error:function(data){
-                   alert(data.result);
+                	  U.msg(data.result);
                   } 
               });
          	

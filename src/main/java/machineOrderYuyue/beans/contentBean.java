@@ -3,6 +3,8 @@ package machineOrderYuyue.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javaBean.machBookDatelines;
+
 public class contentBean {
 	
 	private  List machines = null;
@@ -10,6 +12,7 @@ public class contentBean {
 	private  int deptId ;
 	private String deptName = "";
 	private String selectedDate;
+	private List<machBookDatelines> machBookDatelines;
 	
 	
 	public String getSelectedDate() {
@@ -41,6 +44,12 @@ public class contentBean {
 	}
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
+	}
+	public List<machBookDatelines> getMachBookDatelines() {
+		return machBookDatelines;
+	}
+	public void setMachBookDatelines(List<machBookDatelines> machBookDatelines) {
+		this.machBookDatelines = machBookDatelines;
 	}
 	
 	

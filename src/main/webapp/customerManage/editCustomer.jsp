@@ -75,10 +75,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<tr>
    			<td><label for="webAddress$text">网站地址</label></td>
             <td><input id="webAddress"  name="webAddress" class="mini-textbox"  width="100%" value="${customer.webAddress}"/></td>
-   			<td><label for="advise$text">客户建议</label></td>
+   			<td><label for="advise$text">备注</label></td>
             <td colspan="3"><input id="advise"  name="advise" class="mini-textbox" width="100%"  value="${customer.advise}"/></td>
    		</tr>
-   		<tr>
+<%--    		<tr>
    			<td><label for="connector2$text">备用联系人2 </label></td>
           	<td><input id="connector2"  name="connector2" class="mini-textbox" width="100%" value="${customer.connector2}"/></td>
    			<td><label for="connector3$text">备用联系人3 </label></td>
@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <td><input id="connector3Tel"  name="connector3Tel" class="mini-textbox" width="100%"  required="false" emptyText="025-88888888或13612345678" value="${customer.connector3Tel}"/></td>
 	         <td><label for="connector4Tel$text">联系人4电话</label></td>
 	        <td><input id="connector4Tel"  name="connector4Tel" class="mini-textbox" width="100%"  required="false" emptyText="025-88888888或13612345678" value="${customer.connector4Tel}"/></td>
-		</tr>
+		</tr> --%>
    	</table>
    </div>
    </fieldset>

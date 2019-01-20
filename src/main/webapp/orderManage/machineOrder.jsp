@@ -29,6 +29,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </style>
 	<script type='text/javascript' src="<%=basePath%>resources/js/tabcard.js"></script>
 	<script type="text/javascript" src="<%=basePath%>resources/jquery/jquery.min.js"></script>
+	<!-- ……………………………………………………………………………………………………………………………………………………………………………………………………………………………… -->
+		<script src="<%=path %>/resource/timePlanJs/bootstrap.min.js?v=3.3.6"></script>
+		<script src="<%=path %>/resource/timePlanJs/layer.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/template.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/moment-with-locales.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/laypage.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/jquery.qrcode.min.js"></script>
+		
+		<!--jquery validate begin-->
+		<script src="<%=path %>/resource/timePlanJs/jquery.validate.min.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/messages_zh.min.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/jquery.validate.extend.js"></script>
+		<!--jquery validate end-->
+		
+		<script src="<%=path %>/resource/timePlanJs/utils.js"></script>
+	<!-- ……………………………………………………………………………………………………………………………………………………………………………………………………………………………… -->
 	<jsp:include page="/commons/miniui_header.jsp" />
   </head>
   
@@ -76,11 +92,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
              -->
             <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"
-                 cellStyle="padding:0;">预约设备
+                 cellStyle="padding:0;">操作
             </div>
+       <!--      <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"
+                 cellStyle="padding:0;">操作
+            </div> -->
             <div field="orderId" width="110" headerAlign="center" align="center" >订单编号
             </div>
             <div field="companyName" width="100" headerAlign="center" align="center" >客户名称
+            </div>
+             <div field="orderName" width="50" headerAlign="center" align="center" >订单名称
             </div>
             <div field="connector" width="50" headerAlign="center" align="center" >联系人
             </div>
@@ -88,8 +109,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <!-- <div field="deptUser" width="50" headerAlign="center"  align="center" renderer="onDeptRenderer">使用部门
             	
+            	
             </div> -->
-            <div field="orderDate" width="80" headerAlign="center" align="center"  dateFormat="yyyy 年 MM 月 dd 日">订单日期
+            <div field="createTime" width="80" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm:ss">订单日期
             </div>
            <!--  <div field="endTime" width="80" headerAlign="center"  dateFormat="yyyy 年 MM 月 dd 日">交付日期
             </div> -->
@@ -119,15 +141,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "</span>"; */
 	      
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='预约设备' href=javascript:ondEdit(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='预约设备' href=javascript:ondBook(\'" + e.row.orderId+"\',\'"+e.row.connector + "\',\'"+e.row.bookStatus + "\') ><span class='icon-add' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
-	       // str += "<span>";
-	       // str += "<a style='margin-right:2px;' title='查看订单' href=javascript:ondSee(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-node'>&nbsp;</span></a>";
-	       // str += "</span>";
-	        /* str += "<span>";
+	      	str += "<span>";
+	        str += "<a style='margin-right:2px;' title='修改订单' href=javascript:ondEdit(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "</span>";
+	        str += "</span>";
+	 /*        str += "<span>";
 	        str += "<a style='margin-right:2px;' title='订单详情' href=javascript:onAllDetail(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-lock'>&nbsp;</span></a>";
-	        str += "</span>"; */
-	        //alert(e.row.staffCode);
+	        str += "</span>"; 
+	       alert(e.row.staffCode); */
 	        return str;
 	    }
 	    
@@ -135,11 +158,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "<a style='margin-right:2px;' title='订单报价' href=javascript:onQuotation(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-find'>&nbsp;</span></a>";
 	        str += "</span>"; */  
 	    
-	    function ondEdit(orderId,connector){
+	    function ondBook(orderId,connector,bookStatus){
+	        	if(bookStatus>12){
+	        		 U.msg("已审核，请联系管理员进行操作！");
+	        		return;
+	        		
+	        	}
 	        //window.open("EditOrderDetailServlet?orderId=" + orderId,
 	        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
 	    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
 		}
+	        function ondEdit(orderId,connector){
+		        //window.open("EditOrderDetailServlet?orderId=" + orderId,
+		        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
+		    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
+			}
+	   /*      function ondDelete(orderId,connector){
+		        //window.open("EditOrderDetailServlet?orderId=" + orderId,
+		        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
+		    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
+			} */
 
 	    /* function ondSee(orderId,connector){
 	    

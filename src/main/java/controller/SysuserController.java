@@ -80,6 +80,16 @@ public class SysuserController {
 		
 	}
 	
+	/**
+	 * 执行更新员工的信息
+	 */
+	@RequestMapping(value="DoEditEmployeeDetail.action",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+	public String returnDoEditEmployeeDetail(Model model,String sectionCode,String connectorTel,String staffCode) {
+		return sysuserServiceImpl.DoEditEmployeeDetail(sectionCode,connectorTel,staffCode);
+
+	}
+	
    
     
 }

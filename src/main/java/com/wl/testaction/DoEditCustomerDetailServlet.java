@@ -35,50 +35,34 @@ public class DoEditCustomerDetailServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 
-		String companyId = ChineseCode.toUTF8(request.getParameter("companyId").trim());
-	    String companyName = ChineseCode.toUTF8(request.getParameter("companyName").trim());
-	    String type = ChineseCode.toUTF8(request.getParameter("type").trim());
+		String companyId = request.getParameter("companyId").trim();
+	    String companyName = request.getParameter("companyName").trim();
+	    String type = request.getParameter("type").trim();
 	    
-	    String foundingTime = ChineseCode.toUTF8(request.getParameter("foundingTime").trim());
-	    String header = ChineseCode.toUTF8(request.getParameter("header").trim());
-	    String employeeNum = ChineseCode.toUTF8(request.getParameter("employeeNum").trim());
+	    String foundingTime = request.getParameter("foundingTime").trim();
+	    String header = request.getParameter("header").trim();
+	    String employeeNum = request.getParameter("employeeNum").trim();
 	    
-	    String address = ChineseCode.toUTF8(request.getParameter("address").trim());
-	    String postCode = ChineseCode.toUTF8(request.getParameter("postCode").trim());
-	    String telephone = ChineseCode.toUTF8(request.getParameter("telephone").trim());
+	    String address = request.getParameter("address").trim();
+	    String postCode = request.getParameter("postCode").trim();
+	    String telephone = request.getParameter("telephone").trim();
 	    
-	    String webAddress = ChineseCode.toUTF8(request.getParameter("webAddress"));
-	    String business = ChineseCode.toUTF8(request.getParameter("business").trim());
-	    String advise = ChineseCode.toUTF8(request.getParameter("advise"));
-	    String connector = ChineseCode.toUTF8(request.getParameter("connector").trim());
-	    String connectorTel = ChineseCode.toUTF8(request.getParameter("connectorTel").trim());
+	    String webAddress = request.getParameter("webAddress");
+	    String business = request.getParameter("business").trim();
+	    String advise = request.getParameter("advise");
+	    String connector = "";
+	    String connectorTel = "";
 	    
-	    String connector2 = ChineseCode.toUTF8(request.getParameter("connector2"));
-	    String connector2Tel = ChineseCode.toUTF8(request.getParameter("connector2Tel"));
+	    String connector2 ="";
+	    String connector2Tel ="";
+	    String connector3 = "";
+	    String connector3Tel = "";
 	    
-	    String connector3 = ChineseCode.toUTF8(request.getParameter("connector3"));
-	    String connector3Tel = ChineseCode.toUTF8(request.getParameter("connector3Tel"));
-	    
-	    String connector4 = ChineseCode.toUTF8(request.getParameter("connector4"));
-	    String connector4Tel = ChineseCode.toUTF8(request.getParameter("connector4Tel"));
+	    String connector4 = "";
+	    String connector4Tel ="";
 	    
 	    String isTogether = request.getParameter("isTogether");
-//	    if("Y".equals(leave)){		//辞职了
-//	    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-//	    	leaveTime = df.format(new Date());
-//	    }else {
-//			leaveTime = "";
-//		}
-//		String updateEmployeeSql = "update employee_info set " +
-//				"SECTION_CODE='"+sectionCode+"',EDUCATION_LEVEL='"+educationLevel+"'," +
-//				"SCHOOL_FROM='"+schoolFrom+"',SPECIALITY='"+speciality+"',WORK_TYPE='"+workType
-//				+"',TECHNICAL_GRADE='"+technicalGrade+"',ADDRESS='"+address+"',OFFICE_PHNE='"+officePhne+"'," +
-//				"MOBILE_PHONE='"+mobilePhone+"',HOME_PHONE='"+homePhone+"',POSITION='"+position+"',WORKTIME='"+workTime
-//				+"',RFID_CODE='"+RFIDCode+"',QQ='"+QQ+"',email='"+email+"'," +
-//				"FEE='"+fee+"',JOINTIME=to_date('"+joinTime+"','yyyy-mm-dd,hh24:mi:ss'),LEAVE='"+leave+"',leavetime=to_date('"+leaveTime+"','yyyy-mm-dd,hh24:mi:ss')" +
-//				"  where staff_code='"+staffCode+"'";
-//		System.out.println("updateEmployeeSql="+updateEmployeeSql);
-		
+
 	    HttpSession session = request.getSession();
 		String changePerson = ((User)session.getAttribute("user")).getStaffCode();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

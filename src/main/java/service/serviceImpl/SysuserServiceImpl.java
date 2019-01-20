@@ -62,4 +62,22 @@ public class SysuserServiceImpl {
 		return json;
 	}
 
+	/**
+	 * @param sectionCode
+	 * @param connectorTel
+	 * @param staffCode
+	 * @return
+	 * 
+	 * 注意：此处由于更新用户的同时需要同时更新customer表！
+	 */
+	public String DoEditEmployeeDetail(String sectionCode, String connectorTel, String staffCode) {
+		// TODO Auto-generated method stub
+		String json;
+		int returnInfo = sysuserMapper.updateDoEditEmployeeDetail(sectionCode,connectorTel,staffCode);
+		int returnCustomerInfo=sysuserMapper.updateDoEditCustomerDetail(sectionCode, connectorTel, staffCode);
+		json=returnInfo>=1 &&returnCustomerInfo>=1?"操作成功":"操作失败";
+		
+		return "{\"data\":\""+json+"\"}";
+	}
+
 }

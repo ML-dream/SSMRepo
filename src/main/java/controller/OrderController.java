@@ -40,7 +40,7 @@ public class OrderController {
 	
 	@RequestMapping(value="mybookOrder",produces = "text/html;charset=UTF-8") 
 	@ResponseBody 
-    public String returnMyBookOrder(Model model,String pageIndex,String pageSize){ 
+    public String returnMyBookOrder(Model model,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus,String companyId,String companyName){ 
 	 
 		HttpSession session = request.getSession();
 		String userId = ((User)session.getAttribute("user")).getUserId();
@@ -50,7 +50,7 @@ public class OrderController {
 		int pageNo = Integer.parseInt(pageIndex)+1;
 	    int countPerPage = Integer.parseInt(pageSize);
 	    
-		String json  = orderServiceImpl.returnMyBookOrder(staffCode,pageNo, countPerPage);
+		String json  = orderServiceImpl.returnMyBookOrder(staffCode,pageNo, countPerPage,sortField,sortOrder,bookStatus==null?"":bookStatus,companyId==null?"":companyId,companyName==null?"":companyName);
 		System.out.println(json);
 		return json;//转向首页
 	
@@ -62,12 +62,12 @@ public class OrderController {
 	 */
 	@RequestMapping(value="myBookOrderMachine",produces = "text/html;charset=UTF-8") 
 	@ResponseBody 
-    public String rerurnMyBookOrderMachine(Model model,String orderId,String pageIndex,String pageSize){ 
+    public String rerurnMyBookOrderMachine(Model model,String orderId,String pageIndex,String pageSize,String sortField,String sortOrder){ 
 	
 	    int pageNo = Integer.parseInt(pageIndex)+1;
 	    int countPerPage = Integer.parseInt(pageSize);
 	    
-		String json  = orderServiceImpl.returnMybookMachine(orderId, pageNo, countPerPage);
+		String json  = orderServiceImpl.returnMybookMachine(orderId, pageNo, countPerPage,sortField,sortOrder);
 		System.out.println(json);
 		
 		return json;//转向首页
@@ -85,18 +85,14 @@ public class OrderController {
 
 	@RequestMapping(value="AuditingBookingOrder.action",produces = "text/html;charset=UTF-8") 
 	@ResponseBody 
-    public String rerurnAuditingBookingOrder(Model model,String orderId,String pageIndex,String pageSize){ 
+    public String rerurnAuditingBookingOrder(Model model,String orderId,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus,String companyId,String companyName){ 
 	
 
-/*		HttpSession session = request.getSession();
-		String userId = ((User)session.getAttribute("user")).getUserId();
-		String staffCode =  ((User)session.getAttribute("user")).getStaffCode();*/
 
-//		String staffCode="5555";
 		int pageNo = Integer.parseInt(pageIndex)+1;
 	    int countPerPage = Integer.parseInt(pageSize);
 	    String staffCode="";
-		String json  = orderServiceImpl.returnMyBookOrder(staffCode,pageNo, countPerPage);
+		String json  = orderServiceImpl.returnMyBookOrder(staffCode,pageNo, countPerPage,sortField,sortOrder,bookStatus==null?"":bookStatus,companyId==null?"":companyId,companyName==null?"":companyName);
 		System.out.println(json);
 		return json;//转向首页
 
@@ -120,7 +116,7 @@ public class OrderController {
 		
 	}
     
-    //
+    //AddShiYanOrder.actio
     /*
      * 这主要是针对的是预约点进去之后的，进行删除订单
      */
@@ -159,10 +155,10 @@ public class OrderController {
     
     @RequestMapping(value="AddShiYanOrder.action",produces = "text/html;charset=UTF-8") 
  	@ResponseBody 
-     public String rerurnAddShiYanOrder(Model model,String orderId,String customer,String connector,String connectorTel,String productName,String productNum,String material){ 
+     public String rerurnAddShiYanOrder(Model model,String orderId,String customer,String connector,String connectorTel,String orderName,String productNum,String material){ 
  	
 
- 		String json  = orderServiceImpl.addShiYanOrder(orderId,customer,connector,connectorTel,productName,productNum,material);
+ 		String json  = orderServiceImpl.addShiYanOrder(orderId,customer,connector,connectorTel,orderName,productNum,material);
  		System.out.println(json);
  		return json;//转向首页
  	}
@@ -176,5 +172,126 @@ public class OrderController {
  		System.out.println(json);
  		return json;//转向首页
  	}
+ /* 
+  * 
+  * 这个是用于打印出带有二维码的打印单的是函数
+  */
+    @RequestMapping(value="LoadPrintBookOrder.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnLoadPrintBookOrder(Model model,String orderId,String pageIndex,String pageSize, String sortField, String sortOrder){ 
+    		
+    	    int pageNo = Integer.parseInt(pageIndex)+1;
+    	    int countPerPage = Integer.parseInt(pageSize);
+    	    
+    		String json  = orderServiceImpl.returnMybookMachine(orderId, pageNo, countPerPage, sortField, sortOrder);
+    		System.out.println(json);
+    		
+    		return json;//转向首页
+ 	}
     
-}
+    /**
+     * @param model
+     * @param machineId
+     * @param deptId
+     * @return
+     * 这个是用来返回按照机床进行预约的加载的详细信息的
+     */
+    @RequestMapping(value="MachineShowOrderByMachine.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnLMachineShowOrderByMachine(Model model,String bday,String eday,String machineId,String deptId){ 
+    		
+    	    
+    		String json  = orderServiceImpl.returnShowOrderByMachineService(machineId,deptId,bday,eday);
+    		System.out.println(json);
+    		
+    		return json;//转向首页
+ 	}
+    
+    
+    /**
+     * @param model
+     * @param machineId
+     * @param deptId
+     * @return 
+     * 主要是用于返回前端上面一栏机床的信息
+     */
+    @RequestMapping(value="ShowOrderMachineInfoByMachine.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnBookMachByMach(Model model,String machineId,String deptId){ 
+    		
+    	    
+    		String json  = orderServiceImpl.returnBookMachByMachService(machineId,deptId);
+    		System.out.println(json);
+    		
+    		return json;//转向首页
+ 	}
+
+	/**
+	 * @param model
+	 * @param unid
+	 * @return
+	 */
+	@RequestMapping(value="deleteSelectedBookingInfo.action",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+	public String rerurnDeleteSelectedBookingInfo(Model model,String unid){ 
+		
+		
+		String json  = orderServiceImpl.deleteSelectedBookingInfo(unid);
+		System.out.println(json);
+		
+		return json;//转向首页
+	}
+	
+	
+	
+	 @RequestMapping(value="loadCompletedOrderInfo.action",produces = "text/html;charset=UTF-8") 
+ 	@ResponseBody 
+     public String rerurnLoadCompletedOrderInfo(Model model,String orderId){ 
+ 	
+
+ 		String json  = orderServiceImpl.LoadCompletedOrderInfoService(orderId);
+ 		System.out.println(json);
+ 		return json;//转向首页
+ 	}
+	 
+		/*
+		 * 这个是和我的预约的进行联动的请求的，展示机床的信息的额及其后面的预约审核根据审核界面显示详细的机床信息的，两种逻辑是一样的！
+		 * 
+		 */
+		@RequestMapping(value="loadCompletedBookingInfo.action",produces = "text/html;charset=UTF-8") 
+		@ResponseBody 
+	    public String rerurnLoadCompletedBookingInfo(Model model,String orderId,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus){ 
+		
+		    int pageNo = Integer.parseInt(pageIndex)+1;
+		    int countPerPage = Integer.parseInt(pageSize);
+		    if(bookStatus.equals("订单完成")) {
+		    	
+		    	String json  = orderServiceImpl.returnCompletedBookMachine(orderId, pageNo, countPerPage,sortField,sortOrder);
+				System.out.println(json);
+				
+				return json;//转向首页
+		    }else {
+		    	String json  = orderServiceImpl.returnMybookMachine(orderId, pageNo, countPerPage,sortField,sortOrder);
+				System.out.println(json);
+				
+				return json;//转向首页
+		    	
+		    }
+			
+		    
+		} 
+		    
+		    @RequestMapping(value="saveCompletedBookingInfo.action",produces = "text/html;charset=UTF-8") 
+			@ResponseBody 
+		    public String saveCompletedBookingInfo(Model model,String data){ 
+			
+			   System.out.println(data);
+					
+					return null;//转向首页
+			    	
+		}
+		
+	 
+	 
+	 
+	}

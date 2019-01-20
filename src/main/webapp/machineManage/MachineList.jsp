@@ -63,19 +63,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.machineId+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.machineId+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='维修' href=javascript:onRepair(\'" + e.row.machineId+"\',\'"+e.row.machineName+"\') ><span class='mini-button-text mini-button-icon icon-unlock'>&nbsp;&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='维修' href=javascript:onRepair(\'" + e.row.machineId+"\',\'"+e.row.machineName+"\') ><span class='icon-unlock' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='报废' href=javascript:onDiscard(\'" + e.row.machineId+"\') ><span class='mini-button-text mini-button-icon icon-no'>&nbsp;&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='报废' href=javascript:onDiscard(\'" + e.row.machineId+"\') ><span class='icon-no' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='租赁' href=javascript:onHire(\'" + e.row.machineId+"\') ><span class='mini-button-text mini-button-icon icon-user'>&nbsp;&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='租赁' href=javascript:onHire(\'" + e.row.machineId+"\') ><span class='icon-user' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        return str;
 	    }
+	    
 	    
 	    function ondEdit(machineId){
 	        window.location.href = "MachineSpecServlet?machineId="+machineId;

@@ -45,6 +45,18 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
         <servlet-name>default</servlet-name>  
         <url-pattern>*.txt</url-pattern>  
     </servlet-mapping>
+     <servlet-mapping>  
+        <servlet-name>default</servlet-name>  
+        <url-pattern>*.woff2</url-pattern>  
+    </servlet-mapping>
+         <servlet-mapping>  
+        <servlet-name>default</servlet-name>  
+        <url-pattern>*.woff</url-pattern>  
+    </servlet-mapping>
+         <servlet-mapping>  
+        <servlet-name>default</servlet-name>  
+        <url-pattern>*.ttf</url-pattern>  
+    </servlet-mapping>
 	
 	<!-- SpringMvc前端控制器 放入的初始化启动，通过classpath定义初始化参数-->
 	<servlet>

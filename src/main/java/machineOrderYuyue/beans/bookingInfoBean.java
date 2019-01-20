@@ -19,9 +19,23 @@ public class bookingInfoBean {
 	private String processPlanId;
 	private String timeLine;
 	private String timeHm;
+	private String connectorTel;
+	private String orderName;
 	
 	
 	
+	public String getConnectorTel() {
+		return connectorTel;
+	}
+	public void setConnectorTel(String connectorTel) {
+		this.connectorTel = connectorTel;
+	}
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
 	public String getTimeHm() {
 		return timeHm;
 	}

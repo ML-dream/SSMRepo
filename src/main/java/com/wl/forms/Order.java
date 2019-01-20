@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionForm;
 public class Order implements Serializable {
 	private static final long serialVersionUID = 3176152221547746510L;
 	private String orderId;			//订单号
+	private String orderName;			//订单号
 	private String deptUser;		//使用部门
 	private String lot;				//批次
 	private String memo;			//附录
@@ -28,6 +29,10 @@ public class Order implements Serializable {
 	private String bookStatusName;		//订单状态name
 	private String auditingStaffCode;		//订单状态name
 	private String staffName;		//订单状态name
+	private String connectorTelOrders;		//订单状态name
+	private String checkAdvice;		//订单审核意见
+	
+	
 	
 	private String customer;		//客户
 	private String createPerson;	//订单创建人
@@ -137,6 +142,24 @@ public class Order implements Serializable {
 	
 	
 	
+	public String getCheckAdvice() {
+		return checkAdvice;
+	}
+	public void setCheckAdvice(String checkAdvice) {
+		this.checkAdvice = checkAdvice;
+	}
+	public String getConnectorTelOrders() {
+		return connectorTelOrders;
+	}
+	public void setConnectorTelOrders(String connectorTelOrders) {
+		this.connectorTelOrders = connectorTelOrders;
+	}
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
 	public String getStaffName() {
 		return staffName;
 	}

@@ -3,6 +3,14 @@ package machineOrderYuyue.beans;
 public class dateContent {
 
 	private String date;
+	
+	private Boolean isSelected;
+	private Boolean isToday;
+	private int week;
+	private String machineId;
+	
+	
+	
 	public String getDate() {
 		return date;
 	}
@@ -28,7 +36,11 @@ public class dateContent {
 	public void setWeek(int week) {
 		this.week = week;
 	}
-	private Boolean isSelected;
-	private Boolean isToday;
-	private int week;
+	public String getMachineId() {
+		return machineId;
+	}
+	public void setMachineId(String machineId) {
+		this.machineId = machineId;
+	}
+	
 }

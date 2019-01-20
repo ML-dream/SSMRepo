@@ -51,11 +51,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         ul h3
         {
             float: left;
-            font-size: 3%;
+            font-size: 15px;
             font-weight: bold;
             margin: 10px 0 0 0;
             width: 35%;   /* 这个是控制左边相距编边界的距离 */
             margin-left:1%;
+            color:#FF0001;
         }
 
         ul li
@@ -100,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <ul>
 
 <li>
-<h3>客户</h3>
+<h3><label>客户</label></h3>
 <p><input id="companyName" name="companyName" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEdit" textName="companyName" required="true" allowInput="false"/></p>
 </li>
 
@@ -119,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </li>
 <li>
 <h3>订单名称</h3>
-<p><input id="productName"  name="productName" class="mini-textbox"  width="100%" required="true"/></p>
+<p><input id="orderName"  name="orderName" class="mini-textbox"  width="100%" required="true"/></p>
 </li>
 <li>
 <h3>加工数量</h3>
@@ -285,16 +286,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	     
    		function getForm(){
 
-   	    	 var companyId=mini.get("companyName").getValue();
+   	    	var companyId=mini.get("companyName").getValue();
    	    	var connector=mini.get("connector").getValue();
    	    	var connectorTel=mini.get("connectorTel").getValue();
    	    	var orderId=mini.get("orderId").getValue();
-   	    	var productName=mini.get("productName").getValue();
+   	    	var orderName=mini.get("orderName").getValue();
    	    	var productNum=mini.get("productNum").getValue();
    	    	var material=mini.get("material").getValue();
  		  		jQuery.ajax({
       				type: "POST",
-      				url: "AddShiYanOrder.action?customer="+companyId+"&connector="+connector+"&connectorTel="+connectorTel+"&orderId="+orderId+"&productName="+productName+"&productNum="+productNum+"&material="+material,
+      				url: "AddShiYanOrder.action?customer="+companyId+"&connector="+connector+"&connectorTel="+connectorTel+"&orderId="+orderId+"&orderName="+orderName+"&productNum="+productNum+"&material="+material,
       				dataType: "json", 
       				cache: false,
       		
@@ -396,16 +397,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    { 
 	         document.getElementById("span1").innerHTML="<input type=file id=upload size=40  name=upload label=上传文件   class=buttonface />";   
 	    }   
-	    
-   		function onIDCardsValidation(e) {
-            if (e.isValid) {
-                var pattern = /\d*/;
-                if (e.value.length < 15 || e.value.length > 18 || pattern.test(e.value) == false) {
-                    e.errorText = "必须输入15~18位数字";
-                    e.isValid = false;
-                }
-            }
-        }
+
 
    		//验证QQ号码5-11位
    		function isQQ(e) {

@@ -355,6 +355,10 @@ body .mini-error .mini-textboxlist-border
 {
     
 }
+.mini-grid-column-trigger
+{
+    border-color:#6291c9;
+}
 .mini-grid-headerCell, .mini-grid-topRightCell
 {
     background:#95b6e9 url(images/grid/header.gif) repeat-x 0 0;

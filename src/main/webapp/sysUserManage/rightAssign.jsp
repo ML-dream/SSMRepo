@@ -49,14 +49,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 			<td>
 				 				<a id="empbutton" class="mini-button" iconCls="" onclick="empSearch()">查询</a>
 				 			</td>
-				 			<td><label>授予者</label></td>
+				 			
+				<!--  			<td><label>授予者</label></td>
 				 			<td>
 				 				<input id="cankao" name="cankao" class="mini-buttonedit" width="" 
 				            		onbuttonclick="onButtonEdit" textName="emp" required="false" value="" text="" allowInput="false"/>
-				 			</td>
-				 			<td>
+				 			</td> -->
+				 			<!-- <td>
 				 				<a id="copyRight" class="mini-button" iconCls="" onclick="copyRight()">权限参考</a>
-				 			</td>
+				 			</td> -->
 			 			</tr>
 			     	</table>
 		     	</form>

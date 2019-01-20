@@ -12,7 +12,7 @@
 <script type="text/javascript" src="staticResources/js/echarts.js"></script>
 <script type="text/javascript" src="staticResources/js/jquery.min.js"></script>
 <script type="text/javascript" src="staticResources/js/echarts.min.js"></script>
-<script type="text/javascript" src="staticResources/js/miniui.js"></script>
+<!-- <script type="text/javascript" src="staticResources/js/miniui.js"></script> -->
 
 <script type="text/javascript" src="staticResources/js/dark.js"></script>
 
@@ -377,7 +377,7 @@
 
 <script type="text/javascript">
  
-mini.parse();
+/* mini.parse(); */
  
 var createTime=0;
 var machineName=0 ;         

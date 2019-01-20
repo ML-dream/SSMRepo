@@ -16,6 +16,18 @@
 		select count(*) from customer where staffCode=#{staffCode} or createPerson=#{staffCode}
 	</select>
 	
+	
+	<update id="updateDoEditEmployeeDetail" >
+	
+		update employee_info set mobile_phone=#{connectorTel},section_code=#{sectionCode} where staff_code=#{staffCode}
+
+	</update>
+		<update id="updateDoEditCustomerDetail" >
+	
+		update customer set telephone=#{connectorTel},connectorTel=#{connectorTel}  where staffcode=#{staffCode}
+
+	</update>
+	
 
 </mapper>
 

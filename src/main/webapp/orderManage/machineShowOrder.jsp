@@ -22,6 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="NUAA">
 <meta name="description" content="NUAA设备预约系统">
 
+
+<script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
 <script>
     var $ctx = "/gym";
     var $ctxStatic = "/gym/static";
@@ -69,7 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/resource/timePlanJs/jquery.qrcode.min.js"></script>
 
 
-
 <!--jquery validate begin-->
 <script src="<%=path %>/resource/timePlanJs/jquery.validate.min.js"></script>
 <script src="<%=path %>/resource/timePlanJs/messages_zh.min.js"></script>
@@ -84,6 +85,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="<%=path %>/resource/timePlanJs/venue_reservation.css" rel="stylesheet">
     <link href="<%=path %>/resource/timePlanJs/session.css" rel="stylesheet"/>
     <!--style end-->
+    
+    <style type="text/css">
+    	 .box-list div{
+	    width: 53px;height: 65px;line-height: 40px;text-align: center;
+	    float: left;
+	    border-right: 1px solid #CCCCCC;
+	    border-bottom:1px solid #CCCCCC;
+			}
+			
+	    .box-title div {
+	    width: 80px;
+	    height: 65px;
+	    line-height: 40px;
+	    text-align: center;
+	    padding: 0px;
+	    border-left: 1px solid #CCCCCC;
+	    border-right: 1px solid #CCCCCC;
+	    border-bottom: 1px solid #CCCCCC;
+	    margin: 0px;
+		}
+		.selectCurrentYuding {
+   			 background-color: #ffdd4c;
+		}
+		
+		.spanTextClass {
+		font-size: small;
+		line-height:20px;
+			}
+    </style>
+    
+    
 </head>
 
 <body >
@@ -214,6 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
  
     <article>
+
         <div class="yuyueBox"><!-- 预约内容块开始 -->
             <div class="venue_first">
                 <div class="apply">
@@ -322,7 +355,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <div class="panel-body">
                                                     <div class="p-tb-xs overflow" id="juzhong">
                                                         <div class="col-xs-5 text-danger text-font12 p-n">
-                                                            温馨提示：预订前请先关注预约时间的天气
+       <form id="form0">
+	    <table >
+	   		<tr>
+	   		  <td><span>设置:</span></td>
+	   		  <td><span>&nbsp;</span></td>
+	          <td>开始</td>
+	          <td><input id="bday" class="mini-datepicker" width="100"  allowinput="false"  format="yyyy-MM-dd" required="true"/>
+	          </td>
+	          <td>结束</td>
+	          <td><input id="eday" class="mini-datepicker"  width="100" allowinput="false"  format="yyyy-MM-dd" required="true"/>
+	          </td>
+	          <td><span>&nbsp;</span></td>
+	          <td><input value="查找" type="button" onclick="loadgrid()" style="width:50px;"/></td>
+	   			
+	   		</tr>
+	   		
+	   	</table>
+	   </form>         <!--    温馨提示：预订前请先关注预约时间的天气 -->
                                                         </div>
                                                         <div class="col-xs-7 p-n">
                                                             <ul class="unstyled overflow text-right m-n p-n pull-right">
@@ -337,11 +387,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                 </li>
                                                                 <li class="pull-left text-right m-r-md">
                                                                     <img class="m-r-xs"
-                                                                         src="<%=path %>/resource/images/yuding.png">已预订
+                                                                         src="<%=path %>/resource/images/yuding.png">已预约
                                                                 </li>
                                                                 <li class="pull-left text-right">
                                                                     <img class="m-r-xs"
-                                                                         src="<%=path %>/resource/images/no.png">已锁
+                                                                         src="<%=path %>/resource/images/no.png">不可选
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -373,7 +423,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                         <div class="box-list">
                                                                             {{each machine.sessionsList as session j}}
                                                                             {{if isSelected(machine.machineId+"-"+content.selectedDate+"-"+session.timeHm)}}
-                                                                            <div data-sid="{{session.timeLine}}"
+                                                                            <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
                                                                                  data-siteid="{{machine.machineId}}"
                                                                                  data-starttime="{{session.startTime}}"
@@ -388,8 +438,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                                 
                                                                             </div>
                                                                           
-                                                                            {{else if session.state == 2}}
-                                                                            <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
+                                                                            {{else if session.orderId !=="<%=request.getParameter("orderId")%>" && session.state == 2}}
+					
+                                                                          
+																				 <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
                                                                                  data-siteid="{{machine.machineId}}"
                                                                                  data-starttime="{{session.startTime}}"
@@ -404,19 +456,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                                  class="selectYuding block-booking">
                                                                                 
                                                                                
-                                                                               
-                                                                                <span
-                                                                                        data-name="{{session.bookingUserName}}"
-                                                                                        data-code="{{session.memberCode}}"
-                                                                                        data-phone="{{session.phone}}">
-                                                                                        {{session.bookingUserName}}<br/>
-                                                                                        {{session.memberCode}}
-                                                                                    </span>
+                                                                                       <span
+                                                                                    		 class="spanTextClass"
+																						     data-bookingUserName="{{session.bookingUserName}}"
+                                                                                        	 data-orderId="{{session.orderId}}"
+                                                                                             data-connectorTel="{{session.connectorTel}}"
+																						     data-orderName="{{session.orderName}}">
+																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+                                                                                        
+                                                                                       
+                                                                                    	</span>
                                                                              
-                                                                            </div>
+                                                                            	</div>
+
+
+
+																				{{else if session.orderId =="<%=request.getParameter("orderId")%>" && session.state == 2 }}
+					
+																			
+																			
+																				
+																			
                                                                            
-
-
+																				 <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
+                                                                                 data-venuesid="{{content.deptId}}"
+                                                                                 data-siteid="{{machine.machineId}}"
+                                                                                 data-starttime="{{session.startTime}}"
+                                                                                 data-endtime="{{session.endTime}}"
+                                                                                 data-venuesname="{{content.deptName}}"
+                                                                                 data-selecteddate="{{content.selectedDate}}"
+																				 data-timehm="{{session.timeHm}}"
+                                                                                 data-sitename="{{machine.machineName}}"
+                                                                                 data-price="{{machine.price}}"
+                                                                                 data-originalPrice="{{machine.price}}"
+                                                                                 style="color: white;font-size: 11px;"
+                                                                                 class="selectCurrentYuding block-booking modifySelected">
+                                                                                
+                                                                               
+                                                                                       <span
+                                                                                    		 class="spanTextClass"
+																						     data-bookingUserName="{{session.bookingUserName}}"
+                                                                                        	 data-orderId="{{session.orderId}}"
+                                                                                             data-connectorTel="{{session.connectorTel}}"
+																						     data-orderName="{{session.orderName}}">
+																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+                                                                                        
+                                                                                       
+                                                                                    	</span>
+                                                                             
+                                                                            	</div>
+                                                                
+																															
                                                                             {{else}}
                                                                             <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
@@ -435,7 +525,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                             {{/if}}
                                                                             {{/each}}
                                                                         </div>
-                                                                        {{/each}}
+                                                                      
+																	  {{/each}}
 
                                                                     </div>
                                                                 </script>
@@ -481,12 +572,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                                 <div class="r-detail">
                                     <div class="gray-bg overflow">
-                                        <h4 class="p-xs m-n border-bottom">已选场次</h4>
+                                        <h4 class="p-xs m-n border-bottom">已选时段</h4>
                                         <div class="p-xs zuoce">
                                             点击左侧<img
                                                 src="<%=path %>/resource/images/scene-chooes.png"
                                                 alt=""
-                                                style="display:inline-block;width:32px;background-color:#fff;">选择场次，再次点击取消选择，所有场次预订成功后不予退还。
+                                                style="display:inline-block;width:32px;background-color:#fff;">选择时段，再次点击取消选择<!-- ，所有场次预订成功后不予退还。 -->
                                         </div>
                                     </div>
                                     <div class="m-t gray-bg overflow">
@@ -510,7 +601,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <div class="col-xs-9 word-wrap">{{sessionTime}}</div>
                                                 </div>
                                                 <div class="col-xs-12 p-xxs">
-                                                    <label class="col-xs-3 p-n m-b-n text-right">场地</label>
+                                                    <label class="col-xs-3 p-n m-b-n text-right">设备</label>
                                                     <div class="col-xs-9 word-wrap">{{siteName}}</div>
                                                 </div>
                                                 <i class="iconfont icon-shanchu text-danger" data-id="{{uid}}"
@@ -547,11 +638,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </script>
                                         <div class="col-xs-12 p-lr-sm m-t m-b">
                                             已选<span style="font-weight: bold;" class="text-warning"
-                                                    id="session_size">0</span>个场地
+                                                    id="session_size">0</span>个时段
                                         </div>
                                         <div class="col-xs-12 p-n m-t-md m-b-md text-center">
                                             <button onclick="confirmBook()" type="button"
                                                     class="btn btn-primary m-t-sm">确定预订
+                                            </button>
+                                            <button onclick="window.history.back(-1)" type="button"
+                                                    class="btn btn-primary m-t-sm">返回
                                             </button>
                                         </div>
                                     </div>
@@ -577,9 +671,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="hover-booking"><!-- 鼠标右边的tips -->
-    <p>姓名：<span id="user-name"></span></p>
-    <p>账号：<span id="user-code"></span></p>
-    <p>手机：<span id="user-phone"></span></p>
+    <p>联系人：<span id="user-bookingUserName"></span></p>
+    <p>联系电话：<span id="user-connectorTel"></span></p>
+    <p>订单名称：<span id="user-orderName"></span></p>
+    <p>订单：<span id="user-orderId"></span></p>
 </div>
 
 <div class="hover-locked"><!-- 鼠标右边的tips -->
@@ -612,6 +707,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var curVenuesName;
     var allVenues;//所有场馆
     var userTypeId = U.transfer('1');
+    var bday;
+    var eday;
     //一下两个变量是用于对于保存后的二次加载，没有搞清出他们为社么需要重新初始化！！以后在了解
     var curVenuesIdSecond;
     var curDate;
@@ -633,7 +730,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         onSelectSession();
 
       //  bindServiceGoodsListener();
-
+		onModifySelected();
         bindHoverListener();
     }
 
@@ -686,6 +783,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 refreshOrderSize();
             }
         });
+    }
+    /**
+     * 删除已经选择的时段
+     */
+    function onModifySelected() {
+        $('.modifySelected').on('click', function (e) {
+           /* alert("选择成功"); */
+           var uid = $(this).data('sid');
+           var venuesId = $(this).data('venuesid');
+           var siteId = $(this).data('siteid');
+           var selectedDate = $(this).data('selecteddate');
+           var timeHm = $(this).data('timehm');
+           var startTime = $(this).data('starttime');
+           var endTime = $(this).data('endtime');
+           var siteName = $(this).data('sitename');
+           var venuesName = $(this).data('venuesname');
+           var price = $(this).data('price');
+
+           var sessionTime = selectedDate+" "+startTime+"-"+endTime; //startTime + '-' + moment(endTime, "YYYY-MM-DD HH:mm").format('HH:mm');
+          /*  alert(uid); */
+     
+	    	 $.ajax({
+	             type:"POST",
+	             url:"<%=path %>/deleteSelectedBookingInfo.action",
+	            
+	             data: {unid:uid},
+	             dataType: "json",
+	             success:function(data){
+	            	 U.msg(data.result);
+	             	 resetOrder();
+	             	 initSessions(curDate);  
+	             } ,
+	             error:function(data){
+	              alert(data.result);
+	             } 
+	         });
+	    	
+	     });
     }
 
     /**
@@ -792,13 +927,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $('#venue_description').html(venues.description);
         $('#venue_picture').attr('src', venues.picture);
     }
-
+    
+   /*  
+  	 定义加载的时间范围
+   */
+    mini.parse();
+	function loadgrid(){
+		
+		 bday = mini.get("bday").getFormValue();
+		 eday = mini.get("eday").getFormValue();
+		 var form0 = new mini.Form("form0");
+		 if(eday<bday){
+			 return;
+			 
+		 }
+	   	 /* 	form0.validate();
+	      	 if (form0.isValid() == false) {return;}  */
+		 initDateLines();
+	}
+	
+    
+    
     function initDateLines(id) {
     	
     	 $.ajax({
              type: "GET",
-             url: "dateLInes",
+             url: "<%=path %>/dateLInes",
              data: {id: id,
+            	 bday:bday,
+            	 eday:eday,
                  userTypeId: userTypeId //用户身份类型
                  },
              dataType: "json",
@@ -822,7 +979,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function initSessions(date) {
     	 $.ajax({
              type: "POST",
-             url: "load",
+             url: "<%=path %>/load",
              data: {id: curVenuesId,
             	 date: date,
                  userTypeId: userTypeId //用户身份类型
@@ -844,10 +1001,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  }
                       }
          });
-    	
-    	
-    	
-    	
     }
 
 
@@ -1007,8 +1160,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             if ($('.order-session').length > 0) {
                 $('.order-session').each(function (i) {
-                    var val = new Object();
-                    val.orderId="${order.orderId}";
+                   
+                	 <%-- alert("<%=request.getParameter("orderId")%>"); --%>
+                	/* alert("${orderId}"); */
+                	var val = new Object();
+                    val.orderId="<%=request.getParameter("orderId")%>";
            			val.connector="${order}";
            			val.connectorTel="${order.connectorTel}";
 					val.uid = $(this).data('uid');	
@@ -1086,7 +1242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var formData=document.getElementById("temp_order_content").value;
     	 $.ajax({
              type:"POST",
-             url:"bookingSubmit",
+             url:"<%=path %>/bookingSubmit",
             
              
              data: {order: formData},
@@ -1159,9 +1315,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $('.block-booking').mousemove(function (e) {
             var span = $(this).find('span');
             if (span != null) {
-                $('#user-name').html($(span).data('name'));
-                $('#user-code').html($(span).data('code'));
-                $('#user-phone').html($(span).data('phone'));
+                $('#user-bookingUserName').html($(span).data('bookingusername'));
+                $('#user-orderId').html($(span).data('orderid'));
+                $('#user-connectorTel').html($(span).data('connectortel'));
+                $('#user-orderName').html($(span).data('ordername'));
             }
             $('.hover-booking').show().css({
                 "top": e.pageY + 1,

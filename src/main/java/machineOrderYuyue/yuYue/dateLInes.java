@@ -2,6 +2,7 @@ package machineOrderYuyue.yuYue;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.wl.testaction.utils.DaiUtils;
+
 import machineOrderYuyue.beans.*;
 import net.sf.json.JSONObject;
 
@@ -29,23 +33,53 @@ public class dateLInes extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+			
 		
+			request.setCharacterEncoding("utf-8");
 		
-		
-		
-		
+			String bday = request.getParameter("bday");
+			String eday = request.getParameter("eday");
+			
 			Calendar calendar2 = Calendar.getInstance();
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-		
-			
-			
 			
 	        String time = sdf2.format(calendar2.getTime());// new Date()Ϊ��ȡ��ǰϵͳʱ��
 			
 	        ArrayList<dateContent> dateContentList = new ArrayList<dateContent>();
 	        
-	        for(int i=0;i<18;i++){
+	        int count;
+			Date beginDate;
+			if((bday==null?"":bday).equals("")||(eday==null?"":bday).equals("")) {
+				
+				count=18;
+				beginDate=calendar2.getTime();
+			
+			
+			}else {
+				 Date bdate = null;
+				try {
+					bdate = sdf2.parse(bday);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		         Date edate = null;
+				try {
+					edate = sdf2.parse(eday);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		            
+		         	count=DaiUtils.differentDays(bdate,edate);
+		         	beginDate=bdate;
+		         	calendar2.setTime(beginDate);
+				
+			}
+	        
+	        
+	        
+	        for(int i=0;i<count;i++){
 	        	
 	        	dateContent dateContent = new dateContent();
 	        	calendar2.add(Calendar.DATE, 0);

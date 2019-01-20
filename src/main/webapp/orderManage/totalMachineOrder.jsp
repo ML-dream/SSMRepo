@@ -42,6 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=path %>/resource/timePlanJs/animate.min.css" rel="stylesheet">
 <link href="<%=path %>/resource/timePlanJs/style.min862f.css?v=4.1.0" rel="stylesheet">
 <link href="<%=path %>/resource/timePlanJs/iconfont.css" rel="stylesheet">
+<script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
+
 <!-- 字体图标 -->
 <!--style end-->
 
@@ -69,7 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/resource/timePlanJs/jquery.qrcode.min.js"></script>
 
 
-
 <!--jquery validate begin-->
 <script src="<%=path %>/resource/timePlanJs/jquery.validate.min.js"></script>
 <script src="<%=path %>/resource/timePlanJs/messages_zh.min.js"></script>
@@ -84,6 +85,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="<%=path %>/resource/timePlanJs/venue_reservation.css" rel="stylesheet">
     <link href="<%=path %>/resource/timePlanJs/session.css" rel="stylesheet"/>
     <!--style end-->
+     <style type="text/css">
+    
+	    .box-list div{
+	    width: 70px;height: 40px;line-height: 40px;text-align: center;
+	    float: left;
+	    border-right: 1px solid #CCCCCC;
+	    border-bottom:1px solid #CCCCCC;
+			}
+			
+		.article_2 {
+/* 	    width: 1000px; */
+	    /* height: 272px; */
+	    /* background-color: gray; */
+	 /*    margin-top: 60px; */
+			}
+			
+		.tabs-container {
+				width: 1100px;
+    			border: 1px solid #ebebeb;
+			}
+			
+			.box-scroll {
+			    width: 1300px;
+			    /* max-height: 460px; */
+			    overflow-y: auto;
+			    overflow-x: auto;
+			}
+			
+		.selectCurrentYuding {
+   			 background-color: #ffdd4c;
+		}
+		
+		.spanTextClass {
+		font-size: small;
+		line-height:20px;
+			}
+    </style>
+
+    
+    
+    
 </head>
 
 <body >
@@ -217,7 +259,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="yuyueBox"><!-- 预约内容块开始 -->
             <div class="venue_first">
                 <div class="apply">
-
                     <div class="img_l"><img src="<%=path %>/resource/images/left.gif"/></div>
 
                     <div class="apply_nav">
@@ -240,37 +281,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 {{/each}}
                             </script>
                         </div>
+                        
+                        
                     </div>
+                    
                     <div class="img_r"><img src="<%=path %>/resource/images/right.gif"/></div>
                 </div>
             </div>
-           <%--  <div class="venue_infor" style="height: 170px;"><!-- 第二大块 -->
-                <div class="infor_left">
-                    <img id="venue_picture"
-                         style="height: 112px; width: 112px;"
-                         src="<%=path %>/resource/images/ic_default_circle.png"
-                         onerror="javascript:this.src='<%=path %>/resource/images/ic_default_circle.png'">
-                    <div class="leftText" style="width: 900px;">
-                        <h3 id="venue_name"></h3>
-                        <p>开放时间：<span id="venue_open_time"></span></p>
-                        <p>场馆地址：<span id="venue_address"></span></p>
-                        <p>联系电话：<span id="venue_phone"></span></p>
-                        <p id="venue_description">
-                        </p>
-                    </div>
-                </div>
-            </div> --%>
+
             <div class="kuailai_yd" id="activity-container" style="margin-top: 10px; display: none;"><!-- 第三块 -->
                 <img src="<%=path %>/resource/images/sale.jpg" alt="">
                 <span id="activity-title"></span>
             </div>
             <div style="width: 100%; height: auto; border: 1px solid #ebebeb; margin-top: 5px; padding-left: 20px;">
                 <img src="<%=path %>/resource/images/placeholder.png" style="position: absolute;z-index:100;width: auto;width: 800px;height: 70px;opacity: 0;filter:alpha(opacity=0);">
-                <!-- 天气块 -->
-             <!--    <iframe name="tianqi-iframe" id="tianqi-iframe" width="100%" scrolling="no" height="60" frameborder="0"
-                        allowtransparency="true"
-                        src="http://i.tianqi.com/index.php?c=code&id=12&icon=3&py=yueluqu&num=7">
-                </iframe> -->
 
                 
             </div>
@@ -289,26 +313,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <ul class="nav nav-tabs"
                                                     style="float: left;">
                                                     {{each content as item i}}
-                                                    <li onclick="onSelectDate(this)" data-date="{{item.date}}">
-                                                        <a class="text-center" data-toggle="tab" href="#"
+                                                     <li onclick="onSelectDate(this)" id="{{item.machineId}}"  data-machineid="{{item.machineId}}" data-machinename="{{item.date}}">
+                                                        <a class="text-center" id="{{item.machineId}}" data-toggle="tab" data-machineid="{{item.machineId}}" href="#"
                                                            aria-expanded="false">
-                                                            {{if item.isToday}}
-                                                            <p class="text-font16 m-n text-block">今天</p>
-                                                            {{else if item.week ==0}}
-                                                            <p class="text-font16 m-n text-block">周日</p>
-                                                            {{else if item.week ==1}}
-                                                            <p class="text-font16 m-n text-block">周一</p>
-                                                            {{else if item.week ==2}}
-                                                            <p class="text-font16 m-n text-block">周二</p>
-                                                            {{else if item.week ==3}}
-                                                            <p class="text-font16 m-n text-block">周三</p>
-                                                            {{else if item.week ==4}}
-                                                            <p class="text-font16 m-n text-block">周四</p>
-                                                            {{else if item.week ==5}}
-                                                            <p class="text-font16 m-n text-info">周五</p>
-                                                            {{else if item.week ==6}}
-                                                            <p class="text-font16 m-n text-info">周六</p>
-                                                            {{/if}}
+                                                          
                                                             <p class="m-n text-muted">{{item.date}}</p>
                                                         </a>
                                                     </li>
@@ -322,8 +330,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <div class="panel-body">
                                                     <div class="p-tb-xs overflow" id="juzhong">
                                                         <div class="col-xs-5 text-danger text-font12 p-n">
-                                                            温馨提示：预订前请先关注预约时间的天气
+                                                                                              <form id="form0">
+	    <table >
+	   		<tr>
+	   		  <td><span>设置:</span></td>
+	   		  <td><span>&nbsp;</span></td>
+	          <td>开始</td>
+	          <td><input id="bday" class="mini-datepicker" width="100"  allowinput="false"  format="yyyy-MM-dd" required="true"/>
+	          </td>
+	          <td>结束</td>
+	          <td><input id="eday" class="mini-datepicker"  width="100" allowinput="false"  format="yyyy-MM-dd" required="true"/>
+	          </td>
+	          <td><span>&nbsp;</span></td>
+	          <td><input value="查找" type="button" onclick="loadgrid()" style="width:50px;"/></td>
+	   			
+	   		</tr>
+	   		
+	   	</table>
+	   </form>   
                                                         </div>
+  
                                                         <div class="col-xs-7 p-n">
                                                             <ul class="unstyled overflow text-right m-n p-n pull-right">
                                                                 <li class="pull-left text-right m-r-md">
@@ -337,11 +363,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                 </li>
                                                                 <li class="pull-left text-right m-r-md">
                                                                     <img class="m-r-xs"
-                                                                         src="<%=path %>/resource/images/yuding.png">已预订
+                                                                         src="<%=path %>/resource/images/yuding.png">已预约
                                                                 </li>
                                                                 <li class="pull-left text-right">
                                                                     <img class="m-r-xs"
-                                                                         src="<%=path %>/resource/images/no.png">已锁
+                                                                         src="<%=path %>/resource/images/no.png">不可选
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -353,9 +379,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                 <script id="session_tmpl" type="text/html">
                                                                     <div class="box-title bgColor">
                                                                         <div></div>
-                                                                        {{each content.machines as machine i}}
-                                                                        <div title="{{machine.machineName}}"style="line-height: 15px;padding-top: 10px;">
-                                                                            {{machine.machineName}}
+                                                                        {{each content.machBookDatelines as machine i}}
+                                                                        <div title="{{machine.dateline}}"style="line-height: 15px;padding-top: 10px;">
+                                                                            {{machine.dateline}}
                                                                         </div>
                                                                         {{/each}}
                                                                     </div>
@@ -369,16 +395,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                             {{/each}}
                                                                         </div>
 
-                                                                        {{each content.machines as machine i}}
+                                                                        {{each content.machBookDatelines as machine i}}
                                                                         <div class="box-list">
                                                                             {{each machine.sessionsList as session j}}
-                                                                            {{if isSelected(machine.machineId+"-"+content.selectedDate+"-"+session.timeHm)}}
-                                                                            <div data-sid="{{session.timeLine}}"
+                                                                            {{if isSelected(machine.machineId+"-"+machine.dateline+"-"+session.timeHm)}}
+                                                                            <div data-sid="{{machine.machineId+"-"+machine.dateline+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
                                                                                  data-siteid="{{machine.machineId}}"
                                                                                  data-starttime="{{session.startTime}}"
                                                                                  data-endtime="{{session.endTime}}" 
-                                                                                 data-selecteddate="{{content.selectedDate}}"
+                                                                                 data-selecteddate="{{machine.dateline}}"
                                                                                  data-venuesname="{{content.deptName}}"
 																				 data-timehm="{{session.timeHm}}"
                                                                                  data-sitename="{{machine.machineName}}"
@@ -388,8 +414,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                                 
                                                                             </div>
                                                                           
-                                                                            {{else if session.state == 2}}
-                                                                            <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
+                                                                           
+                                                                            {{else if session.orderId !=="<%=request.getParameter("orderId")%>" && session.state == 2}}
+					
+                                                                          
+																				 <div data-sid="{{machine.machineId+"-"+machine.dateline+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
                                                                                  data-siteid="{{machine.machineId}}"
                                                                                  data-starttime="{{session.startTime}}"
@@ -401,41 +430,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                                  data-price="{{machine.price}}"
                                                                                  data-originalPrice="{{machine.price}}"
                                                                                  style="color: white;font-size: 11px;"
-																				 onclick="book_unlock('{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}' )"
                                                                                  class="selectYuding block-booking">
                                                                                 
-
-																					
                                                                                
-                                                                               
-                                                                                <span
-                                                                                        data-name="{{session.bookingUserName}}"
-                                                                                        data-code="{{session.memberCode}}"
-                                                                                        data-phone="{{session.phone}}">
-                                                                                        {{session.bookingUserName}}<br/>
-                                                                                        {{session.memberCode}}
-                                                                                    </span>
-
-
+                                                                                       <span
+                                                                                    		 class="spanTextClass"
+																						     data-bookingUserName="{{session.bookingUserName}}"
+                                                                                        	 data-orderId="{{session.orderId}}"
+                                                                                             data-connectorTel="{{session.connectorTel}}"
+																						     data-orderName="{{session.orderName}}">
+																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+                                                                                        
+                                                                                       
+                                                                                    	</span>
                                                                              
-                                                                            </div>
+                                                                            	</div>
+
+																				{{else if session.orderId =="<%=request.getParameter("orderId")%>" && session.state == 2 }}
+					
+																			
+																			
+																				
+																			
                                                                            
-
-
+																				 <div data-sid="{{machine.machineId+"-"+machine.dateline+"-"+session.timeHm}}"
+                                                                                 data-venuesid="{{content.deptId}}"
+                                                                                 data-siteid="{{machine.machineId}}"
+                                                                                 data-starttime="{{session.startTime}}"
+                                                                                 data-endtime="{{session.endTime}}"
+                                                                                 data-venuesname="{{content.deptName}}"
+                                                                                 data-selecteddate="{{content.selectedDate}}"
+																				 data-timehm="{{session.timeHm}}"
+                                                                                 data-sitename="{{machine.machineName}}"
+                                                                                 data-price="{{machine.price}}"
+                                                                                 data-originalPrice="{{machine.price}}"
+                                                                                 style="color: white;font-size: 11px;"
+                                                                                 class="selectCurrentYuding block-booking modifySelected">
+                                                                                
+                                                                               
+                                                                                       <span
+                                                                                    		 class="spanTextClass"
+																						     data-bookingUserName="{{session.bookingUserName}}"
+                                                                                        	 data-orderId="{{session.orderId}}"
+                                                                                             data-connectorTel="{{session.connectorTel}}"
+																						     data-orderName="{{session.orderName}}">
+																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+                                                                                        
+                                                                                       
+                                                                                    	</span>
+                                                                             
+                                                                            	</div>
+                                                                
+																															
                                                                             {{else}}
-                                                                            <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
+                                                                            <div data-sid="{{machine.machineId+"-"+machine.dateline+"-"+session.timeHm}}"
                                                                                  data-venuesid="{{content.deptId}}"
                                                                                  data-siteid="{{machine.machineId}}"
                                                                                  data-starttime="{{session.startTime}}"
                                                                                  data-endtime="{{session.endTime}}"
                                                                                  data-venuesname="{{content.deptName}}"
                                                                                  data-sitename="{{machine.machineName}}"
-																				 data-selecteddate="{{content.selectedDate}}"
+																				 data-selecteddate="{{machine.dateline}}"
 																				 data-timehm="{{session.timeHm}}"
                                                                                  data-price="{{machine.price}}"
                                                                                  data-originalPrice="{{machine.price}}"
                                                                                  class="selectTrue">
                                                                                 
+
                                                                             </div>
                                                                             {{/if}}
                                                                             {{/each}}
@@ -446,121 +507,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                                 </script>
                                                             </div>
                                                         </div>
-                                                        <!-- 更改后的方框 -->
-
-                                                  <!--       <div class="p-tb-xs">
-                                                            <div class="border-l-primary p-xxs">
-                                                                <h4 class="inline m-n">服务设施</h4>
-                                                                <span class="text-warning">（点击下面的图标选择购买相应的服务）</span>
-                                                            </div>
-                                                            <div class="p-xxs m-t overflow position-relative"
-                                                                 id="service_container">
-
-                                                            </div>
-                                                            <script id="service_tmpl" type="text/html">
-                                                                {{each rows as item i}}
-                                                                <div class="pull-left m-r m-b"
-                                                                     style="width: 70px;text-align: center"
-                                                                     title="{{item.name}}"
-                                                                     data-goodsid="{{item.id}}"
-                                                                     data-goodsname="{{item.name}}"
-                                                                     data-goodsunit="{{item.unit}}"
-                                                                     data-goodsprice="{{item.price}}">
-                                                                    <div class="icon-serve"
-                                                                         title="{{item.name}}"
-                                                                         style="margin: 0 auto;"></div>
-                                                                    <div class="m-t-sm text-center"
-                                                                         title="{{item.name}}"
-                                                                         style="overflow: hidden;white-space:nowrap;text-overflow:ellipsis;">
-                                                                        {{item.name}}
-                                                                    </div>
-                                                                </div>
-                                                                {{/each}}
-                                                            </script>
-                                                       </div> -->
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="r-detail">
-                                    <div class="gray-bg overflow">
-                                        <h4 class="p-xs m-n border-bottom">已选场次</h4>
-                                        <div class="p-xs zuoce">
-                                            点击左侧<img
-                                                src="<%=path %>/resource/images/scene-chooes.png"
-                                                alt=""
-                                                style="display:inline-block;width:32px;background-color:#fff;">选择场次，再次点击取消选择，所有场次预订成功后不予退还。
-                                        </div>
-                                    </div>
-                                    <div class="m-t gray-bg overflow">
-                                        <div class="p-lr-sm overflow" id="orderContent">
-
-                                        </div><!--  //这个是右边的框选，就是说当在左边选择了 ，就会自动显示在右边 -->
-                                        <script id="order_session_tmpl" type="text/html">
-                                            <div id="{{uid}}"
-                                                 class="order-session col-xs-12 white-bg p-n m-t animated fadeInDown"
-                                                 data-uid="{{uid}}"
-                                                 data-venuesid="{{venuesId}}"
-                                                 data-siteid="{{siteId}}"
-                                                 data-starttime="{{startTime}}"
-                                                 data-endtime="{{endTime}}"
-                                                 data-venuesname="{{venuesName}}"
-                                                 data-sitename="{{siteName}}"
-                                                 data-price="{{price}}"
-                                                 data-type="session">
-                                                <div class="col-xs-12 p-xxs">
-                                                    <label class="col-xs-3 p-n m-b-n text-right">时间</label>
-                                                    <div class="col-xs-9 word-wrap">{{sessionTime}}</div>
-                                                </div>
-                                                <div class="col-xs-12 p-xxs">
-                                                    <label class="col-xs-3 p-n m-b-n text-right">场地</label>
-                                                    <div class="col-xs-9 word-wrap">{{siteName}}</div>
-                                                </div>
-                                                <i class="iconfont icon-shanchu text-danger" data-id="{{uid}}"
-                                                   onclick="onRemoveSession(this)"></i>
-                                            </div>
-                                        </script>
-
-                                        <script id="order_service_tmpl" type="text/html">//这个我完全用不到，这个地方是服务的选择
-                                            <div class="order-goods col-xs-12 white-bg p-n m-t animated fadeInDown"
-                                                 id="gid{{goodsId}}"
-                                                 data-goodsid="{{goodsId}}"
-                                                 data-goodsname="{{goodsName}}"
-                                                 data-goodsunit="{{goodsUnit}}"
-                                                 data-goodsprice="{{goodsPrice}}"
-                                                 data-type="goods">
-                                                <div class="col-xs-12 p-xxs" title="{{goodsName}}">
-                                                    <label title="{{goodsName}}"
-                                                           class="col-xs-3 p-n m-b-n text-right m-t-xs"
-                                                           style="text-overflow: clip;overflow: hidden;white-space: nowrap;">{{goodsName}}：</label>
-                                                    <div class="col-xs-9 word-wrap">
-                                                        <span class="num">
-                                                            <button type="button" class="minus"
-                                                                    onclick="onMinusGoodsQuantity(this)">-</button>
-                                                            <input type="text" class="inputBorder" value="1"/>
-                                                            <button type="button" class="add"
-                                                                    onclick="onAddGoodsQuantity(this)">+</button>
-                                                        </span>
-                                                        <span class="span-control m-l-sm">{{goodsUnit}}</span>
-                                                    </div>
-                                                </div>
-                                                <i class="iconfont icon-shanchu text-danger" data-goodsid="{{goodsId}}"
-                                                   onclick="onRemoveService(this)"></i>
-                                            </div>
-                                        </script>
-                                        <div class="col-xs-12 p-lr-sm m-t m-b">
-                                            已选<span style="font-weight: bold;" class="text-warning"
-                                                    id="session_size">0</span>个场地
-                                        </div>
-                                        <div class="col-xs-12 p-n m-t-md m-b-md text-center">
-                                            <button onclick="confirmBook()" type="button"
-                                                    class="btn btn-primary m-t-sm">确定预订
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                           
                             </div>
                         </div>
                     </div>
@@ -582,9 +536,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <div class="hover-booking"><!-- 鼠标右边的tips -->
-    <p>姓名：<span id="user-name"></span></p>
-    <p>账号：<span id="user-code"></span></p>
-    <p>手机：<span id="user-phone"></span></p>
+    <p>联系人：<span id="user-bookingUserName"></span></p>
+    <p>联系电话：<span id="user-connectorTel"></span></p>
+    <p>订单名称：<span id="user-orderName"></span></p>
+    <p>订单：<span id="user-orderId"></span></p>
 </div>
 
 <div class="hover-locked"><!-- 鼠标右边的tips -->
@@ -617,6 +572,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var curVenuesName;
     var allVenues;//所有场馆
     var userTypeId = U.transfer('1');
+    //一下两个变量是用于对于保存后的二次加载，没有搞清出他们为社么需要重新初始化！！以后在了解
+    var curVenuesIdSecond;
+    var curDate;
+    var machineId;
+    var machineName;
+    
     console.log("user type=" + userTypeId);
     
     
@@ -624,17 +585,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     $(function () {//1默认打开网页就会开是的函数，同时调用初始化函数
         curVenuesId = "550";//获取首页传过来的场馆ID
-
+       
         initAllVenues();
-
+		
         bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件，
     });
 
+    
+    
     function bindListener() {
         onSelectSession();
 
       //  bindServiceGoodsListener();
-
+			/* onModifySelected(); 这个界面目前不需要进行绑定监听*/
         bindHoverListener();
     }
 
@@ -650,9 +613,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             var selectedDate = $(this).data('selecteddate');
             var timeHm = $(this).data('timehm');
-            var startTime = $(this).data('starttime');                                                                 
+            var startTime = $(this).data('starttime');
             var endTime = $(this).data('endtime');
-            var siteName = $(this).data('sitename');
+            var siteName =machineName; /* $(this).data('sitename'); */
+            var siteId =machineId; /* $(this).data('sitename'); */
             var venuesName = $(this).data('venuesname');
             var price = $(this).data('price');
 
@@ -690,6 +654,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
 
     /**
+     * 删除已经选择的时段
+     */
+    function onModifySelected() {
+        $('.modifySelected').on('click', function (e) {
+           /* alert("选择成功"); */
+           var uid = $(this).data('sid');
+           var venuesId = $(this).data('venuesid');
+           var siteId = $(this).data('siteid');
+           var selectedDate = $(this).data('selecteddate');
+           var timeHm = $(this).data('timehm');
+           var startTime = $(this).data('starttime');
+           var endTime = $(this).data('endtime');
+           var siteName = $(this).data('sitename');
+           var venuesName = $(this).data('venuesname');
+           var price = $(this).data('price');
+
+           var sessionTime = selectedDate+" "+startTime+"-"+endTime; //startTime + '-' + moment(endTime, "YYYY-MM-DD HH:mm").format('HH:mm');
+          /*  alert(uid); */
+     
+	    	 $.ajax({
+	             type:"POST",
+	             url:"<%=path %>/deleteSelectedBookingInfo.action",
+	            
+	             data: {unid:uid},
+	             dataType: "json",
+	             success:function(data){
+	            	 U.msg(data.result);
+	             	 resetOrder();
+	             	 initSessions(curDate);  
+	             } ,
+	             error:function(data){
+	              alert(data.result);
+	             } 
+	         });
+	    	
+	     });
+    }
+    
+    
+    /**
      * 移除场次事件
      */
     function onRemoveSession(obj) {
@@ -713,6 +717,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var id = $(obj).data('id');
         var name = $(obj).data('name');
         curVenuesId = id;
+        curVenuesIdSecond=id;
         curVenuesName = name; 
         resetOrder();//重置清空订单信息
 
@@ -731,8 +736,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $('#dataLine_container').find('a').removeClass('active');
         $(obj).find('a').addClass('active');
         $(obj).removeClass('active');
-
-        date = $(obj).data('date');
+		
+        machineId = $(obj).data('machineid');
+        machineName = $(obj).data('machinename');
         initSessions(date);
     }
 
@@ -747,18 +753,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             success: function (data, status) {
                 if (data.no == 2000) {
                     allVenues = data.content;
-
+                    
                     var html = template("venues_tmpl", data);
                     $("#venues_container").html(html);
 
                     initCoverFlow();//加载场馆的同时，就是增加流动效果
 
-                    if (U.isEmpty(curVenuesId)) {
+                    /* if (U.isEmpty(curVenuesId)) { */
                         //默认选中第一个场馆
                         $('.apply_w').find('a:first').trigger('click');
-                    } else {
+                 /*    } else { 
                         $('#' + curVenuesId).trigger('click');
-                    }
+                   }  */
                 } else {
                     U.msg("获取场馆失败");
                 }
@@ -796,8 +802,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	 $.ajax({
              type: "GET",
-             url: "<%=path %>/dateLInes",
-             data: {id: id,
+             url: "/SSM/ShowOrderMachineInfoByMachine.action", 
+             <%-- "<%=path %>/dateLInes", "/SSM/resource/testMachine.txt", --%>
+             data: {deptId: id,
                  userTypeId: userTypeId //用户身份类型
                  },
              dataType: "json",
@@ -805,8 +812,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	 if (data.no == 2000) {
                      var html = template("dataLine_tmpl", data);
                      $("#dataLine_container").html(html);
-
-                     $('#dataLine_container').find('a:first').trigger('click');
+					
+                    /*  if(U.isEmpty(machineId)){ 
+                    	 $('#' + machineId).trigger('click');
+                      }else{ */
+                    	 $('#dataLine_container').find('a:first').trigger('click');
+                   /*   }  */
+                     
                  } else {
                      U.msg("获取场馆可选日期失败");
                  }
@@ -814,17 +826,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          });
       
     }
+    
+    
+    mini.parse();
+	function loadgrid(){
+		
+		var bday = mini.get("bday").getFormValue();
+		var eday = mini.get("eday").getFormValue();
+		 $.ajax({
+             type: "POST",
+             url:"/SSM/MachineShowOrderByMachine.action",
+           <%-- "/SSM/resource/datelines.txt",  "<%=path %>/load", --%>
+             data: {
+            	 bday:bday,
+            	 eday:eday,
+            	 deptId: curVenuesId,
+            	 machineId: machineId,
+                 userTypeId: userTypeId //用户身份类型
+                 },
+             dataType: "json",
+             success: function(data){
+            	
+            	 if (data.no == 2000) {
+            		 
+                     var html = template("session_tmpl", data);
+//                     console.log(JSON.stringify(data));
+                     $("#session_container").html(html);
+
+                     setGridBoxSize();
+
+                     bindListener();
+                 } else {
+                     U.msg("获取场次失败");
+                 }
+                      }
+         });
+	}
+	
 
     /**
      * 初始化场次
      */
     function initSessions(date) {
-        
     	 $.ajax({
              type: "POST",
-             url: "<%=path %>/load",
-             data: {id: curVenuesId,
-            	 date: date,
+             url:"/SSM/MachineShowOrderByMachine.action",
+           <%-- "/SSM/resource/datelines.txt",  "<%=path %>/load", --%>
+             data: {deptId: curVenuesId,
+            	 machineId: machineId,
                  userTypeId: userTypeId //用户身份类型
                  },
              dataType: "json",
@@ -1008,7 +1057,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             if ($('.order-session').length > 0) {
                 $('.order-session').each(function (i) {
                     var val = new Object();
-                    val.orderId="${order.orderId}";
+                    val.orderId="<%=request.getParameter("orderId")%>";
            			val.connector="${order}";
            			val.connectorTel="${order.connectorTel}";
 					val.uid = $(this).data('uid');	
@@ -1086,24 +1135,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var formData=document.getElementById("temp_order_content").value;
     	 $.ajax({
              type:"POST",
-             url:"bookingSubmit",
+             url:"<%=path %>/bookingSubmit",
             
+             
              data: {order: formData},
              dataType: "json",
              success:function(data){
-            	 
-               alert(data.result);
-               
-               
-               $('#' + curVenuesId).trigger('click');
-               $('#dataLine_container').find('a:second').trigger('click');
-               initSessions(date);
-                   bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件，  */
+            	 U.msg(data.result);
+               //alert(data.result);
+             //  initAllVenues();
+              //initDateLines(curVenuesIdSecond);
+             	 resetOrder();
+               initSessions(curDate);  
+              // bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件， 
              } ,
              error:function(data){
               alert(data.result);
              } 
          });
+    	
     	}
     
   
@@ -1154,21 +1204,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     /**
      * 鼠标悬浮显示信息
      */
-    function bindHoverListener() {
-        $('.block-booking').mousemove(function (e) {
-            var span = $(this).find('span');
-            if (span != null) {
-                $('#user-name').html($(span).data('name'));
-                $('#user-code').html($(span).data('code'));
-                $('#user-phone').html($(span).data('phone'));
-            }
-            $('.hover-booking').show().css({
-                "top": e.pageY + 1,
-                "left": e.pageX + 10
-            });
-        }).mouseleave(function () {
-            $('.hover-booking').hide();
-        });
+     
+     function bindHoverListener() {
+         $('.block-booking').mousemove(function (e) {
+             var span = $(this).find('span');
+             if (span != null) {
+                 $('#user-bookingUserName').html($(span).data('bookingusername'));
+                 $('#user-orderId').html($(span).data('orderid'));
+                 $('#user-connectorTel').html($(span).data('connectortel'));
+                 $('#user-orderName').html($(span).data('ordername'));
+             }
+             $('.hover-booking').show().css({
+                 "top": e.pageY + 1,
+                 "left": e.pageX + 10
+             });
+         }).mouseleave(function () {
+             $('.hover-booking').hide();
+         });
 
         $('.block-locked').mousemove(function (e) {
             var span = $(this).find('span');
@@ -1232,69 +1284,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         })
     }
-
     
-    	
-    function book_unlock(id) {
-    	alert(id);
-        layer.confirm('您确定要解锁该场次吗？', {
-            btn: ['确定', '取消'],
-            yes: function (index, layero) {
-                U.ajax({
-                    url: "BookingInfoDete。action",// 请求URL
-                    loading: true,
-                    data: {
-                        id: id
-                    },
-                    success: function (data, status) {
-                        if (data.no == 2000 && data.content != null && data.content > 0) {
-                            U.msg("解锁成功");
-                            initSessions(date);
-                        } else {
-                            U.msg("解锁失败");
-                        }
-                    }
-                });
-            },
-            btn2: function (index, layero) {
-                layer.close(index);
-            }
-        })
-    }
-    
-    function book1_unlock(uid) {
-        var venuesId, siteId, startTime, endTime, state, lockDate;
-
-        venuesId = uid.substring(0, 2);
-        siteId = uid.substring(3, 5);
-        startTime = uid.substring(17, 22).replace("-", ":");
-        endTime = uid.substring(23, 28).replace("-", ":");
-        lockDate = uid.substring(6, 16);
-        lockDate = lockDate + " 00:00:00"
-        state = 1;
-        U.ajax({
-            url: "/gym/api/lock/details/getUnlockDetails",// 请求URL
-            loading: true,
-            data: {
-                venuesId: venuesId,
-                siteId: siteId,
-                sessionStartTime: startTime,
-                sessionEndTime: endTime,
-                state: state,
-                lockDate: lockDate,
-            },
-            success: function (data, status) {
-//                alert(JSON.stringify(data));
-                if (data.no == 2000 && data.content != null) {
-                    var id = data.content.id;
-                    unlock(id);
-                } else {
-                    U.msg("服务异常");
-                }
-            }
-        });
-
-    }
+   
 
     function venue_unlock(uid) {
         var venuesId, siteId, startTime, endTime, state, lockDate;

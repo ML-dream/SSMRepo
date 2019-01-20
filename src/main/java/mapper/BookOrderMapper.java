@@ -1,5 +1,6 @@
 package mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -8,13 +9,14 @@ import com.wl.forms.Customer;
 import com.wl.forms.Order;
 
 import javaBean.BookOrderMachine;
+import javaBean.machBookDatelines;
 
 public interface BookOrderMapper {
 	
-	public List<Order> selectBookOrderList(@Param("one") int one ,@Param("staffCode") String staffCode,@Param("two") int two) ;
+	public List<Order> selectBookOrderList(@Param("staffCode") String staffCode,@Param("bookStatus")  String bookStatus,@Param("companyId")  String companyId,@Param("companyName")  String companyName) ;
 	public int selectBookOrderCount(@Param("staffCode") String staffCode);
 
-	public List<BookOrderMachine> selectBookOrderMachineListByOrderId(@Param("orderId") String orderId,@Param("one") int one,@Param("two") int two);
+	public List<BookOrderMachine> selectBookOrderMachineListByOrderId(@Param("orderId") String orderId);
 
 	public int updateAuditingBookStatus(@Param("bookStatus") String bookStatus,@Param("auditingStaffCode") String staffCode,@Param("checkAdvice") String checkAdvice,@Param("orderId") String orderId);
 	/**
@@ -45,11 +47,32 @@ public interface BookOrderMapper {
 	 * @return
 	 */
 	public int insertAddShiYanOrder(@Param("orderId") String orderId, @Param("customer") String customer,@Param("connector")  String connector,@Param("connectorTel")  String connectorTel,
-			@Param("productName") String productName, @Param("productNum") String productNum,@Param("material")  String material,@Param("createTime") String createTime,@Param("staffCode") String staffCode,@Param("bookOrderStatus") String bookOrderStatus);
+			@Param("orderName") String orderName, @Param("productNum") String productNum,@Param("material")  String material,@Param("createTime") String createTime,@Param("staffCode") String staffCode,@Param("bookOrderStatus") String bookOrderStatus);
 	/**
 	 * @param staffCode
 	 * @return
 	 */
 	public Customer loadDefaultShiYanOrder(String staffCode);
+	/**
+	 * @param machineId
+	 * @param deptId
+	 * @return
+	 */
+	public ArrayList<machBookDatelines> loadListByOrderMachineInfoMapper(@Param("machineId") String machineId,@Param("deptId") String deptId);
+	/**
+	 * @param orderId
+	 * @return
+	 */
+	public int noPassDeleteAuditingBookOrderMapper(String orderId);
+	/**
+	 * @param unid
+	 * @return
+	 */
+	public int deleteSelectedBookingInfo(String unid);
+	/**
+	 * @param orderId
+	 * @return
+	 */
+	public List<BookOrderMachine> completedBookMapper(String orderId);
 		
 }

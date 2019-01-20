@@ -1,6 +1,7 @@
 ﻿
 /* base
 ==========================================*/
+
 .app-header
 {
     background:url(images/header.gif) repeat-x 0 -1px;
@@ -436,6 +437,10 @@ body .mini-error .mini-textboxlist-border
 .mini-grid-header
 {
     
+}
+.mini-grid-column-trigger
+{
+    border-color:#c5c5c5;
 }
 .mini-grid-headerCell, .mini-grid-topRightCell
 {

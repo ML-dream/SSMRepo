@@ -582,6 +582,10 @@ body .mini-error .mini-textboxlist-border
 {
     background:#fff;
 }
+.mini-grid-column-trigger
+{
+    border-color:#ddd;
+}
 .mini-grid-headerCell,
 .mini-grid-topRightCell,
 .mini-grid-columnproxy

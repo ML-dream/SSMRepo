@@ -44,21 +44,24 @@ public class load extends HttpServlet {
 		int deptId = Integer.parseInt(deptId1);
 		
 		List<String> machineNames = new ArrayList<String>();
+		
+//		此处应该不能是自己加的，应该是由数据库查询出来结果，因为以后需要动态的增加的话就能很好的结合在一起了
+//		此处使用		
 		List<Integer> machineIds = new ArrayList<Integer>();
 		
-		if(deptId1.equals("551")){
+		if(deptId1.equals("550")){
 			machineNames.add("数控电火花成形机床");
 			machineNames.add("数控低速走丝电火花线切割");
 			machineNames.add("数控高速成型磨床");
 			machineNames.add("超精密成形平面磨床");				
 			machineNames.add("数控车床");
 			machineNames.add("CNC雕刻机");
-			machineIds.add(5511);
-			machineIds.add(5512);
-			machineIds.add(5513);
-			machineIds.add(5514);
-			machineIds.add(5515);
-			machineIds.add(5516);
+			machineIds.add(5501);
+			machineIds.add(5502);
+			machineIds.add(5503);
+			machineIds.add(5504);
+			machineIds.add(5505);
+			machineIds.add(5506);
 			
 		}else{
 			
@@ -68,11 +71,11 @@ public class load extends HttpServlet {
 			machineNames.add("超声辅助高速加工中心");
 			machineNames.add("高速五坐标加工中心");				
 			machineNames.add("加工中心");
-			machineIds.add(5501);
-			machineIds.add(5502);
-			machineIds.add(5503);
-			machineIds.add(5504);
-			machineIds.add(5505);
+			machineIds.add(5511);
+			machineIds.add(5512);
+			machineIds.add(5513);
+			machineIds.add(5514);
+			machineIds.add(5515);
 			
 		}
 		
@@ -94,11 +97,13 @@ public class load extends HttpServlet {
 		
 		contentBean.setSelectedDate(date);
 		contentBean.setDeptId(deptId);
-		contentBean.setDeptName(deptId>550 ? "实验室103":"实验室101");
+		contentBean.setDeptName(deptId>550 ? "实验室102":"实验室101");
 		
 		
 		
 		//接下来开始写循环，对于车间的机床
+		
+//		这个地方暂时不需要修改，但是可以做成动态加载的，也是在数据库进行获取，获取的的结果进行动态加载的，从而可以做到以后进行修改！使用xml的话就是一个步骤，而且刻印做到不同的车间，不同的机床预约的间隔可以调整！
 		List<timeLinesBean> timeLinesList = new ArrayList<timeLinesBean>();
 		
 		
@@ -139,8 +144,8 @@ public class load extends HttpServlet {
 		
 		List<machineBean> machinesList = new ArrayList<machineBean>();
 		
-		
-		
+//	为了之后更好的容错性，应该是使用时间从数据库查询出的时间的进行，以便后续能够进行自动义的修改！！！查询出来的应该是一个李斯特的bean 进行循环	
+//	     应该是开始循环时间，针对每个时间建立资
 		
 		//for (Integer machineId : machineIds) {
 	      for(int i=0;i<machineIds.size();i++){
@@ -162,7 +167,7 @@ public class load extends HttpServlet {
 	        //for(int i=0)//此处不需要循环，直接查询出来就是list的结构，直接就可以了
 	        
 	        List<bookingInfoBean> sessionsList = new ArrayList<bookingInfoBean>();
-	        String bookingInfoSql ="SELECT a.*,B.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"') B right join bookingInfosecond a on B.time_md = a. timeline order by a.timeline";
+	        String bookingInfoSql ="SELECT a.*,B.*,c.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"') B right join bookingInfosecond a on B.time_md = a. timeline left join orders c on c.order_id=B.orderId  order by a.timeline";
 	        try {
 				sessionsList = Sqlhelper.exeQueryList(bookingInfoSql,null,bookingInfoBean.class);
 			} catch (Exception e) {

@@ -51,12 +51,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          url="ShowSysUsersServlet"> 
         <div property="columns">
             <div type="indexcolumn"></div>
-            <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower" cellStyle="padding:0;">操作</div>
-            <div field="userId" width="100" headerAlign="center">用户名</div>
-            <div field="staffCode" width="100" headerAlign="center">员工号</div>
-            <div field="staffName" width="100" headerAlign="center">员工姓名</div>
-            <div field="authority" width="100" headerAlign="center">authority</div>
-            <div field="authorityName" width="100" headerAlign="center" visible="true">权限</div>
+            <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"  cellStyle="padding:0;">操作</div>
+            <div field="userId" width="100" headerAlign="center" align="center" >用户名</div>
+            <div field="staffCode" width="100" headerAlign="center" align="center">员工号</div>
+            <div field="staffName" width="100" headerAlign="center" align="center">员工姓名</div>
+            <div field="authority" width="100" headerAlign="center" align="center">authority</div>
+            <div field="authorityName" width="100" headerAlign="center"  align="center"  visible="true">权限</div>
         </div>
     </div>  
     <script type="text/javascript">
@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.userId+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
+	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.userId+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
 	        str += "<a style='margin-right:2px;' title='删除' href=javascript:ondelete(\'" + e.row.userId+"\',\'"+e.row.staffCode+"\') ><span class='mini-button-text mini-button-icon icon-remove'>&nbsp;</span></a>";

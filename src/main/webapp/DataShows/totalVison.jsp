@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <script type="text/javascript" src="<%=path %>/staticResources/js/echarts.js"></script>
 <script type="text/javascript" src="<%=path %>/staticResources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/staticResources/js/echarts.min.js"></script>
-<script type="text/javascript" src="<%=path %>/staticResources/js/miniui.js"></script>
+<%-- <script type="text/javascript" src="<%=path %>/staticResources/js/miniui.js"></script> --%>
 
 <script type="text/javascript" src="<%=path %>/staticResources/js/dark.js"></script> 
 
@@ -772,7 +772,8 @@ var poweronTime5513=0  ;
 var progStatus5513=0  ; 
 var cuttingTime5513=0  ; 
  */
- mini.parse();
+// mini.parse();
+ 
  
 $(function(){
  update();

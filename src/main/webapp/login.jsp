@@ -10,11 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <title>智能制造MES系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    		<script type="text/javascript" src="<%=path %>/scripts/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path %>/scripts/miniui/miniui.js"></script>
-		<script type="text/javascript" src="<%=path %>/scripts/boot.js"></script>
-		<link href="<%=path %>/scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="txt/css"></link>
-		<link href="<%=path %>/scripts/miniui/themes/icons.css" rel="stylesheet" type="txt/css"></link>
+    	<script type="text/javascript" src="<%=path %>/scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="<%=path %>/scripts/boot.js"></script> 
+    
     
     
     <script language="javascript">
@@ -212,7 +210,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 	<div >
-  	 <a class="mini-button"  plain="false"  onclick="getForm()">登陆</a>
+  	 <a class="mini-button mini-button-primary"  plain="false"  onclick="getForm()">登陆</a>
   		<!-- <input type="submit" name="Submit"  value="确认登陆"  id="log"> -->
   	</div>
        

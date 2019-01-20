@@ -1,4 +1,4 @@
-﻿@import url("../default/flatstyle.css");
+@import url("../default/flatstyle.css");
 
 /* common theme */
 .mini-widget-content,
@@ -19,7 +19,7 @@ body, .mini-popup, .mini-toolbar, .separator, .mini-panel-border, .mini-pager,
 body .mini-pager-num
 {
     border-color:#aed0ea;
-    background:#f2f5f7;
+  /*   background:#f2f5f7; */
     color:#362b36
 }
 

@@ -21,6 +21,7 @@ body
     font-family:Tahoma, Verdana, 宋体;   
     font-size:12px;
     line-height:22px;
+    visibility:hidden;
 }
 table
 {
@@ -4746,6 +4747,11 @@ body .mini-pager .mini-pager-num
     width:0;
     height:100%;
     background-color:#2fd85e;
+}
+
+body .mini-fileupload
+{
+    overflow:hidden;
 }
 .mini-textboxlist
 {

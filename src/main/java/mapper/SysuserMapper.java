@@ -40,4 +40,19 @@ public interface SysuserMapper {
 	 * @return
 	 */
 	public int selectShowMyCustomertCount(String staffCode);
+
+	/**
+	 * @param sectionCode
+	 * @param connectorTel
+	 * @param staffCode
+	 */
+	public int updateDoEditEmployeeDetail(@Param("sectionCode") String sectionCode,@Param("connectorTel") String connectorTel,@Param("staffCode") String staffCode);
+
+	/**
+	 * @param sectionCode
+	 * @param connectorTel
+	 * @param staffCode
+	 * @return
+	 */
+	public int updateDoEditCustomerDetail(@Param("sectionCode") String sectionCode,@Param("connectorTel") String connectorTel,@Param("staffCode") String staffCode);
 }

@@ -217,6 +217,7 @@
     right: -5px;
     font-size: 20px;
     top: -10px;
+    background-image: url(resource/timePlanJs/theme/testshanchu.png);
 }
 div.num input[type="button"] {
     border: none;

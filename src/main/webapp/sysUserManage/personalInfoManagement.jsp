@@ -78,31 +78,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a class="mini-button" iconCls="icon-find" plain="false" onclick="ondEdit()">修改</a>
 
    		 </div>
-   		
+   		<div id="form1" >
    		<table  rules=none tableframe=void width="100%" style="border-collapse:separate; border-spacing:0px 10px;">
    		<tr >
    			<td width="10%" align="center"><label for="staffCode$text" >用户编号</label></td>
             <td width="25%"><input id="staffCode"  name="staffCode" class="mini-textbox"  width="100%"  value="<%=request.getParameter("staffCode")%>" enabled="false"/></td>
             <td width="10%" align="center"><label for="staffName$text">用户姓名</label></td>
             <td width="25%"><input id="staffName" name="staffName" class="mini-textbox"  width="100%"  value="<%=request.getParameter("staffName")%>" enabled="false"/>
-   			<td width="10%" align="center"><label for="sectionCode$text">所属部门</label></td>
-            <td width="20%"><input id="sectionCode"  name="sectionCode" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
-            </td>
+   			
         </tr>
         <tr>
-       	   <td width="10%" align="center"><label for="birthday$text" >出生日期</label></td>
+        	<td width="10%" align="center"><label for="sectionCode$text">所属部门</label></td>
+            <td width="20%"><input id="sectionCode"  name="sectionCode" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
+            </td>
+       	   <%-- <td width="10%" align="center"><label for="birthday$text" >出生日期</label></td>
             <td width="25%"><input id="birthday"  name="birthday" class="mini-textbox"  width="100%"  dateformat="yyyy-MM-dd"  value="<%=request.getParameter("staffCode")%>" enabled="false"/></td>
             <td width="10%" align="center"><label for="gender$text">性别</label></td>
-            <td width="25%"><input id="gender" name="gender" class="mini-textbox"  width="100%"  value="<%=request.getParameter("staffName")%>" enabled="false"/>
+            <td width="25%"><input id="gender" name="gender" class="mini-textbox"  width="100%"  value="<%=request.getParameter("staffName")%>" enabled="false"/> --%>
    			<td width="10%" align="center"><label for="connectorTel$text">联系电话</label></td>
-            <td width="20%"><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
+            <td width="20%"><input id="mobilePhone"  name="mobilePhone" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
+            </td>
+     <%--       
+        </tr>
+              <tr>
+        	<td width="10%" align="center"><label for="sectionCode$text">联系人</label></td>
+            <td width="20%"><input id="sectionCode"  name="sectionCode" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
+            </td>
+       	  
+   			<td width="10%" align="center"><label for="connectorTel$text">联系人电话</label></td>
+            <td width="20%"><input id="mobilePhone"  name="mobilePhone" class="mini-textbox"  width="100%"  value="<%=request.getParameter("deptUser")%>" enabled="false" />  
             </td>
            
-        </tr>
+        </tr> --%>
 
-   
    		
    	</table>
+  	 	</div>
    	  </fieldset>
 <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  -->
 <%--   </br>
@@ -158,13 +169,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  				dataType: "json", 
 		  				cache: false,
 		  				success: function (data) {
-		  					  mini.get("staffCode").setValue(data.staffCode);
+		  					/* var form = mini.get("form1"); */
+		  					var form = new mini.Form("#form1");
+		  					  form.setData(data);
+		  				/* 	  mini.get("staffCode").setValue(data.staffCode);
 		  					  mini.get("staffName").setValue(data.staffName);
 		  					 /*  var test=mini.formatDate(data.birthday,"yyyy-MM-dd"); */
-		                      mini.get("birthday").setValue(data.birthday.substring(0,10));
+		                     /*  mini.get("birthday").setValue(data.birthday.substring(0,10));
 		                   	  mini.get("gender").setValue(data.gender);
 		                      mini.get("sectionCode").setValue(data.sectionCode);
-		                      mini.get("connectorTel").setValue(data.mobilePhone);
+		                      mini.get("connectorTel").setValue(data.mobilePhone);  */
 		  				}
 					});
                          

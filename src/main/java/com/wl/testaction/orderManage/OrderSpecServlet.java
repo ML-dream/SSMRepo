@@ -69,6 +69,7 @@ public class OrderSpecServlet extends HttpServlet {
 */
 //		String json = JSON.Encode(order);
 		request.setAttribute("order", order);
+		request.setAttribute("orderId", orderId);
 		request.setAttribute("para", para);
 		request.setAttribute("isModify", isModify);
 		
@@ -117,7 +118,7 @@ public class OrderSpecServlet extends HttpServlet {
 			
 		}else {
 			
-			request.getRequestDispatcher("orderManage/machineShowOrder.jsp").forward(request, response);
+			request.getRequestDispatcher("orderManage/bookMainIndex.jsp").forward(request, response);
 			}
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

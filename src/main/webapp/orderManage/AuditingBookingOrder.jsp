@@ -27,6 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<style type="text/css">
     	*{margin: 0;padding: 0;}
     </style>
+    
+    <script src="resources/scripts/boot.js" type="text/javascript"></script>
 	<script type='text/javascript' src="<%=basePath%>resources/js/tabcard.js"></script>
 	<script type="text/javascript" src="<%=basePath%>resources/jquery/jquery.min.js"></script>
 	<jsp:include page="/commons/miniui_header.jsp" />
@@ -56,12 +58,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       </tr>
 	       <tr>
 	          <td>订单状态：</td>
-	          <td><input id="status" name="status" class="mini-combobox" width="100" textName="" textField="text" valueField="id"
+	          <td><input id="bookStatus" name="bookStatus" class="mini-combobox" width="100" textName="" textField="text" valueField="id"
   				url="data/bookStatus.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..."  onvaluechanged="loadgrid"/>
 	          </td>
 	   		  <td align="right">客户：</td>
-	          <td colspan="2"><input id="customer" name="creater" class="mini-buttonedit" width="100%" showClose="true" oncloseclick="onCloseClick('customer')"
-            		onbuttonclick="onButtonEdit2" textName="worker" required="false" value="" text="" onvaluechanged="loadgrid"  allowInput="false"/>
+	          <td colspan="2"><input id="companyName" name="companyId" class="mini-buttonedit" width="100%" showClose="true" oncloseclick="onCloseClick('customer')"
+            		onbuttonclick="onButtonEdit2" textName="companyName" required="false" value="" text="" onvaluechanged="loadgrid"  allowInput="false"/>
 	          </td>
 	          <td><input value="查找" type="button" onclick="loadgrid()" style="width:50px;"/></td>
 	   		</tr>
@@ -70,28 +72,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 	</div> -->
 	
 </br></br>
-    <div id="grid1" class="mini-datagrid" style="width:100%;height:95%;"
+    <div id="grid1" class="mini-datagrid" style="width:100%;height:85%;"
          borderStyle="border:0;" multiSelect="true"  idField="id" showSummaryRow="true" allowAlternating="true" showPager="true"
          url="AuditingBookingOrder.action" allowCellSelect="true" allowCellEdit="true">
         <div property="columns">
             <div type="indexcolumn" width="20"></div>
             <div name="action" width="10" headerAlign="center" align="center" renderer="onOperatePower"
-                 cellStyle="padding:0;">操作
+                 cellStyle="padding:0;">审核
             </div>
-        <div field="orderId" width="50" headerAlign="center">订单编号
+        <div field="orderId" width="50" allowSort="true" headerAlign="center" align="center">订单编号
             </div> 
-                                                                
          
             <div field="companyName" width="100" headerAlign="center" align="center">客户名称
+            </div>
+            <div field="orderName" width="100" headerAlign="center" align="center">订单名称
             </div>
             <div field="connector" width="50" headerAlign="center" align="center">联系人
             </div>
             <div field="connectorTel" width="60" headerAlign="center" align="center" >联系人电话
             </div>
-            <div field="deptUser" width="60" headerAlign="center"  align="center" >创建时间
+            <div field="createTime" width="60" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center" >创建时间
             </div>
             <div field="bookStatus" width="20" headalign="center"  renderer="onGenderRenderer">状态
-              <input property="editor" class="mini-combobox"  width="100%" url="data/OutAssistStatus.txt" />
+              
             </div>
         </div>
     </div>
@@ -101,6 +104,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var grid = mini.get("grid1");
 	    grid.load();
 	    
+	    function loadgrid(){
+	    	
+	    	var form=new mini.Form("#form0");
+	    	var data1 =form.getData();
+	    	//alert(data1);
+	    	/*  var bookStatus = mini.get("bookStatus").getValue();
+	    	 var companyName = mini.get("companyName").getValue(); */
+	    //	var data=mini.encode(data1);
+	    	
+	    	grid.load(data1);
+	    	/* $.ajax({
+	    		url:"AuditingBookingOrder.action",
+	    		type:"post",
+	    		data:data,
+	    		success:function(text){
+	    			
+	    			
+	    		}
+	    	}); */
+	    }
 	    
 	    function onOperatePower(e) {
 	        var str = "";
@@ -108,16 +131,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //	        str += "<a style='margin-right:2px;' title='外协详情' href=javascript:ondStat(\'"+e.row.waiXieCom+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
 //          str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='外协单' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+e.row.connector+"\') ><span class='mini-button-text mini-button-icon icon-node'>&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='审核' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+mini.formatDate(e.row.createTime,"yyyy-MM-dd-HH:mm:ss")+"','"+e.row.connector+"\') ><span class='icon-add' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        return str;
 	    }
 	   
 
-		function ondMenu(orderId,companyName,connectorTel,deptUser,bookStatus,connector){
+		function ondMenu(orderId,companyName,connectorTel,deptUser,bookStatus,createTime,connector){
 			
+
 			//var createTime=document.getElementById("createTime");
-	    	window.location="orderManage/AuditingBookingOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus;
+	    	window.location="orderManage/AuditingBookingOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
 		}
         function onButtonEdit(e) {
             var btnEdit = this;

@@ -7,14 +7,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>"><script type="text/javascript" src="<%=path %>/scripts/boot.js"></script>
+    <base href="<%=basePath%>">
     
+    <script type="text/javascript" src="resources/scripts/boot.js"></script>
+      <script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
     <title>主页面</title>
    	<meta http-equiv="co ntent-type" content="text/html; charset=UTF-8" />
 	<link href="css/demo.css" rel="stylesheet" type="text/css" />
-	<script src="scripts/boot.js" type="text/javascript"></script>
-	<link href="scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css"/>
-
+	<script src="resources/scripts/boot.js" type="text/javascript"></script>
+<!-- 	<link href="scripts/miniui/themes/blue/skin.css" rel="stylesheet" type="text/css"/>
+ -->
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -50,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="header" region="north"  showSplit="false" showHeader="false" style="background-color: #D9E7F8">
 				
 				<h1 style="margin: 0; padding: 10px; cursor: default; font-family: 'Trebuchet MS', Arial, sans-serif;text-align: center;overflow: hidden;">
-					L&nbsp;A&nbsp;B&nbsp;_&nbsp;M&nbsp;E&nbsp;S&nbsp;系&nbsp;统
+					实&nbsp;验&nbsp;室&nbsp;智&nbsp;能&nbsp;制&nbsp;造&nbsp;MES&nbsp;系&nbsp;统
 				</h1>
 				
 				<div style="position:absolute;top:10px;right:10px;">   
