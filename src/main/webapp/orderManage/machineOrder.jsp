@@ -144,9 +144,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "<a style='margin-right:2px;' title='预约设备' href=javascript:ondBook(\'" + e.row.orderId+"\',\'"+e.row.connector + "\',\'"+e.row.bookStatus + "\') ><span class='icon-add' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	      	str += "<span>";
-	        str += "<a style='margin-right:2px;' title='修改订单' href=javascript:ondEdit(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+	       
+	      	
+	      /* 	str += "<a style='margin-right:2px;' title='修改订单' href=javascript:ondEdit(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
-	        str += "</span>";
+	        str += "</span>"; */
 	 /*        str += "<span>";
 	        str += "<a style='margin-right:2px;' title='订单详情' href=javascript:onAllDetail(\'" + e.row.orderId+"\',\'"+e.row.connector + "\') ><span class='mini-button-text mini-button-icon icon-lock'>&nbsp;</span></a>";
 	        str += "</span>"; 

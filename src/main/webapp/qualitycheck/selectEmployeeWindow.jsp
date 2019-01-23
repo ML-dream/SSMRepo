@@ -71,8 +71,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     </div>                
     <div class="mini-toolbar" style="text-align:center;padding-top:8px;padding-bottom:8px;" borderStyle="border:0;">
-        <a class="mini-button" style="width:90px;" onclick="onOut()">外协厂商</a>
-        <span style="display:inline-block;width:25px;"></span>
+      <!--   <a class="mini-button" style="width:90px;" onclick="onOut()">外协厂商</a> -->
+        <!-- <span style="display:inline-block;width:25px;"></span> -->
         <a class="mini-button" style="width:60px;" onclick="onOk()">确定</a>
         <span style="display:inline-block;width:25px;"></span>
         <a class="mini-button" style="width:60px;" onclick="onCancel()">取消</a>

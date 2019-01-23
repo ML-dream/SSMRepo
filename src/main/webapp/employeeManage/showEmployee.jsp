@@ -33,14 +33,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  
+     <input id="key" class="mini-textbox" emptyText="请输入员工姓名关键字" style="width:250px;" onenter="onKeyEnter"/>   
+                        <a class="mini-button" onclick="onSearch()">查询</a>
+  
   	<div>
   <!-- 	在职状态：<input id="leave" name="leave" class="mini-combobox" showNullItem="true" url="data/leave.txt"/>
   	&nbsp;&nbsp;<a class="mini-button" iconCls="" onclick="onSearch()">筛选</a> -->
   	
-  	                 用户姓名：
+  	               <!--   用户姓名：
   	          <input type="text" id="username" name="username" />
              <input type="button" value="查找" onclick="search()"/>
-  	</div>
+  	</div> -->
   	 
   
     <div id="grid1" class="mini-datagrid" style="width:100%;height:93%;"
@@ -78,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 
 		function onSearch(){
-			var leave=mini.get("leave").getValue();
+			var leave=mini.get("key").getValue();
 			grid.load({leave:leave});
 		}
 

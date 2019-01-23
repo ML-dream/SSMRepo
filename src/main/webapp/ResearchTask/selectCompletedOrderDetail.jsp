@@ -117,74 +117,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	
 </div>
   
-    
-    <div style="width:100%;">
-        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-            <table style="width:100%;">
-                <tr>
-                    <td style="width:45%;">
-                        <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" tooltip="增加...">增加</a>
-                        <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true">删除</a>
-                        <span class="separator"></span>
-                        <a class="mini-button" iconCls="icon-save" onclick="saveData()" plain="true">保存并报完工</a>            
-                    </td>
-                    <td style="white-space:nowrap;">
-                     			   详细预约信息
-                       
-                    </td>
-                </tr>
-            </table>           
-        </div>
-    </div>
-    <div id="datagrid1" class="mini-datagrid" style="width:100%;height:500px;" 
-        url="loadCompletedBookingInfo.action" idField="id" 
-        allowResize="true" pageSize="20" 
-        allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
-        editNextOnEnterKey="true"  editNextRowCell="true"
-        
-    >
-        <div property="columns">
-            <div type="indexcolumn"></div>
-           <!--  <div type="checkcolumn"></div> -->
-           
-            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" >预约编号
-                <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
-            </div>
-            
- 
-            <div type="comboboxcolumn" autoShowPopup="true" name="machineID" field="machineID" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">预约设备
-                <input property="editor" class="mini-combobox" style="width:100%;" data="machineGenders" />                
-            </div>            
-        
-                              
-            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd">日期
-                <input property="editor" class="mini-datepicker" style="width:100%;"/>
-            </div>  
-<!--             <div name="orderId" field="orderId" width="100"  >订单号
-                <input property="editor" class="mini-combobox" style="width:100%;"/>
-            </div> -->  
-  <!--         <div name="completedRemarks"  field="completedRemarks" headerAlign="center"   width="150" >备注
-                <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
-            </div> -->
-          	<div type="comboboxcolumn" autoShowPopup="true" name="startTimeInfo" field="startTimeInfo" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">开始时间
-                <input property="editor" class="mini-combobox" style="width:100%;" data="datelines" />                
-            </div> 
-          	<div type="comboboxcolumn" autoShowPopup="true" name="endTimeInfo" field="endTimeInfo" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">结束时间
-                <input property="editor" class="mini-combobox" style="width:100%;" data="datelines" />                
-            </div> 
 
-<!--           <div field="completedRemarks"  name="completedRemarks" width="120" headerAlign="center" >备注
-                <input property="editor" class="mini-textarea" style="width:200px;" minWidth="200" minHeight="50"/>
-            </div> -->
-           <!--  <div type="comboboxcolumn" autoShowPopup="true" name="completedRemarks" field="completedRemarks" width="120"   align="center" headerAlign="center">备注
-                <input property="editor" class="mini-combobox" style="width:100%;" minWidth="200" minHeight="50" />                
-            </div>  -->
-           
-            
-            <<!-- div type="checkboxcolumn" field="confirmInfo" trueValue="1" falseValue="0" width="60" headerAlign="center">确认信息</div>       -->                  
-        </div>
-          
-    </div>
+   		<div class="mini-fit">
+			<div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
+			    buttons="#tabsButtons">
+			    <div title="完工确认之后预约信息" iconCls="icon-node" showCloseButton="false" url="ResearchTask/selectCompletedOrderDetailBehind.jsp?orderId=<%=request.getParameter("orderId")%>">
+			    </div>
+			    <div title="完工确认之前预约信息"  iconCls="icon-node" showCloseButton="false" url="ResearchTask/selectCompletedOrderDetailBefore.jsp?orderId=<%=request.getParameter("orderId")%>">
+			    </div>
+			    
+			</div>
+		</div>
    
        
 
@@ -193,10 +136,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         mini.parse();
 
-        var grid = mini.get("datagrid1");
-        var orderId ;
-        var menu = new ColumnsMenu(grid);
+        var orderId="<%=request.getParameter("orderId")%>" ;
         var bookStatus;
+        
+        $(function(){ 
+        	loadForm(orderId);       	
+        }); 
+        
         
         function onKeyEnter(e) {
             search();
@@ -224,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     form.setData(eval('(' + text + ')'));   
                     
                     
-                    grid.load({ orderId: orderId,bookStatus:bookStatus });//设置多个控件数据
+                    /* grid.load({ orderId: orderId,bookStatus:bookStatus });//设置多个控件数据 */
                 }
             });
         }
@@ -243,7 +189,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         grid.on("cellbeginedit",function(e){
         	  if(e.field=="unid"){
         	  e.cancel=true;
-        	  }
+        	  };
+        	  if(e.field=="unid"){
+            	  e.cancel=true;
+            	};
+             if(e.field=="machineID"){
+                 e.cancel=true;
+              };
+              if(e.field=="timeYmd"){
+                   e.cancel=true;
+               };
+               if(e.field=="startTimeInfo"){
+                   e.cancel=true;
+               };
+               if(e.field=="endTimeInfo"){
+                   e.cancel=true;
+               };
         	})
        /*  
         grid.load();
@@ -268,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
         
-	    function saveData() {
+		 function saveData() {
 			 var completedAdvice=mini.get("completedAdvice").getValue();
 				/* alert(mini.encode(grid.getData())); */
 				var data=grid.getData();/* 这是得到的js的arrayList对象 */
@@ -281,56 +242,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  data:{list:data01,orderId:orderId,completedAdvice:completedAdvice},
          /*         dataType: "json", */
                  success:function(text){
-                	 confirm(mini.decode(text).result); 
-               		 loadForm(orderId);
+               		  alert(mini.decode(text).result); 
+               			loadForm(orderId);
                  } ,
                  error:function(text){
-                	 	confirm(mini.decode(text).result); 
+                	  alert(mini.decode(text).result); 
                  } 
              });
 		}
         
  		
-	    grid.on("cellendedit",function(e){
-	    /* 	(e.record.timeYmd&&e.record.timeYmd!="") */
 
-	        var record=e.record;
-	        if(e.record.machineID&&e.record.machineID!=""&&e.record.timeYmd&&e.record.timeYmd!=""&&e.record.startTimeInfo&&e.record.startTimeInfo!=""&&e.record.endTimeInfo&&e.record.endTimeInfo!=""){
-	        	
-	        	var startTimeInfo=e.record.startTimeInfo.replace(":","-");    
-	        	var endTimeInfo=e.record.endTimeInfo.replace(":","-");    
-	        	var changedUnid=e.record.machineID+"-"+mini.formatDate(e.record.timeYmd,"yyyy-MM-dd")+"-"+startTimeInfo+"-"+endTimeInfo;
-	        	/* $.ajax({
-	                 type:"POST",
-	                 url:"saveCompletedBookingInfo.action",
-	                 data:{list:data01,orderId:orderId,completedAdvice:completedAdvice},
-	                 dataType: "json", 
-	                 success:function(text){
-	                	 confirm(mini.decode(text).result); 
-	               		 loadForm(orderId);
-	                 } ,
-	                 error:function(text){
-	                	 	confirm(mini.decode(text).result); 
-	                 } 
-	             }); */
-	        	grid.updateRow(record,{unid:changedUnid});
-	        }
-	    })
-			/* var formatDate = function (date) {  
-			    var y = date.getFullYear();  
-			    var m = date.getMonth() + 1;  
-			    m = m < 10 ? ('0' + m) : m;  
-			    var d = date.getDate();  
-			    d = d < 10 ? ('0' + d) : d;  
-			    var h = date.getHours();  
-			    var minute = date.getMinutes();  
-			    minute = minute < 10 ? ('0' + minute) : minute; 
-			    var second= date.getSeconds();  
-			    second = minute < 10 ? ('0' + second) : second;  
-			    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+ second;  
-			};   */
 
-	    
       /*   grid.on("celleditenter", function (e) {
             var index = grid.indexOf(e.record);
             if (index == grid.getData().length - 1) {
@@ -339,13 +262,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         });
  */
-       /*  grid.on("beforeload", function (e) {
+        grid.on("beforeload", function (e) {
             if (grid.getChanges().length > 0) {
                 if (confirm("有增删改的数据未保存，是否取消本次操作？")) {
                     e.cancel = true;
                 }
             }
-        }); */
+        });
 
 
 //        grid.on("cellcommitedit", function (e) {

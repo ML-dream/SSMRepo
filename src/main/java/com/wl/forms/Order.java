@@ -31,9 +31,11 @@ public class Order implements Serializable {
 	private String staffName;		//订单状态name
 	private String connectorTelOrders;		//订单状态name
 	private String checkAdvice;		//订单审核意见
+	private String completedStaffCode;		//订单审核意见
+	private String completedAdvice;		//订单审核意见
 	
-	
-	
+	private Employee employee;
+	private String completedStaffName;//完工审核人
 	private String customer;		//客户
 	private String createPerson;	//订单创建人
 	private String createTime;		//订单创建时间
@@ -142,6 +144,30 @@ public class Order implements Serializable {
 	
 	
 	
+	public String getCompletedStaffName() {
+		return completedStaffName;
+	}
+	public void setCompletedStaffName(String completedStaffName) {
+		this.completedStaffName = completedStaffName;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public String getCompletedStaffCode() {
+		return completedStaffCode;
+	}
+	public void setCompletedStaffCode(String completedStaffCode) {
+		this.completedStaffCode = completedStaffCode;
+	}
+	public String getCompletedAdvice() {
+		return completedAdvice;
+	}
+	public void setCompletedAvice(String completedAdvice) {
+		this.completedAdvice = completedAdvice;
+	}
 	public String getCheckAdvice() {
 		return checkAdvice;
 	}

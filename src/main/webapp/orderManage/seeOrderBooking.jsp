@@ -121,6 +121,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		font-size: small;
 		line-height:20px;
 			}
+			
+		.apply_nav {
+			    
+			    width: 250px;
+			 
+			    height: 80px;
+			   
+			}
+			.apply_array {
+		    width: 104px;
+		    float: left;
+		    height: 70px;
+		}
+		.apply .img_l .img_r{
+		    padding: 30px 10px 0 10px;
+		    float: left;
+		    cursor: pointer;
+			}
+			
+		.tabs-container .nav li a {
+		    display: inline-block;
+		    width: 94px;
+		    height: 47px;
+		    padding: 4px 0 4px 0;
+		    background-color: #5df120;
+		    border-radius: 0;
+		}
+		
+		.text-muted {
+		    color: #000000a1;
+		}
+		
+		
+		.tabs-container .nav li a.active p {
+		   color: #ff4c4c;
+		}
+		.bgColor {
+		    background-color: #66c1ec;
+		    /* font-weight: 600; */
+		}
+		
     </style>
 
     
@@ -282,7 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                      data-name="{{item.name}}"
                                      onclick="onSelectVenues(this)">
                                     <div class="apply_img">
-                                        <img src="{{item.picture}}"
+                                        <img src="{{item.picture}}" style="width: 50px;height: 40px;"
                                              onerror="javascript:this.src='<%=path %>/resource/images/machine.jpg'"/>
                                     </div>
                                     <div class="apply_info">
@@ -319,7 +360,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <img src="<%=path %>/resource/images/sale.jpg" alt="">
                 <span id="activity-title"></span>
             </div>
-            <div style="width: 100%; height: auto; border: 1px solid #ebebeb; margin-top: 5px; padding-left: 20px;">
+           <%--  <div style="width: 100%; height: auto; border: 1px solid #ebebeb; margin-top: 5px; padding-left: 20px;">
                 <img src="<%=path %>/resource/images/placeholder.png" style="position: absolute;z-index:100;width: auto;width: 800px;height: 70px;opacity: 0;filter:alpha(opacity=0);">
                 <!-- 天气块 -->
              <!--    <iframe name="tianqi-iframe" id="tianqi-iframe" width="100%" scrolling="no" height="60" frameborder="0"
@@ -328,7 +369,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </iframe> -->
 
                 
-            </div>
+            </div> --%>
             
             <!-- 预约操作模块开始 -->
             <div class="yuyuecaozuo" style="margin-top: 10px;overflow:hidden;">
@@ -338,7 +379,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="border">
                                 <div class="col-col-12">
                                     <div class="tabs-container">
-                                        <div style="background-color: #efeded; overflow: hidden;"
+                                        <div style="background-color: #5df120; overflow: hidden;"
                                              id="dataLine_container">
                                             <script id="dataLine_tmpl" type="text/html">
                                                 <ul class="nav nav-tabs"
@@ -630,20 +671,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <script>
-    var curVenuesId;//当前选中的场馆ID
+/* -------------------------------------------------------------初始化定义的公共变量部分-------------------------------------------------------------------------------------------- */
+   /* */
+	var curVenuesId;//当前选中的场馆ID
     var curVenuesName;
     var allVenues;//所有场馆
     var userTypeId = U.transfer('1');
     //一下两个变量是用于对于保存后的二次加载，没有搞清出他们为社么需要重新初始化！！以后在了解
-    var curVenuesIdSecond;
     var curDate;
     var machineId;
     var machineName;
     var bday;
     var eday;
+    /* -------------------------------------------------------------初始化主体函数部分-------------------------------------------------------------------------------------------- */
+   	
     
     console.log("user type=" + userTypeId);
-    
     
     /* alert("${order.companyName}"); */
 
@@ -655,109 +698,216 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件，
         LoadBookOrder();
     });
-
-    function LoadBookOrder(){
-    	var orderId="<%=request.getParameter("orderId")%>";
-    	var bookOrder=mini.get("bookOrder");
-    	bookOrder.load({"orderId":orderId});
-    }
     
-    function onSelectionChanged(e) {
-        
-        var grid = e.sender;
-        var record = grid.getSelected();
-       	machineId=record.machineID;
-      	curVenuesId=machineId.substring(0,3);
-      	curDate=machineId;
-      	var bday01=record.timeYmd;
-      	var d = new Date(bday01); 
-        d.setDate(d.getDate()-3);
-        /* bday =d.format("yyyy-MM-dd"); */
-        bday =mini.formatDate(d,'yyyy-MM-dd');
-        d.setDate(d.getDate()+6);
-        eday =mini.formatDate(d,'yyyy-MM-dd');
-/*       	curVenuesIdSecond=machineId.substring(0,3);
-      	curVenuesId=machineId.substring(0,3);
-      	curDate=machineId; */
-        if (record) {
-        	/* resetOrder(); */
-        	/* $('.text-center').find('ul').find('li').find('a[data.machineid='+machineId+']').trigger('click'); */
-        	/* $("a[data.machineid=5515]").trigger('click'); */
-        	/*   initSessions(machineId);  */  
-        	 /*  testmini(); */
-        	 
-        	  document.getElementById(machineId.substring(0,3)).click(); 
-        	  document.getElementById(machineId).click();
-        	  loadDateline(bday,eday);
-            /* bookMachine.load({ orderId: record.orderId }); */
-        }
-    }
     
-    function testmini(){
-    	 /* $('#dataLine_container').find('a').removeClass('active');  */
-    	document.getElementById().click();
-
-    	
-    }
-    function bindListener() {
-        onSelectSession();
-
-      //  bindServiceGoodsListener();
-			/* onModifySelected(); 这个界面目前不需要进行绑定监听*/
-        bindHoverListener();
+    /* -------------------------------------------------------------绑定的监听部分部分-------------------------------------------------------------------------------------------- */
+ 
+		 function bindListener() {
+	        onSelectSession();
+	
+	      //  bindServiceGoodsListener();
+				/* onModifySelected(); 这个界面目前不需要进行绑定监听*/
+	        bindHoverListener();
     }
 
+    
+		 /**
+		     * 选择场次事件，具体的场次事件，选择与取消！！！！！！
+		     */
+		    function onSelectSession() {
+		        $('.selectTrue').on('click', function (e) {
+		            var uid = $(this).data('sid');
+		            var venuesId = $(this).data('venuesid');
+		            var siteId = $(this).data('siteid');
+		            
+		            var selectedDate = $(this).data('selecteddate');
+		            var timeHm = $(this).data('timehm');
+		            var startTime = $(this).data('starttime');
+		            var endTime = $(this).data('endtime');
+		            var siteName =machineName; /* $(this).data('sitename'); */
+		            var siteId =machineId; /* $(this).data('sitename'); */
+		            var venuesName = $(this).data('venuesname');
+		            var price = $(this).data('price');
+
+		            var sessionTime = selectedDate+" "+startTime+"-"+endTime; //startTime + '-' + moment(endTime, "YYYY-MM-DD HH:mm").format('HH:mm');
+
+		            if ($(this).hasClass('selected')) {//取消选择
+		                $(this).removeClass("selected");
+
+		                $('#' + uid).slideUp(300, function () {
+		                    $('#' + uid).remove();//移除右侧已选的场次
+		                    //更新显示数量
+		                    refreshOrderSize();
+		                });
+		            } else {//选择场次
+		                $(this).addClass("selected");
+		                var session = {
+		                    uid: uid,
+		                    venuesId: venuesId,
+		                    siteId: siteId,
+		                    startTime: startTime,
+		                    endTime: endTime,
+		                    sessionTime: sessionTime,
+		                    venuesName: venuesName,
+		                    siteName: siteName,
+		                    price: price
+		                };
+
+		                var html = template("order_session_tmpl", session);
+		                $("#orderContent").append(html);
+
+		                //更新显示数量
+		                refreshOrderSize();
+		            }
+		        });
+		    }
+    
+    
+    
+		 function bindServiceGoodsListener() {
+		        $(".icon-serve").mouseover(function () {//移入
+		            $(this).addClass("serve-jia").parent().siblings().children().removeClass("serve-jia");
+		        }).mouseout(function () {//移出
+		            $(this).removeClass("serve-jia").parent().siblings().children().removeClass("serve-jia");
+		        }).unbind('click').click(function () {//点击
+		            if ($(this).hasClass("serve-shooes")) {//取消服务
+		                $(this).removeClass("serve-shooes");
+
+		                var orderGoods = $('#orderContent').find("div[data-goodsid='" + $(this).parent().data('goodsid') + "']");
+		                $(orderGoods).slideUp(300, function () {
+		                    $(orderGoods).remove();
+		                });
+
+		            } else {//添加服务
+		                $(this).addClass("serve-shooes");
+
+		                var goodsId = $(this).parent().data('goodsid');
+		                var goodsUnit = $(this).parent().data('goodsunit');
+		                var goodsName = $(this).parent().data('goodsname');
+		                var goodsPrice = $(this).parent().data('goodsprice');
+
+		                var goods = {
+		                    goodsId: goodsId,
+		                    goodsUnit: goodsUnit,
+		                    goodsName: goodsName,
+		                    goodsPrice: goodsPrice
+		                }
+
+		                var html = template("order_service_tmpl", goods);
+		                $("#orderContent").append(html);
+		            }
+		        });
+		    }
+    
+		 /**
+		     * 鼠标悬浮显示信息
+		     */
+		     
+		     function bindHoverListener() {
+		         $('.block-booking').mousemove(function (e) {
+		             var span = $(this).find('span');
+		             if (span != null) {
+		                 $('#user-bookingUserName').html($(span).data('bookingusername'));
+		                 $('#user-orderId').html($(span).data('orderid'));
+		                 $('#user-connectorTel').html($(span).data('connectortel'));
+		                 $('#user-orderName').html($(span).data('ordername'));
+		             }
+		             $('.hover-booking').show().css({
+		                 "top": e.pageY + 1,
+		                 "left": e.pageX + 10
+		             });
+		         }).mouseleave(function () {
+		             $('.hover-booking').hide();
+		         });
+
+		        $('.block-locked').mousemove(function (e) {
+		            var span = $(this).find('span');
+		            if (span != null) {
+		                var startDate = moment($(span).data('startdate'), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD");
+		                var endDate = moment($(span).data('enddate'), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD");
+
+		                $('#lock-start').html(startDate);
+		                $('#lock-end').html(endDate);
+		                $('#lock-weeks').html(U.getChineseWeeks($(span).data('weeks')));
+		                $('#lock-description').html($(span).data('description'));
+		            }
+		            $('.hover-locked').show().css({
+		                "top": e.pageY + 1,
+		                "left": e.pageX + 10
+		            });
+		        }).mouseleave(function () {
+		            $('.hover-locked').hide();
+		        });
+
+		        $('.block-disabled').mousemove(function (e) {
+		            var span = $(this).find('span');
+		            if (span != null) {
+		                $('#disable-reason').html($(span).data('disablereason'));
+		            }
+		            $('.hover-disabled').show().css({
+		                "top": e.pageY + 1,
+		                "left": e.pageX + 10
+		            });
+		        }).mouseleave(function () {
+		            $('.hover-disabled').hide();
+		        });
+		    }
+		 
+		 
+    /* -------------------------------------------------------------选择预约信息部分-------------------------------------------------------------------------------------------- */
+    
+    
+     
+    
+    /**
+     * 移除场次事件
+     */
+    function onRemoveSession(obj) {
+        $(obj).parent().slideUp(300, function () {
+            //移除父级div
+            $(obj).parent().remove();
+            //更新显示数量
+            refreshOrderSize();
+        });
+
+        $("div[data-sid='" + $(obj).data('id') + "']").removeClass("selected");
+    }
 
     /**
-     * 选择场次事件，具体的场次事件，选择与取消！！！！！！
+     * 选择场馆事件
      */
-    function onSelectSession() {
-        $('.selectTrue').on('click', function (e) {
-            var uid = $(this).data('sid');
-            var venuesId = $(this).data('venuesid');
-            var siteId = $(this).data('siteid');
-            
-            var selectedDate = $(this).data('selecteddate');
-            var timeHm = $(this).data('timehm');
-            var startTime = $(this).data('starttime');
-            var endTime = $(this).data('endtime');
-            var siteName =machineName; /* $(this).data('sitename'); */
-            var siteId =machineId; /* $(this).data('sitename'); */
-            var venuesName = $(this).data('venuesname');
-            var price = $(this).data('price');
+    function onSelectVenues(obj) {
+        $('.apply_w').find('a').removeClass('info');
+        $(obj).find('a').addClass('info');
+        //场馆ID
+        var id = $(obj).data('id');
+        var name = $(obj).data('name');
+        curVenuesId = id;
+        curVenuesName = name; 
+        resetOrder();//重置清空订单信息
 
-            var sessionTime = selectedDate+" "+startTime+"-"+endTime; //startTime + '-' + moment(endTime, "YYYY-MM-DD HH:mm").format('HH:mm');
-
-            if ($(this).hasClass('selected')) {//取消选择
-                $(this).removeClass("selected");
-
-                $('#' + uid).slideUp(300, function () {
-                    $('#' + uid).remove();//移除右侧已选的场次
-                    //更新显示数量
-                    refreshOrderSize();
-                });
-            } else {//选择场次
-                $(this).addClass("selected");
-                var session = {
-                    uid: uid,
-                    venuesId: venuesId,
-                    siteId: siteId,
-                    startTime: startTime,
-                    endTime: endTime,
-                    sessionTime: sessionTime,
-                    venuesName: venuesName,
-                    siteName: siteName,
-                    price: price
-                };
-
-                var html = template("order_session_tmpl", session);
-                $("#orderContent").append(html);
-
-                //更新显示数量
-                refreshOrderSize();
-            }
-        });
+        //initVenuesDetails(id);这个只是用来加载关于场馆的具体信息的
+        initDateLines(id); 
+        //initServiceGoods(id);
+       // initPromotionInfo(id);
     }
+
+
+    var date = "";
+    /**
+     * 选择日期事件
+     */
+    function onSelectDate(obj) {
+        $('#dataLine_container').find('a').removeClass('active');
+        $(obj).find('a').addClass('active');
+        $(obj).removeClass('active');
+		
+        machineId = $(obj).data('machineid');
+        machineName = $(obj).data('machinename');
+        initSessions(date);
+    }
+    
+    
 
     /**
      * 删除已经选择的时段
@@ -788,7 +938,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             success:function(data){
 	            	 U.msg(data.result);
 	             	 resetOrder();
-	             	 initSessions(curDate);  
+	             	 initSessions(machienId);  
 	             } ,
 	             error:function(data){
 	              alert(data.result);
@@ -799,54 +949,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     
     
-    /**
-     * 移除场次事件
-     */
-    function onRemoveSession(obj) {
-        $(obj).parent().slideUp(300, function () {
-            //移除父级div
-            $(obj).parent().remove();
-            //更新显示数量
-            refreshOrderSize();
-        });
-
-        $("div[data-sid='" + $(obj).data('id') + "']").removeClass("selected");
-    }
-
-    /**
-     * 选择场馆事件
-     */
-    function onSelectVenues(obj) {
-        $('.apply_w').find('a').removeClass('info');
-        $(obj).find('a').addClass('info');
-        //场馆ID
-        var id = $(obj).data('id');
-        var name = $(obj).data('name');
-        curVenuesId = id;
-        curVenuesIdSecond=id;
-        curVenuesName = name; 
-        resetOrder();//重置清空订单信息
-
-        //initVenuesDetails(id);这个只是用来加载关于场馆的具体信息的
-        initDateLines(id);
-        //initServiceGoods(id);
-       // initPromotionInfo(id);
-    }
-
-
-    var date = "";
-    /**
-     * 选择日期事件
-     */
-    function onSelectDate(obj) {
-        $('#dataLine_container').find('a').removeClass('active');
-        $(obj).find('a').addClass('active');
-        $(obj).removeClass('active');
-		
-        machineId = $(obj).data('machineid');
-        machineName = $(obj).data('machinename');
-        initSessions(date);
-    }
+   
 
     /**
      * 获取所有场馆，这个地方是获取所有的场馆，并不是加载下面的详细的数据的，然后后面如果会选择某一歌场馆就会触发加载详细数据的
@@ -864,12 +967,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     $("#venues_container").html(html);
 
                     initCoverFlow();//加载场馆的同时，就是增加流动效果
-
+                    $('.apply_w').find('a:first').trigger('click');
                   /*   if (U.isEmpty(curVenuesId)) {
                         //默认选中第一个场馆
                         $('.apply_w').find('a:first').trigger('click');
                     } else { */
-                        $('#' + curVenuesId).trigger('click');
+                       /*  $('#' + curVenuesId).trigger('click'); */
                   /*   } */
                 } else {
                     U.msg("获取场馆失败");
@@ -911,16 +1014,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              url: "/SSM/ShowOrderMachineInfoByMachine.action", 
              <%-- "<%=path %>/dateLInes", "/SSM/resource/testMachine.txt", --%>
              data: {deptId: id,
-                 userTypeId: userTypeId //用户身份类型
+                	 userTypeId: userTypeId //用户身份类型
                  },
              dataType: "json",
              success: function(data){
             	 if (data.no == 2000) {
                      var html = template("dataLine_tmpl", data);
                      $("#dataLine_container").html(html);
-					
-                   /*   if(U.isEmpty(machineId)){ */
+                 /*     if(status=1){
+                    	 $('#dataLine_container').find('a:first').trigger('click');
+                    	 status=2;
+                     }else{
                     	 $('#' + machineId).trigger('click');
+                    	 
+                     } */
+                     
+                     $('#' + machineId).trigger('click');
+                     /*   if(U.isEmpty(machineId)){ */
+                    	/*   */
                      /* }else{
                     	 $('#dataLine_container').find('a:first').trigger('click');
                      } */
@@ -934,7 +1045,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     
     
-    mini.parse();
+    
+    /**
+     * 初始化场次
+     */
+    function initSessions(date) {
+    	 $.ajax({
+             type: "POST",
+             url:"/SSM/MachineShowOrderByMachine.action",
+           <%-- "/SSM/resource/datelines.txt",  "<%=path %>/load", --%>
+             data: {deptId: curVenuesId,
+            	 bday:bday,
+            	 eday:eday,
+            	 machineId: machineId,
+                 userTypeId: userTypeId //用户身份类型
+                 },
+             dataType: "json",
+             success: function(data){
+            	
+            	 if (data.no == 2000) {
+            		 
+                     var html = template("session_tmpl", data);
+//                     console.log(JSON.stringify(data));
+                     $("#session_container").html(html);
+
+                     setGridBoxSize();
+
+                     bindListener();
+                 } else {
+                     U.msg("获取场次失败");
+                 }
+                      }
+         });
+    	
+    	
+    	
+    	
+    }
+    
+    /* --------------------------------------------------------------日期选择部分-------------------------------------------------------------------------------------------- */
+	mini.parse();
 	function loadgrid(){
 		
 		bday = mini.get("bday").getFormValue();
@@ -972,44 +1122,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       }
          });
 	}
-    /**
-     * 初始化场次
-     */
-    function initSessions(date) {
-    	 $.ajax({
-             type: "POST",
-             url:"/SSM/MachineShowOrderByMachine.action",
-           <%-- "/SSM/resource/datelines.txt",  "<%=path %>/load", --%>
-             data: {deptId: curVenuesId,
-            	 bday:bday,
-            	 eday:eday,
-            	 machineId: machineId,
-                 userTypeId: userTypeId //用户身份类型
-                 },
-             dataType: "json",
-             success: function(data){
-            	
-            	 if (data.no == 2000) {
-            		 
-                     var html = template("session_tmpl", data);
-//                     console.log(JSON.stringify(data));
-                     $("#session_container").html(html);
+   	/* -------------------------------------------------------------上面表格功能部分-------------------------------------------------------------------------------------------- */
 
-                     setGridBoxSize();
+    function LoadBookOrder(){
+    	var orderId="<%=request.getParameter("orderId")%>";
+    	var bookOrder=mini.get("bookOrder");
+    	bookOrder.load({"orderId":orderId});
+    }
+    
+    function onSelectionChanged(e) {
+        
+        var grid = e.sender;
+        var record = grid.getSelected();
+       	machineId=record.machineID;
+      	curVenuesId=machineId.substring(0,3);
+      	var bday01=record.timeYmd;
+      	var d = new Date(bday01); 
+        d.setDate(d.getDate()-3);
+        /* bday =d.format("yyyy-MM-dd"); */
+        bday =mini.formatDate(d,'yyyy-MM-dd');
+        d.setDate(d.getDate()+6);
+        eday =mini.formatDate(d,'yyyy-MM-dd');
 
-                     bindListener();
-                 } else {
-                     U.msg("获取场次失败");
-                 }
-                      }
-         });
-    	
-    	
-    	
+        if (record) {
+        	/* resetOrder(); */
+        	/* $('.text-center').find('ul').find('li').find('a[data.machineid='+machineId+']').trigger('click'); */
+        	/* $("a[data.machineid=5515]").trigger('click'); */
+        	/*   initSessions(machineId);  */  
+        	 /*  testmini(); */
+        	 
+        	  document.getElementById(machineId.substring(0,3)).click(); 
+        	  document.getElementById(machineId).click();
+        	  loadDateline(bday,eday);
+            /* bookMachine.load({ orderId: record.orderId }); */
+        }
+    }
+    
+    function testmini(){
+    	 /* $('#dataLine_container').find('a').removeClass('active');  */
+    	document.getElementById().click();
+
     	
     }
+   
 
+   
 
+    
+   	/* -------------------------------------------------------------其他功能-------------------------------------------------------------------------------------------- */
+ 
 	//这个地方是初始化上面的图片流动的额，就是点击右就会向右转
     function initCoverFlow() {
         $li1 = $(".apply_nav .apply_array");
@@ -1052,89 +1213,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $(".box-list").width(count * gridWid);
       
     }
-
-    function bindServiceGoodsListener() {
-        $(".icon-serve").mouseover(function () {//移入
-            $(this).addClass("serve-jia").parent().siblings().children().removeClass("serve-jia");
-        }).mouseout(function () {//移出
-            $(this).removeClass("serve-jia").parent().siblings().children().removeClass("serve-jia");
-        }).unbind('click').click(function () {//点击
-            if ($(this).hasClass("serve-shooes")) {//取消服务
-                $(this).removeClass("serve-shooes");
-
-                var orderGoods = $('#orderContent').find("div[data-goodsid='" + $(this).parent().data('goodsid') + "']");
-                $(orderGoods).slideUp(300, function () {
-                    $(orderGoods).remove();
-                });
-
-            } else {//添加服务
-                $(this).addClass("serve-shooes");
-
-                var goodsId = $(this).parent().data('goodsid');
-                var goodsUnit = $(this).parent().data('goodsunit');
-                var goodsName = $(this).parent().data('goodsname');
-                var goodsPrice = $(this).parent().data('goodsprice');
-
-                var goods = {
-                    goodsId: goodsId,
-                    goodsUnit: goodsUnit,
-                    goodsName: goodsName,
-                    goodsPrice: goodsPrice
-                }
-
-                var html = template("order_service_tmpl", goods);
-                $("#orderContent").append(html);
-            }
-        });
-    }
-//服务相关，用不到
-    function onRemoveService(obj) {
-        $(obj).parent().slideUp(300, function () {
-            //移除父级div
-            $(obj).parent().remove();
-        });
-
-        $("div[data-goodsid='" + $(obj).data('goodsid') + "']").children().removeClass("serve-shooes");
-    }
-//下面这个就是关于服务相关的，目前也用不到！
-    function onAddGoodsQuantity(obj) {
-        //加号
-        var $parent = $(obj).parent(".num");
-        var $num = window.Number($(".inputBorder", $parent).val());
-        $(".inputBorder", $parent).val($num + 1);
-
-        //设置减号是否可用
-        $num = window.Number($(".inputBorder", $parent).val());
-        if ($num <= 1) {
-            $(obj).parent().find('.minus').attr("disabled", true);
-            $(obj).parent().find('.minus').css("cursor", "not-allowed");
-        } else {
-            $(obj).parent().find('.minus').attr("disabled", false);
-            $(obj).parent().find('.minus').css("cursor", "pointer");
-        }
-    }
-//这个服务相关的函数，目前我也用不到
-    function onMinusGoodsQuantity(obj) {
-        //减号
-        var $parent = $(obj).parent(".num");
-        var $num = window.Number($(".inputBorder", $parent).val());
-
-        if ($num > 1) {
-            $(".inputBorder", $parent).val($num - 1);
-        }
-
-        //设置减号是否可用
-        $num = window.Number($(".inputBorder", $parent).val());
-        if ($num <= 1) {
-            $(obj).attr("disabled", true);
-            $(obj).css("cursor", "not-allowed");
-        } else {
-            $(obj).attr("disabled", false);
-            $(obj).css("cursor", "pointer");
-        }
-    }
-
-    /**
+   	
+   	/* -------------------------------------------------------------确定预约-------------------------------------------------------------------------------------------- */
+   	
+   	/**
      * 更新数量
      */
     function refreshOrderSize() {
@@ -1254,9 +1336,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	 U.msg(data.result);
                //alert(data.result);
              //  initAllVenues();
-              //initDateLines(curVenuesIdSecond);
-             	 resetOrder();
-               initSessions(curDate);  
+
+             	resetOrder();
+               initSessions(machineId);  
               // bindListener();//调用一些绑定监听器，类似就是鼠标事件，或者选择事件， 
              } ,
              error:function(data){
@@ -1265,6 +1347,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          });
     	
     	}
+   	/* -------------------------------------------------------------暂时用不到的-------------------------------------------------------------------------------------------- */
+
+   
+
+
+
+   
+//服务相关，用不到
+    function onRemoveService(obj) {
+        $(obj).parent().slideUp(300, function () {
+            //移除父级div
+            $(obj).parent().remove();
+        });
+
+        $("div[data-goodsid='" + $(obj).data('goodsid') + "']").children().removeClass("serve-shooes");
+    }
+//下面这个就是关于服务相关的，目前也用不到！
+    function onAddGoodsQuantity(obj) {
+        //加号
+        var $parent = $(obj).parent(".num");
+        var $num = window.Number($(".inputBorder", $parent).val());
+        $(".inputBorder", $parent).val($num + 1);
+
+        //设置减号是否可用
+        $num = window.Number($(".inputBorder", $parent).val());
+        if ($num <= 1) {
+            $(obj).parent().find('.minus').attr("disabled", true);
+            $(obj).parent().find('.minus').css("cursor", "not-allowed");
+        } else {
+            $(obj).parent().find('.minus').attr("disabled", false);
+            $(obj).parent().find('.minus').css("cursor", "pointer");
+        }
+    }
+//这个服务相关的函数，目前我也用不到
+    function onMinusGoodsQuantity(obj) {
+        //减号
+        var $parent = $(obj).parent(".num");
+        var $num = window.Number($(".inputBorder", $parent).val());
+
+        if ($num > 1) {
+            $(".inputBorder", $parent).val($num - 1);
+        }
+
+        //设置减号是否可用
+        $num = window.Number($(".inputBorder", $parent).val());
+        if ($num <= 1) {
+            $(obj).attr("disabled", true);
+            $(obj).css("cursor", "not-allowed");
+        } else {
+            $(obj).attr("disabled", false);
+            $(obj).css("cursor", "pointer");
+        }
+    }
+
+    
     
   
    /*  $('button').on('click', function() {
@@ -1311,59 +1448,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
 
-    /**
-     * 鼠标悬浮显示信息
-     */
-     
-     function bindHoverListener() {
-         $('.block-booking').mousemove(function (e) {
-             var span = $(this).find('span');
-             if (span != null) {
-                 $('#user-bookingUserName').html($(span).data('bookingusername'));
-                 $('#user-orderId').html($(span).data('orderid'));
-                 $('#user-connectorTel').html($(span).data('connectortel'));
-                 $('#user-orderName').html($(span).data('ordername'));
-             }
-             $('.hover-booking').show().css({
-                 "top": e.pageY + 1,
-                 "left": e.pageX + 10
-             });
-         }).mouseleave(function () {
-             $('.hover-booking').hide();
-         });
-
-        $('.block-locked').mousemove(function (e) {
-            var span = $(this).find('span');
-            if (span != null) {
-                var startDate = moment($(span).data('startdate'), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD");
-                var endDate = moment($(span).data('enddate'), "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD");
-
-                $('#lock-start').html(startDate);
-                $('#lock-end').html(endDate);
-                $('#lock-weeks').html(U.getChineseWeeks($(span).data('weeks')));
-                $('#lock-description').html($(span).data('description'));
-            }
-            $('.hover-locked').show().css({
-                "top": e.pageY + 1,
-                "left": e.pageX + 10
-            });
-        }).mouseleave(function () {
-            $('.hover-locked').hide();
-        });
-
-        $('.block-disabled').mousemove(function (e) {
-            var span = $(this).find('span');
-            if (span != null) {
-                $('#disable-reason').html($(span).data('disablereason'));
-            }
-            $('.hover-disabled').show().css({
-                "top": e.pageY + 1,
-                "left": e.pageX + 10
-            });
-        }).mouseleave(function () {
-            $('.hover-disabled').hide();
-        });
-    }
+    
 
 
     /**

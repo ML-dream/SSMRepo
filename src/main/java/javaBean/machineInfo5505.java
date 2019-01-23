@@ -51,69 +51,17 @@ public class machineInfo5505 {
 	private String	runTime ;
 	private String	circleTime ;
 	private String	cutTime ;
-	
-	public machineInfo5505() {
-		super();
+	private String  isOpen;
 
+
+	
+	
+	public String getIsOpen() {
+		return isOpen;
 	}
 
-	public machineInfo5505(String createTime, String machineName, String machineIp, String machineSystem,
-			String machineId, String relativeX, String relativeZ, String relativeC, String relativeV, String absoluteX,
-			String absoluteZ, String absoluteC, String absoluteV, String machineX, String machineZ, String machineC,
-			String machineV, String resMovDistanceX, String resMovDistanceZ, String resMovDistanceC,
-			String resMovDistanceV, String spindleName, String spindleNum, String spindleLoad, String spindleSpeed,
-			String servoAsisLoad1, String servoAsisLoad2, String servoAsisLoad3, String servoAsisLoad4,
-			String runCondition, String runMode, String runProgramNum, String mainProgramNum, String runNcProgramNum,
-			String runCutterGroupNum, String runCutterNum, String controledServoAsisNum, String cNCversion,
-			String factFeedSpeed, String isAlarm, String alarmNum, String alarmClass, String alarmInfo, String runTime,
-			String circleTime, String cutTime) {
-		super();
-		this.createTime = createTime;
-		this.machineName = machineName;
-		this.machineIp = machineIp;
-		this.machineSystem = machineSystem;
-		this.machineId = machineId;
-		this.relativeX = relativeX;
-		this.relativeZ = relativeZ;
-		this.relativeC = relativeC;
-		this.relativeV = relativeV;
-		this.absoluteX = absoluteX;
-		this.absoluteZ = absoluteZ;
-		this.absoluteC = absoluteC;
-		this.absoluteV = absoluteV;
-		this.machineX = machineX;
-		this.machineZ = machineZ;
-		this.machineC = machineC;
-		this.machineV = machineV;
-		this.resMovDistanceX = resMovDistanceX;
-		this.resMovDistanceZ = resMovDistanceZ;
-		this.resMovDistanceC = resMovDistanceC;
-		this.resMovDistanceV = resMovDistanceV;
-		this.spindleName = spindleName;
-		this.spindleNum = spindleNum;
-		this.spindleLoad = spindleLoad;
-		this.spindleSpeed = spindleSpeed;
-		this.servoAsisLoad1 = servoAsisLoad1;
-		this.servoAsisLoad2 = servoAsisLoad2;
-		this.servoAsisLoad3 = servoAsisLoad3;
-		this.servoAsisLoad4 = servoAsisLoad4;
-		this.runCondition = runCondition;
-		this.runMode = runMode;
-		this.runProgramNum = runProgramNum;
-		this.mainProgramNum = mainProgramNum;
-		this.runNcProgramNum = runNcProgramNum;
-		this.runCutterGroupNum = runCutterGroupNum;
-		this.runCutterNum = runCutterNum;
-		this.controledServoAsisNum = controledServoAsisNum;
-		this.CNCversion = cNCversion;
-		this.factFeedSpeed = factFeedSpeed;
-		this.isAlarm = isAlarm;
-		this.alarmNum = alarmNum;
-		this.alarmClass = alarmClass;
-		this.alarmInfo = alarmInfo;
-		this.runTime = runTime;
-		this.circleTime = circleTime;
-		this.cutTime = cutTime;
+	public void setIsOpen(String isOpen) {
+		this.isOpen = isOpen;
 	}
 
 	public String getCreateTime() {

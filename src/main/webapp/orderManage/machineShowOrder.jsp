@@ -127,6 +127,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    overflow-y:auto;
 
 		}
+		
+		.tabs-container .nav li a {
+		    display: inline-block;
+		    width: 94px;
+		    height: 47px;
+		    padding: 4px 0 4px 0;
+		    background-color: #1ef5f5;
+		    border-radius: 0;
+		}
+		.apply .img_l .img_r{
+		    padding: 30px 10px 0 10px;
+		    float: left;
+		    cursor: pointer;
+			}
+			
+		.m-n {
+		 color: #000000a1;
+			}
+				
+		.text-muted {
+		    color: #000000a1;
+		}
+		
+		
+		.tabs-container .nav li a.active p {
+		   color: #ff4c4c;
+		}
+		.bgColor {
+		    background-color: #66c1ec;
+		    /* font-weight: 600; */
+		}
     </style>
     
     
@@ -322,6 +353,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 
             </div>
             
+            
             <!-- 预约操作模块开始 -->
             <div class="yuyuecaozuo" style="margin-top: 10px;overflow:hidden;">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px;">
@@ -330,7 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="border">
                                 <div class="col-col-12">
                                     <div class="tabs-container">
-                                        <div style="background-color: #efeded; overflow: hidden;"
+                                        <div style="background-color: #1ef5f5; overflow: hidden;"
                                              id="dataLine_container">
                                             <script id="dataLine_tmpl" type="text/html">
                                                 <ul class="nav nav-tabs"

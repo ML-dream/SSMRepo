@@ -67,7 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          </td>
 	          <td><input value="查找" type="button" onclick="loadgrid()" style="width:50px;"/></td>
 	   		</tr>
-	   		<input id="key" name="key"  class="mini-textbox" required="true" value="0" visible="false"/>
+	   		<input id="key" name="key"  class="mini-textbox" required="true" value="1" visible="false"/>
+	   		
 	   	</table>
 	   </form>
 <!-- 	</div> -->
@@ -75,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </br></br>
     <div id="grid1" class="mini-datagrid" style="width:100%;height:85%;"
          borderStyle="border:0;" multiSelect="true"  idField="id" showSummaryRow="true" allowAlternating="true" showPager="true"
-         url="AuditingBookingOrder.action" allowCellSelect="true" allowCellEdit="true">
+         url="mybookOrder.action" allowCellSelect="true" allowCellEdit="true">
         <div property="columns">
             <div type="indexcolumn" width="20"></div>
             <div name="action" width="10" headerAlign="center" align="center" renderer="onOperatePower"
@@ -94,11 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="createTime" width="60" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center" >创建时间
             </div>
-         <!--    <div field="key" width="20" headalign="center" value="0" >key标志位
-            </div> -->
             <div field="bookStatus" width="20" headalign="center"  renderer="onGenderRenderer">状态
+              
             </div>
-            
         </div>
     </div>
     
@@ -111,12 +110,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	
 	    	var form=new mini.Form("#form0");
 	    	var data1 =form.getData();
-	    	//alert(data1);
-	    	/*  var bookStatus = mini.get("bookStatus").getValue();
-	    	 var companyName = mini.get("companyName").getValue(); */
-	    //	var data=mini.encode(data1);
-	    	
 	    	grid.load(data1);
+	    	
+//			 alert(data1);
+/*	    	 var bookStatus = mini.get("bookStatus").getValue();
+	    	 var companyName = mini.get("companyName").getValue(); */
+//	    	 var data=mini.encode(data1);
+	    	
+	    	
 	    	/* $.ajax({
 	    		url:"AuditingBookingOrder.action",
 	    		type:"post",
@@ -144,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 
 			//var createTime=document.getElementById("createTime");
-	    	window.location="orderManage/AuditingBookingOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
+	    	window.location="ResearchTask/selectCompletedOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
 		}
         function onButtonEdit(e) {
             var btnEdit = this;

@@ -39,7 +39,10 @@ ColumnsMenu.prototype = {
             var el = grid.getHeaderCellEl(column);
             if (!el) continue;
             if (!column.field) continue;
-            $(el.firstChild).append('<div class="mini-grid-column-trigger mini-icon mini-widget-header fa-sort-down" style="line-height:20px;"></div>');
+            if(column.allowSort !==false){
+            	$(el.firstChild).append('<div class="mini-grid-column-trigger mini-icon mini-widget-header fa-sort-down" style="line-height:20px;"></div>');
+            }
+            
         }
     },
 

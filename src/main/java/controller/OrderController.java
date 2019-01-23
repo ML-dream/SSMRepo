@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wl.forms.User;
+import com.wl.testaction.utils.DaiUtils;
 
 import javaBean.machineInfo5505;
 import javaBean.user;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import service.AccessoryService;
 import service.selectMachineInfoService;
@@ -85,13 +89,19 @@ public class OrderController {
 
 	@RequestMapping(value="AuditingBookingOrder.action",produces = "text/html;charset=UTF-8") 
 	@ResponseBody 
-    public String rerurnAuditingBookingOrder(Model model,String orderId,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus,String companyId,String companyName){ 
-	
-
-
+    public String rerurnAuditingBookingOrder(Model model,/*String key,*/String orderId,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus,String companyId,String companyName){ 
+		
+		
+		String staffCode="";
+	/*	if(key.equals("1")) {
+			HttpSession session = request.getSession();
+			String userId = ((User)session.getAttribute("user")).getUserId();
+			staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+			
+		}*/
 		int pageNo = Integer.parseInt(pageIndex)+1;
 	    int countPerPage = Integer.parseInt(pageSize);
-	    String staffCode="";
+	    
 		String json  = orderServiceImpl.returnMyBookOrder(staffCode,pageNo, countPerPage,sortField,sortOrder,bookStatus==null?"":bookStatus,companyId==null?"":companyId,companyName==null?"":companyName);
 		System.out.println(json);
 		return json;//转向首页
@@ -264,7 +274,7 @@ public class OrderController {
 		
 		    int pageNo = Integer.parseInt(pageIndex)+1;
 		    int countPerPage = Integer.parseInt(pageSize);
-		    if(bookStatus.equals("订单完成")) {
+		    if(bookStatus.equals("加工完成")||bookStatus.equals("16")) {
 		    	
 		    	String json  = orderServiceImpl.returnCompletedBookMachine(orderId, pageNo, countPerPage,sortField,sortOrder);
 				System.out.println(json);
@@ -281,13 +291,33 @@ public class OrderController {
 		    
 		} 
 		    
+		    /**
+		     * @param model
+		     * @param list
+		     * @param orderId
+		     * @return
+		     * 此方法是针对的是保存预约信息二次编辑的信息，后期还会加入进行判断是否是保存的信息，是否进行修改！
+		     */
 		    @RequestMapping(value="saveCompletedBookingInfo.action",produces = "text/html;charset=UTF-8") 
 			@ResponseBody 
-		    public String saveCompletedBookingInfo(Model model,String data){ 
+		    public String saveCompletedBookingInfo(Model model, String list ,String orderId,String completedAdvice){ 
+//		    	JSONObject obj = new JSONObject(list);
+		    	ArrayList<HashMap<String,String>> saveList = (ArrayList<HashMap<String,String>>) PluSoft.Utils.JSON.Decode(list);
+		    	
+		    	String jsonData="successful";
+				try {	
+					orderServiceImpl.saveCompletedBookingInfoService(saveList,orderId,completedAdvice);
+			  }catch(Exception e){
+				   jsonData="fail";
+				   DaiUtils.returnIsExceptionJson(e);
+				   System.out.println("抛出异常，触发回顾事件………………");
+			   }
 			
-			   System.out.println(data);
-					
-					return null;//转向首页
+				jsonData="{\"result\":\""+jsonData+"\"}";
+				System.out.println(jsonData);
+
+		
+		    	return jsonData; 
 			    	
 		}
 		

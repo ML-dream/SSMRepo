@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -74,5 +75,24 @@ public interface BookOrderMapper {
 	 * @return
 	 */
 	public List<BookOrderMachine> completedBookMapper(String orderId);
+	/**
+	 * @param hashMap
+	 */
+	public void saveCompletedBookingInfoMapper(HashMap<String, String> hashMap);
+	/**
+	 * @param orderId
+	 */
+	public void deleteCompletedBookingInfoMapper(String orderId);
+	/**
+	 * @param orderId
+	 * @Description 这个是针对的更新orders的状态值
+	 */
+	public void updateCompletedOrderInfoMapper(@Param("bookStatus") String bookStatus,@Param("orderId") String orderId);
+	/**
+	 * @param staffCode
+	 * @param orderId
+	 *  用于插入完工审核人的信息
+	 */
+	public void insertCompletedAuditerInfoMapper(@Param("staffCode") String staffCode,@Param("orderId") String orderId,@Param("completedAdvice") String completedAdvice);
 		
 }

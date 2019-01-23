@@ -43,21 +43,43 @@
 	
 	
 		<select id="completedBookMapper" resultType="javaBean.BookOrderMachine">
-		select * from completedbookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}
+		select * from Bookinginfo_Completed A left join machinfo B on a.machine_id=b.machineid left join orders D on d.order_id=A.order_ID  where a.order_Id=#{orderId}
 	</select>
 	
 	
 	<select id="AuditingBookUpdateStatusMapper" resultType="com.wl.forms.Order">
-			select * from Orders A left join ORDERBOOKSTATUS B on a.book_Status=B.bookStatus left join EMPLOYEE_INFO C on c.staff_code=A.auditing_staff_code left join customer D on d.companyid=a.customer where order_id =#{orderId}
+			select A.*,b.*,C.*,d.staff_Name completed_staff_name,e.companyName  from Orders A  
+			left join ORDERBOOKSTATUS B on a.book_Status=B.bookStatus 
+			left join EMPLOYEE_INFO C on c.staff_code=A.auditing_staff_code 
+			left join EMPLOYEE_INFO d on d.staff_code=A.completed_staff_code 
+			left join customer e on e.companyId=a.customer 
+			where order_id =#{orderId}
 	</select>
-	
+	 
+<!-- 	 <select id="getLeftJoinMap"  resultMap="leftJoinMap">
+        select a.order_id,a.customer,b.companyId,b.companyName from orders a left join customer b on a.customer=b.companyId left join employee_info
+    </select> -->
+
+    <!-- resultMap中的type表示返回什么类型的对象 -->
+<!--     <resultMap type="com.wl.forms.Order" id="leftJoinMap">
+        property 表示com.mybatis.bean.StudentTemp中的属性； column 表示表中的列名
+        <id property="orderId" column="order_id" />
+        <result property="customer" column="customer" />
+
+        association字面意思关联，这里只专门做一对一关联； property表示是上面中的Order中的一个Customer类的属性，相当于嵌套属性了 
+            javaType表示该属性是什么类型对象
+        <association property="employee" javaType="com.wl.forms.Employee">这个最重要，其他的只要名字没有不同，就不要自己进行转换了；所以尽量实体类要和数据库列相同
+            property 表示com.mybatis.bean.Class中的属性； column 表示表中的列名
+            <id property="staffCode" column="staff_code" />
+            
+        </association>
+    </resultMap> -->
 	
 	
 	
 	
 	<delete id="noPassDeleteAuditingBookOrderMapper" >
-          delete from bookingInfo  
-         where orderId=#{orderId}     
+          delete from bookingInfo   where orderId=#{orderId}     
      </delete>
      
      
@@ -85,35 +107,46 @@
      </update>
      
      <update id="deleteAuditingBookOrderMapper" >
-          delete from bookingInfo  
-         where unid=#{unid}     
+          delete from bookingInfo  where unid=#{unid}     
      </update>
      
-      <delete id="deleteAuditingOrderMapper" >
-          update orders  set book_status='0' 
-         where order_id=#{orderId}     
+     <delete id="deleteAuditingOrderMapper" >
+          update orders  set book_status='0' where order_id=#{orderId}     
      </delete>
      
      
-      <delete id="deleteAuditingOrderbookingInfoMapper" >
+     <delete id="deleteAuditingOrderbookingInfoMapper" >
           delete from bookingInfo  
          where orderId=#{orderId}     
      </delete>
     
-    	<insert id="insertAddShiYanOrder" >
-    	insert into orders (ORDER_ID,CUSTOMER,CREATEPERSON,CREATETIME,connector,connectorTel,book_status,order_name) 
-    	values (#{orderId,jdbcType=VARCHAR},#{customer,jdbcType=VARCHAR},#{staffCode,jdbcType=VARCHAR},to_date(#{createTime,jdbcType=VARCHAR},'yyyy-mm-dd,hh24:mi:ss'),#{connector,jdbcType=VARCHAR},#{connectorTel,jdbcType=VARCHAR},#{bookOrderStatus,jdbcType=VARCHAR},#{orderName,jdbcType=VARCHAR})
-		
+    <insert id="insertAddShiYanOrder" >
+	    	insert into orders (ORDER_ID,CUSTOMER,CREATEPERSON,CREATETIME,connector,connectorTel,book_status,order_name) 
+	    	values (#{orderId,jdbcType=VARCHAR},#{customer,jdbcType=VARCHAR},#{staffCode,jdbcType=VARCHAR},to_date(#{createTime,jdbcType=VARCHAR},'yyyy-mm-dd,hh24:mi:ss'),#{connector,jdbcType=VARCHAR},#{connectorTel,jdbcType=VARCHAR},#{bookOrderStatus,jdbcType=VARCHAR},#{orderName,jdbcType=VARCHAR})
     	
-    	</insert>
+    </insert>
+    
+    <update id="insertCompletedAuditerInfoMapper">
+    	update orders set COMPLETED_STAFF_CODE = #{staffCode},completed_Advice=#{completedAdvice} where order_Id=#{orderId}
+    </update>
+   
+    <update id="updateCompletedOrderInfoMapper">
+   		update orders set book_Status =	#{bookStatus} where order_Id=#{orderId}
+    </update>
 	
 	
 	     
-      <delete id="deleteSelectedBookingInfo" >
-          delete from bookingInfo  
-          where  unid=#{unid}     
-     </delete>
+     <delete id="deleteSelectedBookingInfo" >
+          delete from bookingInfo  where  unid=#{unid}     
+    </delete>
 	
 
+    <insert id="saveCompletedBookingInfoMapper" >
+    	insert into BOOKINGINFO_COMPLETED (unid,order_Id,start_time_info,end_time_info,machine_id,time_ymd<!-- ,COMPLETED_REMARKS -->) 
+    	values (#{unid},#{orderId},#{startTimeInfo},#{endTimeInfo},#{machineID},#{timeYmd}<!-- ,#{completedRemarks} -->)
+    </insert>
+    <delete id="deleteCompletedBookingInfoMapper">
+    	delete from BOOKINGINFO_COMPLETED where order_id=#{orderId}
+    </delete>
 </mapper>
 

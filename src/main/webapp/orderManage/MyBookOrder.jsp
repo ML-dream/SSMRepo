@@ -7,11 +7,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-   <base href="<%=basePath%>"><script type="text/javascript" src="<%=path %>/scripts/boot.js"></script>
+   <base href="<%=basePath%>"><script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
     <meta http-equiv="content-Type" content="text/html;charset=utf-8"/>
-		<script type="text/javascript" src="<%=path %>/scripts/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=path %>/scripts/miniui/miniui.js"></script>
-		<script type="text/javascript" src="<%=path %>/scripts/boot.js"></script>
+		<script type="text/javascript" src="<%=path %>/resources/scripts/jquery.min.js"></script>
 		<link href="<%=path %>/scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="txt/css"></link>
 		<link href="<%=path %>/scripts/miniui/themes/icons.css" rel="stylesheet" type="txt/css"></link>
 		
@@ -111,8 +109,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             </div>
            
-            
-                     
         </div>
     </div> 
   
@@ -146,7 +142,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var menu = new ColumnsMenu(bookOrder);
         var menu2 = new ColumnsMenu(bookMachine); */
         ///////////////////////////////////////////////////////       
+        /*
         
+        bookOrder.load(data1,function(e){
+		    if(e.data.length==0){
+		         bookMachine.load()   传空参数，后台判断，如果没参数，那么就返回空数据
+		    }
+		})
+        
+        */
          
 	    function loadgrid(){
 	    	
@@ -358,7 +362,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var record = grid.getSelected();
             orderId=record.orderId;
             if (record) {
-                bookMachine.load({ orderId: record.orderId });
+                bookMachine.load({ orderId: record.orderId,bookStatus:record.bookStatus });
             }
         }
 

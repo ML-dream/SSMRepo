@@ -6,15 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.ForbiddenException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.wl.forms.Customer;
@@ -35,6 +39,7 @@ import machineOrderYuyue.beans.loadJson;
 import machineOrderYuyue.beans.machineBean;
 import machineOrderYuyue.beans.timeLinesBean;
 import mapper.BookOrderMapper;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import service.OrderService;
 
@@ -61,6 +66,8 @@ import service.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService  {
 
+	@Autowired
+	HttpServletRequest request;
 	@Resource
 	BookOrderMapper bookOrdeMapper;
 	
@@ -208,9 +215,8 @@ public class OrderServiceImpl implements OrderService  {
 		 * @param material
 		 * @return
 		 */
-		@Autowired
-		HttpServletRequest request;
-		private String result;
+
+
 		
 		public String addShiYanOrder(String orderId, String customer, String connector, String connectorTel,
 				String orderName, String productNum, String material) {
@@ -559,6 +565,41 @@ public class OrderServiceImpl implements OrderService  {
 			List<BookOrderMachine> list = bookOrdeMapper.completedBookMapper(orderId);
 			String json = DaiUtils.returnMiniUiJson(list);
 			return json;
+		}
+
+
+		/**
+		 * @param saveList
+		 * @param orderId
+		 * @return
+//		 * 此service针对的是可以不断保存数据，同时使用事务增强健壮性！
+		 */
+		@Transactional
+		public void saveCompletedBookingInfoService(ArrayList<HashMap<String, String>> saveList, String orderId,String completedAdvice) throws Exception{
+			
+			HttpSession session = request.getSession();
+			String userId = ((User)session.getAttribute("user")).getUserId();
+			String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+			bookOrdeMapper.insertCompletedAuditerInfoMapper(staffCode,orderId,completedAdvice==null?"":completedAdvice);
+			bookOrdeMapper.updateCompletedOrderInfoMapper("16",orderId);
+			
+			bookOrdeMapper.deleteCompletedBookingInfoMapper(orderId);
+			for (HashMap<String,String> hashMap : saveList) {
+				hashMap.put("orderId", orderId);
+				bookOrdeMapper.saveCompletedBookingInfoMapper(hashMap);
+				
+//				String string =  hashMap.get("bookState");
+//				/*System.out.println(string);*/
+			}
+			/*for (JSON json : saveList) {
+				System.out.println(json.toString());
+				JSONObject.parseObject(json,Map.class);
+				 bookOrdeMapper.saveCompletedBookingInfoMapper();
+			}*/
+		/*	for (String saveString : saveList) {
+				Map<String, Object> json2Map = DaiUtils.json2Map(saveString);
+			}*/
+			
 		}
 		
 		

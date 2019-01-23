@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <script type="text/javascript" src="resources/scripts/boot.js"></script>
-      <script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
+     <script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
     <title>主页面</title>
    	<meta http-equiv="co ntent-type" content="text/html; charset=UTF-8" />
 	<link href="css/demo.css" rel="stylesheet" type="text/css" />
