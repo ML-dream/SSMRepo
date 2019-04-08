@@ -75,7 +75,7 @@ public class LoginHandler extends HttpServlet {
 		if (loginok) {           //登录成功！！
 			System.out.println("登录成功！！！");
 			session.setAttribute("user", user);
-			response.sendRedirect("mainindex.jsp");
+			response.sendRedirect("MyMainJsp.jsp");
 		}else {					//登录失败！！
 			System.out.println("登录失败！！！");
 			response.sendRedirect("login.jsp");

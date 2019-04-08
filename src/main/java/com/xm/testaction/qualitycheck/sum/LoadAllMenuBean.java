@@ -1,5 +1,7 @@
 package com.xm.testaction.qualitycheck.sum;
 
+import java.util.List;
+
 public class LoadAllMenuBean {
 	private String  id;
 	private String  text;
@@ -7,6 +9,17 @@ public class LoadAllMenuBean {
 	private String  pid;
 	private String pagelevel;
 	private String url ;
+	private List<LoadAllMenuBean> children;
+	
+	
+	
+	
+	public List<LoadAllMenuBean> getChildren() {
+		return children;
+	}
+	public void setChildren(List<LoadAllMenuBean> children) {
+		this.children = children;
+	}
 	public String getId() {
 		return id;
 	}

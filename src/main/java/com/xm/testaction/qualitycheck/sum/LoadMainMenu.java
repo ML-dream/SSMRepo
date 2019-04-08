@@ -45,42 +45,47 @@ public class LoadMainMenu extends HttpServlet {
 		HttpSession session = request.getSession();
 	    String userId = ((User)session.getAttribute("user")).getUserId();
 	    String para =  ((User)session.getAttribute("user")).getStaffCode();	//当前用户
-	    String sqla =
-	    	"select t.pageid id,t.text ,t.iconcls iconCls,t.pid,t.pagelevel,t.pageurl url from LISTTREE t " +
+	    String sqla ="select c.pageid id,c.text,c.pid,c.pagelevel,c.iconcls iconCls,c.pageurl url from listtree c where c.pagelevel ='1' order by c.pageid" ; 
+	    		
+	    	/*"select t.pageid id,t.text ,t.iconcls iconCls,t.pid,t.pagelevel,t.pageurl url from LISTTREE t " +
 	    		"left join rightassign a on a.pageid = t.pageid " +
 	    		"where a.staffcode = '"+para+"' "+
 	    		"union all " +
 	    		"select c.pageid,c.text,c.iconcls,c.pid,c.pagelevel,c.pageurl url from listtree c where c.pagelevel ='1'" +
-	    		"order by id" ;
-	    List<LoadAllMenuBean> list1 = new ArrayList<LoadAllMenuBean>();
+	    		"order by id" ;*/
+	    List<LoadAllMenuBean> fu = null ;
 
-	 
+	    ArrayList<LoadAllMenuBean> list = new ArrayList<LoadAllMenuBean>();
+	    
 	    System.out.println(sqla);
 	    try {
-	    	list1 = Sqlhelper.exeQueryList(sqla, null, LoadAllMenuBean.class);
+	    	fu = Sqlhelper.exeQueryList(sqla, null, LoadAllMenuBean.class);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	    
-	    StringBuffer jsonBuffer = new StringBuffer(8192);
-	    jsonBuffer.append("[");
-	    
-	    for (int i = 0,len=list1.size(); i < len; i++) {
-	    	LoadAllMenuBean tree = list1.get(i);
-			jsonBuffer.append("{");
-			jsonBuffer.append("\"id\":"+"\""+tree.getId()+"\",");
-			jsonBuffer.append("\"pid\":"+"\""+tree.getPid()+"\",");
-			jsonBuffer.append("\"text\":"+"\""+tree.getText()+"\",");
-			jsonBuffer.append("\"iconCls\":"+"\""+tree.getIconCls()+"\",");
-			jsonBuffer.append("\"url\":"+"\""+tree.getUrl()+"\",");
-			jsonBuffer.append("\"level\":"+"\""+tree.getPagelevel()+"\"");
-			jsonBuffer.append("},");
+	    for (int i = 0,len=fu.size(); i < len; i++) {
+	    	
+	    	LoadAllMenuBean tree = fu.get(i);
+			
+	    	String pid = tree.getId();
+			String sql2 ="select t.pageid id,t.text ,t.iconcls iconCls,t.pid,t.pagelevel,t.pageurl url "
+					+ "from LISTTREE t left join rightassign a on a.pageid = t.pageid where a.staffcode = '70203718'  "
+					+ "and t.pid='"+pid+"'"+" order by t.pageId";
+			List<LoadAllMenuBean> children = null;
+			try {
+				children = Sqlhelper.exeQueryList(sql2, null, LoadAllMenuBean.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			tree.setChildren(children);
+			list.add(tree);
+			
 		}
-		
-		String jsonString  = jsonBuffer.substring(0, jsonBuffer.length()-1)+"]";
+	    String json = PluSoft.Utils.JSON.Encode(list);
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().append(jsonString).flush();
-		System.out.println(jsonString);
+		response.getWriter().append(json).flush();
+		System.out.println(json);
 	}
 
 	/**
