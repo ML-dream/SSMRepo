@@ -459,7 +459,7 @@ $(function(){
 	           relativeX=msg.relativeX ;
 	           relativeZ=msg.relativeZ ;
 	           relativeC=msg.relativeC ;
-	           relativeV=msg.relativeV ;
+	           relativeV=msg.relati-veV ;
 	                    
 	           absoluteX=msg.absoluteX ;
 	           absoluteZ=msg.absoluteZ ;

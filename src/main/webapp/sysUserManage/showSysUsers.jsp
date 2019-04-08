@@ -55,8 +55,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div field="userId" width="100" headerAlign="center" align="center" >用户名</div>
             <div field="staffCode" width="100" headerAlign="center" align="center">员工号</div>
             <div field="staffName" width="100" headerAlign="center" align="center">员工姓名</div>
-            <div field="authority" width="100" headerAlign="center" align="center">authority</div>
-            <div field="authorityName" width="100" headerAlign="center"  align="center"  visible="true">权限</div>
+         <!--    <div field="authority" width="100" headerAlign="center" align="center">authority</div>
+            <div field="authorityName" width="100" headerAlign="center"  align="center"  visible="true">权限</div> -->
         </div>
     </div>  
     <script type="text/javascript">

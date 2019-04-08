@@ -19,11 +19,18 @@ public class bookingInfoBean {
 	private String processPlanId;
 	private String timeLine;
 	private String timeHm;
+	private String timeYmd;
 	private String connectorTel;
 	private String orderName;
 	
 	
 	
+	public String getTimeYmd() {
+		return timeYmd;
+	}
+	public void setTimeYmd(String timeYmd) {
+		this.timeYmd = timeYmd;
+	}
 	public String getConnectorTel() {
 		return connectorTel;
 	}

@@ -7,15 +7,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
-    <title>选择客户</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-     
-	<link href="<%=path %>/scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="txt/css"></link>
-	<link href="<%=path %>/scripts/miniui/themes/icons.css" rel="stylesheet" type="txt/css"></link>
-	
-    <script type="text/javascript" src="<%=path %>/scripts/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=path %>/scripts/miniui/miniui.js"></script>
+     <base href="<%=basePath%>"><script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
+    <meta http-equiv="content-Type" content="text/html;charset=utf-8"/>
+		<script type="text/javascript" src="<%=path %>/resources/scripts/jquery.min.js"></script>
+		<link href="<%=path %>/scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="txt/css"></link>
+		<link href="<%=path %>/scripts/miniui/themes/icons.css" rel="stylesheet" type="txt/css"></link>
+		
+		<script src="<%=path %>/resource/timePlanJs/bootstrap.min.js?v=3.3.6"></script>
+		<script src="<%=path %>/resource/timePlanJs/layer.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/template.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/moment-with-locales.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/laypage.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/jquery.qrcode.min.js"></script>
+		
+		<!--jquery validate begin-->
+		<script src="<%=path %>/resource/timePlanJs/jquery.validate.min.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/messages_zh.min.js"></script>
+		<script src="<%=path %>/resource/timePlanJs/jquery.validate.extend.js"></script>
+		<!--jquery validate end-->
+		
+		<script src="<%=path %>/resource/timePlanJs/utils.js"></script>
     <style type="text/css">
     body{
         margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;

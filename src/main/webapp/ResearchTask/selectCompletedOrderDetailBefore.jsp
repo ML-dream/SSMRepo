@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var bookStatus;
         
        $(function(){
-    	   grid.load({ orderId: orderId,bookStatus:"15" });//设置多个控件数据
+    	   grid.load({ orderId: orderId,bookStatus:"00" });//设置多个控件数据
        })
         
        

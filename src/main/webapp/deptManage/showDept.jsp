@@ -56,9 +56,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <div field="deptId" width="120" headerAlign="center">部门编号</div>      
 	                    <div field="deptName" width="120" headerAlign="center">部门名称  </div>                
 	                    <div field="FDeptId" width="100" align="center" headerAlign="center">上级部门</div>            
-	                    <div field="headStaffId" width="100" headerAlign="center">部门领导</div>
+	                   <!--  <div field="headStaffId" width="100" headerAlign="center">部门领导</div> -->
 	                    <div field="deptLevel" width="100" headerAlign="center" >部门级别</div>                                    
-	                    <div field="isKey" width="100" headerAlign="center">是否关键部门</div>            
+	                    <!-- <div field="isKey" width="100" headerAlign="center">是否关键部门</div>   -->          
 	                </div>
 	            </div>  
 	        </div>

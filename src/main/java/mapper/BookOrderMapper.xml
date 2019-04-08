@@ -13,16 +13,43 @@
   			<include refid="query_user_where"></include>
   		</where> -->
 	</select>
+	<select id="isCanBookMapper" resultType="int">
+		select count(*) from ORDERS t where t.createperson=#{staffCode} and t.upload_date &lt;= #{systemTime} and book_status='13' 
+	</select>
 	
 	
 
 	
 	<select id="selectBookOrderList" resultType="com.wl.forms.Order">
 			
+		 select * from orders a  
+		 left join customer b on a.CUSTOMER=b.COMPANYID <!-- left join dept c on b.DEPT_USER=c.deptid  -->
+		 where a.book_status>0 and a.book_status like '%${bookStatus}%' and a.customer like '%${companyId}%' 
+		  		and a.createperson like '%${staffCode}%' and a.order_Id like '%${orderId}%'
+	</select>
+	
+	<select id="selectBookOrderList1" resultType="com.wl.forms.Order">
+		<!-- select * from orders e where  e.book_status='12' and e.order_id in
+		(select distinct order_id 
+		from (select a.order_id,c.machineid from orders a 
+		left join (select b.orderid, machineId from   BOOKINGINFO b  group by machineId,orderId) c 
+		on a.order_id=c.orderid  where c.machineid
+		 in(select f.machine_id from machineManager f where f.machine_manager_id='70205886') ) g) --> 		
+		
+		select * from orders e where e.book_status=#{bookStatus} and e.order_id in
+		(select distinct order_id 
+		from (select a.order_id,c.machineid from orders a 
+		left join (select b.orderid,  machineId from   BOOKINGINFO b  group by machineId,orderId) c 
+		on a.order_id=c.orderid  where c.machineid
+		in(select f.machine_id from machineManager f where f.machine_manager_id=#{staffCode}) ) g) 
+
+	</select>
+	
+	<select id="selectBookOrderListToo" resultType="com.wl.forms.Order">
+			
 		 select * from orders a  left join customer b on a.CUSTOMER=b.COMPANYID <!-- left join dept c on b.DEPT_USER=c.deptid  -->
-		  where a.book_status>0 and a.book_status like '%${bookStatus}%' and a.customer like '%${companyId}%' and a.createperson like '%${staffCode}%'
-		   
-	    	
+		  where a.book_status>0 and (a.book_status like '%${bookStatus}%' or a.book_status = '15') 
+		  and a.customer like '%${companyId}%' and a.createperson like '%${staffCode}%' and a.order_Id like '%${orderId}%'
 	   
 	</select>
 	
@@ -36,6 +63,11 @@
 	  
 	<select id="selectBookOrderMachineListByOrderId" resultType="javaBean.BookOrderMachine">
 		select * from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}
+	</select>
+	
+	<select id="selectBookOrderMachineListByOrderId1" resultType="javaBean.BookOrderMachine">
+		select * from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}  and  a.machineid in
+(select c.machine_id from MACHINEMANAGER c where  c.machine_manager_id=#{staffCode})
 	</select>
 	
 	 
@@ -55,6 +87,11 @@
 			left join customer e on e.companyId=a.customer 
 			where order_id =#{orderId}
 	</select>
+	<!-- 这个是修改后的预约审核意见的和审核人的反馈 -->
+	<select id="AuditingBookUpdateStatusMapper1" resultType="com.wl.forms.OrdersMachinesAudits">
+			select t.order_id,t.machine_id ,t.yes_no,t.audit_person,a.machinename,b.staff_name ,(case when  t.audit_person is null then '' else CONCAT('已审核，意见为：',t.advice） end) as advice  from ORDERSMACHINESAUDITS t  
+      left Join machinfo  a on a.machineid=t.machine_id  left join employee_info b on b.staff_code=t.audit_person where  t.order_id=#{orderId}
+	</select> 
 	 
 <!-- 	 <select id="getLeftJoinMap"  resultMap="leftJoinMap">
         select a.order_id,a.customer,b.companyId,b.companyName from orders a left join customer b on a.customer=b.companyId left join employee_info
@@ -81,6 +118,9 @@
 	<delete id="noPassDeleteAuditingBookOrderMapper" >
           delete from bookingInfo   where orderId=#{orderId}     
      </delete>
+	<delete id="noPassDeleteAuditingBookOrderMapper13" >
+          delete from bookingInfo   where orderId=#{orderId}  and machine_Id=#{machineId}   
+     </delete>
      
      
      
@@ -105,6 +145,14 @@
         	set book_Status=#{bookStatus} ,auditing_staff_code=#{auditingStaffCode},checkAdvice=#{checkAdvice}
          where order_Id=#{orderId}     
      </update>
+     
+     
+     <update id="completedOrderAuditMapper" >
+          update orders 
+        	set book_Status=#{bookStatus} ,completed_staff_code=#{staffCode},completed_Advice=#{completedAdvice}
+         where order_Id=#{orderId}     
+     </update>
+     
      
      <update id="deleteAuditingBookOrderMapper" >
           delete from bookingInfo  where unid=#{unid}     
@@ -148,5 +196,20 @@
     <delete id="deleteCompletedBookingInfoMapper">
     	delete from BOOKINGINFO_COMPLETED where order_id=#{orderId}
     </delete>
+    
+    <select id="updateAuditsMapper"  resultType="com.wl.forms.Machine"> 
+    	 select b.machineid,b.machinename from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}  and  a.machineid in
+			(select c.machine_id from MACHINEMANAGER c where  c.machine_manager_id=#{staffCode})
+    </select>
+    
+    
+    <delete id="deleteAuditingBookingAll13">
+    	delete   from ORDERSMACHINESAUDITS t  where order_id=#{orderId} and machine_id=#{machineId}
+    </delete>
+    
+    <insert id="updateAuditingBookingAll13">
+    	insert into ORDERSMACHINESAUDITS t (order_ID,machine_Id,audit_person,advice,yes_no) values (#{orderId},#{machineId},#{staffCode},#{checkAdvice},#{isPass})
+    	
+    </insert>
 </mapper>
 

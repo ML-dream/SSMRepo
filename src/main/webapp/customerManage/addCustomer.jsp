@@ -31,22 +31,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<div id= "userdiv">
    		<table style="text-align: right;border-collapse:collapse;" border="gray 1px solid;"  width="100%" >
    		<tr>
-   			<td><label for="companyId$text">客户编号*</label></td>
-            <td><input id="companyId"  name="companyId" class="mini-textbox" width="100%"  required="true" allowInput="false"/></td>
-   			<td><label for="companyName$text">客户名称*</label></td>
+   			<td><label for="companyId$text">客户编号※</label></td>
+            <td><input id="companyId"  name="companyId" class="mini-textbox" emptyText="不必填写，此项自动生成！" width="100%"  required="true" allowInput="false"/></td>
+   			<td><label for="companyName$text">客户名称※</label></td>
             <td><input id="companyName"  name="companyName" class="mini-textbox"  width="100%" required="true" onblur="search"/></td>
-   			<td><label for="type$text">企业类型*</label></td>
+   			<td><label for="type$text">企业类型※</label></td>
             <td><input id="type"  name="type" class="mini-combobox" style="width:100%;" textField="text" valueField="id" emptyText="请选择..."
     			url="GetCompanyTypeServlet" value="CC"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/>  
             </td>
        </tr>
        <tr>
-       		<td><label for="connector$text">联系人*</label></td>
+       		<td><label for="connector$text">联系人※</label></td>
             <td><input id="connector"  name="connector" class="mini-textbox" width="100%" required="true"/></td>
-            <td><label for="connectorTel$text">联系电话*</label></td>
+            <td><label for="connectorTel$text">联系电话※</label></td>
 	        <td><input id="connectorTel"  name="connectorTel" class="mini-textbox" width="100%" onvalidation="isTelephone" required="true" emptyText="025-88888888或13612345678" /></td>
-	        <td><label for="address$text">详细地址*</label></td>
-            <td><input id="address"  name="address" class="mini-textbox"  width="100%" required="true" /></td>
+	        <td><label for="address$text">详细地址</label></td>
+            <td><input id="address"  name="address" class="mini-textbox"  width="100%"  /></td>
 		</tr>
    		<tr>
    		   	<td><label for="header$text">法人代表</label></td>
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<td><label for="advise$text">客户建议</label></td>
             <td colspan="3"><input id="advise"  name="advise" class="mini-textbox" width="100%"/></td>
    		</tr>
-   		<tr>
+   		<!-- <tr>
    			<td><label for="connector2$text">备用联系人2 </label></td>
           	<td><input id="connector2"  name="connector2" class="mini-textbox" width="100%" /></td>
    			<td><label for="connector3$text">备用联系人3 </label></td>
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <td><input id="connector3Tel"  name="connector3Tel" class="mini-textbox" width="100%"  required="false" emptyText="025-88888888或13612345678" /></td>
 	         <td><label for="connector4Tel$text">联系人4电话</label></td>
 	        <td><input id="connector4Tel"  name="connector4Tel" class="mini-textbox" width="100%"  required="false" emptyText="025-88888888或13612345678" /></td>
-		</tr>
+		</tr> -->
    	</table>
    </fieldset>	
    </div>

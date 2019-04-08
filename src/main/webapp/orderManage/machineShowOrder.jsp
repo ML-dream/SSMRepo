@@ -836,6 +836,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function onModifySelected() {
         $('.modifySelected').on('click', function (e) {
            /* alert("选择成功"); */
+           var orderId="<%=request.getParameter("orderId")%>";
            var uid = $(this).data('sid');
            var venuesId = $(this).data('venuesid');
            var siteId = $(this).data('siteid');
@@ -854,7 +855,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             type:"POST",
 	             url:"<%=path %>/deleteSelectedBookingInfo.action",
 	            
-	             data: {unid:uid},
+	             data: {unid:uid,orderId:orderId},
 	             dataType: "json",
 	             success:function(data){
 	            	 U.msg(data.result);

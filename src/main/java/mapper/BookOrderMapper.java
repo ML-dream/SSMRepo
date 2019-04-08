@@ -7,14 +7,28 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.wl.forms.Customer;
+import com.wl.forms.Machine;
 import com.wl.forms.Order;
+import com.wl.forms.OrdersMachinesAudits;
 
 import javaBean.BookOrderMachine;
 import javaBean.machBookDatelines;
 
 public interface BookOrderMapper {
 	
-	public List<Order> selectBookOrderList(@Param("staffCode") String staffCode,@Param("bookStatus")  String bookStatus,@Param("companyId")  String companyId,@Param("companyName")  String companyName) ;
+	public List<Order> selectBookOrderList(@Param("orderId") String orderId,@Param("staffCode") String staffCode,@Param("bookStatus")  String bookStatus,@Param("companyId")  String companyId,@Param("companyName")  String companyName) ;
+	
+	
+	/**
+	 * @param staffCode
+	 * @param bookStatus
+	 * @return
+	 * 这个是针对设备管理员审核的查询！
+	 */
+	public List<Order> selectBookOrderList1(@Param("staffCode") String staffCode, @Param("bookStatus") String bookStatus);
+	
+	
+	public List<Order> selectBookOrderListToo(@Param("orderId") String orderId,@Param("staffCode") String staffCode,@Param("bookStatus")  String bookStatus,@Param("companyId")  String companyId,@Param("companyName")  String companyName) ;
 	public int selectBookOrderCount(@Param("staffCode") String staffCode);
 
 	public List<BookOrderMachine> selectBookOrderMachineListByOrderId(@Param("orderId") String orderId);
@@ -37,6 +51,11 @@ public interface BookOrderMapper {
 	 * @return
 	 */
 	public Order AuditingBookUpdateStatusMapper(String orderId);
+	/**
+	 * @param orderId
+	 * @return
+	 */
+	public List<OrdersMachinesAudits> AuditingBookUpdateStatusMapper1(String orderId);
 	/**
 	 * @param orderId
 	 * @param customer
@@ -65,6 +84,7 @@ public interface BookOrderMapper {
 	 * @return
 	 */
 	public int noPassDeleteAuditingBookOrderMapper(String orderId);
+	public int noPassDeleteAuditingBookOrderMapper13(@Param("orderId") String orderId,@Param("machineId") String machineId);
 	/**
 	 * @param unid
 	 * @return
@@ -94,5 +114,57 @@ public interface BookOrderMapper {
 	 *  用于插入完工审核人的信息
 	 */
 	public void insertCompletedAuditerInfoMapper(@Param("staffCode") String staffCode,@Param("orderId") String orderId,@Param("completedAdvice") String completedAdvice);
+	
+
+	
+	/**
+	 * @param orderId
+	 * @param completedAdvice
+	 * @param bookStatus
+	 * 这个是更新最终的确认的信息的！
+	 * @param staffCode 
+	 */
+	public void completedOrderAuditMapper(@Param("orderId") String orderId,@Param("completedAdvice") String completedAdvice,@Param("bookStatus") String bookStatus,@Param("staffCode") String staffCode);
+	/**
+	 * @param systemTime
+	 * @param staffCode
+	 * @return
+	 */
+	public int isCanBookMapper(@Param("systemTime") String systemTime, @Param("staffCode") String staffCode);
+
+
+	/**
+	 * @param orderId
+	 * @param staffCode
+	 * @return
+	 */
+	public List<BookOrderMachine> selectBookOrderMachineListByOrderId1(@Param("orderId") String orderId,@Param("staffCode") String staffCode);
+
+
+	/**
+	 * @param orderId
+	 * @param staffCode
+	 * @return
+	 */
+	public List<Machine> updateAuditsMapper(@Param("orderId") String orderId,@Param("staffCode")  String staffCode);
+
+
+	/**
+	 * @param orderId
+	 * @param a
+	 */
+	public void deleteAuditingBookingAll13(@Param("orderId") String orderId, @Param("machineId") String machineId);
+
+
+	/**
+	 * @param orderId
+	 * @param staffCode
+	 * @param a
+	 * @param isPass
+	 * @param checkAdvice
+	 */
+	public void updateAuditingBookingAll13(@Param("orderId") String orderId,@Param("staffCode") String staffCode,@Param("machineId") String a,@Param("isPass") String isPass,
+			@Param("checkAdvice") String checkAdvice);
+
 		
 }

@@ -1,109 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xmlns="http://java.sun.com/xml/ns/javaee" 
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>SSM</display-name>
-
-
-	<!-- 加载spring容器 --><!--这个地方可以使用spring进行加载spring容器的初始化，就像springMVC的一样，但是我还不会配置，暂时使用手动进行配置  -->
-	 <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> 
-	
-	<!-- static resources -->  
-	<!-- 因为在前端的网页进行请求静态资源的是，的时候其实也是也是对利用tomcat发送请求，同样也会被tomcat容器捕捉到【这种捕捉是由web。xml造成的！】，所以需要在web.xml中对其进行单独的配置
-	其实还有其他的方法，这里不再细说 -->
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.css</url-pattern>  
-    </servlet-mapping>  
-  
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.gif</url-pattern>  
-  
-    </servlet-mapping>  
-  
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.jpg</url-pattern>  
-    </servlet-mapping>  
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.png</url-pattern>  
-    </servlet-mapping>  
-  
-    <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.js</url-pattern>  
-    </servlet-mapping>
-     <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.txt</url-pattern>  
-    </servlet-mapping>
-     <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.woff2</url-pattern>  
-    </servlet-mapping>
-         <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.woff</url-pattern>  
-    </servlet-mapping>
-         <servlet-mapping>  
-        <servlet-name>default</servlet-name>  
-        <url-pattern>*.ttf</url-pattern>  
-    </servlet-mapping>
-	
-	<!-- SpringMvc前端控制器 放入的初始化启动，通过classpath定义初始化参数-->
-	<servlet>
-		<servlet-name>springmvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springmvc.xml</param-value>
-		</init-param>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.action</url-pattern>
-	</servlet-mapping>
-	
-	<!-- post乱码过虑器 通过这这个可以表面前端向后端的传递的没有乱码；而后端传递到前端没有乱码的话是通过@requestMapping的参数设置的 -->
-	 <filter>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<filter>  
-        <filter-name>hiddenHttpMethodFilter</filter-name>  
-        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>  
-    </filter>  
-      
-    <filter-mapping>  
-        <filter-name>hiddenHttpMethodFilter</filter-name>  
-        <url-pattern>/*</url-pattern>  
-    </filter-mapping> 
-
-
-  <!-- <listener>
-    <listener-class>DataCollection.MachineCollection</listener-class>
-  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring.xml</param-value>
+  </context-param>
   <listener>
-    <listener-class>com.wl.listeners.SeverAndroid</listener-class>
-  </listener> -->
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.txt</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.woff2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.woff</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ttf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>hiddenHttpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>hiddenHttpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <session-config>
     <session-timeout>120</session-timeout>
   </session-config>
@@ -5865,8 +5837,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <servlet-name>getCompanyIdServlet</servlet-name>
     <url-pattern>/getCompanyIdServlet</url-pattern>
   </servlet-mapping>
- 
- 
   <servlet-mapping>
     <servlet-name>getPayFormServlet</servlet-name>
     <url-pattern>/getPayFormServlet</url-pattern>
@@ -6927,7 +6897,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <servlet-name>insertMachine</servlet-name>
     <url-pattern>/insertMachine</url-pattern>
   </servlet-mapping>
-<servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>dateLInes</servlet-name>
@@ -6951,10 +6921,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <servlet-name>dsds</servlet-name>
     <servlet-class>machineOrderYuyue.yuYue.dsds</servlet-class>
   </servlet>
-
-
-
-
   <servlet-mapping>
     <servlet-name>dateLInes</servlet-name>
     <url-pattern>/dateLInes</url-pattern>

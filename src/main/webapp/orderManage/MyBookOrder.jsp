@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       </tr>
 	       <tr>
 	          <td>订单状态：</td>
-	          <td><input id="bookStatus" name="bookStatus" class="mini-combobox" width="100" textName="" textField="text" valueField="id"
+	          <td><input id="bookStatus" name="bookStatus" class="mini-combobox" width="200" textName="" textField="text" valueField="id"
   				url="data/bookStatus.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..."  onvaluechanged="loadgrid"/>
 	          </td>
 	   		<!--   <td align="right">客户：</td>
@@ -87,23 +87,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <!--  <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"
                  cellStyle="padding:0;">预约设备
             </div> -->
-            <div field="orderId" width="110" headerAlign="center" allowSort="true" align="center">订单编号
+            <div field="orderId" width="30" headerAlign="center" allowSort="true" align="center">订单编号
             </div>
-            <div field="orderName" width="110" headerAlign="center" align="center">订单名称
+            <div field="orderName" width="80" headerAlign="center" align="center">订单名称
             </div>
-            <div field="companyName" width="100" headerAlign="center" align="center">客户名称
+            <div field="companyName" width="20" headerAlign="center" align="center">客户名称
             </div>
-            <div field="connector" width="50" headerAlign="center" align="center">联系人
+            <div field="connector" width="20" headerAlign="center" align="center">联系人
             </div>
             <div field="connectorTel" width="60" headerAlign="center" align="center" >联系人电话
             </div>
             
-            <div field="createTime" width="60" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm:ss" >创建时间
+            <div field="createTime" width="30" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm:ss" >创建时间
             </div>
              
-            <div field="bookStatus" width="60" headerAlign="center" align="center" renderer="onGenderRenderer">预约状态
+            <div field="bookStatus" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">预约状态
             </div>
-             <div field="checkAdvice" width="60" headerAlign="center" align="center" >审核意见
+             <div field="checkAdvice" width="50" headerAlign="center" align="center" >审核意见
             </div>
             <div field="option" width="60" headerAlign="center" align="center" renderer="onOperatePower1">操作
             
@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a class='mini-button' iconCls=' icon-remove' style='margin-right:2px;' title='取消' href=javascript:bookDelete(\'" + e.row.unid+"\',\'"+e.row.orderId+ "\',\'"+e.row.bookStatus+ "\')>取消</a>";
+	        str = "<a class='mini-button' iconCls=' icon-remove' style='margin-right:2px;' title='取消' href=javascript:bookDelete(\'" + e.row.unid+"\',\'"+e.row.bookStatus+ "\')>取消</a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
@@ -233,7 +233,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               	 U.msg("该订单目前无法操作，请联系管理员进行操作！");
            		return;
               	}
-        	window.location="OrderSpecServlet?orderId=" +orderId +"&connector="+connector+"&isModify="+"3";
+        	$.ajax({
+                type:"POST",
+                url:"isCanBook.action",
+                data: {},
+                dataType: "json",
+                success:function(data){
+              	  if(data.result=="true"){
+              			window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
+              		  }else{
+              			U.msg("目前有订单逾期未上报，暂停预约修改功能！");
+              			return;
+              		  }
+                } 
+            });
+        	
     	   }
         
         
@@ -287,7 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       	 // alert(data.result);
                       	  U.msg(data.result);
                       	//onSelectionChanged();
-                      	bookOrder.load();
+                      	  bookOrder.load();
    			        // bookMachine.load({ orderId:orderId});
                       	
                         } ,
@@ -302,8 +316,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             })
     	   }
         
-        function bookDelete(unid,productId,bookStatus){
+        function bookDelete(unid,bookStatus){
         	/* alert(bookStatus); */
+        	
         	if(bookStatus==13){
           		 U.msg("审核已通过，请联系管理员进行操作！");
           		return;
@@ -325,13 +340,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         url:"AuditingBookOrderDelete.action",
                        
                         
-                        data: {unid:unid},
+                        data: {unid:unid,orderId:orderId},
                         dataType: "json",
                         success:function(data){
                       	 // alert(data.result);
                       	  U.msg(data.result);
                       	//onSelectionChanged();
-   			         bookMachine.load({ orderId:orderId});
+   			        	 bookMachine.load({ orderId:orderId});
                       	
                         } ,
                         error:function(data){
@@ -345,8 +360,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             })
     	   }
         
-     var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工完成"},{id: "16", text: "已完成"}]
-           function onGenderRenderer(e) {
+        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
+               function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];
                 if (g.id == e.value) return g.text;

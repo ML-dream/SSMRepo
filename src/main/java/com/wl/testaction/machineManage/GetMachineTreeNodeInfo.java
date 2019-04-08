@@ -54,7 +54,7 @@ public class GetMachineTreeNodeInfo extends HttpServlet {
 		}
 		request.setAttribute("machineId", machineId);
 		request.setAttribute("machineName", machineName);
-		request.getRequestDispatcher("machineManage/showMachineInfo.jsp").forward(request, response);
+		request.getRequestDispatcher("machineManage/showMachineManager.jsp").forward(request, response);
 		
 	}
 

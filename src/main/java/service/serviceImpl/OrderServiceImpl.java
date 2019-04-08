@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +24,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.wl.forms.Customer;
+import com.wl.forms.Machine;
 import com.wl.forms.Order;
+import com.wl.forms.OrdersMachinesAudits;
 import com.wl.forms.User;
 import com.wl.testaction.utils.DaiUtils;
+import com.wl.tools.DataBaseTool;
 import com.wl.tools.Sqlhelper;
 
 import javaBean.BookOrderMachine;
@@ -95,8 +100,6 @@ public class OrderServiceImpl implements OrderService  {
 	
 	}*/
 
-	
-
 
 	public String returnMybookMachine(String orderId, int pageNO, int pageSize, String sortField, String sortOrder) {
 	/*	int one =countPerPage*pageNO;
@@ -107,17 +110,30 @@ public class OrderServiceImpl implements OrderService  {
 		String json = DaiUtils.returnMiniUiJson(list);
 		return json;
 	}
+	public String returnMybookMachine1(String orderId, int pageNO, int pageSize, String sortField, String sortOrder) {
+		/*	int one =countPerPage*pageNO;
+		int two =(pageNO-1)*countPerPage+1;*/
+		
+		HttpSession session = request.getSession();
+		String userId = ((User)session.getAttribute("user")).getUserId();
+		String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+//		使用分页及其自动排序进行查询
+		PageHelper.startPage(pageNO,pageSize,DaiUtils.jspNameToOralceName(sortField.equals("")?"unid":sortField)+" "+DaiUtils.jspNameToOralceName(sortOrder));
+		List<BookOrderMachine> list = bookOrdeMapper.selectBookOrderMachineListByOrderId1(orderId,staffCode);
+		String json = DaiUtils.returnMiniUiJson(list);
+		return json;
+	}
 
 	
-	@Override
-	public String returnMyBookOrder(String staffCode,int pageNo, int pageSize,String sortField,String sortOrder, String bookStatus, String companyId, String companyName) {
+
+	public String returnMyBookOrder(String orderId,String staffCode,int pageNo, int pageSize,String sortField,String sortOrder, String bookStatus, String companyId, String companyName) {
 //			int one =countPerPage*pageNo;
 //			int two =(pageNo-1)*countPerPage+1;
 			 sortField=sortField.equals("")?"orderId":sortField;
 			 sortOrder=sortOrder.equals("")?"desc":sortOrder;
 			 String orderBy=DaiUtils.jspNameToOralceName(sortField)+" "+DaiUtils.jspNameToOralceName(sortOrder);
 			 PageHelper.startPage(pageNo,pageSize,orderBy);
-			 List<Order> list = bookOrdeMapper.selectBookOrderList(staffCode,bookStatus,companyId,companyName);
+			 List<Order> list = bookOrdeMapper.selectBookOrderList(orderId,staffCode,bookStatus,companyId,companyName);
 //			 int count = bookOrdeMapper.selectBookOrderCount(staffCode);
 			
 			 String json = DaiUtils.returnMiniUiJson(list);
@@ -129,31 +145,83 @@ public class OrderServiceImpl implements OrderService  {
 	
 	}
 	
+	public String returnMyBookOrder1(String staffCode,int pageNo, int pageSize,String sortField,String sortOrder, String bookStatus) {
+
+		sortField=sortField.equals("")?"orderId":sortField;
+		sortOrder=sortOrder.equals("")?"desc":sortOrder;
+		
+		String orderBy=DaiUtils.jspNameToOralceName(sortField)+" "+DaiUtils.jspNameToOralceName(sortOrder);
+		
+		PageHelper.startPage(pageNo,pageSize,orderBy);
+		
+		List<Order> list = bookOrdeMapper.selectBookOrderList1(staffCode,bookStatus);
+//			 int count = bookOrdeMapper.selectBookOrderCount(staffCode);
+		
+		String json = DaiUtils.returnMiniUiJson(list);
+		
+//			String jsonData = PluSoft.Utils.JSON.Encode(list);
+//			String json = "{\"total\":"+count+",\"data\":"+jsonData+"}";
+		return json;
+		
+		
+	}
+	
+	public String returnMyBookOrderToo(String orderId,String staffCode,int pageNo, int pageSize,String sortField,String sortOrder, String bookStatus, String companyId, String companyName) {
+//			int one =countPerPage*pageNo;
+//			int two =(pageNo-1)*countPerPage+1;
+		sortField=sortField.equals("")?"orderId":sortField;
+		sortOrder=sortOrder.equals("")?"desc":sortOrder;
+		String orderBy=DaiUtils.jspNameToOralceName(sortField)+" "+DaiUtils.jspNameToOralceName(sortOrder);
+		PageHelper.startPage(pageNo,pageSize,orderBy);
+		List<Order> list = bookOrdeMapper.selectBookOrderListToo(orderId,staffCode,bookStatus,companyId,companyName);
+//			 int count = bookOrdeMapper.selectBookOrderCount(staffCode);
+		
+		String json = DaiUtils.returnMiniUiJson(list);
+		
+//			String jsonData = PluSoft.Utils.JSON.Encode(list);
+//			String json = "{\"total\":"+count+",\"data\":"+jsonData+"}";
+		return json;
+		
+		
+	}
+	
 	public String updateAudutingBookStatus(String orderId,String bookStatus,String staffCode,String checkAdvice) {
 	
 		
 		if(bookStatus.equals("14")) {
-			
+			//此处首先把删除的bookInfo插寻出来然后放到另外的一个表中!
+			//其次在把删除的设备的已经审核的意见置为无效,用于给客户进行反馈!同时为了保证有效的不重复,然后加载的时候不冲突!!!
+			//还有要修改的是地方,就是之前写好的关于每次修改都是插入到哪个ordersMachinesAudits的表中!
 			int countNopass=bookOrdeMapper.noPassDeleteAuditingBookOrderMapper(orderId);
 			System.out.println(countNopass);
-		}
-		
-		
-		int count = bookOrdeMapper.updateAuditingBookStatus(bookStatus,staffCode,checkAdvice,orderId);
-		String jsonData="";
-		if (count>=1) {
-			jsonData="操作成功";
+		}else if(bookStatus.equals("13")){
+//			表示通过的时候的逻辑!
+//			逻辑如下:首先把插入一条新的通过的状态,直接把前端的表单中的全部信息都直接获取到,然后进行分析,把去全部的信息获取到,然后插入到数据库中,删除之前的里已经有的,在重新加载!!!
 			
-		}else {
-			jsonData="操作失败";
+			
+			
+			
 		}
-		String json = "{\"result\":"+"\""+jsonData+"\"}";
+		
+//		int count = bookOrdeMapper.updateAuditingBookStatus(bookStatus,staffCode,checkAdvice,orderId);
+//		在这个地方调用一个函数，该函数用于判断当前是否是所有的设备的相应的管理员都已经审核结束 ，也就是可以通过当前的提交审核人的信息，。查询到它管理的设备在当前订单的所有的设备中占几个？，然后维护一个订单总共有几个设备？
+//		然后进行对比，直至相等，就将当前的状态置为下一个！但是有个12.5的状态，代表审核中！
+		String result;
+		try {
+			result = DataBaseTool.updateOrderMachinesAudits(bookStatus, staffCode, checkAdvice, orderId, bookOrdeMapper);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result="操作失败";
+		}
+		
+		
+		String json = "{\"result\":"+"\""+result+"\"}";
 		return json;
 	
 
 	}
-
-	public String deleteAuditingBookOrder(String unid) {
+	@Transactional
+	public String deleteAuditingBookOrder(String unid, String orderId) throws Exception {
 	
 		
 		int count = bookOrdeMapper.deleteAuditingBookOrderMapper(unid);
@@ -166,6 +234,8 @@ public class OrderServiceImpl implements OrderService  {
 		}else {
 			jsonData="操作失败";
 		}
+		Boolean isNewDate = DataBaseTool.selectNewDate(orderId);
+		if(!isNewDate) jsonData="操作失败";
 		String json = "{\"result\":"+"\""+jsonData+"\"}";
 		return json;
 	
@@ -202,8 +272,72 @@ public class OrderServiceImpl implements OrderService  {
 			String json = PluSoft.Utils.JSON.Encode(order);
 //			String json = "{\"result\":"+"\""+jsonData+"\"}";
 			return json;
-			
 		}
+			
+			/**
+			 * @param orderId
+			 * @return
+			 */
+			public String AuditingBookOrderUpdateStatus1(String orderId) {
+				List<OrdersMachinesAudits>  list= bookOrdeMapper.AuditingBookUpdateStatusMapper1(orderId);
+			
+				ArrayList<HashMap<String,String>> arrayList = new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> hashMap = new HashMap<String,String>();
+				for(OrdersMachinesAudits a:list) {
+					
+//					hashMap.put("machineName"+a.getMachineId(), a.getMachineName());
+					hashMap.put("auditPerson"+a.getMachineId(), a.getStaffName());
+					hashMap.put("isPass"+a.getMachineId(), a.getYesNo());
+					hashMap.put("checkAdvice"+a.getMachineId(), a.getAdvice());
+					arrayList.add(hashMap);
+				}
+				String json = PluSoft.Utils.JSON.Encode(hashMap);	
+				
+				return  json/*"{\"result\":"+"\""+json+"\"}"*/;
+		}
+			
+			
+			/**
+			 * @param orderId
+			 * @return
+			 */
+			public String updateAuditsService(String orderId) {
+				
+				
+				HttpSession session = request.getSession();
+				String userId = ((User)session.getAttribute("user")).getUserId();
+				String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+				
+				
+				
+				List<Machine>  list= bookOrdeMapper.updateAuditsMapper(orderId,staffCode);
+			
+				
+				String result = "";
+					result+="<fieldset style=\\\"width: 100%;\\\" align=\\\"center\\\">";
+					result+=" <legend>审核意见</legend>";
+					result+="  <table  style=\\\"text-align: right;border-collapse:collapse;\\\" border=\\\"gray 1px solid;\\\"  width=\\\"100%\\\" >";
+				
+					
+				for(Machine a:list) {
+					result+=" <tr>";
+					result+=" <td width=\\\"10%\\\" class=\\\"labelTd\\\"><label for=\\\"orderId$text\\\">设备名称</label></td>";
+					result+=" <td width=\\\"10%\\\" ><input id=\\\"machineId"+a.getMachineId()+"\\\"  name=\\\"machineName\\\" class=\\\"machineName\\\"  width=\\\"100%\\\"   value=\\\""+a.getMachineName()+"\\\" enabled=\\\"false\\\" borderStyle=\\\"border:0\\\"/></td>";
+					result+=" <td width=\\\"10%\\\" class=\\\"labelTd\\\"><label for=\\\"orderId$text\\\">审核人</label></td>";
+					result+=" <td width=\\\"10%\\\" ><input id=\\\"auditPerson"+a.getMachineId()+"\\\"  name=\\\"auditPerson"+a.getMachineId()+"\\\" class=\\\"mini-textbox\\\"  width=\\\"100%\\\"   value=\\\"\\\" enabled=\\\"false\\\" borderStyle=\\\"border:0\\\"/></td>";
+					result+=" <td width=\\\"10%\\\" class=\\\"labelTd\\\"><label for=\\\"IsOrNo"+a.getMachineId()+"$text\\\">是否通过</label></td>";
+					result+=" <td width=\\\"10%\\\" ><input id=\\\"isPass"+a.getMachineId()+"\\\"  name=\\\"isPass"+a.getMachineId()+"\\\" class=\\\"mini-textbox\\\"  width=\\\"100%\\\"   value=\\\"\\\" enabled=\\\"true\\\" borderStyle=\\\"border:0\\\"/></td>";
+					result+=" <td class=\\\"labelTd\\\"><label for=\\\"checkAdvice"+a.getMachineId()+"$text\\\">审核进度</label></td>";
+					result+=" <td colspan=\\\"2\\\"><input id=\\\"checkAdvice"+a.getMachineId()+"\\\" name=\\\"checkAdvice"+a.getMachineId()+"\\\" class=\\\"mini-textarea\\\" emptyText=\\\"请输入审核意见\\\" style=\\\"height:100%;width:100%\\\" borderStyle=\\\"border:0\\\"/></td>";
+					result+=" </tr>";
+				}
+				result+="</table>";
+				result+="</fieldset>";
+				
+				
+				/*String json = PluSoft.Utils.JSON.Encode(list);*/	
+				return  "{\"result\":"+"\""+result+"\"}";
+			}
 
 		/**
 		 * @param orderId
@@ -517,18 +651,19 @@ public class OrderServiceImpl implements OrderService  {
 
 		/**
 		 * @param unid
+		 * @param orderId 
 		 * @return
 		 */
-		
-		public String deleteSelectedBookingInfo(String unid) {
+		@Transactional
+		public String deleteSelectedBookingInfo (String unid, String orderId)throws Exception {
 			String json = "";
 			String result ="删除成功";
 			int count=bookOrdeMapper.deleteSelectedBookingInfo(unid);
 			if(count !=1) {
-				
 				result="删除失败";
-				
 			}
+			Boolean isNewDate = DataBaseTool.selectNewDate(orderId);
+			if(!isNewDate) result="更新失败！";
 			json = "{\"result\":"+"\""+result+"\"}";
 			return json;
 		}
@@ -581,7 +716,7 @@ public class OrderServiceImpl implements OrderService  {
 			String userId = ((User)session.getAttribute("user")).getUserId();
 			String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
 			bookOrdeMapper.insertCompletedAuditerInfoMapper(staffCode,orderId,completedAdvice==null?"":completedAdvice);
-			bookOrdeMapper.updateCompletedOrderInfoMapper("16",orderId);
+			bookOrdeMapper.updateCompletedOrderInfoMapper("15",orderId);
 			
 			bookOrdeMapper.deleteCompletedBookingInfoMapper(orderId);
 			for (HashMap<String,String> hashMap : saveList) {
@@ -601,6 +736,77 @@ public class OrderServiceImpl implements OrderService  {
 			}*/
 			
 		}
+
+
+
+		/**
+		 * @param orderId
+		 * @param completedAdvice
+		 * @param bookStatus
+		 * @param staffCode 
+		 */
+		public void completedOrderAuditService(String orderId, String completedAdvice, String bookStatus, String staffCode) {
+			// TODO Auto-generated method stub
+			bookOrdeMapper.completedOrderAuditMapper(orderId,completedAdvice,bookStatus,staffCode);
+		}
+
+
+
+		/**
+		 * @param staffCode
+		 * @return
+		 */
+		public String isCanBookService(String staffCode) {
+			// TODO Auto-generated method stub
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+			String systemTime = df.format(new Date());// new Date()为获取当前系统时间
+//			判断mapper
+			int count=bookOrdeMapper.isCanBookMapper(systemTime,staffCode);
+			
+			return count>=1?"false":"true";
+		}
+		/**
+		 * @param orderId
+		 * @param bookStatus
+		 * @param staffCode
+		 * @param map
+		 * @return
+		 */
+		public String AuditingBookingAll13(String orderId, String bookStatus, String staffCode, Map<String,String> map) {
+			
+			Iterator<String> iterator = map.keySet().iterator();
+			HashSet<String> set = new HashSet<String>();
+			while(iterator.hasNext()) {
+				String next = iterator.next();
+				set.add(next.substring(next.length()-4));
+			}
+			for(String a:set) {
+				String  isPass =  map.get("isPass"+a);
+				String  checkAdvice =  map.get("checkAdvice"+a);
+				String  auditPerson =  map.get("auditPerson"+a).equals("")?staffCode:map.get("auditPerson"+a);
+				bookOrdeMapper.deleteAuditingBookingAll13(orderId,a);
+				if(isPass.equals("是")) {
+				
+				bookOrdeMapper.updateAuditingBookingAll13(orderId,staffCode,a,isPass,checkAdvice);
+				}else {
+//					删除bookInInof的信息
+//					把删除的信息放在一个其他的表中[这个先不做了，直接根据里面的信息进行显示就好了！]
+//					然后同时更新ordersMachinesAudits的中的状态，更改为不通过，不需要其他的设置了，因为这个订单不可能在进行预定这个机床了，这个基本的上不会发生 ，就算是发生也会给他重新换个时间的！！！
+					int countNopass=bookOrdeMapper.noPassDeleteAuditingBookOrderMapper13(orderId,a);
+					bookOrdeMapper.updateAuditingBookingAll13(orderId,staffCode,a,isPass,checkAdvice);
+				}
+			}
+			String json = "{\"result\":"+"\""+"操作成功"+"\"}";
+			return json;
+		}
+
+
+
+
+
+
+
+
 		
 		
 		

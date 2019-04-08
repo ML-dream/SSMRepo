@@ -64,12 +64,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   	<div class="mini-toolbar" style="padding:2px;border:0;">
-		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('13')">审核通过</a>
+		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('13')">保存审核意见</a>
 		<span class="separator"></span>
-		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('14')">审核不通过</a>	
+		<!-- <a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('14')">审核不通过</a>	
 		<span class="separator"></span>
 		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('12')">撤销审核</a>	
-		<span class="separator"></span>
+		<span class="separator"></span> -->
   			<a class="mini-button" iconCls="icon-find" plain="false"  onclick="bookModify()">修改预约时间</a>  
     </div>
   	
@@ -96,35 +96,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="labelTd"><label for="bookStatus$text">订单状态</label></td>
             <td><input id="bookStatus"  name="bookStatus" class="bookStatus" style="width:100%;"    enabled="false" readonly="readonly" value=""  borderStyle="border:0"/>
            
-        </tr>
-         <tr>
-       	 <td class="labelTd"><label for="bookStatus$text"></label>审核人</td>
-            <td><input id="auditingStaffCode"  name="auditingStaffCode" class="auditingStaffCode" style="width:100%;"    enabled="false" readonly="readonly" value="" />
-    	    </td>
-             <td colspan="4">
-             </td>
-    	     </tr>
-   		<tr height="60px;">
-   			<td class="labelTd"><label for="checkAdvice$text">审核意见</label></td>
-	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="请输入审核意见" style="height:100%;width:100%" borderStyle="border:0"/></td>
+   			
        </tr>
+       <!-- <tr>
+       <td class="labelTd"><label for="checkAdvice$text">预约审核意见</label></td>
+	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="请输入审核意见"  style="height:100%;width:100%" borderStyle="border:0"/></td>
+        </tr> -->
    	</table>
+   	
    	  </fieldset>
-   
-        <div id="bookMachine" class="mini-datagrid" style="width:100%;height:500px;" url="myBookOrderMachine.action?orderId=<%=request.getParameter("orderId")%>">
+   	  
+   	  <div id="form1">
+
+   	    </div>
+        
+        <div id="bookMachine" class="mini-datagrid" style="width:100%;height:500px;" url="myBookOrderMachine1.action?orderId=<%=request.getParameter("orderId")%>">
         <div property="columns">            
         	<div field="unid" width="120" headerAlign="center" allowSort="true" align="center" headerAlign="center">预约编号</div> 
             <div field="machineName" width="120" headerAlign="center"  align="center" headerAlign="center">设备名称</div> 
             <div field="timeYmd" width="100" allowSort="true" align="center" headerAlign="center" align="center">日期</div>               
             <div field="startTimeInfo" width="100"   align="center" headerAlign="center">开始时间</div>            
             <div field="endTimeInfo" width="100"  align="center" headerAlign="center">结束时间</div>
-                                                
             <div field="bookState" width="100" headerAlign="center"  align="center" renderer="onOperatePower">编辑</div>                
-        
     </div> 
     </div>
 
-  
+
     
     <script type="text/javascript">
     
@@ -132,7 +129,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var grid = mini.get("bookMachine");
 	    var orderId="<%=request.getParameter("orderId")%>";
 	    grid.load();
-	    updateBookOrderStatus();
+	   
+	    updateAudits();
+	   
+		
+	    
+	   /*  function auditPass() {
+	    	var form = new mini.Form("#form1");
+      	  	var data =form.getData();
+	    	var data = mini.encode(data);   
+            form.setData(data); 
+	    	 $.ajax({
+               type:"POST",
+               url:"updateAudits.action",
+               
+               data: {orderId:orderId},
+               dataType: "json",
+               success:function(data){
+             	 
+             	// alert(data.result);
+             	 $("#form1").html(data.result);
+               } 
+           }); 
+	    } */
+	    
+	    function updateAudits() {
+		
+	    	 $.ajax({
+                type:"POST",
+                url:"updateAudits.action",
+                
+                data: {orderId:orderId},
+                dataType: "json",
+                success:function(data){
+              	 
+              	// alert(data.result);
+              	 $("#form1").html(data.result);
+              	 updateBookOrderStatus();
+                } 
+            }); 
+	    }
 	    
 	    function onOperatePower(e) {
 	        var str = "";
@@ -141,6 +177,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
+	    }
+	    
+	   /*  自己想做扽动态的加载的页面的地方！！！！！！！！！！以后再说把*/ 
+	    function creatTR(dqzhzhygtr,top1){
+	    	var strTr="";
+	    	strTr+="<tr id='tableTR_"+dqzhzhygtr+"'><td class='bt2'>发明人"+dqzhzhygtr+"姓名 </td>"
+	    	 $("#tableTR_"+dqzhzhygtrs).after(strTr)//
 	    }
 	    
 	    function bookDelete(unid,productId,bookStatus){
@@ -185,11 +228,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         
         
-        
 //        var checkAdvice=document.getElementById('checkAdvice').value;
          function pass(bookStatus){
         	 if(bookStatus==14){
- 	    		layer.confirm('注意:审核不通过会使订单信息失效!', {
+ 	    		layer.confirm('注意:审核不通过会使订单中信息失效！！！', {
  	                btn: ['确定', '取消'],
  	                yes: function (index, layero) { 
 				        	 
@@ -220,20 +262,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	            })
  	          		
  	          	}else{
- 	   	
- 	          	 var checkAdvice=mini.get("checkAdvice").getValue();
-	        	/*  alert(checkAdvice); */
+ 	          	// var checkAdvice=mini.get("checkAdvice").getValue();
+ 	          	 var form = new mini.Form("#form1");
+ 	      	  	 var data =form.getData();
+ 		    	 var data = mini.encode(data);   //反序列化成对象
 	         	 $.ajax({
 	                  type:"POST",
-	                  url:"AuditingBookOrderAll.action",
-	                 
-	                  
-	                  data: {bookStatus:bookStatus,orderId:orderId,checkAdvice:checkAdvice},
+	                  url:"AuditingBookOrderAll13.action",
+	                  data: {bookStatus:bookStatus,orderId:orderId,data:data},
 	                  dataType: "json",
 	                  success:function(data){
 	                	//  alert(data.result);
-	                	  U.msg(data.result);
-	                	  grid.load();
+	                	  U.msg("data.result");
+	                	  //grid.load();
 	                	  updateBookOrderStatus();
 	           
 	                  },
@@ -253,23 +294,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
  	    	window.location="OrderSpecServlet?orderId=" +orderId +"&connector="+connector+"&isModify="+"3";
  		}
-        /* 这个方法是用来动态更新订单的状态值的 */ 
+        /* 这个方法是用来更新审核意见的！！！开始进行整改！！！！！！！！！！！！！！！！！！！！！！！！！！*/ 
          
          function updateBookOrderStatus(){
          	 $.ajax({
                   type:"POST",
-                  url:"AuditingBookOrderUpdateStatus.action",
+                  url:"AuditingBookOrderUpdateStatus1.action",
                  
                   
                   data: {orderId:orderId},
                   dataType: "json",
                   success:function(data){
-                	 //alert(data.bookStatus);
+                	  var form = new mini.Form("#form1");
+                	  var data = mini.decode(data);   //反序列化成对象
+                      form.setData(data); 
+                     
+                	  //document.getElementById('isPass5506').value=data.isPass5506;
+                	  
+                	  ///alert(data.rtesult);
+                	  /* 	 //alert(data.bookStatus);
                 	  //U.msg(data.result);
                 	  document.getElementById('bookStatus').value=data.bookStatusName;
                 	  document.getElementById('auditingStaffCode').value=data.staffName;
-                	 /*  document.getElementById('checkAdvice').value=data.checkAdvice; */
-                	  mini.get("checkAdvice").setValue(data.checkAdvice);
+                	 /*  document.getElementById('checkAdvice').value=data.checkAdvice; */ 
+                	 // mini.get("checkAdvice").setValue(data.advice);
            
                   },
                   error:function(data){

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wl.forms.Order;
+import com.wl.tools.DataBaseTool;
 import com.wl.tools.Sqlhelper;
 
 import machineOrderYuyue.beans.loadJson;
@@ -56,9 +57,10 @@ public class bookingSubmit extends HttpServlet {
 		
 		 String result = "successful";
 		 String json = "";
-		for(JSONObject booking:bookings){
+		 String orderId = "";
+		 for(JSONObject booking:bookings){
 			
-			 String orderId=booking.getString("orderId");
+			 orderId=booking.getString("orderId");
 			 
 			 //String bookingUserName=booking.getString("connector");
 			 HttpSession session = request.getSession(); 
@@ -126,33 +128,20 @@ public class bookingSubmit extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				result="fail";
-				
 			}
-			 
-			 
-			 
-			
-			
-			/*PrintWriter out = response.getWriter();
-				out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-				out.println("<HTML>");
-				out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-				out.println("  <BODY>");
-				out.print(" 预定成功！</br> ");
-				
-				out.println("  </BODY>");
-				out.println("</HTML>");
-				out.flush();
-				out.close();*/
-			
-			 
-			
-			 
-			 
-			
 		}
-		
-		 response.setContentType("text/html;charset=utf-8");
+//			接下来开始调用外部的函数进行最新的日期查询，然后把把日期存放在订单的一个字段里面！
+		 	Boolean isNewDate = false;
+			try {
+				isNewDate = DataBaseTool.selectNewDate(orderId);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 	if(!isNewDate) result="fail";
+		 		
+		 
+		 	response.setContentType("text/html;charset=utf-8");
 			
 			json = "{\"result\":\""+result+"!\"}";
 			System.out.println(json);
@@ -160,11 +149,6 @@ public class bookingSubmit extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().append(json).flush();
 			response.setContentType("text/html");
-	
-
-		
-		
-		
 	}
 	
 	

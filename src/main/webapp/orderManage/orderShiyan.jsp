@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <p><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%" required="true" /></p>
 </li>
 <li>
-<h3>订单名称</h3>
+<h3>订单名称/描述</h3>
 <p><input id="orderName"  name="orderName" class="mini-textbox"  width="100%" required="true"/></p>
 </li>
 <li>

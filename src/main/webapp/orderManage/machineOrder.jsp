@@ -162,13 +162,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    
 	    function ondBook(orderId,connector,bookStatus){
 	        	if(bookStatus>12){
-	        		 U.msg("已审核，请联系管理员进行操作！");
+	        		 U.msg("预约信息已经锁定。无法再预约，请联系管理员进行操作！");
 	        		return;
-	        		
 	        	}
-	        //window.open("EditOrderDetailServlet?orderId=" + orderId,
-	        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
-	    	window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
+	        	
+	        	$.ajax({
+                    type:"POST",
+                    url:"isCanBook.action",
+                    data: {},
+                    dataType: "json",
+                    success:function(data){
+                  	  if(data.result=="true"){
+                  			window.location="OrderSpecServlet?orderId=" + orderId+"&connector="+connector+"&isModify="+"3";
+                  		  }else{
+                  			U.msg("目前有订单逾期未上报，暂停预约功能！");
+                  			return;
+                  		  }
+                    } 
+                });
+	    	
 		}
 	        function ondEdit(orderId,connector){
 		        //window.open("EditOrderDetailServlet?orderId=" + orderId,
@@ -203,12 +215,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		} */
 		
 	    //var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
-        
+/*         
         var orderGenders=[{id: "1", text: "待预约 "},{id: "2", text: "待审核"},{id: "3", text: "提交上级审核"},{id: "4", text: "审核不通过"},{id: "5", text: "审核通过"},	
-	                {id: "6", text: "备料"},{id: "7", text: "代加工"},{id: "8", text: "加工中"},{id: "9", text: "完成"},{id: "10", text: "交付中"},{id: "11", text: "交付完成"}]
+	                {id: "6", text: "备料"},{id: "7", text: "代加工"},{id: "8", text: "加工中"},{id: "9", text: "完成"},{id: "10", text: "交付中"},{id: "11", text: "交付完成"}] */
         
-        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
-        
+        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
+  
         
 //	    var Genders = [{id: "1", text: "新建"},{id: "2", text: "备料"},{id: "3", text: "代加工"},{id: "4", text: "加工中"},{id: "5", text: "完成"}];
         function onGenderRenderer(e) {

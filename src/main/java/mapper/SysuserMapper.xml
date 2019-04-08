@@ -27,7 +27,29 @@
 		update customer set telephone=#{connectorTel},connectorTel=#{connectorTel}  where staffcode=#{staffCode}
 
 	</update>
+
+	<delete id="showCustomerDeleteMapper">
+		delete from customer where companyId=#{companyId}
+	</delete>
+
+	<delete id="showEmployeeDeleteMapper">
+		delete from employee_info where staff_Code=#{staffCode}
+	</delete>
 	
+	<insert id="addMachineManagerMapper">
+			insert into  MACHINEMANAGER (machine_Id,MACHIne_manager_id,MACHINE_MANAGER) values(#{machineId},#{staffCode},#{staffName})
+	</insert>
+	<select id="loadMachineManagerMapper" parameterType="String" resultType="com.wl.forms.Employee">
+		select b.machinename,a.staff_code,a.staff_name,a.mobile_phone,c.deptname as sectionName from MACHINEMANAGER t 
+		left join employee_info a on t.machine_manager_id=a.staff_code 
+		left join machinfo b on t.machine_id=b.machineid
+  		left join dept c on a.section_code=c.deptid 
+		where t.machine_id=#{machineId}
+	</select>
+	
+	<delete id="deleteMachineManagerMapper" >
+		delete from MACHINEMANAGER where machine_manager_Id=#{staffCode} and machine_Id=#{machineId}
+	</delete>
 
 </mapper>
 

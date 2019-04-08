@@ -52,10 +52,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="companyName" width="100" headerAlign="center" align="center" >客户名称
             </div>
-            <div field="typeName" width="100" headerAlign="center" align="center" >企业类型
+          <!--   <div field="typeName" width="100" headerAlign="center" align="center" >企业类型
             </div>
             <div field="address" width="100" headerAlign="center" align="center" >详细地址
-            </div>
+            </div> -->
             <div field="connector" width="100" headerAlign="center" align="center" >联系人
             </div>
             <div field="connectorTel" width="100" headerAlign="center" align="center" >联系人电话
@@ -83,20 +83,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         });
         
+  
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.companyId+"\',\'"+e.row.connector + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "<a style='margin-right:2px;' title='修改信息' href=javascript:onEdit(\'" + e.row.companyId+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+
+	        str += "<a style='margin-right:2px;' title='删除信息' href=javascript:onRemove(\'" + e.row.companyId+"\') ><span class='icon-remove' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
 	    }
 	    
-	    function ondEdit(companyId,connector){
-	        window.location.href ="EditCustomerDetailServlet?companyId=" + companyId+"&connector="+connector;
+	    
+	    function onRemove(companyId){
+	    	$.ajax({
+                type:"POST",
+                url:"showCustomerDelete.action",
+               
+                
+                data: {companyId:companyId},
+                dataType: "json",
+                success:function(data){
+              	  alert(data.data);
+              	grid.load();
+                } ,
+                error:function(data){
+                 alert(data.data);
+                } 
+            });
+	    	}
+	    	
+	   
+	    
+	    function onEdit(companyId){
+	        window.location.href ="EditCustomerDetailServlet?companyId=" + companyId;
 			
 		}
-
+	    
 	    var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
         function onGenderRenderer(e) {
             for (var i = 0, l = Genders.length; i < l; i++) {

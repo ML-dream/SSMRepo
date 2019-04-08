@@ -66,20 +66,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var grid = mini.get("grid1");
 	    grid.load();
 	    
-	    function onOperatePower(e) {
+	   /*  function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
 	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.staffCode + "\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
+	    } */
+	    
+	    function onOperatePower(e) {
+	        var str = "";
+	        str += "<span>";
+	        str += "<a style='margin-right:2px;' title='修改信息' href=javascript:onEdit(\'" + e.row.staffCode+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+
+	        str += "<a style='margin-right:2px;' title='删除信息' href=javascript:onRemove(\'" + e.row.staffCode+"\') ><span class='icon-remove' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "</span>";
+	        //alert(e.row.staffCode);
+	        return str;
 	    }
 	    
-	    function ondEdit(staffCode){
+	    function onEdit(staffCode){
 //	        window.open("EditEmployeeDetailServlet?staffCode=" + staffCode,
 //	                "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
 	         window.location.href="EditEmployeeDetailServlet?staffCode="+staffCode;
 		}
+	    
+	    
+	    function onRemove(staffCode){
+	    	$.ajax({
+                type:"POST",
+                url:"showEmployeeDelete.action",
+                data: {staffCode:staffCode},
+                dataType: "json",
+                success:function(data){
+              	  alert(data.data);
+              	  grid.load();
+                } ,
+                error:function(data){
+                 alert(data.data);
+                } 
+            });
+	    	}
 
 		function onSearch(){
 			var leave=mini.get("key").getValue();

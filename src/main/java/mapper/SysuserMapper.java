@@ -55,4 +55,36 @@ public interface SysuserMapper {
 	 * @return
 	 */
 	public int updateDoEditCustomerDetail(@Param("sectionCode") String sectionCode,@Param("connectorTel") String connectorTel,@Param("staffCode") String staffCode);
+
+	/**
+	 * @param companyId
+	 * @return
+	 */
+	public int showCustomerDeleteMapper(String companyId);
+
+	/**
+	 * @param staffCode
+	 * @return
+	 */
+	public int showEmployeeDeleteMapper(String staffCode);
+
+	/**
+	 * @param staffCode
+	 * @param staffName
+	 * @param machineId
+	 */
+	public void addMachineManagerMapper(@Param("staffCode") String staffCode, @Param("staffName") String staffName,@Param("machineId") String machineId);
+
+	/**
+	 * @param machineId
+	 * @return
+	 */
+	public List<Employee> loadMachineManagerMapper(String machineId);
+
+	/**
+	 * @param staffCode
+	 * @param machineId
+	 * @return
+	 */
+	public int deleteMachineManagerMapper(@Param("staffCode") String staffCode,@Param("machineId") String machineId);
 }

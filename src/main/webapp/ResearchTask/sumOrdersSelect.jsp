@@ -57,17 +57,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          
 	       </tr>
 	       <tr>
-	       <!--    <td>订单状态：</td>
+	         - <td>订单状态：</td>
 	          <td><input id="bookStatus" name="bookStatus" class="mini-combobox" width="100" textName="" textField="text" valueField="id"
   				url="data/bookStatus.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..."  onvaluechanged="loadgrid"/>
-	          </td> -->
+	          </td> 
 	   		  <td align="right">客户：</td>
 	          <td colspan="2"><input id="companyName" name="companyId" class="mini-buttonedit" width="100%" showClose="true" oncloseclick="onCloseClick('customer')"
             		onbuttonclick="onButtonEdit2" textName="companyName" required="false" value="" text="" onvaluechanged="loadgrid"  allowInput="false"/>
 	          </td>
 	          <td><input value="查找" type="button" onclick="loadgrid()" style="width:50px;"/></td>
 	   		</tr>
-	   		<input id="key" name="key"  class="mini-textbox" required="true" value="0" visible="false"/>
+	   		<input id="key" name="key"  class="mini-textbox" required="true" value="1" visible="false"/>
+	   		
 	   	</table>
 	   </form>
 <!-- 	</div> -->
@@ -75,16 +76,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </br></br>
     <div id="grid1" class="mini-datagrid" style="width:100%;height:85%;"
          borderStyle="border:0;" multiSelect="true"  idField="id" showSummaryRow="true" allowAlternating="true" showPager="true"
-         url="AuditingBookingOrder1.action" allowCellSelect="true" allowCellEdit="true">
+         url="mybookOrder.action" allowCellSelect="true" allowCellEdit="true">
         <div property="columns">
             <div type="indexcolumn" width="20"></div>
             <div name="action" width="10" headerAlign="center" align="center" renderer="onOperatePower"
-                 cellStyle="padding:0;">审核
+                 cellStyle="padding:0;">查看
             </div>
         <div field="orderId" width="50" allowSort="true" headerAlign="center" align="center">订单编号
             </div> 
          
-            <div field="companyName" width="30" headerAlign="center" align="center">客户名称
+            <div field="companyName" width="20" headerAlign="center" align="center">客户名称
             </div>
             <div field="orderName" width="100" headerAlign="center" align="center">订单名称
             </div>
@@ -94,39 +95,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="createTime" width="60" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center" >创建时间
             </div>
-         <!--    <div field="key" width="20" headalign="center" value="0" >key标志位
-            </div> -->
-            <div field="bookStatus" width="50" headalign="center"  renderer="onGenderRenderer">状态
+            <div field="bookStatus" width="60" headalign="center"  renderer="onGenderRenderer">状态
+              
             </div>
-            
         </div>
     </div>
-    
     
     <script type="text/javascript">
     	mini.parse();
 	    var grid = mini.get("grid1");
-	    grid.load({bookStatus:"12"});
+	    
+	    grid.load({sign:"audit"});
 	    
 	    function loadgrid(){
 	    	
 	    	var form=new mini.Form("#form0");
 	    	var data1 =form.getData();
-	    	//alert(data1);
-	    	/*  var bookStatus = mini.get("bookStatus").getValue();
-	    	 var companyName = mini.get("companyName").getValue(); */
-	    //	var data=mini.encode(data1);
-	    	
+	    	data1.sign="audit";
 	    	grid.load(data1);
-	    	/* $.ajax({
-	    		url:"AuditingBookingOrder.action",
-	    		type:"post",
-	    		data:data,
-	    		success:function(text){
-	    			
-	    			
-	    		}
-	    	}); */
+	    	
+
 	    }
 	    
 	    function onOperatePower(e) {
@@ -135,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //	        str += "<a style='margin-right:2px;' title='外协详情' href=javascript:ondStat(\'"+e.row.waiXieCom+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
 //          str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='审核' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+mini.formatDate(e.row.createTime,"yyyy-MM-dd-HH:mm:ss")+"','"+e.row.connector+"\') ><span class='icon-collapse' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "<a style='margin-right:2px;' title='查看详情' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+mini.formatDate(e.row.createTime,"yyyy-MM-dd-HH:mm:ss")+"','"+e.row.connector+"\') ><span class='icon-user' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        return str;
 	    }
@@ -145,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 
 			//var createTime=document.getElementById("createTime");
-	    	window.location="orderManage/AuditingBookingOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
+	    	window.location="ResearchTask/selectCompletedOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
 		}
         function onButtonEdit(e) {
             var btnEdit = this;
@@ -196,9 +184,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	mini.get(para).setValue("");
 	    	mini.get(para).setText("");
 	    }
-        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
-             
-
+        
+        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工完成"},{id: "16", text: "订单完结"}]
         function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];

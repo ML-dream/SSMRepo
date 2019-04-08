@@ -57,10 +57,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          
 	       </tr>
 	       <tr>
-	          <td>订单状态：</td>
+	         - <td>订单状态：</td>
 	          <td><input id="bookStatus" name="bookStatus" class="mini-combobox" width="100" textName="" textField="text" valueField="id"
-  				url="data/bookStatus.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..."  onvaluechanged="loadgrid"/>
-	          </td>
+  				url="data/bookStatusComplete.txt"  allowInput="false" showNullItem="true" nullItemText="请选择..."  onvaluechanged="loadgrid"/>
+	          </td> 
 	   		  <td align="right">客户：</td>
 	          <td colspan="2"><input id="companyName" name="companyId" class="mini-buttonedit" width="100%" showClose="true" oncloseclick="onCloseClick('customer')"
             		onbuttonclick="onButtonEdit2" textName="companyName" required="false" value="" text="" onvaluechanged="loadgrid"  allowInput="false"/>
@@ -80,12 +80,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div property="columns">
             <div type="indexcolumn" width="20"></div>
             <div name="action" width="10" headerAlign="center" align="center" renderer="onOperatePower"
-                 cellStyle="padding:0;">审核
+                 cellStyle="padding:0;">查看
             </div>
         <div field="orderId" width="50" allowSort="true" headerAlign="center" align="center">订单编号
             </div> 
          
-            <div field="companyName" width="100" headerAlign="center" align="center">客户名称
+            <div field="companyName" width="20" headerAlign="center" align="center">客户名称
             </div>
             <div field="orderName" width="100" headerAlign="center" align="center">订单名称
             </div>
@@ -95,7 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="createTime" width="60" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center" >创建时间
             </div>
-            <div field="bookStatus" width="20" headalign="center"  renderer="onGenderRenderer">状态
+            <div field="completedAdvice" width="50" headerAlign="center" align="center" >完工审核意见
+            </div>
+            <div field="bookStatus" width="60" headalign="center"  renderer="onGenderRenderer">状态
               
             </div>
         </div>
@@ -104,6 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	mini.parse();
 	    var grid = mini.get("grid1");
+	    
 	    grid.load();
 	    
 	    function loadgrid(){
@@ -135,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 //	        str += "<a style='margin-right:2px;' title='外协详情' href=javascript:ondStat(\'"+e.row.waiXieCom+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
 //          str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='审核' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+mini.formatDate(e.row.createTime,"yyyy-MM-dd-HH:mm:ss")+"','"+e.row.connector+"\') ><span class='icon-add' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "<a style='margin-right:2px;' title='查看详情' href=javascript:ondMenu(\'"+e.row.orderId+"','"+e.row.companyName+"','"+e.row.connectorTel+"','"+e.row.deptUser+"','"+e.row.bookStatus+"','"+mini.formatDate(e.row.createTime,"yyyy-MM-dd-HH:mm:ss")+"','"+e.row.connector+"\') ><span class='icon-user' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        return str;
 	    }

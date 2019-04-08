@@ -64,15 +64,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
    <input id="key" class="mini-textbox" emptyText="请输入订单号" style="width:250px;" onenter="onKeyEnter"/>   
                         <a class="mini-button" onclick="search()">查询</a>
-                     <span class="separator"></span>
-    <a  class="mini-button" iconCls="icon-undo" plain="false"  onclick="javascript:window.history.back(-1);">返回</a>
-<!--                         <div class="mini-toolbar" style="padding:2px;border:0;">
+                     
+                        <div class="mini-toolbar" style="padding:2px;border:0;">
 		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('16')">完工审核通过</a>
 		<span class="separator"></span> 
 		<span class="separator"></span> 
 		<span class="separator"></span> 
 		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('13')">重新修改</a>
-    </div> -->
+    </div>
 <div id="form1">
    	  <fieldset style="width: 100%;" align="center">
 		<legend>

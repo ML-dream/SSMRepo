@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<span class="separator"></span>
 	    <a class="mini-button" plain="false" iconCls="icon-undo" onclick="back()">返回</a>
 	    <span class="separator"></span>
-	    <span class="separator"></span>
-   		<a class="mini-button" iconCls="icon-remove" plain="false"  onclick="getForm('N')" style="float: right;">取消合作</a>
+	   <!--  <span class="separator"></span>
+   		<a class="mini-button" iconCls="icon-remove" plain="false"  onclick="getForm('N')" style="float: right;">取消合作</a> -->
 	    
 	</div>
 	<fieldset style="width: 100%;" align="center">

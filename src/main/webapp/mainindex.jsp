@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				minWidth="100">
 				<!--OutlookMenu-->
 				<div id="leftTree" class="mini-outlookmenu" url="LoadMainMenu"
-					onitemclick="onItemSelect" idField="id" parentField="pid" imgPath="imgs/"
+					onitemclick="onItemSelect" idField="id" parentField="pid" style="height:550" imgPath="imgs/"
 					textField="text" borderStyle="border:0">
 				</div>
 			</div>

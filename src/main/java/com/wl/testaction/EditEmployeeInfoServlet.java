@@ -35,7 +35,7 @@ public class EditEmployeeInfoServlet extends HttpServlet {
 	    
 	    String section = "";
 	    String workName = "";
-	    String leave = "N";
+	    String leave = "";
 	    section = StringUtil.isNullOrEmpty(request.getParameter("section"))?section :request.getParameter("section");
 	    workName = StringUtil.isNullOrEmpty(request.getParameter("workName"))?workName :request.getParameter("workName");
 	   leave = StringUtil.isNullOrEmpty(request.getParameter("leave"))?leave :request.getParameter("leave");

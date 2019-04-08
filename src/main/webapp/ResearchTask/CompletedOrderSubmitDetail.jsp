@@ -64,15 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
    <input id="key" class="mini-textbox" emptyText="请输入订单号" style="width:250px;" onenter="onKeyEnter"/>   
                         <a class="mini-button" onclick="search()">查询</a>
-                     <span class="separator"></span>
-    <a  class="mini-button" iconCls="icon-undo" plain="false"  onclick="javascript:window.history.back(-1);">返回</a>
-<!--                         <div class="mini-toolbar" style="padding:2px;border:0;">
-		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('16')">完工审核通过</a>
-		<span class="separator"></span> 
-		<span class="separator"></span> 
-		<span class="separator"></span> 
-		<a class="mini-button" iconCls="icon-find" plain="false" onclick="pass('13')">重新修改</a>
-    </div> -->
 <div id="form1">
    	  <fieldset style="width: 100%;" align="center">
 		<legend>
@@ -107,9 +98,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td><input id="staffName"  name="staffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
     	    </td>
     	    
-            <td class="labelTd"><label for="completedStaffName$text"></label>完工审核人</td>
+           <td class="labelTd"><label for="completedStaffName$text"></label>完工审核人</td>
             <td><input id="completedStaffName"  name="completedStaffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
-    	    </td>
+    	    </td> 
              <td colspan="4">
              </td>
     	     </tr>
@@ -117,26 +108,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<td class="labelTd"><label for="checkAdvice$text">预约审核意见</label></td>
 	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="无" readonly="readonly" style="height:100%;width:100%" borderStyle="border:0"/></td>
        </tr>
-       <tr height="60px;">
+        <tr height="60px;">
    			<td class="labelTd"><label for="completedAdvice$text">完工审核审核意见</label></td>
-	        <td colspan="5"><input id="completedAdvice" name="completedAdvice" class="mini-textarea" emptyText="请输入审核意见" style="height:100%;width:100%" borderStyle="border:0"/></td>
-       </tr>
+	        <td colspan="5"><input id="completedAdvice" name="completedAdvice" class="mini-textarea" emptyText="无" readonly="readonly" style="height:100%;width:100%" borderStyle="border:0"/></td>
+       </tr>  
    	</table>
    	
    	
 </div>
   
+    
+    <div style="width:100%;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:45%;">
+                        <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" tooltip="增加...">增加</a>
+                        <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true">删除</a>
+                        <span class="separator"></span>
+                        <a class="mini-button" iconCls="icon-save" onclick="saveData()" plain="true">保存并报完工</a>            
+                    </td>
+                    <td style="white-space:nowrap;">
+                     			   详细预约信息
+                       
+                    </td>
+                </tr>
+            </table>           
+        </div>
+    </div>
+    <div id="datagrid1" class="mini-datagrid" style="width:100%;height:500px;" 
+        url="loadCompletedBookingInfo.action" idField="id" 
+        allowResize="true" pageSize="20" 
+        allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
+        editNextOnEnterKey="true"  editNextRowCell="true"
+        
+    >
+        <div property="columns">
+            <div type="indexcolumn"></div>
+           <!--  <div type="checkcolumn"></div> -->
+           
+            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" >预约编号
+                <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
+            </div>
+            
+ 
+            <div type="comboboxcolumn" autoShowPopup="true" name="machineID" field="machineID" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">预约设备
+                <input property="editor" class="mini-combobox" style="width:100%;" data="machineGenders" />                
+            </div>            
+        
+                              
+            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd">日期
+                <input property="editor" class="mini-datepicker" style="width:100%;"/>
+            </div>  
+<!--             <div name="orderId" field="orderId" width="100"  >订单号
+                <input property="editor" class="mini-combobox" style="width:100%;"/>
+            </div> -->  
+  <!--         <div name="completedRemarks"  field="completedRemarks" headerAlign="center"   width="150" >备注
+                <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
+            </div> -->
+          	<div type="comboboxcolumn" autoShowPopup="true" name="startTimeInfo" field="startTimeInfo" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">开始时间
+                <input property="editor" class="mini-combobox" style="width:100%;" data="datelines" />                
+            </div> 
+          	<div type="comboboxcolumn" autoShowPopup="true" name="endTimeInfo" field="endTimeInfo" width="100"  alowSrot="false" hideable="true" align="center" headerAlign="center">结束时间
+                <input property="editor" class="mini-combobox" style="width:100%;" data="datelines" />                
+            </div> 
 
-   		<div class="mini-fit">
-			<div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
-			    buttons="#tabsButtons">
-			    <div title="上报信息" iconCls="icon-node" showCloseButton="false" url="ResearchTask/selectCompletedOrderDetailBehind.jsp?orderId=<%=request.getParameter("orderId")%>">
-			    </div>
-			    <div title="预约信息"  iconCls="icon-node" showCloseButton="false" url="ResearchTask/selectCompletedOrderDetailBefore.jsp?orderId=<%=request.getParameter("orderId")%>">
-			    </div>
-			    
-			</div>
-		</div>
+<!--           <div field="completedRemarks"  name="completedRemarks" width="120" headerAlign="center" >备注
+                <input property="editor" class="mini-textarea" style="width:200px;" minWidth="200" minHeight="50"/>
+            </div> -->
+           <!--  <div type="comboboxcolumn" autoShowPopup="true" name="completedRemarks" field="completedRemarks" width="120"   align="center" headerAlign="center">备注
+                <input property="editor" class="mini-combobox" style="width:100%;" minWidth="200" minHeight="50" />                
+            </div>  -->
+           
+            
+            <<!-- div type="checkboxcolumn" field="confirmInfo" trueValue="1" falseValue="0" width="60" headerAlign="center">确认信息</div>       -->                  
+        </div>
+          
+    </div>
    
        
 
@@ -145,14 +193,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         mini.parse();
 
-        var orderId="<%=request.getParameter("orderId")%>" ;
+        var grid = mini.get("datagrid1");
+        var orderId ;
+        var menu = new ColumnsMenu(grid);
         var bookStatus;
-        
-        $(function(){ 
-        	loadForm(orderId);       	
-        }); 
-        
-        
+       
+        var orderId ="<%=request.getParameter("orderId")%>";
+        loadForm(orderId);
         function onKeyEnter(e) {
             search();
         }
@@ -179,12 +226,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     form.setData(eval('(' + text + ')'));   
                     
                     
-                    /* grid.load({ orderId: orderId,bookStatus:bookStatus });//设置多个控件数据 */
+                    grid.load({ orderId: orderId,bookStatus:bookStatus });//设置多个控件数据
                 }
             });
         }
         
-        var Genders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
+        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
         var machineGenders=[{id: "5501", text: "数控电火花成形机床"},{id: "5502", text: "数控低速走丝电火花线切割"},{id: "5503", text: "数控高速成型磨床"},
         	{id: "5504", text: "超精密成形平面磨床"},{id: "5505", text: "数控车床"},{id: "5506", text: "CNC雕刻机"},{id: "5511", text: "车铣复合加工中心"},
         	{id: "5512", text: "超高速磨床"},{id: "5513", text: "超声辅助高速加工中心"},{id: "5514", text: "高速五坐标加工中心"},{id: "5514", text: "加工中心"}]
@@ -194,57 +241,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         					{id: "20:00", text: "20:00"},{id: "21:00", text: "21:00"},{id: "22:00", text: "22:00"}]
 
         
-        
         grid.on("cellbeginedit",function(e){
         	  if(e.field=="unid"){
         	  e.cancel=true;
-        	  };
-        	  if(e.field=="unid"){
-            	  e.cancel=true;
-            	};
-             if(e.field=="machineID"){
-                 e.cancel=true;
-              };
-              if(e.field=="timeYmd"){
-                   e.cancel=true;
-               };
-               if(e.field=="startTimeInfo"){
-                   e.cancel=true;
-               };
-               if(e.field=="endTimeInfo"){
-                   e.cancel=true;
-               };
+        	  }
         	})
-        	
-        	
-        	
-        	
-        function pass(bookOrderStstus){
-        	
-        	var completedAdvice=mini.get("completedAdvice").getValue();
-        	var orderId=mini.get("orderId").getValue();
-        	var bookStatus=bookOrderStstus;
-        	/*  alert(checkAdvice); */
-         	 $.ajax({
-                  type:"POST",
-                  url:"completedOrderAudit.action",
-                 
-                  
-                  data: {bookStatus:bookStatus,orderId:orderId,completedAdvice:completedAdvice},
-                  dataType: "json",
-                  success:function(data){
-                	  loadForm(orderId);
-                	  alert(data.result);
-                	  
-           
-                  },
-                  error:function(data){
-                	  alert(data.result);
-                  } 
-              });
-	          	}
-        	
-       
        /*  
         grid.load();
 
@@ -268,8 +269,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
         
-		 function saveData() {
-			 var completedAdvice=mini.get("completedAdvice").getValue();
+	    function saveData() {
+			 /* var completedAdvice=mini.get("completedAdvice").getValue(); */
 				/* alert(mini.encode(grid.getData())); */
 				var data=grid.getData();/* 这是得到的js的arrayList对象 */
 				var data02=data[1];/* 这是获取list中的一个json对象 */
@@ -278,21 +279,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 $.ajax({
                  type:"POST",
                  url:"saveCompletedBookingInfo.action",
-                 data:{list:data01,orderId:orderId,completedAdvice:completedAdvice},
+                 data:{list:data01,orderId:orderId},
          /*         dataType: "json", */
                  success:function(text){
-               		  alert(mini.decode(text).result); 
-               			loadForm(orderId);
+                	 confirm(mini.decode(text).result); 
+               		 loadForm(orderId);
                  } ,
                  error:function(text){
-                	  alert(mini.decode(text).result); 
+                	 	confirm(mini.decode(text).result); 
                  } 
              });
 		}
         
  		
+	    grid.on("cellendedit",function(e){
+	    /* 	(e.record.timeYmd&&e.record.timeYmd!="") */
 
+	        var record=e.record;
+	        if(e.record.machineID&&e.record.machineID!=""&&e.record.timeYmd&&e.record.timeYmd!=""&&e.record.startTimeInfo&&e.record.startTimeInfo!=""&&e.record.endTimeInfo&&e.record.endTimeInfo!=""){
+	        	
+	        	var startTimeInfo=e.record.startTimeInfo.replace(":","-");    
+	        	var endTimeInfo=e.record.endTimeInfo.replace(":","-");    
+	        	var changedUnid=e.record.machineID+"-"+mini.formatDate(e.record.timeYmd,"yyyy-MM-dd")+"-"+startTimeInfo+"-"+endTimeInfo;
+	        	/* $.ajax({
+	                 type:"POST",
+	                 url:"saveCompletedBookingInfo.action",
+	                 data:{list:data01,orderId:orderId,completedAdvice:completedAdvice},
+	                 dataType: "json", 
+	                 success:function(text){
+	                	 confirm(mini.decode(text).result); 
+	               		 loadForm(orderId);
+	                 } ,
+	                 error:function(text){
+	                	 	confirm(mini.decode(text).result); 
+	                 } 
+	             }); */
+	        	grid.updateRow(record,{unid:changedUnid});
+	        }
+	    })
+			/* var formatDate = function (date) {  
+			    var y = date.getFullYear();  
+			    var m = date.getMonth() + 1;  
+			    m = m < 10 ? ('0' + m) : m;  
+			    var d = date.getDate();  
+			    d = d < 10 ? ('0' + d) : d;  
+			    var h = date.getHours();  
+			    var minute = date.getMinutes();  
+			    minute = minute < 10 ? ('0' + minute) : minute; 
+			    var second= date.getSeconds();  
+			    second = minute < 10 ? ('0' + second) : second;  
+			    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+ second;  
+			};   */
 
+	    
       /*   grid.on("celleditenter", function (e) {
             var index = grid.indexOf(e.record);
             if (index == grid.getData().length - 1) {
@@ -301,13 +340,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         });
  */
-        grid.on("beforeload", function (e) {
+       /*  grid.on("beforeload", function (e) {
             if (grid.getChanges().length > 0) {
                 if (confirm("有增删改的数据未保存，是否取消本次操作？")) {
                     e.cancel = true;
                 }
             }
-        });
+        }); */
 
 
 //        grid.on("cellcommitedit", function (e) {
