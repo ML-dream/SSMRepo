@@ -53,14 +53,10 @@ public class DataBaseTool {
 		
 //		……………………………………………………………………………………………………此处是进行第三个问题，进行判断是不是删除光了，如果是删除光了，那么就会自动的将
 		
-		
-		
-		
-		
 		Boolean result=true;
  		//	先查询出最新的日期
 		bookingInfoBean infoBean = null;
-		String sql="select time_ymd from BOOKINGINFO t  where orderId='"+orderId+"' order by time_ymd desc";
+		String sql="select time_ymd from BOOKINGINFO t  where orderId='"+orderId+"' and  (t.is_pass <> '否' or t.is_pass is null)  order by time_ymd desc";
 		try {
 			 infoBean = Sqlhelper.exeQueryBean(sql, null, bookingInfoBean.class);
 		} catch (Exception e) {

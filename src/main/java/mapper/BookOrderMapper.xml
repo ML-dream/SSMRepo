@@ -62,7 +62,7 @@
 	</sql> -->
 	  
 	<select id="selectBookOrderMachineListByOrderId" resultType="javaBean.BookOrderMachine">
-		select * from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}
+		select * from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId} <!-- and a.is_pass !='否' -->
 	</select>
 	
 	<select id="selectBookOrderMachineListByOrderId1" resultType="javaBean.BookOrderMachine">
@@ -187,6 +187,9 @@
      <delete id="deleteSelectedBookingInfo" >
           delete from bookingInfo  where  unid=#{unid}     
     </delete>
+     <update id="deleteSelectedBookingInfoByAudit" >
+          update bookingInfo  set is_pass='否' where  unid=#{unid}     
+    </update>
 	
 
     <insert id="saveCompletedBookingInfoMapper" >
@@ -211,5 +214,15 @@
     	insert into ORDERSMACHINESAUDITS t (order_ID,machine_Id,audit_person,advice,yes_no) values (#{orderId},#{machineId},#{staffCode},#{checkAdvice},#{isPass})
     	
     </insert>
+    <update id="saveAuditAdviceServiceUpdateMapper">
+    	update   BOOKINGINFO t set t.is_pass=#{isPass} ,t.is_pass_advice= #{isPassAdvice },t.audit_person= #{staffCode} where t.unid=#{unid}
+    </update>
+    
+    <select id="selectBookOrderInfoIsPassCount" resultType="int">
+    	select count(*) from BOOKINGINFO t where t.is_pass is null and t.orderid=#{orderId}
+    </select>
+    <update id="updateOrderStatus">
+    	update  orders t set t.book_status=#{bookStatus}  where t.order_id=#{orderId}
+    </update>
 </mapper>
 

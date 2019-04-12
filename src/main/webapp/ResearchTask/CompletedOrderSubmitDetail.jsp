@@ -204,11 +204,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             search();
         }
         
+        
         function search() {
         	orderId = mini.get("key").getValue();
             loadForm(orderId);
            /*  var bookStatus = mini.get("bookStatusName").getValue(); */
-        	
         }
         
         function loadForm(orderId) {

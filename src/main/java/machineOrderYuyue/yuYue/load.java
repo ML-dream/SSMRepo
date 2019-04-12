@@ -167,15 +167,13 @@ public class load extends HttpServlet {
 	        //for(int i=0)//此处不需要循环，直接查询出来就是list的结构，直接就可以了
 	        
 	        List<bookingInfoBean> sessionsList = new ArrayList<bookingInfoBean>();
-	        String bookingInfoSql ="SELECT a.*,B.*,c.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"') B right join bookingInfosecond a on B.time_md = a. timeline left join orders c on c.order_id=B.orderId  order by a.timeline";
+	        String bookingInfoSql ="SELECT a.*,B.*,c.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"' and (t.is_pass != '否' or t.is_Pass is null)) B right join bookingInfosecond a on B.time_md = a. timeline left join orders c on c.order_id=B.orderId  order by a.timeline";
 	        try {
 				sessionsList = Sqlhelper.exeQueryList(bookingInfoSql,null,bookingInfoBean.class);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	        
 	        machineBean.setSessionsList(sessionsList);
-			
 	        machinesList.add(machineBean);
 	        }
 		

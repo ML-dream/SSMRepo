@@ -851,7 +851,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      
 	    	 $.ajax({
 	             type:"POST",
-	             url:"<%=path %>/deleteSelectedBookingInfo.action",
+	             url:"<%=path %>/deleteSelectedBookingInfoByAudit.action",
 	            
 	             data: {unid:uid,orderId:orderId},
 	             dataType: "json",

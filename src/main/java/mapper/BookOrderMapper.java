@@ -89,6 +89,11 @@ public interface BookOrderMapper {
 	 * @param unid
 	 * @return
 	 */
+	public void deleteSelectedBookingInfoByAudit(String unid);
+	/**
+	 * @param unid
+	 * @return
+	 */
 	public int deleteSelectedBookingInfo(String unid);
 	/**
 	 * @param orderId
@@ -165,6 +170,25 @@ public interface BookOrderMapper {
 	 */
 	public void updateAuditingBookingAll13(@Param("orderId") String orderId,@Param("staffCode") String staffCode,@Param("machineId") String a,@Param("isPass") String isPass,
 			@Param("checkAdvice") String checkAdvice);
+
+
+	/**
+	 * @param hashMap
+	 */
+	public void saveAuditAdviceServiceUpdateMapper(HashMap<String, String> hashMap);
+
+
+	/**
+	 * @param orderId
+	 */
+	public int selectBookOrderInfoIsPassCount(String orderId);
+
+
+	/**
+	 * @param orderId
+	 * @param string
+	 */
+	public void updateOrderStatus(@Param("orderId") String orderId,@Param("bookStatus") String string);
 
 		
 }

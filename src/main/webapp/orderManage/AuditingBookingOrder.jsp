@@ -27,7 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<style type="text/css">
     	*{margin: 0;padding: 0;}
     </style>
-    
+   	<!--这个我自己写好的关于订单的状态的js  -->
+	<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
+	
     <script src="resources/scripts/boot.js" type="text/javascript"></script>
 	<script type='text/javascript' src="<%=basePath%>resources/js/tabcard.js"></script>
 	<script type="text/javascript" src="<%=basePath%>resources/jquery/jquery.min.js"></script>
@@ -196,9 +198,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	mini.get(para).setValue("");
 	    	mini.get(para).setText("");
 	    }
-        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
-             
-
         function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];

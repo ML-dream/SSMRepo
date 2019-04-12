@@ -70,7 +70,7 @@ public class LoadMainMenu extends HttpServlet {
 			
 	    	String pid = tree.getId();
 			String sql2 ="select t.pageid id,t.text ,t.iconcls iconCls,t.pid,t.pagelevel,t.pageurl url "
-					+ "from LISTTREE t left join rightassign a on a.pageid = t.pageid where a.staffcode = '70203718'  "
+					+ "from LISTTREE t left join rightassign a on a.pageid = t.pageid where a.staffcode = '"+userId+"'  "
 					+ "and t.pid='"+pid+"'"+" order by t.pageId";
 			List<LoadAllMenuBean> children = null;
 			try {

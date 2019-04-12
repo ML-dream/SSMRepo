@@ -19,7 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=path %>/resource/timePlanJs/moment-with-locales.js"></script>
 		<script src="<%=path %>/resource/timePlanJs/laypage.js"></script>
 		<script src="<%=path %>/resource/timePlanJs/jquery.qrcode.min.js"></script>
-		
+		<!--这个我自己写好的关于订单的状态的js  -->
+		<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
 		<!--jquery validate begin-->
 		<script src="<%=path %>/resource/timePlanJs/jquery.validate.min.js"></script>
 		<script src="<%=path %>/resource/timePlanJs/messages_zh.min.js"></script>
@@ -101,10 +102,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div field="createTime" width="30" headerAlign="center" align="center"  dateFormat="yyyy-MM-dd HH:mm:ss" >创建时间
             </div>
              
-            <div field="bookStatus" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">预约状态
+            <div field="bookStatus" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">订单状态
             </div>
-             <div field="checkAdvice" width="50" headerAlign="center" align="center" >审核意见
-            </div>
+             <!-- <div field="checkAdvice" width="50" headerAlign="center" align="center" >审核意见
+            </div> -->
             <div field="option" width="60" headerAlign="center" align="center" renderer="onOperatePower1">操作
             
             </div>
@@ -116,12 +117,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="bookMachine" class="mini-datagrid" style="width:100%;height:430px;" url="myBookOrderMachine.action">
         <div property="columns">            
        		<div field="unid" width="120" headerAlign="center" allowSort="true"  allowSort="true" align="center" headerAlign="center">预约编号</div> 
-       		<div field="bookStatus" width="120" headerAlign="center"  align="center" headerAlign="center" renderer="onGenderRenderer">预约状态</div> 
+       
             <div field="machineName" width="120" headerAlign="center"  align="center" headerAlign="center">设备名称</div> 
             <div field="timeYmd" width="100" allowSort="true" align="center"  headerAlign="center" align="center">日期</div>               
             <div field="startTimeInfo" width="100"   align="center" headerAlign="center">开始时间</div>            
             <div field="endTimeInfo" width="100"  align="center" headerAlign="center">结束时间</div>
-                                                
+             <div field="isPass" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核是否通过</div>
+             <div field="isPassAdvice" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核意见</div>
+             <div field="auditPerson" width="120" headerAlign="center"  align="center" headerAlign="center" >审核人</div>
             <div field="option" width="100" headerAlign="center"  align="center" renderer="onOperatePower" >操作</div>                
         
     </div>      
@@ -217,9 +220,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	window.location="orderManage/seeOrderBooking.jsp?orderId=" +orderId;
     	   }
         
+        
         function modifyBooking(unid,orderId,bookStatus,connector){
             /* alert(connector);  */
-           	if(bookStatus==13){
+        	if(bookStatus==12.5){
+         		 U.msg("审核中，请联系管理员进行操作！");
+         		return;
+         	}
+            if(bookStatus==13){
            		 U.msg("审核已通过，请联系管理员进行操作！");
            		return;
            		
@@ -273,6 +281,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         function orderDelete(unid,orderId,bookStatus){
            	/* alert(bookStatus); */
+        	if(bookStatus==12.5){
+         		 U.msg("审核中，请联系管理员进行操作！");
+         		return;
+         	}
            	if(bookStatus==13){
            		 U.msg("审核已通过，请联系管理员进行操作！");
            		return;
@@ -319,6 +331,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function bookDelete(unid,bookStatus){
         	/* alert(bookStatus); */
         	
+        	if(bookStatus==12.5){
+          		 U.msg("审核中，请联系管理员进行操作！");
+          		return;
+          	}
         	if(bookStatus==13){
           		 U.msg("审核已通过，请联系管理员进行操作！");
           		return;
@@ -360,7 +376,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             })
     	   }
         
-        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
                function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];

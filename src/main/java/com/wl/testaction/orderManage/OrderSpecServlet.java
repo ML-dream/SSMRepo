@@ -116,9 +116,11 @@ public class OrderSpecServlet extends HttpServlet {
 		}else if(isModify.equals("2")){
 			request.getRequestDispatcher("orderManage/machineOrderToo.jsp").forward(request, response);
 			
-		}else {
+		}else if(isModify.equals("3")){
 			
 			request.getRequestDispatcher("orderManage/bookMainIndex.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("orderManage/bookMainIndexByaudit.jsp").forward(request, response);
 			}
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -136,6 +136,37 @@ public class OrderController {
 
 		
 	}
+	
+	/**
+     * @param model
+     * @param list
+     * @param orderId
+     * @return
+     * 此方法是针对的是保存预约信息二次编辑的信息，后期还会加入进行判断是否是保存的信息，是否进行修改！
+     */
+    @RequestMapping(value="saveAuditAdvice.action",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+    public String saveAuditAdvice(Model model, String list ,String orderId){ 
+//    	JSONObject obj = new JSONObject(list);
+    	ArrayList<HashMap<String,String>> saveList = (ArrayList<HashMap<String,String>>) PluSoft.Utils.JSON.Decode(list);
+    	
+    	String jsonData="successful";
+		try {	
+			orderServiceImpl.saveAuditAdviceService(saveList,orderId);
+	  }catch(Exception e){
+		   jsonData="fail";
+		   System.out.println("抛出异常，触发回顾事件………………");
+		   e.printStackTrace();
+	   }
+	
+		jsonData="{\"result\":\""+jsonData+"\"}";
+		System.out.println(jsonData);
+
+
+    	return jsonData; 
+	    	
+}
+	
 	/*
 	 * 这个我再次重构的额代码，主要是用于普通的设备管理员的controller，因为对于管理员来说查询到比较苦难。于是我把它单独拎出来，其他的不需要的这些复杂逻辑的查询都是
 	 * 放在其他的controller里面！
@@ -192,8 +223,6 @@ public class OrderController {
     	String json  = orderServiceImpl.AuditingBookingAll13(orderId, bookStatus,staffCode,map);
     	System.out.println(json);
     	return json;//转向首页
-    	
-    	
     }
     
     //AddShiYanOrder.actio
@@ -349,8 +378,34 @@ public class OrderController {
 		try {
 			json = orderServiceImpl.deleteSelectedBookingInfo(unid,orderId);
 		} catch (Exception e) {
-			 DaiUtils.returnIsExceptionJson(e);
+			
 			 System.out.println("抛出异常，触发回顾事件………………");
+			 e.printStackTrace();
+		}
+		System.out.println(json);
+		
+		return json;//转向首页
+	}
+	
+	/**
+	 * @param model
+	 * @param unid
+	 * @return
+	 * 这个是用来对预约审核的修改的对应的删除的页面，为了彻底解耦，多复写了好多界面及其程序，为了防止以后还会有其他的需求！
+	 *  此处的删除并不是真正的删除，而是直接修改成不通过！！
+	 */
+	@RequestMapping(value="deleteSelectedBookingInfoByAudit",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+	public String rerurnDeleteSelectedBookingInfoByAudit(Model model,String unid,String orderId){ 
+		
+		
+		String json = "";
+		try {
+			json = orderServiceImpl.deleteSelectedBookingInfoByAudit(unid,orderId);
+		} catch (Exception e) {
+			
+			System.out.println("抛出异常，触发回顾事件………………");
+			e.printStackTrace();
 		}
 		System.out.println(json);
 		
@@ -472,10 +527,8 @@ public class OrderController {
 		    	String userId = ((User)session.getAttribute("user")).getUserId();
 		    	String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
 		    	 
-		    	
 		    	String jsonData=orderServiceImpl.isCanBookService(staffCode);
 		   
-		    	
 		    	jsonData="{\"result\":\""+jsonData+"\"}";
 		    	System.out.println(jsonData);
 		    	return jsonData; 

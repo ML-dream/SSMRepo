@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
   <title>主页面</title>
     <base href="<%=basePath%>">
-    <meta http-equiv="co ntent-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="co ntent-type" content="text/html; charset=UTF-8"/>
     <script type="text/javascript" src="resources/scripts/boot.js"></script>
  	<link href="resources/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <script src="resources/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
@@ -62,11 +62,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             
             </div>
-            <div title="south" region="south" showSplit="false" showHeader="false" height="30">
+        <!--     <div title="south" region="south" showSplit="false" showHeader="false" height="30">
 				<div style="line-height: 28px; text-align: center; cursor: default">
 					Copyright © 南京航空航天大学版权所有
 				</div>
-			</div>
+			</div> -->
         </div>
         <!-- <div id="tabsButtons">
             <a class="tabsBtn"><i class="fa fa-home"></i></a>

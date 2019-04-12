@@ -10,10 +10,32 @@ public class BookOrderMachine {
 	private String bookState;
 	private String unid;
 	private String bookStatus;
+	private String isPass;
+	private String isPassAdvice;
+	private String auditPerson;
 	
 	
 	
 	
+	
+	public String getAuditPerson() {
+		return auditPerson;
+	}
+	public void setAuditPerson(String auditPerson) {
+		this.auditPerson = auditPerson;
+	}
+	public String getIsPass() {
+		return isPass;
+	}
+	public void setIsPass(String isPass) {
+		this.isPass = isPass;
+	}
+	public String getIsPassAdvice() {
+		return isPassAdvice;
+	}
+	public void setIsPassAdvice(String isPassAdvice) {
+		this.isPassAdvice = isPassAdvice;
+	}
 	public String getBookStatus() {
 		return bookStatus;
 	}

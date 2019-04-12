@@ -308,7 +308,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						            <div field="startTimeInfo" width="100"   align="center" headerAlign="center">开始时间</div>            
 						            <div field="endTimeInfo" width="100"  align="center" headerAlign="center">结束时间</div>
 						            <div field="machineID" width="100"  align="center" headerAlign="center">设备编号</div>
-        
+       								<div field="isPass" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核是否通过</div>
+            							
     					  </div> 
   					 </div> 
                     <div class="img_l"><img src="<%=path %>/resource/images/left.gif"/></div>

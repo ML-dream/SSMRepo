@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.ForbiddenException;
@@ -540,7 +541,8 @@ public class OrderServiceImpl implements OrderService  {
 		        
 		        
 		        List<bookingInfoBean> sessionsList = new ArrayList<bookingInfoBean>();
-		        String bookingInfoSql ="SELECT a.*,B.*,c.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"') B right join bookingInfosecond a on B.time_md = a. timeline left join orders c on c.order_id=B.orderId  order by a.timeline";
+		        String bookingInfoSql ="SELECT a.*,B.*,c.* FROM (select t.*from bookingInfo t  where time_YMD = '"+date+"' and machineId = '"+machineId+"' and  (t.is_pass <> '否' or t.is_pass is null)) B right join bookingInfosecond a on B.time_md = a. timeline left join orders c on c.order_id=B.orderId  order by a.timeline";
+		        System.out.println(bookingInfoSql);
 		        try {
 					sessionsList = Sqlhelper.exeQueryList(bookingInfoSql,null,bookingInfoBean.class);
 				} catch (Exception e) {
@@ -662,6 +664,23 @@ public class OrderServiceImpl implements OrderService  {
 			if(count !=1) {
 				result="删除失败";
 			}
+			Boolean isNewDate = DataBaseTool.selectNewDate(orderId);
+			if(!isNewDate) result="更新失败！";
+			json = "{\"result\":"+"\""+result+"\"}";
+			return json;
+		}
+		/**
+		 * @param unid
+		 * @param orderId 
+		 * @return
+		 */
+		@Transactional
+		public String deleteSelectedBookingInfoByAudit (String unid, String orderId)throws Exception {
+			String json = "";
+			String result ="删除成功";
+//			并不是真正的意义的删除，而是修改成不通过
+			bookOrdeMapper.deleteSelectedBookingInfoByAudit(unid);
+			
 			Boolean isNewDate = DataBaseTool.selectNewDate(orderId);
 			if(!isNewDate) result="更新失败！";
 			json = "{\"result\":"+"\""+result+"\"}";
@@ -798,6 +817,34 @@ public class OrderServiceImpl implements OrderService  {
 			}
 			String json = "{\"result\":"+"\""+"操作成功"+"\"}";
 			return json;
+		}
+		/**
+		 * @param saveList
+		 * @param orderId
+		 */
+		@Transactional
+		public void saveAuditAdviceService(ArrayList<HashMap<String, String>> saveList, String orderId) throws Exception{
+			
+			HttpSession session = request.getSession();
+			String userId = ((User)session.getAttribute("user")).getUserId();
+			String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
+
+//			目前的想法应该是新建一个表，表示审核意见 否的，然后把它们全部插入到这个新建的表中
+//			然后分析list数据，遍历一遍，然后先进行全部更新，然后进行判断 否，多加一条信息，插入另一个表，删除原有信息！---目前没有按照这个写
+			for (HashMap<String,String> hashMap : saveList) {
+				hashMap.put("staffCode", staffCode);
+				hashMap.put("orderId", orderId);
+				bookOrdeMapper.saveAuditAdviceServiceUpdateMapper(hashMap);
+			}
+			
+//			每次修改都把状态更新为预约审核中12.5
+			bookOrdeMapper.updateOrderStatus(orderId,"12.5");
+//			此处需要一个判断，是否全部审核完毕，没有空的值！！！ 
+			
+			int isPassCount = bookOrdeMapper.selectBookOrderInfoIsPassCount(orderId);
+			if(isPassCount==0) bookOrdeMapper.updateOrderStatus(orderId,"13");
+			
+			
 		}
 
 
