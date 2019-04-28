@@ -10,6 +10,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>客户信息</title>
+    
+    
+    	<!--这个我自己写好的关于订单的状态的js  -->
+	<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -94,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="labelTd"><label for="connectorTel$text">联系人电话</label></td>
             <td><input id="connectorTel"  name="connectorTel" class="mini-textbox"  width="100%"  enabled="false" value="<%=request.getParameter("connectorTel")%>"  borderStyle="border:0"/></td>
             <td class="labelTd"><label for="bookStatus$text">订单状态</label></td>
-            <td><input id="bookStatus"  name="bookStatus" class="bookStatus" style="width:100%;"    enabled="false" readonly="readonly" value=""  borderStyle="border:0"/>
+            <td><input id="bookStatus"  name="bookStatus" class="mini-textbox" style="width:100%;"    enabled="false" value="<%=request.getParameter("bookStatus")%>" readonly="readonly" renderer="onGenderRenderer"  borderStyle="border:0"/>
            
    			
        </tr>
@@ -138,7 +142,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       <div name="isPassAdvice"  field="isPassAdvice"  headerAlign="center"  allowSort="false" allowCellWrap="true" align="center" width="150">请输入审核意见
 	              <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" minHeight="50"/>
 	            </div>
-	       <div name="auditPerson"  field="auditPerson"  headerAlign="center"  allowSort="false" align="center" width="150">审核人
+	            
+	       <div name="staffName"  field="staffName"  headerAlign="center"  allowSort="false" align="center" width="150">审核人
 	              <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" minHeight="50"/>
 	            </div>
            <!--  <div field="bookState" width="100" headerAlign="center"  align="center" renderer="onOperatePower">编辑</div>  -->
@@ -214,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        return str;
 	    }
 	    
-	    var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
+	    //var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
         var machineGenders=[{id: "5501", text: "数控电火花成形机床"},{id: "5502", text: "数控低速走丝电火花线切割"},{id: "5503", text: "数控高速成型磨床"},
         	{id: "5504", text: "超精密成形平面磨床"},{id: "5505", text: "数控车床"},{id: "5506", text: "CNC雕刻机"},{id: "5511", text: "车铣复合加工中心"},
         	{id: "5512", text: "超高速磨床"},{id: "5513", text: "超声辅助高速加工中心"},{id: "5514", text: "高速五坐标加工中心"},{id: "5514", text: "加工中心"}]
@@ -281,11 +286,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    //var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
 	   // var Genders = [{id: "11", text: "新建"},{id: "12", text: "备料"},{id: "13", text: "代加工"},{id: "14", text: "加工中"},{id: "15", text: "完成"}];
 	    
-	    var Genders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
+	    //var Genders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工中"},{id: "16", text: "加工完成"},{id: "16", text: "订单完结"}]
 	      
         function onGenderRenderer(e) {
-            for (var i = 0, l = Genders.length; i < l; i++) {
-                var g = Genders[i];
+            for (var i = 0, l = bookGenders.length; i < l; i++) {
+                var g = bookGenders[i];
                 if (g.id == e.value) return g.text;
             }
             return "";

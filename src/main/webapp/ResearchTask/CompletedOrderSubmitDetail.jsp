@@ -94,9 +94,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	    <td class="labelTd"><label for="bookStatusName$text">订单状态</label></td>
             <td><input id="bookStatusName"  name="bookStatusName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value=""  borderStyle="border:0"/>
             
-       		 <td class="labelTd"><label for="staffName$text"></label>预约审核人</td>
+       		<!--  <td class="labelTd"><label for="staffName$text"></label>预约审核人</td>
             <td><input id="staffName"  name="staffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
-    	    </td>
+    	    </td> -->
     	    
            <td class="labelTd"><label for="completedStaffName$text"></label>完工审核人</td>
             <td><input id="completedStaffName"  name="completedStaffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
@@ -104,14 +104,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <td colspan="4">
              </td>
     	     </tr>
-   		<tr height="60px;">
+   	<!-- 	<tr height="60px;">
    			<td class="labelTd"><label for="checkAdvice$text">预约审核意见</label></td>
 	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="无" readonly="readonly" style="height:100%;width:100%" borderStyle="border:0"/></td>
-       </tr>
-        <tr height="60px;">
+       </tr> -->
+        <!-- <tr height="60px;">
    			<td class="labelTd"><label for="completedAdvice$text">完工审核审核意见</label></td>
 	        <td colspan="5"><input id="completedAdvice" name="completedAdvice" class="mini-textarea" emptyText="无" readonly="readonly" style="height:100%;width:100%" borderStyle="border:0"/></td>
-       </tr>  
+       </tr>   -->
    	</table>
    	
    	
@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div type="indexcolumn"></div>
            <!--  <div type="checkcolumn"></div> -->
            
-            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" >预约编号
+            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" align="center" headerAlign="center">预约编号
                 <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
             </div>
             
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>            
         
                               
-            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd">日期
+            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd" align="center" headerAlign="center">日期
                 <input property="editor" class="mini-datepicker" style="width:100%;"/>
             </div>  
 <!--             <div name="orderId" field="orderId" width="100"  >订单号

@@ -24,7 +24,17 @@
 			
 		 select * from orders a  
 		 left join customer b on a.CUSTOMER=b.COMPANYID <!-- left join dept c on b.DEPT_USER=c.deptid  -->
-		 where a.book_status>0 and a.book_status like '%${bookStatus}%' and a.customer like '%${companyId}%' 
+		 where a.book_status>0 and 
+		 
+		 <if test="bookStatus != ''">
+           a.book_status = '${bookStatus}'
+        </if>
+         
+        <if test="bookStatus == ''">
+          a.book_status like '%%'
+        </if>
+        
+		   and a.customer like '%${companyId}%' 
 		  		and a.createperson like '%${staffCode}%' and a.order_Id like '%${orderId}%'
 	</select>
 	
@@ -36,13 +46,19 @@
 		on a.order_id=c.orderid  where c.machineid
 		 in(select f.machine_id from machineManager f where f.machine_manager_id='70205886') ) g) --> 		
 		
-		select * from orders e where e.book_status=#{bookStatus} and e.order_id in
+		select * from orders e  left join customer k on e.customer=k.companyId
+		
+		
+		where (e.book_status=#{bookStatus} or e.book_status='12.5') and e.order_id in
 		(select distinct order_id 
 		from (select a.order_id,c.machineid from orders a 
 		left join (select b.orderid,  machineId from   BOOKINGINFO b  group by machineId,orderId) c 
 		on a.order_id=c.orderid  where c.machineid
 		in(select f.machine_id from machineManager f where f.machine_manager_id=#{staffCode}) ) g) 
 
+	</select>
+	<select id="selectCompletedBookOrderList" resultType="com.wl.forms.Order">
+		select * from orders e  left join customer k on e.customer=k.companyId where  e.book_Status=#{bookStatus};
 	</select>
 	
 	<select id="selectBookOrderListToo" resultType="com.wl.forms.Order">
@@ -66,7 +82,11 @@
 	</select>
 	
 	<select id="selectBookOrderMachineListByOrderId1" resultType="javaBean.BookOrderMachine">
-		select * from bookingINfo A left join machinfo B on a.machineid=b.machineid  left join orders D on d.order_id=A.orderID where orderId=#{orderId}  and  a.machineid in
+		select * from bookingINfo A 
+		left join machinfo B on a.machineid=b.machineid  
+		left join orders D on d.order_id=A.orderID  
+		left join employee_info k  on a.audit_person=k.staff_code 
+		where orderId=#{orderId}  and  a.machineid in
 (select c.machine_id from MACHINEMANAGER c where  c.machine_manager_id=#{staffCode})
 	</select>
 	

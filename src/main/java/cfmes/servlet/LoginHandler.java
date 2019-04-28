@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,6 @@ public class LoginHandler extends HttpServlet {
 		String userId = request.getParameter("username").trim();
 		String password = request.getParameter("passwd").trim();
 		
-		
 		System.out.println("userId=="+userId);
 		System.out.println("password=="+password);
 //		password = MD5.MD5Convert(password);
@@ -75,6 +75,9 @@ public class LoginHandler extends HttpServlet {
 		if (loginok) {           //登录成功！！
 			System.out.println("登录成功！！！");
 			session.setAttribute("user", user);
+//			暂时可以先这样，其实这里可以使用在主页的jsp写判断逻辑！或者在
+			/*RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/MyMainJsp.jsp");
+			dispatcher.forward(request, response);*/
 			response.sendRedirect("MyMainJsp.jsp");
 		}else {					//登录失败！！
 			System.out.println("登录失败！！！");

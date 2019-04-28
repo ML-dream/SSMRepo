@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div type="indexcolumn"></div>
            <!--  <div type="checkcolumn"></div> -->
            
-            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" >预约编号
+            <div name="unid"  field="unid" headerAlign="center"  allowSort="true" width="150" align="center" headerAlign="center">预约编号
                 <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
             </div>
             
@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>            
         
                               
-            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd">日期
+            <div name="timeYmd" field="timeYmd" width="100"  dateFormat="yyyy-MM-dd" align="center" headerAlign="center">日期
                 <input property="editor" class="mini-datepicker" style="width:100%;"/>
             </div>  
 <!--             <div name="orderId" field="orderId" width="100"  >订单号

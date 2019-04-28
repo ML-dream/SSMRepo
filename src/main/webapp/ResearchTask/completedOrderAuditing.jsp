@@ -10,6 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>待处理外协单</title>
+    
+    	<!--这个我自己写好的关于订单的状态的js  -->
+	<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -85,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </br></br>
     <div id="grid1" class="mini-datagrid" style="width:100%;height:85%;"
          borderStyle="border:0;" multiSelect="true"  idField="id" showSummaryRow="true" allowAlternating="true" showPager="true"
-         url="AuditingBookingOrder1.action" allowCellSelect="true" allowCellEdit="true">
+         url="AuditingCompletedOrder.action" allowCellSelect="true" allowCellEdit="true">
         <div property="columns">
             <div type="indexcolumn" width="20"></div>
             <div name="action" width="10" headerAlign="center" align="center" renderer="onOperatePower"
@@ -213,8 +216,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	mini.get(para).setValue("");
 	    	mini.get(para).setText("");
 	    }
-        
-        var bookGenders=[{id: "11", text: "新建订单待预约"},{id: "12", text: "预约待审核"},{id: "13", text: "预约审核通过"},{id: "14", text: "预约审核不通过"},{id: "15", text: "上报完成"},{id: "16", text: "订单完结"}]
+        var bookGenders=[{id: "11", text: "新建订单待预约"},
+			{id: "12", text: "预约待审核"},
+			{id: "12.5", text: "预约审核中"},
+			{id: "13", text: "预约审核通过"},
+			{id: "14", text: "预约审核不通过"},
+			{id: "15", text: "上报完成待完工审核"},
+			{id: "16", text: "订单完结"}];
        function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];

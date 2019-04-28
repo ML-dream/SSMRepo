@@ -103,9 +103,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	    <td class="labelTd"><label for="bookStatusName$text">订单状态</label></td>
             <td><input id="bookStatusName"  name="bookStatusName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value=""  borderStyle="border:0"/>
             
-       		 <td class="labelTd"><label for="staffName$text"></label>预约审核人</td>
+       	<!-- 	 <td class="labelTd"><label for="staffName$text"></label>预约审核人</td>
             <td><input id="staffName"  name="staffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
-    	    </td>
+    	    </td> -->
     	    
             <td class="labelTd"><label for="completedStaffName$text"></label>完工审核人</td>
             <td><input id="completedStaffName"  name="completedStaffName" class="mini-textbox" style="width:100%;"    enabled="false" readonly="readonly" value="" />
@@ -113,13 +113,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <td colspan="4">
              </td>
     	     </tr>
-   		<tr height="60px;">
+<!--    		<tr height="60px;">
    			<td class="labelTd"><label for="checkAdvice$text">预约审核意见</label></td>
 	        <td colspan="5"><input id="checkAdvice" name="checkAdvice" class="mini-textarea" emptyText="无" readonly="readonly" style="height:100%;width:100%" borderStyle="border:0"/></td>
-       </tr>
+       </tr> -->
        <tr height="60px;">
    			<td class="labelTd"><label for="completedAdvice$text">完工审核审核意见</label></td>
-	        <td colspan="5"><input id="completedAdvice" name="completedAdvice" class="mini-textarea" emptyText="请输入审核意见" style="height:100%;width:100%" borderStyle="border:0"/></td>
+	        <td colspan="5"><input id="completedAdvice" name="completedAdvice" class="mini-textarea" emptyText="无" style="height:100%;width:100%" borderStyle="border:0" readonly="readonly"/></td>
        </tr>
    	</table>
    	

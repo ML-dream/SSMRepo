@@ -13,11 +13,18 @@ public class BookOrderMachine {
 	private String isPass;
 	private String isPassAdvice;
 	private String auditPerson;
+	private String staffName;
 	
 	
 	
 	
 	
+	public String getStaffName() {
+		return staffName;
+	}
+	public void setStaff_name(String staffName) {
+		this.staffName = staffName;
+	}
 	public String getAuditPerson() {
 		return auditPerson;
 	}

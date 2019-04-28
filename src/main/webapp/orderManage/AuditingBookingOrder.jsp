@@ -145,10 +145,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		function ondMenu(orderId,companyName,connectorTel,deptUser,bookStatus,createTime,connector){
 			
-
+			
+			var bookStatus = onGender(bookStatus);
 			//var createTime=document.getElementById("createTime");
 	    	window.location="orderManage/AuditingBookingOrderDetail.jsp?orderId="+orderId+"&companyName="+companyName+"&connector="+connector+"&connectorTel="+connectorTel+"&deptUser="+deptUser+"&bookStatus="+bookStatus+"&createTime="+createTime;
 		}
+		
+		
+		function onGender(value) {
+            for (var i = 0, l = bookGenders.length; i < l; i++) {
+                var g = bookGenders[i];
+                if (g.id == value) return g.text;
+            }
+            return "";
+        }
         function onButtonEdit(e) {
             var btnEdit = this;
             mini.open({

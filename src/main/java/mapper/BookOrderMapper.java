@@ -190,5 +190,12 @@ public interface BookOrderMapper {
 	 */
 	public void updateOrderStatus(@Param("orderId") String orderId,@Param("bookStatus") String string);
 
+
+	/**
+	 * @param bookStatus
+	 * @return
+	 */
+	public List<Order> selectCompletedBookOrderList(String bookStatus);
+
 		
 }

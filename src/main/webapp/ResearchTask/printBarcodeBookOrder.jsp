@@ -12,6 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="<%=path %>/resources/scripts/boot.js"></script>
 		<script type="text/javascript" src="<%=path %>/resources/scripts/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=path %>/qualitycheck/barcode/jquery-barcode.js"></script>
+		
+			<!--这个我自己写好的关于订单的状态的js  -->
+		<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
 		 <!-- miniui.js 
 		<script type="text/javascript" src="<%=path %>/o_js/jquery.min.js"></script>	-->
 <%-- 		<script type="text/javascript" src="<%=path %>/o_js/miniui/miniui.js"></script>
@@ -82,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         editNextOnEnterKey="true"  editNextRowCell="true" onselect="rowselect()" onrowclick="rowselect()"
         
     > -->
-	   	 <div id="datagrid1" class="mini-datagrid" style="width:960px;height:1080px;border:1px solid" allowResize="true" 
+	   	 <div id="datagrid1" class="mini-datagrid" style="width:1000px;height:1080px;border:1px solid" allowResize="true" 
 	        url="LoadPrintBookOrder.action"  idField="id" multiSelect="true" pagesize="25" onselect="rowselect()" onrowclick="rowselect()" allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
         editNextOnEnterKey="true"  editNextRowCell="true" onselect="rowselect()" onrowclick="rowselect()">
 	        <div property="columns"> 
@@ -90,13 +93,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <!--零件条形码 ，不可见 -->    
 	           <!--  <div type="indexcolumn"></div><div type="checkcolumn" ></div>   --> 
 
-	            <div field="unid" width="40" headerAlign="center" allowSort="true" cellStyle="height:40px;font-size:24px;">预约编号</div>    
-	            <div field="machineName" width="60" headerAlign="center" allowSort="false" cellStyle="height:40px;font-size:24px;">设备名称</div> 
-	            <div field="timeYmd" width="60" headerAlign="center" allowSort="false">预约日期</div>   
+	            <div field="unid" width="100" headerAlign="center" allowSort="true" cellStyle="height:40px;font-size:24px;">预约编号</div>    
+	            <div field="machineName" width="120" headerAlign="center" allowSort="false" cellStyle="height:40px;font-size:24px;">设备名称</div> 
+	            <div field="timeYmd" width="65" headerAlign="center" allowSort="false">预约日期</div>   
 	            <div field="startTimeInfo" width="60" headerAlign="center" allowSort="false">开始时刻</div>   
 	            <div field="endTimeInfo" width="60" headerAlign="center" allowSort="false">结束时刻</div>   
+	            <div field="isPass" width="100" headerAlign="center"  align="center" headerAlign="center" >预约审核是否通过</div>
+            	 <div field="isPassAdvice" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核意见</div>
+            	 <div field="auditPerson" width="120" headerAlign="center"  align="center" headerAlign="center" >审核人</div>
 	            <div type="checkboxcolumn" field="married" trueValue="1" falseValue="0" width="60" headerAlign="center">确认使用</div>                        
 	            <!-- 
+	            
 	            <div header="任务" headerAlign="center">
 	                <div property="columns">
 	                    <div field="num" width="60"  headerAlign="center">计划数量</div>

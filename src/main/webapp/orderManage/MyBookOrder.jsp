@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div field="endTimeInfo" width="100"  align="center" headerAlign="center">结束时间</div>
              <div field="isPass" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核是否通过</div>
              <div field="isPassAdvice" width="120" headerAlign="center"  align="center" headerAlign="center" >预约审核意见</div>
-             <div field="auditPerson" width="120" headerAlign="center"  align="center" headerAlign="center" >审核人</div>
+             <div field="staffName" width="120" headerAlign="center"  align="center" headerAlign="center" >审核人</div>
             <div field="option" width="100" headerAlign="center"  align="center" renderer="onOperatePower" >操作</div>                
         
     </div>      

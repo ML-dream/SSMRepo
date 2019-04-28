@@ -43,7 +43,22 @@ public class LoadMainMenu extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-	    String userId = ((User)session.getAttribute("user")).getUserId();
+		String userId = null;
+		try {
+	        userId = ((User)session.getAttribute("user")).getUserId();
+	    	}catch (Exception e) {
+	    		if(userId==null||userId.equals("")) {
+	    			response.setContentType("text/html;charset=utf-8");
+	    			String json = "{\"result\":\""+"当前登陆用户信息失效，请重新登陆"+"!\"}";
+	    			System.out.println(json);
+	    			response.setCharacterEncoding("UTF-8");
+	    			response.getWriter().append(json).flush();
+	    			response.setContentType("text/html");
+	    			return;
+	    		}
+	    	}
+	    
+		
 	    String para =  ((User)session.getAttribute("user")).getStaffCode();	//当前用户
 	    String sqla ="select c.pageid id,c.text,c.pid,c.pagelevel,c.iconcls iconCls,c.pageurl url from listtree c where c.pagelevel ='1' order by c.pageid" ; 
 	    		

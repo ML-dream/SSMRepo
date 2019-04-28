@@ -95,14 +95,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div field="createTime" width="60" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center" >创建时间
             </div>
-            <div field="completedAdvice" width="50" headerAlign="center" align="center" >完工审核意见
-            </div>
+           <!--  <div field="completedAdvice" width="50" headerAlign="center" align="center" >完工审核意见
+            </div> -->
             <div field="bookStatus" width="60" headalign="center"  renderer="onGenderRenderer">状态
               
             </div>
         </div>
     </div>
-    
+    	<!--这个我自己写好的关于订单的状态的js  -->
+	<script type='text/javascript' src="<%=basePath%>resources/myJs/bookStatusJs.js"></script>
     <script type="text/javascript">
     	mini.parse();
 	    var grid = mini.get("grid1");
@@ -200,7 +201,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	mini.get(para).setText("");
 	    }
         
-        var bookGenders=[{id: "11", text: "新建"},{id: "12", text: "待审核"},{id: "13", text: "审核通过"},{id: "14", text: "审核不通过"},{id: "15", text: "加工完成"},{id: "16", text: "订单完结"}]
         function onGenderRenderer(e) {
             for (var i = 0, l = bookGenders.length; i < l; i++) {
                 var g = bookGenders[i];

@@ -192,6 +192,22 @@ public class OrderController {
 		
 		
 	}
+	@RequestMapping(value="AuditingCompletedOrder.action",produces = "text/html;charset=UTF-8") 
+	@ResponseBody 
+	public String AuditingCompletedOrder(Model model,String pageIndex,String pageSize,String sortField,String sortOrder,String bookStatus){ 
+		
+
+		
+		
+		int pageNo = Integer.parseInt(pageIndex)+1;
+		int countPerPage = Integer.parseInt(pageSize);
+		
+		String json  = orderServiceImpl.AuditingCompletedOrderService(pageNo, countPerPage,sortField,sortOrder,bookStatus);
+		System.out.println(json);
+		return json;//转向首页
+		
+		
+	}
     /*
      * 这主要是针对的是预约点进去之后的，然后进行各种审核的界面，比如审核通过还是不通过！【这个暂时不管用了，因为，我都把逻辑进行了替换！！！！】
      */

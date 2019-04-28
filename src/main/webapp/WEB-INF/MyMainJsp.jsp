@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	var data = mini.decode(text);
                 if(data.result=="当前登陆用户信息失效，请重新登陆!"){
                 	alert("当前登陆用户信息失效，请重新登陆!");
-                	window.location.href="login.jsp";
+                	window.location.href="ToLogOut.jsp";
                 }else{
             	
                 menu.loadData(data);
@@ -123,6 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         })
 
+        
         //toggle
         $("#toggle, .sidebar-toggle").click(function () {
             $('body').toggleClass('compact');

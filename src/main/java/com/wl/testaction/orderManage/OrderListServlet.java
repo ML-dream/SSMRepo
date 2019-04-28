@@ -53,7 +53,7 @@ public class OrderListServlet extends HttpServlet {
 		String userId = ((User)session.getAttribute("user")).getUserId();
 		String staffCode =  ((User)session.getAttribute("user")).getStaffCode();
 		
-	    String totalCountSql = "select count(*) from orders B left join customer C on B.CUSTOMER=C.COMPANYID  where  book_status>0 and order_id like '%"+orderId+"%' and companyName like '%"+customer+"%'";
+	    String totalCountSql = "select count(*) from orders B left join customer C on B.CUSTOMER=C.COMPANYID  where  book_status=11 and order_id like '%"+orderId+"%'  and b.createperson ='"+staffCode +"'  and companyName like '%"+customer+"%'";
 
 	    try {
 			totalCount=Sqlhelper.exeQueryCountNum(totalCountSql, null);
@@ -67,7 +67,7 @@ public class OrderListServlet extends HttpServlet {
 	    
 		
 	    String OrderSql= "select B.*,c.companyName,d.deptName " +
-	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_id like '%"+orderId+"%' and createperson ='"+staffCode +"' and book_status>0  order by createTime desc) " +
+	    	"from (select A.*,ROWNUM row_num from (select EM.* from orders EM where order_id like '%"+orderId+"%' and createperson ='"+staffCode +"' and book_status=11  order by createTime desc) " +
 	    	"A where ROWNUM<="+(countPerPage*pageNo)+" order by createTime desc) B " +
 	    	"left join customer C on B.CUSTOMER=C.COMPANYID " +
 	    	"left join dept D on B.DEPT_USER=D.deptid " +

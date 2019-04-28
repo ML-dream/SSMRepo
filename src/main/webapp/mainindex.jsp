@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			function onItemSelect(e) {
 	            var item = e.item;
 	            var isLeaf = e.isLeaf;
-				showTab(item);
+				showTab1(item);
 	        }
 			
 			function showTab(node) {
@@ -135,14 +135,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            tabs.updateTab(tab);                            //这里是判断标签是否已经存在，如果存在则刷新此标签
 		        }
 				tabs.activeTab(tab);
+				
 			} 
 		
+			function showTab1(node) {
+				var tabs = mini.get("mainTabs");
+		
+				var id = "tab$" + node.id;
+				var tab = tabs.getTab(id);
+				
+					tab = {};
+					tab._nodeid = node.id;
+					tab.name = id;
+					tab.title = node.text;
+					tab.showCloseButton = true;
+					//这里拼接了url，实际项目，应该从后台直接获得完整的url地址
+					//tab.url = mini_JSPath + "../../docs/api/" + node.url;
+					tab.url = node.url;
+					tabs.addTab(tab);
+				                        //这里是判断标签是否已经存在，如果存在则刷新此标签
+					tabs.activeTab(tab);
+				
+			} 
+			
+			
 			function onNodeSelect(e) {
 				var node = e.node;
 				var isLeaf = e.isLeaf;
 		
 				if (isLeaf) {
-					showTab(node);
+					showTab1(node);
 				}
 			}
 
@@ -151,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        var isLeaf = e.isLeaf;//判断是否是子叶点
 
 		        if (isLeaf) {
-		            showTab(item);
+		            showTab1(item);
 		        } 
 			}
 		

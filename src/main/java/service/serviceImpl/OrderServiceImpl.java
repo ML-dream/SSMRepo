@@ -846,6 +846,28 @@ public class OrderServiceImpl implements OrderService  {
 			
 			
 		}
+		/**
+		 * @param bookStatus 
+		 * @param sortOrder 
+		 * @param sortField 
+		 * @param pageSize 
+		 * @param pageNo 
+		 * @param int pageSize 
+		 * @param pageNo 
+		 * @param bookStatus
+		 * @param bookStatus2 
+		 * @param sortOrder 
+		 * @return
+		 * 此处是显示需要完工审核的订单的！
+		 */
+		public String AuditingCompletedOrderService(int pageNo, int pageSize, String sortField, String sortOrder, String bookStatus) {
+			
+			String orderBy="e.createTime";
+			PageHelper.startPage(pageNo,pageSize,orderBy);
+			List<Order> list = bookOrdeMapper.selectCompletedBookOrderList(bookStatus);
+			String json = DaiUtils.returnMiniUiJson(list);
+			return json;
+		}
 
 
 
