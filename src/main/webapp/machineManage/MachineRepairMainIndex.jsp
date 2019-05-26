@@ -23,11 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body style="height: 95%;">
 		<div id="tabs1" class="mini-tabs" activeIndex="1" style="width:100%;height:100%;" plain="false"
 		    buttons="#tabsButtons" refreshOnClick="true">
-		    <div title="新增设备" iconCls="icon-add" showCloseButton="false" url="machineManage/addMachine.jsp"></div>
-		    <div title="设备信息"  iconCls="icon-node" showCloseButton="false" url="machineManage/MachineList.jsp"></div>
+		    <div title="新增维修记录" iconCls="icon-add" showCloseButton="false" url="machineManage/addMachineRepairToo.jsp"></div>
+		    
 		    <div title="设备维修记录" iconCls="icon-tools" showCloseButton="false" url="machineManage/MachineRepairList.jsp"></div>
-		   <!--  <div title="设备租借记录" iconCls="icon-node" showCloseButton="false" url="machineManage/MachineHireList.jsp"></div>
-		    <div title="已报废设备" iconCls="icon-node" showCloseButton="false" url="machineManage/MachineDiscardList.jsp"></div> -->
+
 		</div>
 		<script>
 			mini.parse();

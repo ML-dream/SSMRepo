@@ -32,7 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <div>dsdsadasd</div>
 
     <div id="grid1" class="mini-datagrid" style="width:100%;height:95%;"
          borderStyle="border:0;" multiSelect="true"  idField="id" showSummaryRow="true" allowAlternating="true" showPager="true"
@@ -68,12 +67,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "<span>";
 	        str += "<a style='margin-right:2px;' title='维修' href=javascript:onRepair(\'" + e.row.machineId+"\',\'"+e.row.machineName+"\') ><span class='icon-unlock' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
-	        str += "<span>";
+	        /*str += "<span>";
 	        str += "<a style='margin-right:2px;' title='报废' href=javascript:onDiscard(\'" + e.row.machineId+"\') ><span class='icon-no' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
 	        str += "<a style='margin-right:2px;' title='租赁' href=javascript:onHire(\'" + e.row.machineId+"\') ><span class='icon-user' style='width:30px;height:20px;display:inline-block'></span></a>";
-	        str += "</span>";
+	        str += "</span>"; */
 	        return str;
 	    }
 	    

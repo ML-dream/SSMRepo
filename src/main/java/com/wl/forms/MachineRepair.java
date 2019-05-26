@@ -17,7 +17,10 @@ public class MachineRepair implements Serializable{
 
 	private static final long serialVersionUID = -6688176650119485889L;
 	private String machineId;
+	private String machine;
 	private String repairPart;
+	private String startDate;
+	private String endDate;
 	private String errorDate;
 	private String repairDate;
 	private String repairFactory;
@@ -28,6 +31,21 @@ public class MachineRepair implements Serializable{
 	private String machineName;
 	private String staffName;
 	
+	
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public String getMachineName() {
 		return machineName;
 	}

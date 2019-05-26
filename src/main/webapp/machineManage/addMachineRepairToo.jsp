@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   			<td><label for="machineId$text">设备编号</label></td>
 	            <td><input id="machineId"  name="machineId" class="mini-textbox" width="100%"  required="true" enabled="false"/></td>
 	            <td><label for="machineName$text">设备名称</label></td>
-	            <td><input id="machineName"  name="machineName" class="mini-textbox" width="100%"  required="true" enabled="false"/></td>
+	            <td><input id="machineName" name="machineName" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditMachine" allowInput="false" required="true"/></td>
 	            <td><label for="principal$text">报修负责人</label></td>
 		        <td><input id="principal" name="principal" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true"/></td>
 <!--	   			<td><label for="repairPart$text">维修部位</label></td>-->
@@ -81,8 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }else{
             	var data = form.getData();
             	data.machineId=mini.get("machineId").getValue();
-            	data.errorDate = mini.get("errorDate").getFormValue();
-            	data.repairDate = mini.get("repairDate").getFormValue();
+            	data.startDate = mini.get("startDate").getValue();
+            	data.endDate = mini.get("endDate").getValue();
                 var params = eval("("+mini.encode(data)+")");
                 var url = 'AddMachineRepairServlet';
    		        jQuery.post(url, params, function(data){
@@ -96,6 +96,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	   		        },'json');
             }
    		}
+   		
+   		
+   		function onButtonEditMachine(e) {
+	         var btnEdit = this;
+	         mini.open({
+	             url: "machineManage/selectMachineWindow.jsp",
+	             title: "选择列表",
+	             width: 650,
+	             height: 380,
+	             ondestroy: function (action) {
+	                 //if (action == "close") return false;
+	                 if (action == "ok") {
+	                     var iframe = this.getIFrameEl();
+	                     var data = iframe.contentWindow.GetData();
+	                     data = mini.clone(data);    //必须
+	                     if (data) {
+	                         btnEdit.setValue(data.machineName);
+	                         btnEdit.setText(data.machineName);
+	                         
+	                         mini.get("machineId").setValue(data.machineId);
+	                     }
+	                 }
+	             }
+	         });
+	     }	
+   		
    		
    		function onButtonEditEmployee(e) {
             var btnEdit = this;
@@ -196,8 +222,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         var Request = new Object(); 
         Request = GetRequest(); */
-        mini.get("machineId").value = "<%=request.getParameter("machineId")%>";
-        mini.get("machineName").value="<%=request.getParameter("machineName")%>";
+       <%--  mini.get("machineId").value = "<%=request.getParameter("machineId")%>";
+        mini.get("machineName").value="<%=request.getParameter("machineName")%>"; --%>
         
    </script>
   </body>

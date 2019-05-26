@@ -27,7 +27,7 @@ public class testBookOrderInfo {
 	@Test
 	public void test01(){
 		
-		new OrderServiceImpl().returnShowOrderByMachineService("5501","550");
+		new OrderServiceImpl().returnShowOrderByMachineService("5501","550", null, null);
 		//	new OrderServiceImpl().returnBookMachByMachService("5501","550");
 	}
 	

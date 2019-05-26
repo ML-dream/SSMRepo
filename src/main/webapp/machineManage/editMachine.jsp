@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<a class="mini-button" iconCls="icon-save" plain="false"  onclick="getForm()">保存</a>
   		<span class="separator"></span>
 	    <a class="mini-button" plain="false" iconCls="icon-undo" onclick="javascript:window.history.back(-1);">返回</a>
-	    <span class="separator"></span>
-   		<a class="mini-button" iconCls="icon-remove" plain="false"  onclick="onDiscard()">设备报废</a>
+<!-- 	    <span class="separator"></span>
+   		<a class="mini-button" iconCls="icon-remove" plain="false"  onclick="onDiscard()">设备报废</a> -->
 	    <span class="separator"></span>
 	    <a class="mini-button" iconCls="icon-cut" plain="false"  onclick="onRepair()">设备维修</a>
 	    <span class="separator"></span>
@@ -145,7 +145,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		
    		function onRepair(){
    			var machineId = mini.get("machineId").value;
-   			window.location.href = "machineManage/addMachineRepair.jsp?machineId="+machineId;
+   			var machineName = mini.get("machineName").value;
+   			window.location.href = "machineManage/addMachineRepair.jsp?machineId="+machineId+"&machineName="+machineName;
    		}
 
    	    function callbackFun(data)

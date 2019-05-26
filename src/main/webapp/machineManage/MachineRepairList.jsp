@@ -39,11 +39,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div type="indexcolumn"></div>
             <div name="action" width="50" headerAlign="center" align="center" renderer="onOperatePower"cellStyle="padding:0;">操作</div>
             <div field="machineId" width="100" headerAlign="center">设备编号</div>
-            <div field="repairPart" width="100" headerAlign="center">维修部位</div>
-            <div field="repairFactory" width="100" headerAlign="center">维修厂家</div>
-            <div field="errorDate" width="100" headerAlign="center"  dateFormat="yyyy-MM-dd">故障时间</div>
-            <div field="repairDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd">维修时间</div>
-            <div field="repairPrice" width="100" headerAlign="center">维修费用</div>
+            <div field="machineName" width="100" headerAlign="center">设备名称</div>
+            
+            <div field="startDate" width="100" headerAlign="center"  dateFormat="yyyy-MM-dd">故障开始时间</div>
+            <div field="endDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd">故障结束时间</div>
+           
             <div field="staffName" width="100" headerAlign="center">保修负责人</div>
         </div>
     </div>

@@ -33,7 +33,7 @@
         <property name="maxIdle" value="5" />  
     </bean>  
   
-    <!-- sqlSessinFactory -->  
+    <!-- sqlSessinFactory,主要作用是可以通过spring的单例模式进行管理 -->  
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <!-- 加载mybatis的配置文件 -->  
         <property name="configLocation" value="classpath:SqlMapConfig.xml" />  

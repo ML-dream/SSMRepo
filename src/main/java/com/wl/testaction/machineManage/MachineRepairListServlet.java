@@ -23,7 +23,7 @@ public class MachineRepairListServlet extends HttpServlet {
 		int pageNo=0;
 	    int countPerPage=10;
 	    int totalCount = 0;
-	    String orderStr = "machineId";
+	    String orderStr = "createtime";
 	    orderStr = StringUtil.isNullOrEmpty(request.getParameter("sortField"))?orderStr:request.getParameter("sortField");
 	    pageNo = Integer.parseInt(request.getParameter("pageIndex"))+1;
 	    countPerPage = Integer.parseInt(request.getParameter("pageSize"));
@@ -38,9 +38,10 @@ public class MachineRepairListServlet extends HttpServlet {
 		
 	    String CustomerSql= "";
 	    CustomerSql = 
-	    	"select machineId,repairPart,repairFactory,errorDate,repairDate,repairPrice,principal,repairDetail,E.staff_name staffName " +
+	    	"select B.*,E.staff_name staffName,F.machineName " +
 	    	"from (select A.*,ROWNUM row_num from (select EM.* from machineRepair EM order by "+orderStr+" asc) A where ROWNUM<="+(countPerPage*pageNo)+"  order by "+orderStr+") B " +
 	    	"left join employee_info E ON E.staff_code=B.principal " +
+	    	"left join machinfo F ON F.machineID=B.machineID " +
 	    	"where row_num>="+((pageNo-1)*countPerPage+1)+" order by "+orderStr;
 	    
 	    List<MachineRepair> customerList = new ArrayList<MachineRepair>();

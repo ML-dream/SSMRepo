@@ -2,6 +2,7 @@ package machineOrderYuyue.yuYue;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -156,10 +157,32 @@ public class load extends HttpServlet {
 	        
 			machineBean.setMachineId(machineId);
 	        machineBean.setCreateTime(df.format(calendar2.getTime()));//后续再加上，不过这个没什么用
-	        machineBean.setDescription("暂时没有任何说明");
+	       
 	        machineBean.setIsDeleted(0);
 	        machineBean.setMachineName(machineNames.get(i));
 	        machineBean.setSequence(i+1);
+	        
+//	      	开始判断当前设备在当前日期是否维修中！！！
+//	        查询当前的时间的的哪个设备在维修中！根据日期进行查询把！！！
+//	        修改状态。修改描述
+	        String isRepair ="select count(*) from machineRepair  a  where a.machineId=? and a.startDate<? and a.endDate>? ";
+	        String []  isRepairParam= {String.valueOf(machineId),date,date};
+	        int isRepairNum = 0;
+	        try {
+				isRepairNum = Sqlhelper.exeQueryCountNum(isRepair, isRepairParam);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+//	      
+	        if(isRepairNum>0)  {
+	        	machineBean.setState(2);
+	        	 machineBean.setDescription("设备维护中");
+	        }else {
+	        	machineBean.setState(1);
+	        	 machineBean.setDescription("状态正常");
+	        }
+	        
 	        machineBean.setState(1);//应该没什么用！！！！也可以有用，，前面进行判断，然后锁住所有的！
 	        String deptMachineYearNo = machineId+"-"+date+"-";
 	        machineBean.setDeptMachineYearNo(deptMachineYearNo);
