@@ -45,6 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div field="endDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd">故障结束时间</div>
            
             <div field="staffName" width="100" headerAlign="center">保修负责人</div>
+            <div field="repairState" width="100" headerAlign="center">是否有效</div>
+            <div field="mainId" width="100" headerAlign="center">记录编号</div>
         </div>
     </div>
     
@@ -56,18 +58,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function onOperatePower(e) {
 	        var str = "";
 	        str += "<span>";
-	        str = "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.machineId+"\') ><span class='mini-button-text mini-button-icon icon-edit'>&nbsp;</span></a>";
+	        str += "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.mainId+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "<span>";
+	        str += "<a style='margin-right:2px;' title='撤消' href=javascript:ondRemove(\'" + e.row.mainId+"\') ><span class='icon-remove' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        //alert(e.row.staffCode);
 	        return str;
 	    }
 	    
-	    function ondEdit(machineId){
+	    
+	    function ondEdit(mainId){
 	        //window.open("EditCustomerDetailServlet?companyId=" + companyId+"&connector="+connector,
 	        //        "editwindow","top=50,left=100,width=950px,height=400px,status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=yes");
-			window.location.href = "MachineRepairSpecServlet?machineId="+machineId;
+			window.location.href = "MachineRepairSpecServlet?mainId="+mainId;
 		}
-
+	    function ondRemove(mainId){
+		//	window.location.href = "MachineRepairSpecServlet?mainId="+mainId+"&flag=2";
+		 var url = 'updateRepairServlet';	
+		jQuery.post(url, {mainId:mainId}, function(data){
+	   		  		mini.confirm(data.result, "确定？",
+	                 function (action){            
+	                     if (action == "ok") {
+	                    	window.location.href = window.location.href;	
+	                     }
+	                 }
+	             );
+	   		        },'json');
+		}
+	
+	   
 	    var Genders = [{ id: 'M', text: '男' }, { id: 'W', text: '女'}];
         function onGenderRenderer(e) {
             for (var i = 0, l = Genders.length; i < l; i++) {

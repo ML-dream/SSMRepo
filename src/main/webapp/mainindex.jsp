@@ -103,17 +103,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script type="text/javascript">
 			mini.parse();//获得html的控件对象
-			var tree = mini.get("leftTree");//得到lefttree的对象
 			
 			function onItemSelect(e) {
 	            var item = e.item;
 	            var isLeaf = e.isLeaf;
-				showTab1(item);
+				showTab(item);
 	        }
 			
 			function showTab(node) {
 				var tabs = mini.get("mainTabs");
-		
+				
 				var id = "tab$" + node.id;
 				var tab = tabs.getTab(id);
 				if (!tab) {
@@ -130,41 +129,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            tab.title = node.text;
 		            tab.url = node.url;
 		            tab.showCloseButton = true;
-		            tab.refreshOnClick = false;						//再次加载点击标签页不再刷新
+		            tab.refreshOnClick = true;						//再次加载点击标签页不再刷新
 		            tabs.reloadTab(tab);
 		            tabs.updateTab(tab);                            //这里是判断标签是否已经存在，如果存在则刷新此标签
 		        }
 				tabs.activeTab(tab);
-				
 			} 
 		
-			function showTab1(node) {
-				var tabs = mini.get("mainTabs");
-		
-				var id = "tab$" + node.id;
-				var tab = tabs.getTab(id);
-				
-					tab = {};
-					tab._nodeid = node.id;
-					tab.name = id;
-					tab.title = node.text;
-					tab.showCloseButton = true;
-					//这里拼接了url，实际项目，应该从后台直接获得完整的url地址
-					//tab.url = mini_JSPath + "../../docs/api/" + node.url;
-					tab.url = node.url;
-					tabs.addTab(tab);
-				                        //这里是判断标签是否已经存在，如果存在则刷新此标签
-					tabs.activeTab(tab);
-				
-			} 
-			
-			
 			function onNodeSelect(e) {
 				var node = e.node;
 				var isLeaf = e.isLeaf;
 		
 				if (isLeaf) {
-					showTab1(node);
+					showTab(node);
 				}
 			}
 
@@ -173,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        var isLeaf = e.isLeaf;//判断是否是子叶点
 
 		        if (isLeaf) {
-		            showTab1(item);
+		            showTab(item);
 		        } 
 			}
 		

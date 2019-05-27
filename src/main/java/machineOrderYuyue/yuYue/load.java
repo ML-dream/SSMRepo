@@ -177,13 +177,13 @@ public class load extends HttpServlet {
 //	      
 	        if(isRepairNum>0)  {
 	        	machineBean.setState(2);
-	        	 machineBean.setDescription("设备维护中");
+	        	 machineBean.setDescription("设备异常");
 	        }else {
 	        	machineBean.setState(1);
 	        	 machineBean.setDescription("状态正常");
 	        }
 	        
-	        machineBean.setState(1);//应该没什么用！！！！也可以有用，，前面进行判断，然后锁住所有的！
+	       // machineBean.setState(1);//应该没什么用！！！！也可以有用，，前面进行判断，然后锁住所有的！
 	        String deptMachineYearNo = machineId+"-"+date+"-";
 	        machineBean.setDeptMachineYearNo(deptMachineYearNo);
 			

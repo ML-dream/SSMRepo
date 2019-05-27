@@ -455,7 +455,7 @@ div.num input[type="button"] {
 }
 /*预订样式*/
 .selectYuding{
-    background-color: #4c9cff;
+    background-color: rgba(30,144,255,0.3);
 
 }
 /*锁场样式*/

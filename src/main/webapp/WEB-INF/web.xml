@@ -6906,6 +6906,12 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>updateRepairServlet</servlet-name>
+    <servlet-class>com.wl.testaction.machineManage.updateRepairServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>load</servlet-name>
     <servlet-class>machineOrderYuyue.yuYue.load</servlet-class>
   </servlet>
@@ -6928,6 +6934,10 @@
   <servlet-mapping>
     <servlet-name>load</servlet-name>
     <url-pattern>/load</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateRepairServlet</servlet-name>
+    <url-pattern>/updateRepairServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>bookingSubmit</servlet-name>

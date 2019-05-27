@@ -106,7 +106,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    margin: 0px;
 		}
 		.selectCurrentYuding {
-   			 background-color: #ffdd4c;
+   			 background-color: rgba(255,255,0,0.5);
+   			
+		}
+		.blockedPart {
+   			 background-color:  rgba(150,205,205,0.2); 
 		}
 		
 		.spanTextClass {
@@ -404,12 +408,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <form id="form0">
 	    <table >
 	   		<tr>
-	   		  <td><span>设置:</span></td>
+	   		  <td><span></span></td>
 	   		  <td><span>&nbsp;</span></td>
-	          <td>开始</td>
+	          <td></td>
 	          <td><input id="bday" class="mini-datepicker" width="100"  allowinput="false"  format="yyyy-MM-dd" required="true"/>
 	          </td>
-	          <td>结束</td>
+	          
+	          <td><span>至</span></td>
 	          <td><input id="eday" class="mini-datepicker"  width="100" allowinput="false"  format="yyyy-MM-dd" required="true"/>
 	          </td>
 	          <td><span>&nbsp;</span></td>
@@ -507,8 +512,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																						     data-bookingUserName="{{session.bookingUserName}}"
                                                                                         	 data-orderId="{{session.orderId}}"
                                                                                              data-connectorTel="{{session.connectorTel}}"
+																							data-description="{{machine.description}}"
 																						     data-orderName="{{session.orderName}}">
-																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+																						  	 
+																						  	<font face="arial" color="white">{{session.bookingUserName}}</font> <br />
+																						  	 <font face="arial" color="black">{{machine.description}}</font>
                                                                                         
                                                                                        
                                                                                     	</span>
@@ -544,8 +552,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																						     data-bookingUserName="{{session.bookingUserName}}"
                                                                                         	 data-orderId="{{session.orderId}}"
                                                                                              data-connectorTel="{{session.connectorTel}}"
+																						     data-orderName="{{session.orderName}}"
+																							data-description="{{machine.description}}">
+																						  	 <font face="arial" color="black">{{session.bookingUserName}}</font> <br />
+																						  	
+																							<font face="arial" color="black">{{machine.description}}</font>
+                                                                                        
+                                                                                       
+                                                                                    	</span>
+                                                                             
+                                                                            	</div>
+
+																				{{else if machine.state==2 }}
+					
+																				 <div data-sid="{{machine.machineId+"-"+content.selectedDate+"-"+session.timeHm}}"
+                                                                                 data-venuesid="{{content.deptId}}"
+                                                                                 data-siteid="{{machine.machineId}}"
+                                                                                 data-starttime="{{session.startTime}}"
+                                                                                 data-endtime="{{session.endTime}}"
+                                                                                 data-venuesname="{{content.deptName}}"
+                                                                                 data-selecteddate="{{content.selectedDate}}"
+																				 data-timehm="{{session.timeHm}}"
+                                                                                 data-sitename="{{machine.machineName}}"
+                                                                                 data-price="{{machine.price}}"
+                                                                                 data-originalPrice="{{machine.price}}"
+                                                                                 style="color: white;font-size: 11px;"
+                                                                                 class="blockedPart">
+                                                                                
+                                                                                       <span
+                                                                                    		 class="spanTextClass"
+																						     data-bookingUserName="{{session.bookingUserName}}"
+                                                                                        	 data-orderId="{{session.orderId}}"
+                                                                                             data-connectorTel="{{session.connectorTel}}"
+																								data-description="{{machine.description}}"
 																						     data-orderName="{{session.orderName}}">
-																						  	 <strong>{{session.bookingUserName}} {{session.orderName}}</strong>
+																						  	 <br /> 
+																						  	 <font face="arial" color="black">{{machine.description}}</font>
+																						  	
+
                                                                                         
                                                                                        
                                                                                     	</span>
@@ -721,6 +765,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <p>联系电话：<span id="user-connectorTel"></span></p>
     <p>订单名称：<span id="user-orderName"></span></p>
     <p>订单：<span id="user-orderId"></span></p>
+    <p>设备状态：<span id="user-description"></span></p>
 </div>
 
 <div class="hover-locked"><!-- 鼠标右边的tips -->
@@ -1362,6 +1407,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $('#user-orderId').html($(span).data('orderid'));
                 $('#user-connectorTel').html($(span).data('connectortel'));
                 $('#user-orderName').html($(span).data('ordername'));
+                $('#user-description').html($(span).data('description'));
+            }
+            $('.hover-booking').show().css({
+                "top": e.pageY + 1,
+                "left": e.pageX + 10
+            });
+        }).mouseleave(function () {
+            $('.hover-booking').hide();
+        });
+        $('.blockebPart').mousemove(function (e) {
+            var span = $(this).find('span');
+            if (span != null) {
+                $('#user-bookingUserName').html($(span).data('bookingusername'));
+                $('#user-orderId').html($(span).data('orderid'));
+                $('#user-connectorTel').html($(span).data('connectortel'));
+                $('#user-orderName').html($(span).data('ordername'));
             }
             $('.hover-booking').show().css({
                 "top": e.pageY + 1,
@@ -1371,6 +1432,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $('.hover-booking').hide();
         });
 
+        
         $('.block-locked').mousemove(function (e) {
             var span = $(this).find('span');
             if (span != null) {

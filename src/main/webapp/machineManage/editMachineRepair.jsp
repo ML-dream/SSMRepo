@@ -36,22 +36,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <td><input id="machineId"  name="machineId" class="mini-textbox" width="100%"  required="true" enabled="false" value='${result.machineId}'/></td>
 	   			<td><label for="machineName$text">设备名称</label></td>
 	            <td><input id="machineName"  name="machineName" class="mini-textbox"  width="100%" required="true"  value='${result.machineName}'/></td>
-	            <td><label for="repairFactory$text">维修厂家</label></td>
-		        <td><input id="repairFactory"  name="repairFactory" class="mini-textbox" width="100%" required="true"  value='${result.repairFactory}'/></td>
+	            
 	       </tr>
 	       <tr>
-	       		<td><label for="errorDate$text">故障时间</label></td>
-	   			<td><input id="errorDate"  name="errorDate" class="mini-datepicker" width="100%" required="true" 
-	   					allowInput="false" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value='${result.errorDate}'/></td>
-	       		<td><label for="repairDate$text">维修时间</label></td>
-	            <td><input id="repairDate"  name="repairDate" class="mini-datepicker" width="100%" required="true"
-	            		 allowInput="false" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value='${result.repairDate}'/></td>
-	            <td><label for="repairPrice$text">维修费用</label></td>
-	            <td><input id="repairPrice"  name="repairPrice" class="mini-textbox" width="100%" required="true"  value='${result.repairPrice}'/></td>
+	       		<td><label for="startDate$text">故障开始时间</label></td>
+	   			<td><input id="startDate"  name="startDate" class="mini-datepicker" width="100%" required="true" 
+	   					allowInput="false" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value='${result.startDate}'/></td>
+	       		<td><label for="endDate$text">故障结束时间</label></td>
+	            <td><input id="endDate"  name="endDate" class="mini-datepicker" width="100%" required="true"
+	            		 allowInput="false" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value='${result.endDate}'/></td>
+	            
 			</tr>
 	   		<tr>
-	   			<td><label for="principal$text">报修负责人</label></td>
-		    	<td><input id="principal" name="principal" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true" text="${result.staffName}"  value="${result.principal}" }/></td>
+	   			<td><label for="staffName$text">报修负责人</label></td>
+		    	<td><input id="staffName" name="staffName" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true" text="${result.staffName}"  value="${result.principal}" }/></td>
 	        </tr>
 	   		<tr height="60px;">
 		   		<td><label for="repairDetail$text">故障说明</label></td>
@@ -196,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         var Request = new Object(); 
         Request = GetRequest();
-        mini.get("machineId").value = Request['machineId'];
+        /* mini.get("machineId").value = Request['machineId']; */
    </script>
   </body>
 </html>

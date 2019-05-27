@@ -17,6 +17,7 @@ public class MachineRepair implements Serializable{
 
 	private static final long serialVersionUID = -6688176650119485889L;
 	private String machineId;
+	private String mainId;
 	private String machine;
 	private String repairPart;
 	private String startDate;
@@ -30,10 +31,29 @@ public class MachineRepair implements Serializable{
 	private String memo;
 	private String machineName;
 	private String staffName;
+	private String repairState;
 	
 	
 	
 	
+	public String getRepairState() {
+		return repairState;
+	}
+	public void setRepairState(String repairState) {
+		this.repairState = repairState;
+	}
+	public String getMainId() {
+		return mainId;
+	}
+	public void setMainId(String mainId) {
+		this.mainId = mainId;
+	}
+	public String getMachine() {
+		return machine;
+	}
+	public void setMachine(String machine) {
+		this.machine = machine;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

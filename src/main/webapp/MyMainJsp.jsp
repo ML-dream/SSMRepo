@@ -84,14 +84,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 
+
     function activeTab(item) {
         var tabs = mini.get("mainTabs");
+        tabs.on("activechanged",function(e){
+            tabs.reloadTab(e.tab);
+        })
         var tab = tabs.getTab(item.id);
         if (!tab) {
             tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
             tab = tabs.addTab(tab);
         }
         tabs.activeTab(tab);
+        
     }
 
     $(function () {
@@ -104,7 +109,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             }
         });
+      /*   var tabs = mini.get("mainTabs");
+        tabs.on("activechanged",function(e){
+            tabs.reloadTab(e.tab);
+        }) */
 
+      /*   var tabs = mini.get("mainTabs");
+        tabs.on("activechanged",function(e){
+            tabs.reloadTab(e.tab);
+        }) */
+        
         $(".sidebar").mCustomScrollbar({ autoHideScrollbar: true });
 
         new MenuTip(menu);
@@ -139,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $(".dropdown").removeClass("open");
         });
     });
-    
+   
 
     function onClick1(){
     	window.location.href="sysUserManage/personalInfoManagement.jsp";

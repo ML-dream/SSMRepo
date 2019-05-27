@@ -32,7 +32,7 @@ public class AddMachineRepairServlet extends HttpServlet {
 		String startDate = request.getParameter("startDate").trim().substring(0,10);
 		String endDate = request.getParameter("endDate").trim().substring(0,10);
 //		String repairPrice = request.getParameter("repairPrice").trim();
-//		String principal = request.getParameter("principal").trim();
+		String principal = request.getParameter("principal").trim();
 		String repairDetail = request.getParameter("repairDetail");
 		String memo = request.getParameter("memo");
 		
@@ -51,15 +51,21 @@ public class AddMachineRepairServlet extends HttpServlet {
 		
 		String UUID = UUIDHexGenerator.getInstance().generate();
 		String sql = "insert into machineRepair " +
-				"(mainId,machineId,startDate,endDate,createtime,repairDetail,memo)" +
+				"(mainId,machineId,startDate,endDate,createtime,repairDetail,principal,memo)" +
 				"values('"+UUID+"','"+machineId+"','"+startDate+"','"+endDate+"'"+
-				",'"+createTime+"','"+repairDetail+"','"+memo+"') ";
+				",'"+createTime+"','"+repairDetail+"','"+principal+"','"+memo+"') ";
 		System.out.println("sql=="+sql);
 		try {
 			Sqlhelper.executeUpdate(sql, null);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			String json = "{\"result\":\"操作失败!\"}";
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append(json).flush();
 		}
+		String json = "{\"result\":\"操作成功!\"}";
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().append(json).flush();
 		
 /*		String updatesql = "insert into machineRepair " +
 				"(mainId,machineId,repairFactory,errorDate,repairDate,repairPrice,principal,repairDetail,memo)" +

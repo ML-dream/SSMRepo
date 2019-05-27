@@ -13,33 +13,34 @@ import com.wl.forms.Machine;
 import com.wl.forms.MachineRepair;
 import com.wl.tools.Sqlhelper;
 
-public class MachineRepairSpecServlet extends HttpServlet {
+public class updateRepairServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2493319358099243522L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 	    
-	    String mainId = request.getParameter("mainId");
+	    	String mainId = request.getParameter("mainId");
+			String	updateSql = "update MACHINEREPAIR t set t.repairState='否' where t.mainId='"+mainId+"'";
+			 
+//			String[] params = {mainId};
+		
+			String json = "{\"result\":\"操作成功!\"}";
+			try {
+				Sqlhelper.executeUpdate(updateSql, null);
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+				 json = "{\"result\":\"操作失败!\"}";
+				
+			}
+			
+			
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append(json).flush();
+			System.out.println(json);
 	
-		String	CustomerSql = 
-		    	"select A.*,C.machineName,B.staff_name staffName " +
-		    	"from machineRepair A " +
-		    	"left join employee_info B on A.principal=B.staff_Code " +
-		    	"left join machinfo C on A.machineId=C.machineId " +
-		    	"where A.mainId=?";
-		String[] params = {mainId};
-		MachineRepair result = new MachineRepair();
-		
-		try {
-			result = Sqlhelper.exeQueryBean(CustomerSql, params, MachineRepair.class);
-		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
-		
-		request.setAttribute("result", result);
-		
-		request.getRequestDispatcher("machineManage/editMachineRepair.jsp").forward(request, response);
-	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 		doGet(request,response);
