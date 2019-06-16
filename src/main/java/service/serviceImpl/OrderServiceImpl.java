@@ -534,7 +534,7 @@ public class OrderServiceImpl implements OrderService  {
 //		      	开始判断当前设备在当前日期是否维修中！！！
 //		        查询当前的时间的的哪个设备在维修中！根据日期进行查询把！！！
 //		        修改状态。修改描述
-		        String isRepair ="select count(*) from machineRepair  a  where a.machineId=? and a.startDate<? and a.endDate>? ";
+		        String isRepair ="select count(*) from machineRepair  a  where a.machineId=? and a.startDate<=? and a.endDate>=?  and a.repairState='是'";
 		        String []  isRepairParam= {String.valueOf(machineId),date,date};
 		        int isRepairNum = 0;
 		        try {

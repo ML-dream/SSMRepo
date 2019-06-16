@@ -20,19 +20,20 @@ public class EditMachineSpecServlet extends HttpServlet {
 
 		String machineId = ChineseCode.toUTF8(request.getParameter("machineId").trim());
 //		String repairPart = ChineseCode.toUTF8(request.getParameter("repairPart").trim());
-		String repairFactory = ChineseCode.toUTF8(request.getParameter("repairFactory").trim());
-		String errorDate = ChineseCode.toUTF8(request.getParameter("errorDate").trim());
-		String repairDate = ChineseCode.toUTF8(request.getParameter("repairDate").trim());
-		String repairPrice = ChineseCode.toUTF8(request.getParameter("repairPrice").trim());
+		//String repairFactory = "";
+		String startDate = ChineseCode.toUTF8(request.getParameter("startDate").trim()).substring(0,10);;
+		String endDate = ChineseCode.toUTF8(request.getParameter("endDate").trim()).substring(0,10);;
+		//String repairPrice = ChineseCode.toUTF8(request.getParameter("repairPrice").trim());
 		String principal = ChineseCode.toUTF8(request.getParameter("principal").trim());
 		String repairDetail = ChineseCode.toUTF8(request.getParameter("repairDetail"));
 		String memo = ChineseCode.toUTF8(request.getParameter("memo"));
+		String mainId = request.getParameter("mainId");
 		
 		String sql = "update machineRepair set " +
-				"repairFactory='"+repairFactory+"'," +
-				"errorDate=to_date('"+errorDate+"','yyyy-mm-dd,hh24:mi:ss'),repairDate=to_date('"+repairDate+"','yyyy-mm-dd,hh24:mi:ss')," +
-				"repairPrice='"+repairPrice+"',principal='"+principal+"',repairDetail='"+repairDetail+"',memo='"+memo+"' " +
-				"where machineId='"+machineId+"'";
+				
+				"startDate=to_date('"+startDate+"','yyyy-mm-dd'),endDate=to_date('"+endDate+"','yyyy-mm-dd')," +
+				"principal='"+principal+"',repairDetail='"+repairDetail+"',memo='"+memo+"' " +
+				"where mainId='"+mainId+"'";
 		System.out.println(sql);
 		sql_data sqlData = new sql_data();
 		try {

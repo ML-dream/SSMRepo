@@ -51,9 +51,9 @@ public class AddMachineRepairServlet extends HttpServlet {
 		
 		String UUID = UUIDHexGenerator.getInstance().generate();
 		String sql = "insert into machineRepair " +
-				"(mainId,machineId,startDate,endDate,createtime,repairDetail,principal,memo)" +
+				"(mainId,machineId,startDate,endDate,createtime,repairDetail,principal,memo,repairState)" +
 				"values('"+UUID+"','"+machineId+"','"+startDate+"','"+endDate+"'"+
-				",'"+createTime+"','"+repairDetail+"','"+principal+"','"+memo+"') ";
+				",'"+createTime+"','"+repairDetail+"','"+principal+"','"+memo+"','"+"是"+"') ";
 		System.out.println("sql=="+sql);
 		try {
 			Sqlhelper.executeUpdate(sql, null);

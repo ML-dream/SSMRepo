@@ -51,12 +51,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		
    		
 
-        <div id="grid1" class="mini-datagrid" style="width:150%;height:150%;" idField="id" allowResize="true"
+        <div id="grid1" class="mini-datagrid" style="width:100%;height:100%;" idField="id" allowResize="true"
             borderStyle="border-left:0;border-right:0;" onrowdblclick="onRowDblClick"
         >
             <div property="columns" height='150px' >
                 <div type="indexcolumn" ></div>
-                <div field="machineId" width="100" headerAlign="center">设备编号</div>
+                <div field="machineId" width="50" headerAlign="center">设备编号</div>
 	            <div field="machineName" width="70" headerAlign="center">设备名称 </div>
 	           <!--  <div field="machineSpec" width="100" headerAlign="center">设备规格</div>
 	            <div field="status" width="100" headerAlign="center">状态</div>

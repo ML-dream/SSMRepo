@@ -35,7 +35,7 @@ public class MachineRepairSpecServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		result.setMainId(request.getParameter("mainId"));
 		request.setAttribute("result", result);
 		
 		request.getRequestDispatcher("machineManage/editMachineRepair.jsp").forward(request, response);

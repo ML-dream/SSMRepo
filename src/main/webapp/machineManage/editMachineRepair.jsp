@@ -48,8 +48,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            
 			</tr>
 	   		<tr>
-	   			<td><label for="staffName$text">报修负责人</label></td>
-		    	<td><input id="staffName" name="staffName" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true" text="${result.staffName}"  value="${result.principal}" }/></td>
+	   			<td><label for="principal$text">报修负责人</label></td>
+		    	<td><input id="principal" name="principal" class="mini-buttonedit" width="100%" onbuttonclick="onButtonEditEmployee" allowInput="false" required="true" text="${result.staffName}"  value="${result.principal}" }/></td>
+	   			<td><label for="mainId$text">记录编号</label></td>
+		    	<td><input id="mainId" name="mainId" class="mini-textbox" width="100%"  allowInput="false" required="true" text="${result.mainId}"  value="${result.mainId}" }/></td>
 	        </tr>
 	   		<tr height="60px;">
 		   		<td><label for="repairDetail$text">故障说明</label></td>
@@ -73,8 +75,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	return;
             }else{
             	var data = form.getData();
-            	data.errorDate = mini.get("errorDate").getFormValue();
-            	data.repairDate = mini.get("repairDate").getFormValue();
+            	data.errorDate = mini.get("startDate").getValue();
+            	data.repairDate = mini.get("endDate").getValue();
                 var params = eval("("+mini.encode(data)+")");
                 var url = 'EditMachineSpecServlet';
    		        jQuery.post(url, params, callbackFun, 'json');
