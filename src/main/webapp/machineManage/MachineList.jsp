@@ -65,8 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        str += "<a style='margin-right:2px;' title='编辑' href=javascript:ondEdit(\'" + e.row.machineId+"\') ><span class='icon-edit' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";
 	        str += "<span>";
-	        str += "<a style='margin-right:2px;' title='维修' href=javascript:onRepair(\'" + e.row.machineId+"\',\'"+e.row.machineName+"\') ><span class='icon-unlock' style='width:30px;height:20px;display:inline-block'></span></a>";
-	        str += "</span>";
+	        /* str += "<a style='margin-right:2px;' title='维修' href=javascript:onRepair(\'" + e.row.machineId+"\',\'"+e.row.machineName+"\') ><span class='icon-unlock' style='width:30px;height:20px;display:inline-block'></span></a>";
+	        str += "</span>"; */
 	        /*str += "<span>";
 	        str += "<a style='margin-right:2px;' title='报废' href=javascript:onDiscard(\'" + e.row.machineId+"\') ><span class='icon-no' style='width:30px;height:20px;display:inline-block'></span></a>";
 	        str += "</span>";

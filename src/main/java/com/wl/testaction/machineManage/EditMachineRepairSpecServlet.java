@@ -19,16 +19,16 @@ public class EditMachineRepairSpecServlet extends HttpServlet {
 	throws ServletException, IOException {
 
 		String machineId = ChineseCode.toUTF8(request.getParameter("machineId").trim());
-		String machineName = ChineseCode.toUTF8(request.getParameter("machineName").trim());
-		String machineSpec = ChineseCode.toUTF8(request.getParameter("machineSpec").trim());
+		String machineName = request.getParameter("machineName").trim();
+		String machineSpec = request.getParameter("machineSpec").trim();
 		String place = ChineseCode.toUTF8(request.getParameter("place").trim());
 		String outCode = ChineseCode.toUTF8(request.getParameter("outCode").trim());
 		
 		String outDate = ChineseCode.toUTF8(request.getParameter("outDate").trim());
 		String machNum = ChineseCode.toUTF8(request.getParameter("machNum").trim());
 		String workRange = ChineseCode.toUTF8(request.getParameter("workRange").trim());
-		String machType = ChineseCode.toUTF8(request.getParameter("machType").trim());
-		String machModel = ChineseCode.toUTF8(request.getParameter("machModel").trim());
+		String machType = request.getParameter("machType").trim();
+		String machModel = request.getParameter("machModel").trim();
 		
 		String machStandard = ChineseCode.toUTF8(request.getParameter("machStandard").trim());
 		String machManufacture = ChineseCode.toUTF8(request.getParameter("machManufacture").trim());
